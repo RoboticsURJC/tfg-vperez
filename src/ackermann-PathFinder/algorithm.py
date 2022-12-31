@@ -27,6 +27,8 @@ class Waypoint:
 def precomputeChilds():
     
     childs = []
+    costs = []
+    steer_angles = []
     
     angle_increment = (2 * CAR_MAX_STEER_ANGLE) / (N_CHILDS - 1)
     
@@ -36,18 +38,21 @@ def precomputeChilds():
         # Get rear axle line
         # Because math is calculated in relative coord system, slope is always 0
         axle_line = y + CAR_LEN
-                
+        ideal_cost = DISTANCE_BTW_CHILDS  
+              
         # Get direction line
         if math.isclose(angle, 0.0):
             # If is front
-            child_point = (0, DISTANCE_BTW_CHILDS)    
+            child_point = (0, DISTANCE_BTW_CHILDS)   
+            cost = ideal_cost 
+            print(cost)
         else: 
             aux_x, aux_y = (math.cos(angle + math.pi), math.sin(angle + math.pi))
             direction_line = (aux_y / (aux_x)) * x - y
             
             # Rotation circle
-            solution = sym.solve((direction_line, axle_line), (x, y))
-            rotation_circ = getCircunferenceExpresion(solution[x], solution[y], distance((solution[x], solution[y]), (0,0)))
+            center = sym.solve((direction_line, axle_line), (x, y))
+            rotation_circ = getCircunferenceExpresion(center[x], center[y], distance((center[x], center[y]), (0,0)))
             
             # Get both childs
             childs_circ = getCircunferenceExpresion(0, 0, DISTANCE_BTW_CHILDS)   
@@ -55,10 +60,31 @@ def precomputeChilds():
             
             # Select only the valid one
             child_point = max(solutions[0], solutions[1], key=lambda tuple: tuple[1])
-    
+            
+            # Compute cost
+            # "Move" center of trajectory to 0,0 (Traslating all points)
+            dx = -center[x]
+            dy = -center[y]
+            
+            rot_center = (0,0)
+            parent = (dx, dy)
+            child = (child_point[0] + dx, child_point[1] + dy)
+            
+            beta = math.atan2(child[1], child[0])
+            alpha = math.atan2(parent[1], parent[0])
+            theta = abs(beta - alpha)
+            
+            # (theta / 2pi) * 2pi*r
+            real_cost = theta * distance(parent, rot_center)
+            
+            # Amplify the cost
+            cost = ((real_cost - ideal_cost) * 4000) + real_cost
+            
+            print(cost)
+            
         childs.append(child_point)
     
-    return childs
+    return (childs, costs, steer_angles)
 
 def getCircunferenceExpresion(center_x, center_y, radius):
       
