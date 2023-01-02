@@ -30,6 +30,8 @@ def precomputeChilds():
     costs = []
     steer_angles = []
     
+    parent_orientation = math.pi/2
+    
     angle_increment = (2 * CAR_MAX_STEER_ANGLE) / (N_CHILDS - 1)
     
     for i in range(N_CHILDS):
@@ -45,9 +47,10 @@ def precomputeChilds():
             # If is front
             child_point = (0, DISTANCE_BTW_CHILDS)   
             cost = ideal_cost 
-            print(cost)
+            child_orientation = parent_orientation
+            
         else: 
-            aux_x, aux_y = (math.cos(angle + math.pi), math.sin(angle + math.pi))
+            aux_x, aux_y = (math.cos(angle + math.pi), math.sin(angle +  math.pi))
             direction_line = (aux_y / (aux_x)) * x - y
             
             # Rotation circle
@@ -60,6 +63,15 @@ def precomputeChilds():
             
             # Select only the valid one
             child_point = max(solutions[0], solutions[1], key=lambda tuple: tuple[1])
+            
+            # Compute child final orientation
+            child_slope =  -1 / ((child_point[1] - center[y]) / (child_point[0] - center[x]))
+                     
+            child_orientation = math.atan(child_slope)
+         
+            # Because atan returns angle between 90 and -90 degrees
+            if angle > 0:
+                child_orientation += math.pi        
             
             # Compute cost
             # "Move" center of trajectory to 0,0 (Traslating all points)
@@ -80,9 +92,11 @@ def precomputeChilds():
             # Amplify the cost
             cost = ((real_cost - ideal_cost) * 4000) + real_cost
             
-            print(cost)
-            
-        childs.append(child_point)
+               
+        childs.append((child_point, child_orientation))
+        costs.append(cost)
+        steer_angles.append(angle)
+        
     
     return (childs, costs, steer_angles)
 
@@ -127,12 +141,12 @@ def showWaypoints(waypoints):
 
 precomputed_childs = precomputeChilds()
 
-'''
-for child in precomputed_childs:
-    plt.plot([child[0]], [child[1]], 'ro')
+
+for child in precomputed_childs[0]:
+    
+    px, py = child[0]
+    plt.plot([px], [py], 'ro')
 
 plt.plot([0], [0], 'r*')
 
 plt.show()
-
-'''
