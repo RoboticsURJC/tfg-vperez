@@ -14,12 +14,12 @@ CAR_MAX_STEER_ANGLE = math.radians(30)
 N_CHILDS = 5 # Always odd number
 DISTANCE_BTW_CHILDS = 0.5
 
-precomputed_childs = []
+precomputed = []
 
 x = sym.Symbol('x')
 y = sym.Symbol('y')
 
-class Waypoint:
+class ReferenceSystem:
     x = 0
     y = 0
     orientation = 0
@@ -29,8 +29,6 @@ def precomputeChilds():
     childs = []
     costs = []
     steer_angles = []
-    
-    parent_orientation = math.pi/2
     
     angle_increment = (2 * CAR_MAX_STEER_ANGLE) / (N_CHILDS - 1)
     
@@ -47,7 +45,7 @@ def precomputeChilds():
             # If is front
             child_point = (0, DISTANCE_BTW_CHILDS)   
             cost = ideal_cost 
-            child_orientation = parent_orientation
+            child_orientation = 0
             
         else: 
             aux_x, aux_y = (math.cos(angle + math.pi), math.sin(angle +  math.pi))
@@ -73,6 +71,8 @@ def precomputeChilds():
             if angle > 0:
                 child_orientation += math.pi        
             
+            child_orientation -= math.pi/2 # Taking Y axis as angle start
+            
             # Compute cost
             # "Move" center of trajectory to 0,0 (Traslating all points)
             dx = -center[x]
@@ -91,7 +91,8 @@ def precomputeChilds():
             
             # Amplify the cost
             cost = ((real_cost - ideal_cost) * 4000) + real_cost
-            
+        
+        print(child_orientation)    
                
         childs.append((child_point, child_orientation))
         costs.append(cost)
@@ -123,8 +124,8 @@ def rel2abs(point, relative_reference_system):
     angle = relative_reference_system.orientation
        
     # Rotate with current angle
-    rotx = px * math.cos(-angle) - py * math.sin(-angle)
-    roty = px * math.sin(-angle) + py * math.cos(-angle)
+    rotx = px * math.cos(angle) - py * math.sin(angle)
+    roty = px * math.sin(angle) + py * math.cos(angle)
     
     absx = relative_reference_system.x + rotx
     absy = relative_reference_system.y + roty
@@ -139,9 +140,69 @@ def showWaypoints(waypoints):
     plt.show()
  
 
-precomputed_childs = precomputeChilds()
+def expand(parent):
+    
+    childs = []
+  
+    pre_childs, _, _ = precomputed
+    
+    for i in range(N_CHILDS):
+        
+        child = ReferenceSystem()
+    
+        pre_child_pose = pre_childs[i][0]
+        pre_child_orientation = pre_childs[i][1]
+        
+        child_pose = rel2abs(pre_child_pose, parent)
+        
+        child.x = child_pose[0]
+        child.y = child_pose[1]
+        
+        child.orientation = parent.orientation + pre_child_orientation
+    
+        childs.append(child)
+        
+        
+    return childs
+     
+precomputed = precomputeChilds()
 
 
+parent = ReferenceSystem()
+parent.x = 2
+parent.y = 3
+parent.orientation = math.radians(45)
+
+childs = expand(parent)
+
+plt.plot([2], [3], 'r*')
+
+for child in childs:
+    
+    #print(str(child.x) + " " + str(child.y) + " " + str(child.orientation) )
+    
+    plt.plot([child.x], [child.y], 'ro')
+    
+
+new_childs = expand(childs[-1])
+
+for new_child in new_childs:
+
+    
+    plt.plot([new_child.x], [new_child.y], 'bo')
+    
+
+
+plt.xlim([0, 5])
+plt.ylim([0, 5])
+plt.axis('equal')
+
+
+plt.show()
+
+
+
+'''
 for child in precomputed_childs[0]:
     
     px, py = child[0]
@@ -150,3 +211,4 @@ for child in precomputed_childs[0]:
 plt.plot([0], [0], 'r*')
 
 plt.show()
+'''
