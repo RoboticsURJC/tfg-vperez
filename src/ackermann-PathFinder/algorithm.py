@@ -3,16 +3,18 @@ import sympy as sym
 import matplotlib.pyplot as plt
 import math
 import sympy as sym
+import utils
 
 
 # Car constraints
-CAR_WIDTH = 2
-CAR_LEN = 3.5
-CAR_MAX_STEER_ANGLE = math.radians(30)
+CAR_WIDTH = 2 # Meters
+CAR_LEN = 3.5 # Meters
+CAR_MAX_STEER_ANGLE = math.radians(30) # Radians. Steer range: -value to +value
 
 # Algorith params
 N_CHILDS = 5 # Always odd number
-DISTANCE_BTW_CHILDS = 0.5
+DISTANCE_BTW_CHILDS = 0.5 # Meters
+GOAL_THRESHOLD = 0.5 # Meters
 
 precomputed = []
 
@@ -138,8 +140,14 @@ def showWaypoints(waypoints):
         plt.plot([waypoint.x], [waypoint.y], 'ro')
     
     plt.show()
- 
 
+def heuristic(actual, goal):
+    
+    dx = goal.x - actual.x
+    dy = goal.y - actual.y
+    
+    return math.sqrt(dx**2 + dy**2)
+    
 def expand(parent):
     
     childs = []
@@ -164,7 +172,52 @@ def expand(parent):
         
         
     return childs
-     
+
+def isGoal(actual, goal):
+    
+    return distance((actual.x, actual.y), (goal.x, goal.y)) < GOAL_THRESHOLD:
+
+'''
+def AStarSearch(start, goal):
+    
+    frontier = utils.PriorityQueue()
+    explored = []
+
+    # Node structure -> (state, sequence of action to reach him)
+    initial_node = (start, [])
+    frontier.push(initial_node, 0) # (node, cost)
+
+    while not frontier.isEmpty():
+        
+        actual_state, actual_actions = frontier.pop()
+
+        if problem.isGoalState(actual_state):
+            return actual_actions
+        
+        if actual_state not in explored:
+            explored.append(actual_state)
+
+            childs = problem.expand(actual_state)
+
+            for child in childs:
+                
+                state, action, _ = child
+
+                # Get all actions to reach parent and add the action to reach child from parent
+                actions = actual_actions.copy() 
+                actions.append(action) 
+
+                estimated_cost =  problem.getCostOfActionSequence(actions) + heuristic(state, problem)
+                
+                node = (state, actions)
+                frontier.push(node, estimated_cost)
+                  
+    return []
+
+'''
+
+
+
 precomputed = precomputeChilds()
 
 
@@ -184,7 +237,7 @@ for child in childs:
     plt.plot([child.x], [child.y], 'ro')
     
 
-new_childs = expand(childs[-1])
+new_childs = expand(childs[-4])
 
 for new_child in new_childs:
 
