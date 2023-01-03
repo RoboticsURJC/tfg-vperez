@@ -8,12 +8,12 @@ import utils
 
 # Car constraints
 CAR_WIDTH = 2 # Meters
-CAR_LEN = 3.5 # Meters
+CAR_LEN = 5 # Meters
 CAR_MAX_STEER_ANGLE = math.radians(30) # Radians. Steer range: -value to +value
 
 # Algorith params
-N_CHILDS = 5 # Always odd number
-DISTANCE_BTW_CHILDS = 0.5 # Meters
+N_CHILDS = 9 # Always odd number
+DISTANCE_BTW_CHILDS = 1 # Meters
 GOAL_THRESHOLD = 0.5 # Meters
 
 precomputed = []
@@ -55,6 +55,7 @@ def precomputeChilds():
             
             # Rotation circle
             center = sym.solve((direction_line, axle_line), (x, y))
+            print(str(center[x]) + " " + str(center[y]))
             rotation_circ = getCircunferenceExpresion(center[x], center[y], distance((center[x], center[y]), (0,0)))
             
             # Get both childs
@@ -92,9 +93,8 @@ def precomputeChilds():
             real_cost = theta * distance(parent, rot_center)
             
             # Amplify the cost
-            cost = ((real_cost - ideal_cost) * 4000) + real_cost
+            cost = ((real_cost - ideal_cost) * 1000) + real_cost
         
-        print(child_orientation)    
                
         childs.append((child_point, child_orientation))
         costs.append(cost)
@@ -150,7 +150,7 @@ def heuristic(actual, goal):
     
 def expand(parent):
     
-    childs = []
+    childs = [] # List of waypoints
   
     pre_childs, _, _ = precomputed
     
@@ -175,52 +175,132 @@ def expand(parent):
 
 def isGoal(actual, goal):
     
-    return distance((actual.x, actual.y), (goal.x, goal.y)) < GOAL_THRESHOLD:
+    return distance((actual.x, actual.y), (goal.x, goal.y)) < GOAL_THRESHOLD
 
-'''
+def waypointInList(waypoint, input_list):
+    
+    for wp in input_list:
+        
+        if math.isclose(wp.x, waypoint.x) and math.isclose(wp.y, waypoint.y) and math.isclose(wp.orientation, waypoint.orientation):
+            return True
+         
+    return False
+
 def AStarSearch(start, goal):
+    
+    
+    _, precomputed_costs, precomputed_angles = precomputed
     
     frontier = utils.PriorityQueue()
     explored = []
 
-    # Node structure -> (state, sequence of action to reach him)
-    initial_node = (start, [])
-    frontier.push(initial_node, 0) # (node, cost)
+    # Node structure -> (actual_waypoint, [(child, total_cost, steer_angle), ...]
+    start_node = (start, [(start, 0, 0)])
+    frontier.push(start_node, 0) # (node, cost)
 
+    iterations = 0
+    
     while not frontier.isEmpty():
         
-        actual_state, actual_actions = frontier.pop()
-
-        if problem.isGoalState(actual_state):
-            return actual_actions
+        iterations += 1
         
-        if actual_state not in explored:
-            explored.append(actual_state)
+        actual_waypoint, data = frontier.pop()
+        
+        if isGoal(actual_waypoint, goal) or iterations > 1000:
+            return data
+        
+        if not waypointInList(actual_waypoint, explored):
+            
+            explored.append(actual_waypoint)
 
-            childs = problem.expand(actual_state)
-
+            childs = expand(actual_waypoint)
+            
+            
+            actual_cost = data[-1][1]
+            
+            child_id = 0
             for child in childs:
                 
-                state, action, _ = child
-
-                # Get all actions to reach parent and add the action to reach child from parent
-                actions = actual_actions.copy() 
-                actions.append(action) 
-
-                estimated_cost =  problem.getCostOfActionSequence(actions) + heuristic(state, problem)
+                new_cost = actual_cost + precomputed_costs[child_id]
+                new_angle = precomputed_angles[child_id]
                 
-                node = (state, actions)
+                new_data = data.copy() 
+                new_data.append( (child, new_cost, new_angle)) 
+
+                estimated_cost =  new_cost + heuristic(child, goal)
+                
+                node = (child, new_data)
                 frontier.push(node, estimated_cost)
+                
+                child_id += 1
                   
     return []
 
-'''
+def drawCar(waypoint):
+    points = [(0,0), (CAR_WIDTH/2, 0), (CAR_WIDTH/2, 0.25), (CAR_WIDTH/2, -0.25), (CAR_WIDTH/2, 0),
+            (-CAR_WIDTH/2, 0), (-CAR_WIDTH/2, 0.25), (-CAR_WIDTH/2, -0.25), (-CAR_WIDTH/2, 0),
+            (0, 0), (0, -CAR_LEN), (CAR_WIDTH/2, -CAR_LEN), (CAR_WIDTH/2, -CAR_LEN + 0.25), (CAR_WIDTH/2, -CAR_LEN -0.25), (CAR_WIDTH/2, -CAR_LEN),
+            (-CAR_WIDTH/2, -CAR_LEN), (-CAR_WIDTH/2, -CAR_LEN + 0.25), (-CAR_WIDTH/2, -CAR_LEN -0.25), (-CAR_WIDTH/2, -CAR_LEN)]
 
+    x = []
+    y = []
+
+    for p in points:
+        
+        absolute = rel2abs(p, waypoint)
+        
+        x.append(absolute[0])
+        y.append(absolute[1])
+    
+    plt.plot(x, y, 'b-')
 
 
 precomputed = precomputeChilds()
 
 
+start = ReferenceSystem()
+start.x = 2
+start.y = 3
+start.orientation = math.radians(135)
+
+
+goal = ReferenceSystem()
+goal.x = 8
+goal.y = 8
+goal.orientation = math.radians(150)
+'''
+
+plt.plot([0], [0], 'r*')
+childs = precomputed[0] #expand(start)
+
+for c in childs:
+    plt.plot([c[0][0]], [c[0][1]], 'bo')
+plt.show()    
+
+'''
+
+
+data = AStarSearch(start, goal)
+
+plt.plot([start.x], [start.y], 'r*')
+plt.plot([goal.x], [goal.y], 'r*')
+
+if len(data) > 0:
+    
+    for d in data:
+        
+        waypoint,_,_ = d
+        plt.plot([waypoint.x], [waypoint.y], 'bo')
+
+    
+else:
+    print("Path not found")   
+
+drawCar(start)
+
+plt.show()
+
+'''
 parent = ReferenceSystem()
 parent.x = 2
 parent.y = 3
@@ -255,7 +335,7 @@ plt.show()
 
 
 
-'''
+
 for child in precomputed_childs[0]:
     
     px, py = child[0]
