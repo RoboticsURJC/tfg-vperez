@@ -8,15 +8,18 @@ import utils
 
 # Car constraints
 CAR_WIDTH = 2 # Meters
-CAR_LEN = 5 # Meters
+CAR_LEN = 10 # Meters
 CAR_MAX_STEER_ANGLE = math.radians(30) # Radians. Steer range: -value to +value
 
 # Algorith params
 N_CHILDS = 9 # Always odd number
 DISTANCE_BTW_CHILDS = 1 # Meters
 GOAL_THRESHOLD = 0.5 # Meters
+MAX_ASTAR_ITERATIONS = 10000
 
 precomputed = []
+
+id_count = 0 # First ID is 0
 
 x = sym.Symbol('x')
 y = sym.Symbol('y')
@@ -26,6 +29,8 @@ class ReferenceSystem:
     y = 0
     orientation = 0
 
+
+  
 def precomputeChilds():
     
     childs = []
@@ -97,6 +102,7 @@ def precomputeChilds():
         
                
         childs.append((child_point, child_orientation))
+        print(cost)
         costs.append(cost)
         steer_angles.append(angle)
         
@@ -148,30 +154,142 @@ def heuristic(actual, goal):
     
     return math.sqrt(dx**2 + dy**2)
     
-def expand(parent):
+    
+    
+'''
+Expands the given waypoint and return a list of:
+(child_waypoint, cost_to_reach_him, steer_to_reach_him, child_id)
+'''
+def new_expand(parent_waypoint, parent_steer):
+    global id_count
+    
+    precomputed_waypoints, precomputed_costs, precomputed_steers = precomputed
+    
+    childs_data = []
+    
+    max_steer = max(precomputed_steers)
+    
+    for child_index in range(N_CHILDS):
+        
+        child_steer = precomputed_steers[child_index]
+        
+  
+        # Only generated a valid child taking care of steer limitations
+        
+        # TODO Manera cutre de decir mayor o igual a 0 en floats: CORREGIR esto es para pruebas
+        if max_steer - (abs(child_steer) + abs(parent_steer)) > -0.01 :
+               
+            # Compute the absolute child   
+            child_waypoint = ReferenceSystem()
+                
+            rel_child_xy = precomputed_waypoints[child_index][0]
+            rel_child_theta = precomputed_waypoints[child_index][1]
+        
+            child_x, child_y = rel2abs(rel_child_xy, parent_waypoint)
+            
+            # Fill new child data
+            child_waypoint.x = child_x
+            child_waypoint.y = child_y
+            child_waypoint.orientation = parent_waypoint.orientation + rel_child_theta
+            
+            id_count += 1
+            
+            childs_data.append( (child_waypoint, precomputed_costs[child_index], child_steer, id_count) )
+            
+        
+    return childs_data
+    
+def new_AstarSearch(start_waypoint, end_waypoint):
+    
+    frontier = utils.PriorityQueue() # Frontier data: (waypoint, parents <list>, costs <list> , steers <lists>, id)
+    explored = []
+    
+    # Start
+    frontier.push( (start_waypoint, [start_waypoint], [0], [0], id_count), 0)
+    
+    iterations = 0
+    
+    while not frontier.isEmpty():
+        
+        waypoint, parents, costs, steers, waypoint_id = frontier.pop()
+        
+        if isGoal(waypoint, end_waypoint) or iterations == MAX_ASTAR_ITERATIONS:
+            return parents
+            
+        
+        # If is an unexplored node
+        if waypoint_id not in explored:
+            
+            explored.append(waypoint) # Add it
+            
+            childs = new_expand(waypoint, steers[-1])
+                                  
+            for child_data in childs:
+                
+                child_waypoint, child_cost, child_steer, child_id = child_data
+                       
+                child_cost += heuristic(child_waypoint, end_waypoint) # Add heuristic
+                
+                child_parents = parents.copy()
+                child_parents.append(child_waypoint)
+                
+                child_costs = costs.copy()
+                child_costs.append(child_cost)
+                
+                child_steers = steers.copy()
+                child_steers.append(child_steer)
+                
+                frontier.push( (child_waypoint, child_parents, child_costs, child_steers, child_id) , child_cost)
+                
+            
+        iterations += 1
+        
+    
+    print("A star search failed!")
+    return []
+
+def expand(parent, parent_steer):
     
     childs = [] # List of waypoints
+    angles = []
   
-    pre_childs, _, _ = precomputed
+    pre_childs, _, pre_steers = precomputed
     
     for i in range(N_CHILDS):
+        # Optimización necesaria. Usar el rango al máximo TODO
+        valid_node = False
         
-        child = ReferenceSystem()
-    
-        pre_child_pose = pre_childs[i][0]
-        pre_child_orientation = pre_childs[i][1]
+        if parent_steer > 0:
+            max_angle_in_next = max(pre_steers) - parent_steer
+            
+            if pre_steers[i] < max_angle_in_next:
+                valid_node = True
+            
+        else:
+            min_angle_in_next = min(pre_steers) + parent_steer
+            
+            if pre_steers[i] > min_angle_in_next:
+                valid_node = True
+                    
         
-        child_pose = rel2abs(pre_child_pose, parent)
+        if valid_node:
+            child = ReferenceSystem()
+            
+            pre_child_pose = pre_childs[i][0]
+            pre_child_orientation = pre_childs[i][1]
+            
+            child_pose = rel2abs(pre_child_pose, parent)
+            
+            child.x = child_pose[0]
+            child.y = child_pose[1]
+            
+            child.orientation = parent.orientation + pre_child_orientation
         
-        child.x = child_pose[0]
-        child.y = child_pose[1]
-        
-        child.orientation = parent.orientation + pre_child_orientation
-    
-        childs.append(child)
+            childs.append(child)
+            angles.append(pre_steers[i])
         
         
-    return childs
+    return (childs, angles)
 
 def isGoal(actual, goal):
     
@@ -187,8 +305,7 @@ def waypointInList(waypoint, input_list):
     return False
 
 def AStarSearch(start, goal):
-    
-    
+     
     _, precomputed_costs, precomputed_angles = precomputed
     
     frontier = utils.PriorityQueue()
@@ -206,14 +323,14 @@ def AStarSearch(start, goal):
         
         actual_waypoint, data = frontier.pop()
         
-        if isGoal(actual_waypoint, goal) or iterations > 1000:
+        if isGoal(actual_waypoint, goal) or iterations > 10000:
             return data
         
         if not waypointInList(actual_waypoint, explored):
             
             explored.append(actual_waypoint)
 
-            childs = expand(actual_waypoint)
+            childs, angles = expand(actual_waypoint, data[-1][2])
             
             
             actual_cost = data[-1][1]
@@ -221,8 +338,10 @@ def AStarSearch(start, goal):
             child_id = 0
             for child in childs:
                 
-                new_cost = actual_cost + precomputed_costs[child_id]
-                new_angle = precomputed_angles[child_id]
+                new_cost = 1 #actual_cost + precomputed_costs[child_id]
+                
+                #TODO este angulo no esta bien. NO funciona ya asi hay que guardarse el real.
+                new_angle = angles[child_id]
                 
                 new_data = data.copy() 
                 new_data.append( (child, new_cost, new_angle)) 
@@ -254,7 +373,6 @@ def drawCar(waypoint):
     
     plt.plot(x, y, 'b-')
 
-
 precomputed = precomputeChilds()
 
 
@@ -268,35 +386,27 @@ goal = ReferenceSystem()
 goal.x = 8
 goal.y = 8
 goal.orientation = math.radians(150)
-'''
-
-plt.plot([0], [0], 'r*')
-childs = precomputed[0] #expand(start)
-
-for c in childs:
-    plt.plot([c[0][0]], [c[0][1]], 'bo')
-plt.show()    
-
-'''
 
 
-data = AStarSearch(start, goal)
+waypoints = new_AstarSearch(start, goal)
 
 plt.plot([start.x], [start.y], 'r*')
 plt.plot([goal.x], [goal.y], 'r*')
 
-if len(data) > 0:
+if len(waypoints) > 0:
     
-    for d in data:
-        
-        waypoint,_,_ = d
+    for waypoint in waypoints:
         plt.plot([waypoint.x], [waypoint.y], 'bo')
-
     
 else:
     print("Path not found")   
 
 drawCar(start)
+
+plt.xlim(-10, 20)
+plt.ylim(-10, 10)
+
+ax = plt.gca().set_aspect('equal', adjustable='box')
 
 plt.show()
 
