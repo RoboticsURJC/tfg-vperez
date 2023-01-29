@@ -8,7 +8,7 @@ import utils
 
 # Car constraints
 CAR_WIDTH = 2 # Meters
-CAR_LEN = 10 # Meters
+CAR_LEN = 3 # Meters
 CAR_MAX_STEER_ANGLE = math.radians(30) # Radians. Steer range: -value to +value
 
 # Algorith params
@@ -396,12 +396,13 @@ plt.plot([goal.x], [goal.y], 'r*')
 if len(waypoints) > 0:
     
     for waypoint in waypoints:
-        plt.plot([waypoint.x], [waypoint.y], 'bo')
+        plt.plot([waypoint.x], [waypoint.y], 'ro')
+        drawCar(waypoint)
     
 else:
     print("Path not found")   
 
-drawCar(start)
+
 
 plt.xlim(-10, 20)
 plt.ylim(-10, 10)
@@ -409,6 +410,7 @@ plt.ylim(-10, 10)
 ax = plt.gca().set_aspect('equal', adjustable='box')
 
 plt.show()
+
 
 '''
 parent = ReferenceSystem()
