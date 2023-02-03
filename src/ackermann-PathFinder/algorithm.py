@@ -8,7 +8,7 @@ import utils
 
 # Car constraints
 CAR_WIDTH = 2 # Meters
-CAR_LEN = 3 # Meters
+CAR_LEN = 7 # Meters
 CAR_MAX_STEER_ANGLE = math.radians(30) # Radians. Steer range: -value to +value
 
 # Algorith params
@@ -190,7 +190,7 @@ def new_expand(parent_waypoint, parent_steer):
             # Fill new child data
             child_waypoint.x = child_x
             child_waypoint.y = child_y
-            child_waypoint.orientation = parent_waypoint.orientation + rel_child_theta
+            child_waypoint.orientation = parent_waypoint.orientation + rel_child_theta + math.pi / 2
             
             id_count += 1
             
@@ -383,8 +383,8 @@ start.orientation = math.radians(135)
 
 
 goal = ReferenceSystem()
-goal.x = 8
-goal.y = 8
+goal.x = 9
+goal.y = 9
 goal.orientation = math.radians(150)
 
 
@@ -393,15 +393,27 @@ waypoints = new_AstarSearch(start, goal)
 plt.plot([start.x], [start.y], 'r*')
 plt.plot([goal.x], [goal.y], 'r*')
 
+
+drawCar(start)
+
+
 if len(waypoints) > 0:
     
     for waypoint in waypoints:
         plt.plot([waypoint.x], [waypoint.y], 'ro')
-        drawCar(waypoint)
+       
     
 else:
     print("Path not found")   
 
+
+exp = new_expand(start, 0)
+
+for c in exp:
+    waypoint,_, _, _ = c
+    plt.plot([waypoint.x, waypoint.x + math.cos(waypoint.orientation)], [waypoint.y, waypoint.y + math.sin(waypoint.orientation)], 'b-')
+    plt.plot([waypoint.x], [waypoint.y], 'ro')
+    
 
 
 plt.xlim(-10, 20)
