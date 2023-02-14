@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find arm_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find arm_description)/urdf/arm.trans" />
+<xacro:include filename="$(find arm_description)/urdf/arm.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.009999999999999998 0.0 0.02183457057097043" rpy="0 0 0"/>
+    <mass value="0.2713460093227194"/>
+    <inertia ixx="7.8e-05" iyy="5.4e-05" izz="4.2e-05" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link1_1">
+  <inertial>
+    <origin xyz="-0.005 -3.188694641116523e-18 0.039999999999999994" rpy="0 0 0"/>
+    <mass value="0.34984600932271964"/>
+    <inertia ixx="0.000412" iyy="0.000372" izz="4.6e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.0275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/link1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.0275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/link1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="link2_1">
+  <inertial>
+    <origin xyz="0.005 -2.6742327003636473e-16 0.027540838816112787" rpy="0 0 0"/>
+    <mass value="0.24820334315710035"/>
+    <inertia ixx="0.000208" iyy="0.000188" izz="2.5e-05" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.1075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/link2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.1075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://arm_description/meshes/link2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rígida 1" type="fixed">
+  <origin xyz="0.0 0.0 0.0275" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="link1_1"/>
+</joint>
+
+<joint name="Rígida 2" type="fixed">
+  <origin xyz="0.0 0.0 0.08" rpy="0 0 0"/>
+  <parent link="link1_1"/>
+  <child link="link2_1"/>
+</joint>
+
+</robot>
