@@ -54,7 +54,7 @@ class Grbl:
                 
                 self.__machineStatus = variables[0]
                 self.__machinePosition = variables[1][5:]
-            
+                        
             time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
     # Public
@@ -66,6 +66,7 @@ class Grbl:
         except:
             return False
         
+        self.__threadRunning = True
         self.__feedbackThread.start()
         return True
     
