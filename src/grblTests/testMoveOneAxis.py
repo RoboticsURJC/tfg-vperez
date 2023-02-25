@@ -58,7 +58,7 @@ def updateInfo():
 
 def sendAngle(angle):
     
-    order = "G21G91X" + str(angle/360.0) + "F8"
+    order = "G01X" + str(angle/360.0) + "F8"
     
     serialObj.write(bytes(order.encode()))
     
@@ -66,13 +66,21 @@ def sendAngle(angle):
     serialObj.write('\n'.encode())
 
 def resetZero():
+
+    wcoZero = "G10L2X0Y0Z0"
+    useAbsoluteMM = "G21G90"
     
-    order = "G92"
-    serialObj.write(bytes(order.encode()))
     
+    serialObj.write(bytes(useAbsoluteMM.encode()))
+    serialObj.write('\r'.encode())
+    serialObj.write('\n'.encode())
+    
+    
+    serialObj.write(bytes(wcoZero.encode()))
     serialObj.write('\r'.encode())
     serialObj.write('\n'.encode())
 
+    
 def main():
     global done
     
