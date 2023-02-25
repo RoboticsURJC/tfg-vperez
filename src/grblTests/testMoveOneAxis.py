@@ -5,6 +5,7 @@ import threading as th
 currentAngle = 0.0
 currentSpeed = 0.0
 currentState = 'UNDEFINED'
+done = False
 
 serialObj = None
 port = '/dev/ttyS0'
@@ -29,7 +30,7 @@ def updateInfo():
 
     global currentAngle, currentSpeed, currentState
 
-    while True:
+    while not done:
     
     
         if serialObj.isOpen():
@@ -57,7 +58,7 @@ def updateInfo():
 
 def sendAngle(angle):
     
-    order = "G21G90X" + str(angle/360.0) + "F8"
+    order = "G21G91X" + str(angle/360.0) + "F8"
     
     serialObj.write(bytes(order.encode()))
     
@@ -73,6 +74,8 @@ def resetZero():
     serialObj.write('\n'.encode())
 
 def main():
+    global done
+    
     grblConnect()
 
     infoThread = th.Thread(target=updateInfo)
@@ -84,17 +87,31 @@ def main():
     
     infoThread.start()
 
-    while not math.isclose(currentAngle, goalAngle):
+    while not done:
 
         print(chr(27) + "[2J")  # Clean terminal
-
+        
         print("State: " + currentState)
+        print("Goal angle: " + str(goalAngle))
         print("Current angle: " + str(math.degrees(currentAngle)) + "")
         print("Current speed: " + str(currentSpeed) + " turns/min")
         time.sleep(0.1)
-    
-    print("Done")
         
+        done = math.isclose(currentAngle, math.radians(goalAngle))
+    
+    
+    # Reprint result
+    
+    print(chr(27) + "[2J")  # Clean terminal
+        
+    print("State: " + currentState)
+    print("Goal angle: " + str(goalAngle))
+    print("Current angle: " + str(math.degrees(currentAngle)) + "")
+    print("Current speed: " + str(currentSpeed) + " turns/min")
+    time.sleep(0.1)
+        
+    print("Done")
+            
     infoThread.join()  # Stop timer
     grblDisconnect()
 
