@@ -4,11 +4,11 @@ import threading as th
 
 STATUS_REPORT_FREQUENCY = 5 # Hz
 
-class grbl:
+class Grbl:
 
     # Private
     __machinePosition = "0.0,0.0,0.0"
-    __machineState = "Undefined"
+    __machineStatus = "Undefined"
     __serialBus = None
     __port = None
     __feedbackThread = None
@@ -26,53 +26,52 @@ class grbl:
     def __feedback(self):
         
         # Update information when grbl connection is working
+        
         while self.__threadRunning:
             
-            
-            
-        
-        
-        
-        done = False
-
-        self.__sendOrder('?')
-        startTs = time.time()
-
-        while not done:
-
-            received = str(self.__serialBus.readline())
-            
-            # If received is a status command
-            if '<' in received and '>' in received:
+            # Ask for status report 
+            reportObtained = False
+            startTs = time.time()
+             
+            self.__sendOrder('?')
+           
+            while not reportObtained:
                 
-                # Parse
+                received = str(self.__serialBus.readline())
+                
+                if '<' in received and '>' in received:
+                    reportObtained = True
+
+                # If last to much time, abort
+                if time.time() - startTs > 0.15:
+                    break
+                
+            if reportObtained:
+                # Parse report message
                 statusMsg = received[3:][:-6]
 
                 variables = statusMsg.split('|')
                 
-                self.__machineState = variables[0]
+                self.__machineStatus = variables[0]
                 self.__machinePosition = variables[1][5:]
-                done = True
-
-            # Timeout
-            if time.time() - startTs > STATUS_TIMEOUT:
-                done = True
-
+            
+            time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
+            
     # Public
 
     def start(self):
         
         try:
             self.__serialBus = serial.Serial(self.__port, 115200)
-            self.__feedbackThread.start()
-            return True
         except:
-            print("Unable to connect with grbl... Do you have permissions to access " + self.__port + " ?")
             return False
+        
+        self.__feedbackThread.start()
+        return True
     
     def stop(self):
 
-        __threadRunning = False # Stop thread
+        self.__threadRunning = False # Stop thread
         self.__feedbackThread.join() # Wait thread to end
         self.__serialBus.close() # Close bus
                
@@ -83,12 +82,12 @@ class grbl:
         z = float(self.__machinePosition.split(',')[2])
         return (x, y, z)
 
-    def getState(self):
-        return self.__machineState
+    def getStatus(self):
+        return self.__machineStatus
 
     def goToXYZ(self, x, y, z, feedrate):
         
-        order = "G01" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + feedrate       
+        order = "G01" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
         self.__sendOrder(order)
     
    
