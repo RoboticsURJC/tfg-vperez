@@ -4,6 +4,8 @@ import threading as th
 
 STATUS_REPORT_FREQUENCY = 5 # Hz
 
+RECEIVE_TIMEOUT = 0.1 # Secs
+
 class Grbl:
 
     # Private
@@ -22,7 +24,8 @@ class Grbl:
     def __sendOrder(self, order):
         self.__serialBus.write(bytes(order.encode()))
         self.__serialBus.write('\r'.encode())
-        self.__serialBus.write('\n'.encode())
+        #self.__serialBus.write('\n'.encode())
+    
 
     def __feedback(self):
         
@@ -71,6 +74,7 @@ class Grbl:
         self.__threadAlive = True # Keep alive
         self.__threadRunning = True # Run thread
         self.__feedbackThread.start()
+        time.sleep(1) # Wait all start
         return True
     
     def stop(self):
@@ -95,22 +99,41 @@ class Grbl:
         
         commands = file.readlines()
         
-        i = 1
-        for command in commands:
+        done = False
+        i = 0
+        
+        while not done:
+            
+            command = commands[i].replace('\n', '') # Remove \n
             
             self.__sendOrder(command)
             
-            received = str(self.__serialBus.readline())
+            # Wait for response
+            responseValid = False # Only response is valid if contains error or ok. Other messages does not matter
             
-            if "error" in received:
+            startTs = time.time()
+            
+            receive = ''
+            
+            while not responseValid:
                 
-                print("Error in line " + str(i) + " : " + received)
-                self.__threadRunning = True # Reactivate thread
-                return False
-                 
-            i += 1
-        
-        self.__threadRunning = True # Reactivate thread       
+                receive = str(self.__serialBus.readline())
+                
+                responseValid = ("error" in receive or "ok" in receive)
+            
+                if time.time() - startTs > RECEIVE_TIMEOUT:
+                    break
+            
+            if responseValid:
+                if "error" in receive:
+                    print("Grbl response: " + receive[2:][:-5])
+                    self.__threadRunning = True # Reactivate thread
+                    return False                
+                i += 1
+                         
+            done = (i == len(commands))
+                       
+        self.__threadRunning = True  # Reactivate thread
         return True
            
     def getXYZ(self):
