@@ -13,6 +13,7 @@ class Grbl:
     __port = None
     __feedbackThread = None
     __threadRunning = False
+    __threadAlive = True
 
     def __init__(self, port='/dev/ttyS0'):
         self.__port = port 
@@ -27,35 +28,36 @@ class Grbl:
         
         # Update information when grbl connection is working
         
-        while self.__threadRunning:
+        while self.__threadAlive:
             
-            # Ask for status report 
-            reportObtained = False
-            startTs = time.time()
-             
-            self.__sendOrder('?')
-           
-            while not reportObtained:
+            if self.__threadRunning:
+                # Ask for status report 
+                reportObtained = False
+                startTs = time.time()
                 
-                received = str(self.__serialBus.readline())
-                
-                if '<' in received and '>' in received:
-                    reportObtained = True
+                self.__sendOrder('?')
+            
+                while not reportObtained:
+                    
+                    received = str(self.__serialBus.readline())
+                    
+                    if '<' in received and '>' in received:
+                        reportObtained = True
 
-                # If last to much time, abort
-                if time.time() - startTs > 0.15:
-                    break
-                
-            if reportObtained:
-                # Parse report message
-                statusMsg = received[3:][:-6]
+                    # If last to much time, abort
+                    if time.time() - startTs > 0.15:
+                        break
+                    
+                if reportObtained:
+                    # Parse report message
+                    statusMsg = received[3:][:-6]
 
-                variables = statusMsg.split('|')
-                
-                self.__machineStatus = variables[0]
-                self.__machinePosition = variables[1][5:]
-                        
-            time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
+                    variables = statusMsg.split('|')
+                    
+                    self.__machineStatus = variables[0]
+                    self.__machinePosition = variables[1][5:]
+                            
+                time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
     # Public
 
@@ -66,16 +68,51 @@ class Grbl:
         except:
             return False
         
-        self.__threadRunning = True
+        self.__threadAlive = True # Keep alive
+        self.__threadRunning = True # Run thread
         self.__feedbackThread.start()
         return True
     
     def stop(self):
 
-        self.__threadRunning = False # Stop thread
+        self.__threadAlive = False # Kill thread
         self.__feedbackThread.join() # Wait thread to end
         self.__serialBus.close() # Close bus
-               
+    
+    def loadConfig(self, filename):
+        
+        # Stop status thread to have a clean bus
+        self.__threadRunning = False
+        
+        time.sleep(1.0 / STATUS_REPORT_FREQUENCY) # Wait to have clean bus
+        
+        try:
+            file = open(filename, 'r')
+        except:
+            print("File not found!")
+            self.__threadRunning = True # Reactivate thread
+            return False
+        
+        commands = file.readlines()
+        
+        i = 1
+        for command in commands:
+            
+            self.__sendOrder(command)
+            
+            received = str(self.__serialBus.readline())
+            
+            if "error" in received:
+                
+                print("Error in line " + str(i) + " : " + received)
+                self.__threadRunning = True # Reactivate thread
+                return False
+                 
+            i += 1
+        
+        self.__threadRunning = True # Reactivate thread       
+        return True
+           
     def getXYZ(self):
 
         x = float(self.__machinePosition.split(',')[0])
