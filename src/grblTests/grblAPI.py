@@ -146,6 +146,23 @@ class Grbl:
     def getStatus(self):
         return self.__machineStatus
 
+    def setSpindleSpeed(self, speed):
+        
+        # Ensure speed is in range 0-1000
+        if speed < 0:
+            speed = 0
+        if speed > 1000:
+            speed = 1000
+        
+        order = "S" + str(speed)
+        self.__sendOrder(order)
+    
+    def enableSpindle(self):
+        self.__sendOrder("M3")
+    
+    def disableSpindle(self):
+        self.__sendOrder("M5")
+    
     def goToXYZ(self, x, y, z, feedrate):
         
         order = "G01" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
