@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
-import random
+import math
 
-img = cv2.imread("imageExample2.jpg", cv2.IMREAD_GRAYSCALE)
 
 def draw_hexagon(im, center, diameter, color):
     radius = int(diameter / 2)  # calculate the radius of the hexagon
-    apothem = int(radius * np.sqrt(3) / 2)  # calculate the apothem of the hexagon
+    # calculate the apothem of the hexagon
+    apothem = int(radius * np.sqrt(3) / 2)
     x, y = center  # get the coordinates of the center of the hexagon
 
     # Calculate the coordinates of the vertices of the hexagon
@@ -22,88 +22,98 @@ def draw_hexagon(im, center, diameter, color):
     # Draw the filled hexagon on the image
     return cv2.fillPoly(im, [vertices], color)
 
+def drawBoundingBox(image, contour):
+    # Draws a real bonding box rotated if is neccesary
+    rect = cv2.minAreaRect(contour)
+    boxContour = cv2.boxPoints(rect)
+    boxContour = np.int0(boxContour)
+    return cv2.drawContours(image, [boxContour], 0, (0, 255, 0), 11)
 
-def process1(img):
+def squareContourBoundingBox(contour):
+    # Draws a real bonding box rotated if is neccesary
+    _, dimensions, _ = cv2.minAreaRect(contour)
+        
+    ratio = float(max(dimensions)) / min(dimensions)
     
-    # blur - threshold - dilate - erode
+    return ratio < 1.2 # True if is square, false otherwise
+
+def contourCenter(contour):
+    moments = cv2.moments(contour)
+    cx = int(moments['m10']/moments['m00'])
+    cy = int(moments['m01']/moments['m00'])
     
-    smooth = cv2.GaussianBlur(img,(25,25),cv2.BORDER_DEFAULT)
+    return (cx, cy)
+
+def contourSize(contour):
+    _, dimensions, _ = cv2.minAreaRect(contour)
+    return dimensions
     
-    _, threshold = cv2.threshold(smooth, 145, 255, cv2.THRESH_BINARY)
-    
- 
-    # Taking a matrix of size 5 as the kernel
-    kernel = np.ones((5, 5), np.uint8)
+inputImage = cv2.imread("imageExample2.jpg", cv2.IMREAD_GRAYSCALE)
+
+# Gaussian Blur with 25x25 kernel
+blur = cv2.GaussianBlur(inputImage, (25, 25), cv2.BORDER_DEFAULT)
+
+# Make a mask filtering by whiteness
+_, threshold = cv2.threshold(blur, 145, 255, cv2.THRESH_BINARY)
+
+# Find external contours as a chain of points
+contours, _ = cv2.findContours(
+    threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+# Convert to grayscale the input image to BGR to draw colors on them
+finalContour = cv2.cvtColor(inputImage, cv2.COLOR_GRAY2RGB)
+finalBoundingBox = cv2.cvtColor(inputImage, cv2.COLOR_GRAY2RGB)
+finalShapes = cv2.cvtColor(inputImage, cv2.COLOR_GRAY2RGB)
 
 
-    #dilate = cv2.dilate(threshold, kernel, iterations=3)
+for contour in contours:
 
-    
-    contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
+    if cv2.contourArea(contour) > 10000:
 
-        
-    finalContour = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-    
-    finalBoundingBox = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-    
-    finalShapes = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-    
-    
-    for i in range(len(contours)):
-        
-        if cv2.contourArea(contours[i]) < 10000:
-            continue
-        
-        poligon = cv2.approxPolyDP(contours[i], 0.010* cv2.arcLength(contours[i], True), True)
-                
-        color = (255, 0, 0)#(random.randint(0,255), random.randint(0,255), random.randint(0,255))
-        finalContour = cv2.drawContours(finalContour, [poligon], -1, color, 11)
-        
-        (x, y, w, h) = cv2.boundingRect(contours[i])
-        finalBoundingBox = cv2.rectangle(finalBoundingBox, (x,y), (x+w, y+h), (0, 255, 0), 10)
-        
-        
-        # Identification
+        # Draw bounding box
+        finalBoundingBox = drawBoundingBox(finalBoundingBox, contour)
+
+        # Aproximate to a poligon
+        poligon = cv2.approxPolyDP(
+            contour, 0.010 * cv2.arcLength(contour, True), True)
+
+        # Draw poligon contour
+        finalContour = cv2.drawContours(
+            finalContour, [poligon], 0, (255, 0, 0), 11)
+
+        # Identify shapes
         sides = len(poligon)
-        
-        aspectRatio = float(w) / h
-        
-        print("Sides: " + str(sides))
-        print("Ratio: " + str(aspectRatio))
-        
-        center = (int(x+w/2), int(y+h/2))
-        
-        if sides < 10 and aspectRatio > 0.8 and aspectRatio < 1.2:
-            finalShapes = draw_hexagon(finalShapes, center, w, (0, 255, 255))
 
-        if aspectRatio < 0.8 or aspectRatio > 1.2:
-            finalShapes = cv2.fillPoly(finalShapes, [ np.array( contours[i] ) ], (255, 0, 255))
-        
-        if sides > 10 and aspectRatio > 0.8 and aspectRatio < 1.2:
-            finalShapes = cv2.circle(finalShapes, center, int(w/2), color, -1)
-        
-    
-    stages = np.concatenate((img, threshold), axis=1)
-    
-    results = np.concatenate((finalContour, finalBoundingBox, finalShapes), axis=1)  
-    cv2.namedWindow('processing', cv2.WINDOW_AUTOSIZE)    # Create window with freedom of dimensions    
-    cv2.namedWindow('results', cv2.WINDOW_AUTOSIZE)    # Create window with freedom of dimensions
-    
-    stages = cv2.resize(stages, (int(stages.shape[1] * 0.10), int(stages.shape[0] * 0.10)), cv2.INTER_AREA)
-    
-    results = cv2.resize(results, (int(results.shape[1] * 0.10), int(results.shape[0] * 0.10)), cv2.INTER_AREA)
- 
-    cv2.imshow('processing', stages)
-    cv2.imshow('results', results)
-    
-    
+        if squareContourBoundingBox(contour):
+            # Nut or washer
+            if sides < 10:
+                finalShapes = draw_hexagon(finalShapes, contourCenter(contour), contourSize(contour)[0], (125, 210, 0))
+            else:
+                finalShapes = cv2.circle(finalShapes, contourCenter(contour), int(contourSize(contour)[0] / 2), (0, 255, 0), -1)
+        else:
+            # Bolt
+            finalShapes = cv2.fillPoly(finalShapes, pts=[contour], color=(255, 0, 255))
+            
+            
+            
+
+# Show progress and result
+stages = np.concatenate((inputImage, blur, threshold), axis=1)
+results = np.concatenate((finalContour, finalBoundingBox, finalShapes), axis=1)
 
 
+# Create window with freedom of dimensions
+cv2.namedWindow('processing', cv2.WINDOW_AUTOSIZE)
+# Create window with freedom of dimensions
+cv2.namedWindow('results', cv2.WINDOW_AUTOSIZE)
 
+stages = cv2.resize(stages, (int(
+    stages.shape[1] * 0.10), int(stages.shape[0] * 0.10)), cv2.INTER_AREA)
+results = cv2.resize(results, (int(
+    results.shape[1] * 0.10), int(results.shape[0] * 0.10)), cv2.INTER_AREA)
 
-
-process1(img)
+cv2.imshow('processing', stages)
+cv2.imshow('results', results)
 
 
 cv2.waitKey(10000)
