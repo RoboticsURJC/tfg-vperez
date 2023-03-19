@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="g_arm">
+
+  <!-- Definition of the base link -->
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/base.dae"/>
+      </geometry>
+  </visual>
+  </link>
+
+</robot>
