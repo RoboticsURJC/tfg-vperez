@@ -24,7 +24,7 @@
 
   <joint name="base_rotation" type="revolute">
     <origin
-      xyz="0 0 0"
+      xyz="0 0 0.076"
       rpy="0 0 0" />
     <parent
       link="base_link" />
