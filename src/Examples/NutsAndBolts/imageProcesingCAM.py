@@ -64,8 +64,8 @@ while (time.time() - startTs < runTime):
     if frameOk:
         
 
-        inputImage = cv2.imread("imageExample2.jpg", cv2.IMREAD_GRAYSCALE)
-
+        inputImage = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        
         # Gaussian Blur with 25x25 kernel
         blur = cv2.GaussianBlur(inputImage, (25, 25), cv2.BORDER_DEFAULT)
 
@@ -84,7 +84,7 @@ while (time.time() - startTs < runTime):
 
         for contour in contours:
 
-            if cv2.contourArea(contour) > 10000:
+            if cv2.contourArea(contour) > 1500:
 
                 # Draw bounding box
                 finalBoundingBox = drawBoundingBox(finalBoundingBox, contour)
@@ -123,9 +123,9 @@ while (time.time() - startTs < runTime):
         cv2.namedWindow('results', cv2.WINDOW_AUTOSIZE)
 
         stages = cv2.resize(stages, (int(
-        stages.shape[1] * 0.10), int(stages.shape[0] * 0.10)), cv2.INTER_AREA)
+        stages.shape[1] * 0.5), int(stages.shape[0] * 0.5)), cv2.INTER_AREA)
         results = cv2.resize(results, (int(
-        results.shape[1] * 0.10), int(results.shape[0] * 0.10)), cv2.INTER_AREA)
+        results.shape[1] * 0.5), int(results.shape[0] * 0.5)), cv2.INTER_AREA)
 
         cv2.imshow('processing', stages)
         cv2.imshow('results', results)
