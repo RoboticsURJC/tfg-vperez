@@ -5,12 +5,14 @@ import threading as th
 STATUS_REPORT_FREQUENCY = 5 # Hz
 
 RECEIVE_TIMEOUT = 0.1 # Secs
+HOMING_TIMEOUT = 8 # Secs
 
 class Grbl:
 
     # Private
     __machinePosition = "0.0,0.0,0.0"
     __machineStatus = "Undefined"
+    __machineSwitchStatus = ""
     __serialBus = None
     __port = None
     __feedbackThread = None
@@ -59,6 +61,9 @@ class Grbl:
                     
                     self.__machineStatus = variables[0]
                     self.__machinePosition = variables[1][5:]
+                    
+                    # Parse switch status
+                    self.__machineSwitchStatus = variables[2][3:]
                             
                 time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
@@ -168,4 +173,16 @@ class Grbl:
         order = "G01" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
         self.__sendOrder(order)
     
-   
+    def autohome(self):
+        
+        # Send command of autohome
+        self.__sendOrder('$H')
+        
+        # Wait until all switches are triggered
+        start = time.time()
+        while not 'XYZ' in self.__machineSwitchStatus:         
+            
+            if time.time() - start > HOMING_TIMEOUT:
+                return False
+        
+        return True
