@@ -84,10 +84,12 @@ class Grbl:
     
     def stop(self):
 
-        self.__threadAlive = False # Kill thread
-        self.__feedbackThread.join() # Wait thread to end
-        self.__serialBus.close() # Close bus
-    
+        if self.__threadRunning:
+            
+            self.__threadAlive = False # Kill thread
+            self.__feedbackThread.join() # Wait thread to end
+            self.__serialBus.close() # Close bus
+        
     def loadConfig(self, filename):
         
         # Stop status thread to have a clean bus
