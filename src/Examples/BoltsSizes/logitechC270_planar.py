@@ -1,47 +1,26 @@
-# https://github.com/Vlad12344/Robotic_arm_Object_Detection/blob/master/Utils.py
 import numpy as np
 
-# Logitech C270 
-imgSize = (1280, 720)
-fx = 840.03948975
-fy = 837.31976318
-intrinsic = np.array([[fx,           0.0,         335.28379881],
-                      [  0.0,         fy,  239.29821099],
-                      [  0.0,           0.0,           1.0       ]])
+# Define camera parameters
+focal_length = 840  
+image_width = 1280
+image_height = 720
+camera_matrix = np.array([[focal_length, 0, image_width/2],
+                          [0, focal_length, image_height/2],
+                          [0, 0, 1]])
 
-# The object is in a plane with z=0
-def pixelTo3D(pixel, cameraPosition):
-    u, v = pixel
-    tx, ty, tz = cameraPosition
-    
-    K = intrinsic
-    
-    # Coordenadas normalizadas del punto en el plano de la imagen
-    cx = imgSize[0] / 2
-    cy = imgSize[1] / 2
-    x_norm = np.array([(u - cx) / fx, (v - cy) / fy, 1])
+# Define plane parameters
+plane_normal = np.array([0, 0, 1])  # assuming plane is parallel to the ground
 
-    # Matriz de parámetros extrínsecos de la cámara
-    R = np.array([[1, 0, 0],
-                [0, 1, 0],
-                [0, 0, 1]])
+# Cordinate system relative to de camera, Z is depth
+def get_3d_point_from_2d_point(u, v, planeDistance):
+    # Construct a ray from camera center through 2D point
+    ray = np.linalg.inv(camera_matrix) @ np.array([u, v, 1]) # Multiply matrix
+    ray /= np.linalg.norm(ray)
 
-    t = np.array([[tx], [ty], [tz]])  # Vector de traslación
+    # Calculate distance from camera center to plane
+    t = (planeDistance - np.array([0, 0, 0]).dot(plane_normal)) / ray.dot(plane_normal)
 
-    # Combinación de la matriz de proyección y los parámetros extrínsecos
-    RT = np.hstack((R, t))
-    P = np.dot(K, RT)
-    print(P)
-    print(t)
+    # Calculate 3D point on plane
+    point_3d = np.array([0, 0, 0]) + t * ray
 
-    # Punto en coordenadas homogéneas
-    x_hom = np.hstack((x_norm, 1))
-
-    # Punto en coordenadas del mundo real
-    X_hom = np.dot(np.linalg.inv(P), x_hom)
-    X = X_hom[:3] / X_hom[3]
-
-    # Imprimir resultado
-    print("El punto ({}, {}) en la imagen corresponde a la posición ({}, {}, {}) en el mundo real.".format(u, v, X[0], X[1], X[2]))
-
-pixelTo3D((0,0), (0,0,1))
+    return point_3d
