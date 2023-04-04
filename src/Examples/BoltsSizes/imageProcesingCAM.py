@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math, time
+import logitechC270_planar
 
 
 def drawBoundingBox(image, contour):
@@ -21,6 +22,13 @@ def squareContourBoundingBox(contour):
 def distance(A, B):   
     return math.sqrt( math.pow(A[0]-B[0], 2) + math.pow(A[1]-B[1], 2) ) 
 
+def getBoltSize(ext1, ext2):
+    p1x, p1y, _ = logitechC270_planar.get_3d_point_from_2d_point(ext1[0], ext1[1], 0.3)
+    p2x, p2y, _ = logitechC270_planar.get_3d_point_from_2d_point(ext2[0], ext2[1], 0.3)
+    
+    return distance( (p1x, p1y), (p2x, p2y) )
+    
+    
 def drawContourBoundingBoxExtremes(img, contour):
     
     rect = cv2.minAreaRect(contour)
@@ -41,6 +49,13 @@ def drawContourBoundingBoxExtremes(img, contour):
     img = cv2.circle(img, ext2, 35, (0, 255, 0), -1)
     
     img = cv2.circle(img, mid, 25, (255, 255, 255), -1)
+    
+    boltSize = int(getBoltSize(ext1, ext2) * 100)
+    text = str(boltSize) + " mm"
+    
+    cv2.putText(img, text, mid, cv2.FONT_HERSHEY_SIMPLEX, 10, (0, 255, 0), thickness=17)
+
+    
     
     return img
     
