@@ -23,8 +23,8 @@ def distance(A, B):
     return math.sqrt( math.pow(A[0]-B[0], 2) + math.pow(A[1]-B[1], 2) ) 
 
 def getBoltSize(ext1, ext2):
-    p1x, p1y, _ = logitechC270_planar.get_3d_point_from_2d_point(ext1[0], ext1[1], 0.3)
-    p2x, p2y, _ = logitechC270_planar.get_3d_point_from_2d_point(ext2[0], ext2[1], 0.3)
+    p1x, p1y, _ = logitechC270_planar.get_3d_point_from_2d_point(ext1, 0.3)
+    p2x, p2y, _ = logitechC270_planar.get_3d_point_from_2d_point(ext2, 0.3)
     
     return distance( (p1x, p1y), (p2x, p2y) )
     

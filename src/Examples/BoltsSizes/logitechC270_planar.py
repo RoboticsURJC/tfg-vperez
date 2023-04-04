@@ -12,7 +12,8 @@ camera_matrix = np.array([[focal_length, 0, image_width/2],
 plane_normal = np.array([0, 0, 1])  # assuming plane is parallel to the ground
 
 # Cordinate system relative to de camera, Z is depth
-def get_3d_point_from_2d_point(u, v, planeDistance):
+def get_3d_point_from_2d_point(pixel, planeDistance):
+    u, v = pixel
     # Construct a ray from camera center through 2D point
     ray = np.linalg.inv(camera_matrix) @ np.array([u, v, 1]) # Multiply matrix
     ray /= np.linalg.norm(ray)
