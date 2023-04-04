@@ -19,26 +19,7 @@ def moveJoint2Down():
     print("Moving joint 2 down...")
 
 def moveJoint3Down():
-    print("Moving joint 3 down...") 
-    
-
-def moveXUp():
-    print("Moving X up...")
-
-def moveYUp():
-    print("Moving Y up...")
-
-def moveZUp():
-    print("Moving Z up...")   
-
-def moveXDown():
-    print("Moving X down...")
-
-def moveYDown():
-    print("Moving Y down...")
-
-def moveZDown():
-    print("Moving Z down...")   
+    print("Moving joint 3 down...")   
 
 def increaseJointStep():
     jointStepSize.set(min(15, jointStepSize.get() + 1))
@@ -112,18 +93,18 @@ ttk.Separator(frame, orient='vertical').grid(column=3, row=0, padx=0, pady=0, ro
 
 # Buttons for moving in X
 ttk.Label(frame, text="Move in X").grid(column=3, row=0, padx=5, pady=5)
-ttk.Button(frame, text="Up", command=moveXUp, width=10).grid(column=3, row=1, padx=5, pady=5)
-ttk.Button(frame, text="Down", command=moveXDown, width=10).grid(column=3, row=2, padx=5, pady=5)
+ttk.Button(frame, text="Up", width=10).grid(column=3, row=1, padx=5, pady=5)
+ttk.Button(frame, text="Down", width=10).grid(column=3, row=2, padx=5, pady=5)
 
 # Buttons for moving in Y
 ttk.Label(frame, text="Move in Y").grid(column=4, row=0, padx=5, pady=5)
-ttk.Button(frame, text="Up", command=moveYUp, width=10).grid(column=4, row=1, padx=5, pady=5)
-ttk.Button(frame, text="Down", command=moveYDown, width=10).grid(column=4, row=2, padx=5, pady=5)
+ttk.Button(frame, text="Up", width=10).grid(column=4, row=1, padx=5, pady=5)
+ttk.Button(frame, text="Down", width=10).grid(column=4, row=2, padx=5, pady=5)
 
 # Buttons for moving in Z
 ttk.Label(frame, text="Move in Z").grid(column=5, row=0, padx=5, pady=5)
-ttk.Button(frame, text="Up", command=moveZUp, width=10).grid(column=5, row=1, padx=5, pady=5)
-ttk.Button(frame, text="Down", command=moveZDown, width=10).grid(column=5, row=2, padx=5, pady=5)
+ttk.Button(frame, text="Up", width=10).grid(column=5, row=1, padx=5, pady=5)
+ttk.Button(frame, text="Down", width=10).grid(column=5, row=2, padx=5, pady=5)
 
 # Add a separator between columns
 ttk.Separator(frame, orient='vertical').grid(column=6, row=0, padx=0, pady=0, rowspan=7, sticky='nsew')
