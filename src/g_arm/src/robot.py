@@ -50,10 +50,51 @@ class Robot:
         print("Done!")
     '''
     def autohome(self):
-        self.__grbl.asyncMove('Y', 20,10, True)
+        print("Homing...")
+        
+        # Reach Z limit
+        self.__grbl.asyncMove('Z', 360, 200, True)
+        while not 'Z' in self.__grbl.getSwitchStatus():
+            pass
+        self.__grbl.softReset()
         time.sleep(2)
+        
+        # Give some margin
+        self.__grbl.asyncMove('Z', -5, 200, True)
+        
+        # Reach Y limit
+        self.__grbl.asyncMoveXYZ((0, -360, -360), 10, True)
+        
+        while not 'Y' in self.__grbl.getSwitchStatus():
+            pass
+        
         self.__grbl.softReset()
         
+        time.sleep(2)
+        
+        # Recalibrate Z slower
+        
+        # Give some margin
+        self.__grbl.asyncMove('Z', -10, 200, True)
+        time.sleep(3)
+        self.__grbl.asyncMove('Z', 10, 10, True)
+        while not 'Z' in self.__grbl.getSwitchStatus():
+            pass
+        self.__grbl.softReset()
+        
+        time.sleep(3)
+        
+        # Reach X limit
+        self.__grbl.asyncMoveXYZ((360, 0, 0), 600, True)
+        
+        while not 'X' in self.__grbl.getSwitchStatus():
+            pass
+        
+        self.__grbl.softReset()
+        
+        
+        print("Done!")
+     
         
     # Private
     __grbl = None 

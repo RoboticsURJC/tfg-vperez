@@ -194,7 +194,7 @@ class Grbl:
         if axis not in 'XYZ':
             print("Wrong axis!") 
             return 
-        
+                
         if relative:
             order = "G01G21G91" + axis + str(value) + "F" + str(feedrate)     
         else:
@@ -202,6 +202,21 @@ class Grbl:
             
         self.__sendOrder(order)
     
+    def asyncMoveXYZ(self, position, feedrate, relative):
+        if len(position) != 3:
+            print("Wrong position!") 
+            return
+        
+        coords = 'X' + str(position[0]) + 'Y' + str(position[1]) + 'Z' + str(position[2])
+        
+        if relative:
+            order = "G01G21G91" + coords + "F" + str(feedrate)     
+        else:
+            order = "G01G21G91" + coords + "F" + str(feedrate) 
+            
+        self.__sendOrder(order)
+        
+        
     def softReset(self):
         # Send Hold
         self.__sendOrder('!')
