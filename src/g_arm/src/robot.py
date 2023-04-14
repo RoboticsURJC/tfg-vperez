@@ -1,4 +1,4 @@
-import math
+import math, time
 import grblAPI
 
 
@@ -21,9 +21,11 @@ class Robot:
             print("Unable to start communications in " + port + ". Do you have permissions?")
             return False
         
-        if not self.__grbl.autohome(): # Init 0,0 correctly
-            print("Unable to perform homing")
-            return False
+        time.sleep(4)
+        self.autohome()
+        
+        return True
+
     
     def stop(self):
         self.__grbl.stop()
@@ -37,6 +39,19 @@ class Robot:
         X, Y, Z = self.__grbl.getXYZ()       
         return (X * RELATION_X_RAD, Y * RELATION_Y_RAD, Z * RELATION_Z_RAD)
     
-    
+    def autohome(self):
+        print("Homing...")
+        
+        while 'Y' not in self.__grbl.getSwitchStatus():  
+            self.__grbl.asyncMove('Y', 1, 5, True)
+            time.sleep(1)
+        
+        while 'X' not in self.__grbl.getSwitchStatus():  
+            self.__grbl.asyncMove('Y', -1, 5, True)
+            self.__grbl.asyncMove('X', 1, 5, True)
+            time.sleep(1)
+        
+        print("Done!")
+        
     # Private
     __grbl = None 

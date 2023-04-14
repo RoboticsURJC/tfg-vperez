@@ -63,8 +63,9 @@ class Grbl:
                     self.__machinePosition = variables[1][5:]
                     
                     # Parse switch status
-                    self.__machineSwitchStatus = variables[2][3:]
-                            
+                    if len(variables) == 4 and 'Pn' in variables[3]:
+                        self.__machineSwitchStatus = variables[3][3:]
+                                        
                 time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
     # Public
@@ -152,6 +153,9 @@ class Grbl:
 
     def getStatus(self):
         return self.__machineStatus
+    
+    def getSwitchStatus(self):
+        return self.__machineSwitchStatus
 
     def setSpindleSpeed(self, speed):
         
@@ -172,19 +176,62 @@ class Grbl:
     
     def goToXYZ(self, x, y, z, feedrate):
         
-        order = "G01" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
+        order = "G01 G90" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
         self.__sendOrder(order)
     
-    def autohome(self):
+    def setAbsX(self, value, feedrate):
+        order = "G01 G90" + "X" + str(value) + "F" + str(feedrate)     
+        self.__sendOrder(order)
+    
+    def setAbsY(self, value, feedrate):
+        order = "G01 G90" + "Y" + str(value) + "F" + str(feedrate)       
+        self.__sendOrder(order)
+    
+    def setAbsZ(self, value, feedrate):
+        order = "G01 G90" + "Z" + str(value) + "F" + str(feedrate)     
+        self.__sendOrder(order)
+    
+    
+    def setRelX(self, value, feedrate):
+        order = "$J=G01 G91" + "X" + str(value) + "F" + str(feedrate)     
+        self.__sendOrder(order)
+    
+    def setRelY(self, value, feedrate):
+        order = "$J=G01 G91" + "Y" + str(value) + "F" + str(feedrate)       
+        self.__sendOrder(order)
+    
+    def setRelZ(self, value, feedrate):
+        order = "$J=G01 G91" + "Z" + str(value) + "F" + str(feedrate)     
+        self.__sendOrder(order)
+    
+    def asyncMove(self, axis, value, feedrate, relative=True):
         
-        # Send command of autohome
-        self.__sendOrder('$H')
+        if axis not in 'XYZ':
+            return 
         
-        # Wait until all switches are triggered
-        start = time.time()
-        while not 'XYZ' in self.__machineSwitchStatus:         
+        if relative:
+            order = "$J=G21 G91" + axis + str(value) + "F" + str(feedrate)     
+        else:
+            order = "$J=G21 G90" + axis + str(value) + "F" + str(feedrate) 
             
-            if time.time() - start > HOMING_TIMEOUT:
-                return False
+        self.__sendOrder(order)
+    
+    def syncMove(self, axis, value, feedrate, relative=True):
         
-        return True
+        if axis not in 'XYZ':
+            print("Wrong axis!") 
+        
+        if relative:
+            order = "$J=G21G91" + axis + str(value) + "F" + str(feedrate)     
+        else:
+            order = "$J=G21G90" + axis + str(value) + "F" + str(feedrate)
+            
+        self.__sendOrder(order)
+        
+        time.sleep(0.025) # Sleep for 25ms
+        
+        print(self.__machineStatus)
+        
+        while self.__machineStatus != "Idle":
+            pass
+            
