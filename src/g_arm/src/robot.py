@@ -15,13 +15,15 @@ class Robot:
     def __init__(self):      
         self.__grbl = grblAPI.Grbl()
     
-    def start(self, port='/dev/ttyS0'):
+    def start(self, port='/dev/ttyUSB0'):
         
-        if not self.__grbl.start():
+        if not self.__grbl.start(port):
             print("Unable to start communications in " + port + ". Do you have permissions?")
             return False
         
-        time.sleep(4)
+        #self.__grbl.syncMove('Y', 10,10)
+        #self.__grbl.syncMove('Y', 10,10, True)
+        time.sleep(1)
         self.autohome()
         
         return True
@@ -38,20 +40,20 @@ class Robot:
     def getAngles(self):
         X, Y, Z = self.__grbl.getXYZ()       
         return (X * RELATION_X_RAD, Y * RELATION_Y_RAD, Z * RELATION_Z_RAD)
-    
+    '''
     def autohome(self):
         print("Homing...")
         
         while 'Y' not in self.__grbl.getSwitchStatus():  
-            self.__grbl.asyncMove('Y', 1, 5, True)
-            time.sleep(1)
-        
-        while 'X' not in self.__grbl.getSwitchStatus():  
-            self.__grbl.asyncMove('Y', -1, 5, True)
-            self.__grbl.asyncMove('X', 1, 5, True)
-            time.sleep(1)
-        
+           self.__grbl.syncMove('Y', 1,10, True)
+           
         print("Done!")
+    '''
+    def autohome(self):
+        self.__grbl.asyncMove('Y', 20,10, True)
+        time.sleep(2)
+        self.__grbl.softReset()
+        
         
     # Private
     __grbl = None 

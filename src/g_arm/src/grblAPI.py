@@ -14,21 +14,49 @@ class Grbl:
     __machineStatus = "Undefined"
     __machineSwitchStatus = ""
     __serialBus = None
-    __port = None
     __feedbackThread = None
     __threadRunning = False
     __threadAlive = True
 
-    def __init__(self, port='/dev/ttyS0'):
-        self.__port = port 
+    def __init__(self): 
         self.__feedbackThread = th.Thread(target=self.__feedback) 
                 
     def __sendOrder(self, order):
         self.__serialBus.write(bytes(order.encode()))
         self.__serialBus.write('\r'.encode())
-        #self.__serialBus.write('\n'.encode())
     
 
+    def __updateInformation(self):
+        # Ask for status report 
+        reportObtained = False
+        startTs = time.time()
+        
+        self.__sendOrder('?')
+    
+        while not reportObtained:
+            
+            received = str(self.__serialBus.readline())
+            
+            if '<' in received and '>' in received:
+                reportObtained = True
+
+            # If last to much time, abort
+            if time.time() - startTs > 0.15:
+                break
+            
+        if reportObtained:
+            # Parse report message
+            statusMsg = received[3:][:-6]
+
+            variables = statusMsg.split('|')
+            
+            self.__machineStatus = variables[0]
+            self.__machinePosition = variables[1][5:]
+            
+            # Parse switch status
+            if len(variables) == 4 and 'Pn' in variables[3]:
+                self.__machineSwitchStatus = variables[3][3:]
+        
     def __feedback(self):
         
         # Update information when grbl connection is working
@@ -36,44 +64,16 @@ class Grbl:
         while self.__threadAlive:
             
             if self.__threadRunning:
-                # Ask for status report 
-                reportObtained = False
-                startTs = time.time()
-                
-                self.__sendOrder('?')
-            
-                while not reportObtained:
-                    
-                    received = str(self.__serialBus.readline())
-                    
-                    if '<' in received and '>' in received:
-                        reportObtained = True
-
-                    # If last to much time, abort
-                    if time.time() - startTs > 0.15:
-                        break
-                    
-                if reportObtained:
-                    # Parse report message
-                    statusMsg = received[3:][:-6]
-
-                    variables = statusMsg.split('|')
-                    
-                    self.__machineStatus = variables[0]
-                    self.__machinePosition = variables[1][5:]
-                    
-                    # Parse switch status
-                    if len(variables) == 4 and 'Pn' in variables[3]:
-                        self.__machineSwitchStatus = variables[3][3:]
-                                        
+               
+                self.__updateInformation()                    
                 time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
     # Public
 
-    def start(self):
+    def start(self, port='/dev/ttyUSB0'):
         
         try:
-            self.__serialBus = serial.Serial(self.__port, 115200)
+            self.__serialBus = serial.Serial(port, 115200)
         except:
             return False
         
@@ -179,59 +179,43 @@ class Grbl:
         order = "G01 G90" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
         self.__sendOrder(order)
     
-    def setAbsX(self, value, feedrate):
-        order = "G01 G90" + "X" + str(value) + "F" + str(feedrate)     
-        self.__sendOrder(order)
     
-    def setAbsY(self, value, feedrate):
-        order = "G01 G90" + "Y" + str(value) + "F" + str(feedrate)       
-        self.__sendOrder(order)
-    
-    def setAbsZ(self, value, feedrate):
-        order = "G01 G90" + "Z" + str(value) + "F" + str(feedrate)     
-        self.__sendOrder(order)
-    
-    
-    def setRelX(self, value, feedrate):
-        order = "$J=G01 G91" + "X" + str(value) + "F" + str(feedrate)     
-        self.__sendOrder(order)
-    
-    def setRelY(self, value, feedrate):
-        order = "$J=G01 G91" + "Y" + str(value) + "F" + str(feedrate)       
-        self.__sendOrder(order)
-    
-    def setRelZ(self, value, feedrate):
-        order = "$J=G01 G91" + "Z" + str(value) + "F" + str(feedrate)     
-        self.__sendOrder(order)
-    
-    def asyncMove(self, axis, value, feedrate, relative=True):
+    def waitForRunToIdle(self):
+        self.__updateInformation() # Fast update of machine knowledge
         
-        if axis not in 'XYZ':
-            return 
-        
-        if relative:
-            order = "$J=G21 G91" + axis + str(value) + "F" + str(feedrate)     
-        else:
-            order = "$J=G21 G90" + axis + str(value) + "F" + str(feedrate) 
-            
-        self.__sendOrder(order)
-    
-    def syncMove(self, axis, value, feedrate, relative=True):
-        
-        if axis not in 'XYZ':
-            print("Wrong axis!") 
-        
-        if relative:
-            order = "$J=G21G91" + axis + str(value) + "F" + str(feedrate)     
-        else:
-            order = "$J=G21G90" + axis + str(value) + "F" + str(feedrate)
-            
-        self.__sendOrder(order)
-        
-        time.sleep(0.025) # Sleep for 25ms
-        
-        print(self.__machineStatus)
+        while self.__machineStatus != "Run":
+            pass
         
         while self.__machineStatus != "Idle":
             pass
+          
+    def asyncMove(self, axis, value, feedrate, relative):
+        
+        if axis not in 'XYZ':
+            print("Wrong axis!") 
+            return 
+        
+        if relative:
+            order = "G01G21G91" + axis + str(value) + "F" + str(feedrate)     
+        else:
+            order = "G01G21G91" + axis + str(value) + "F" + str(feedrate) 
+            
+        self.__sendOrder(order)
+    
+    def softReset(self):
+        # Send Hold
+        self.__sendOrder('!')
+        time.sleep(1)
+        # Send control-x
+        self.__serialBus.write(bytes.fromhex('18'))
+        self.__serialBus.write('\r'.encode())
+    
+    def resume(self):
+        self.__sendOrder('~')
+    
+    def syncMove(self, axis, value, feedrate, relative):
+        
+        self.asyncMove(axis, value, feedrate, relative)
+        
+        self.waitForRunToIdle()
             
