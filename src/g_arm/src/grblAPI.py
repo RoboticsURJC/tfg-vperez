@@ -19,7 +19,7 @@ class Grbl:
     __threadAlive = True
 
     def __init__(self): 
-        self.__feedbackThread = th.Thread(target=self.__feedback) 
+        self.__feedbackThread = th.Thread(target=self.__feedbackThreadFunc) 
                 
     def __sendOrder(self, order):
         self.__serialBus.write(bytes(order.encode()))
@@ -57,7 +57,7 @@ class Grbl:
             if len(variables) == 4 and 'Pn' in variables[3]:
                 self.__machineSwitchStatus = variables[3][3:]
         
-    def __feedback(self):
+    def __feedbackThreadFunc(self):
         
         # Update information when grbl connection is working
         
@@ -168,28 +168,19 @@ class Grbl:
         order = "S" + str(speed)
         self.__sendOrder(order)
     
+    def setZero(self):
+        self.__sendOrder("G92 X0 Y0 Z0")
+    
+    def setCoordinates(self, x, y, z):
+        self.__sendOrder("G92 " + "X" + str(x) + " Y" + str(y) + " Z" + str(z))
+        
     def enableSpindle(self):
         self.__sendOrder("M3")
     
     def disableSpindle(self):
         self.__sendOrder("M5")
-    
-    def goToXYZ(self, x, y, z, feedrate):
-        
-        order = "G01 G90" + "X" + str(x) + "Y" + str(y) + "Z" + str(z) + "F" + str(feedrate)     
-        self.__sendOrder(order)
-    
-    
-    def waitForRunToIdle(self):
-        self.__updateInformation() # Fast update of machine knowledge
-        
-        while self.__machineStatus != "Run":
-            pass
-        
-        while self.__machineStatus != "Idle":
-            pass
-          
-    def asyncMove(self, axis, value, feedrate, relative):
+                 
+    def asyncAxisMove(self, axis, value, feedrate, relative):
         
         if axis not in 'XYZ':
             print("Wrong axis!") 
@@ -202,7 +193,7 @@ class Grbl:
             
         self.__sendOrder(order)
     
-    def asyncMoveXYZ(self, position, feedrate, relative):
+    def asyncXYZMove(self, position, feedrate, relative):
         if len(position) != 3:
             print("Wrong position!") 
             return
@@ -215,8 +206,7 @@ class Grbl:
             order = "G01G21G91" + coords + "F" + str(feedrate) 
             
         self.__sendOrder(order)
-        
-        
+            
     def softReset(self):
         # Send Hold
         self.__sendOrder('!')
@@ -224,13 +214,13 @@ class Grbl:
         # Send control-x
         self.__serialBus.write(bytes.fromhex('18'))
         self.__serialBus.write('\r'.encode())
-    
+
     def resume(self):
         self.__sendOrder('~')
     
     def syncMove(self, axis, value, feedrate, relative):
         
-        self.asyncMove(axis, value, feedrate, relative)
+        self.asyncAxisMove(axis, value, feedrate, relative)
         
         self.waitForRunToIdle()
             
