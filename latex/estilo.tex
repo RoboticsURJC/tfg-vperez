@@ -1,0 +1,107 @@
+% Retoca las líneas marcadas con TODO según las necesidades
+
+\documentclass[oneside,a4paper,12pt]{book} % TODO: cambia "oneside" por "twoside" a la hora de imprimirlo
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{makeidx}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{acronym}
+\usepackage{hyphenat}
+\usepackage{a4wide}
+\usepackage[normalsize]{subfigure}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage[Lenny]{fncychap}
+\usepackage{listings} % para poder hacer uso de "listings" propios (p.ej. códigos)
+\usepackage{eurosym} % para poder usar el símbolo del euro con \euro {xx}
+\usepackage{hyperref} % TODO: añade la opción hidelinks para imprimirlo (los enlaces no aparecerán resaltados)
+
+% Para que no parta las palabras
+\pretolerance=10000
+
+\newcommand{\bigrule}{\titlerule[0.5mm]} \titleformat{\chapter}[display] % cambiamos el formato de los capítulos
+{\bfseries\Huge} % por defecto se usaron caracteres de tamaño huge en negrita
+{% contenido de la etiqueta 
+\titlerule % línea horizontal 
+\filright % texto alineado a la derecha 
+\Large\chaptertitlename\ % capítulo e índice en tamaño large
+\Large % en lugar de 
+\Huge \Large\thechapter} 
+{0mm} % espacio mínimo entre etiqueta y cuerpo
+{\filright} % texto del cuerpo alineado a la derecha
+[\vspace{0.5mm} \bigrule] % después del cuerpo, dejar espacio vertical y trazar línea horizontal gruesa
+\geometry{a4paper, left=3.5cm, right=2cm, top=3cm, bottom=2cm, headsep=1.5cm}
+
+% Estilos para ilustrar códigos:
+\definecolor{code_green}{rgb}{0,0.6,0}
+\definecolor{code_gray}{rgb}{0.5,0.5,0.5}
+\definecolor{code_mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{code_gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{code_green},
+  stringstyle=\color{code_mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\lstset{frame=tb,
+  language=C++,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{code_gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{code_green},
+  stringstyle=\color{code_mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{code_gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{code_green},
+  stringstyle=\color{code_mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+% Definición de mis propios tipos: Códigos, Ecuaciones y Tablas
+\DeclareCaptionType{code}[Código][Listado de códigos]
+\DeclareCaptionType{myequation}[Ecuación][Listado de ecuaciones]
+
+% TODO: especifica las reglas de separación que consideres. Algunos ejemplos:
+\hyphenation{fuer-tes}
+\hyphenation{mul-ti-ca-pa}
+\hyphenation{res-pues-ta}
+\hyphenation{di-fe-ren-tes}
+\hyphenation{de-sa-rro-lla-dos}
+\hyphenation{re-pre-sen-tan-do}
+

@@ -1,0 +1,37 @@
+\input{estilo.tex} % archivo de configuración de estilo
+
+\makeindex
+
+\begin{document}
+\baselineskip 1.35\baselineskip
+
+\frontmatter
+
+\input{portada/indice.tex} % aquí se cargan todas las "primeras páginas"
+
+% Bibliografía
+\let\OLDthebibliography=\thebibliography
+\def\thebibliography#1{\OLDthebibliography{#1}
+  \addcontentsline{toc}{chapter}{\bibname}}
+
+\mainmatter
+
+\setcounter{page}{1}
+\input{capitulos/capitulo1}
+
+\input{capitulos/capitulo2}
+
+\input{capitulos/capitulo3}
+
+\input{capitulos/capitulo4}
+
+\input{capitulos/capitulo5}
+
+\clearpage
+\thispagestyle{empty}
+
+\printindex \nocite{*}
+\appendix
+\bibliographystyle{apalike} \bibliography{bibliografia}
+
+\end{document}

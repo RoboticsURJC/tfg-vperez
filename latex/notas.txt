@@ -1,0 +1,9 @@
+La robótica industrial es una rama de la ingeniería que se dedica al diseño, construcción, operación y mantenimiento de robots utilizados en la automatización de procesos industriales. Estos robots pueden realizar una amplia variedad de tareas, desde la manipulación y transporte de materiales hasta el ensamblaje y soldadura de piezas.
+
+La robótica industrial es una tecnología que ha revolucionado la producción industrial en todo el mundo, ya que permite aumentar la eficiencia, la calidad y la seguridad de los procesos productivos, reducir los costos de producción y mejorar la competitividad de las empresas. Los robots industriales son especialmente útiles en la fabricación de productos en grandes cantidades, donde la repetitividad y la precisión son fundamentales.
+
+A lo largo de los años, la robótica industrial ha evolucionado a medida que se han ido desarrollando nuevas tecnologías y materiales. En los últimos años, la impresión 3D se ha convertido en una herramienta muy importante en el diseño y la fabricación de piezas para robots industriales, ya que permite la creación de piezas complejas y personalizadas de manera rápida y económica.
+
+Además, la robótica industrial está experimentando un cambio importante gracias a la implementación de tecnologías de código abierto, como ROS (Robot Operating System), que permiten la creación y el uso de robots de manera más accesible, flexible y colaborativa.
+
+En resumen, la robótica industrial es una tecnología clave en la automatización de procesos industriales y ha evolucionado a lo largo de los años gracias al desarrollo de nuevas tecnologías y materiales. La implementación de tecnologías de código abierto está impulsando aún más la innovación en este campo, lo que lleva a la creación de robots industriales más eficientes, flexibles y accesibles.
