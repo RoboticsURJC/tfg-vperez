@@ -1,56 +1,23 @@
-from ikpy.chain import Chain
-from ikpy.link import OriginLink, URDFLink
 import math
 
-import matplotlib.pyplot
-from mpl_toolkits.mplot3d import Axes3D
+L1 = 0.17 # Lenght of link 1 in meters
+L2 = 0.17 # Lenght of link 1 in meters
 
-# Resolve inverse kinematics for a position of the end-effector relative to ground 0.0
+# Resolve inverse kinematics for a position of the end-effector relative to ground 0.0 
 def IK(point, tcpOffset):
-    
-    arm = Chain.from_urdf_file("../../g_arm_description/urdf/base.urdf.xacro")
-    
-    '''
-    # Create chain manually
-    arm = Chain(name='left_arm', links=[
-        
-        URDFLink(
-        name="base",
-        origin_translation=[0, 0, 0],
-        origin_orientation=[0, 0, 0],
-        rotation=[0, 0, 0],
-        ),
-        URDFLink(
-        name="motors",
-        origin_translation=[2, 0, 10],
-        origin_orientation=[0, 0, 0],
-        rotation=[0, 0, 0],
-        ),
-        URDFLink(
-        name="link1",
-        origin_translation=[0, 10, 0],
-        origin_orientation=[0, 0, 0],
-        rotation=[0, 0, 0],
-        ),
-        URDFLink(
-        name="link2",
-        origin_translation=[2, 0, 10],
-        origin_orientation=[0, 0, 0],
-        rotation=[0, 0, 0],
-        ),
-    ])
-    
-    '''
-
-    
-    
-    ax = matplotlib.pyplot.figure().add_subplot(111, projection='3d')
-
-    arm.plot(arm.inverse_kinematics([2, 2, 2]), ax)
-    matplotlib.pyplot.show()
-
+   x, y, z = point
+   
+   J1 = 0
+   
+   num = math.pow(x, 2) + math.pow(z, 2) - math.pow(L1, 2) - math.pow(L2, 2) 
+   den = -2.0 * math.pow(L2, 2) 
+   J2 = math.acos(math.sqrt(num / den))
+   
+   J3 = math.acos((x + L2 * math.cos(J2)) / L1)
+   
+   return (J1, J2, J3)
 
 def DK(angles, tcpOffset):
     pass
 
-IK(0, 0)
+print(IK((0.2,0,0.2), None))

@@ -218,9 +218,4 @@ class Grbl:
     def resume(self):
         self.__sendOrder('~')
     
-    def syncMove(self, axis, value, feedrate, relative):
-        
-        self.asyncAxisMove(axis, value, feedrate, relative)
-        
-        self.waitForRunToIdle()
             

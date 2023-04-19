@@ -54,7 +54,7 @@ class Robot:
         
         # Reach Y switch
         print("Calibrating Y...")
-        self.__grbl.asyncXYZMove((0, 360, 360), 10, True)
+        self.__grbl.asyncXYZMove((0, 360, 360), 100, True)
         while not 'Y' in self.__grbl.getSwitchStatus():
             pass
         self.__grbl.softReset()
@@ -62,7 +62,7 @@ class Robot:
         
         # Reach X switch
         print("Calibrating X...")
-        self.__grbl.asyncAxisMove('X', 360, 600, True)
+        self.__grbl.asyncAxisMove('X', 360, 400, True)
         while not 'X' in self.__grbl.getSwitchStatus():
             pass
         self.__grbl.softReset()
