@@ -189,7 +189,7 @@ class Grbl:
         if relative:
             order = "G01G21G91" + axis + str(value) + "F" + str(feedrate)     
         else:
-            order = "G01G21G91" + axis + str(value) + "F" + str(feedrate) 
+            order = "G01G21G90" + axis + str(value) + "F" + str(feedrate) 
             
         self.__sendOrder(order)
     
@@ -203,7 +203,7 @@ class Grbl:
         if relative:
             order = "G01G21G91" + coords + "F" + str(feedrate)     
         else:
-            order = "G01G21G91" + coords + "F" + str(feedrate) 
+            order = "G01G21G90" + coords + "F" + str(feedrate) 
             
         self.__sendOrder(order)
             
