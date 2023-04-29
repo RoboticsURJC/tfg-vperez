@@ -11,4 +11,53 @@ Autor, \textit{Título}\\
 
 \vspace{1cm}
 
+\section{Python}
+\label{sec:pyhton}
+
 Escribe aquí un párrafo explicando brevemente lo que vas a contar en este capítulo. En este capítulo, explica qué has usado a nivel hardware y software para poder desarrollar tu trabajo: librerías, sistemas operativos, plataformas, entornos de desarrollo, etc.
+
+\section{Grbl}
+\label{sec:grbl}
+GRBL es un firmware de código abierto usado para controlar máquinas llamadas CNC (Control Numérico por Computadora). Este firmware se ejecuta en 
+un microcontrolador, que se encuentra dentro de la controladora de la máquina CNC, en nuestro caso, la placa base del robot. \\
+Básicamente, convierte las instrucciones de código G, que posteriormente hablaremos de él, en señales eléctricas que se envían a los motores de la máquina. Además, 
+comprueba los diferentes sensores de la máquina, como pueden ser los finales de carrera, para establecer los límites físicos de cada movimiento. \\
+Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque solo soporta movimientos lineales,
+en este trabajo se abordará la configuración necesaria para para poder usar las articulaciones rotativas del nuestro robot.
+
+\section{Código G}
+\label{sec:gcode}
+Se trata 
+
+\section{MKS DLC32}
+\label{sec:mksdlc32}
+Se trata de una placa destinada al mundo de las máquinas de grabado láser. Ha sido creada por \textit{MakerBase} y es considerada 
+\textit{Open Hardware} por lo que toda la información de la placa puede encontrarse en su repositorio de Github. Es fácilmente adquirible por 
+\textit{Aliexpress} por un precio que ronda los 16\euro. Está basada en el microcontrolador de 32 bits: ESP32. Se trata de un dispositivo muy asentado
+en la comunidad \textit{maker} debido a su bajo coste e integración en el ecosistema Arduino. De hecho, gracias a su conectividad wifi y bluetooth ha ganado 
+terreno a los microcontroladores Atmega que incorporan los propios Arduinos.\\
+Esta placa la ideal para este proyecto debido a que cuenta con la posibilidad de controlar 
+hasta 3 motores y es completamente compatible con Grbl. Además dispone de una salida de potencia regulable controlable mediante Grbl que nos 
+permite alimentar dispositivos. Estos podrían ser: electroimán (tipo de imán que es activado mediante electricidad), motor CC (motor de corriente 
+contínua) entre otros. Además se puede aprovechar las salidas PWM (\textit{Pulse Width Modulation}) para conectar un grabador láser o un servo. 
+El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser alimentado mediante baterías y con cargadores de ordenador. 
+
+\section{Motores paso a paso}
+\label{sec:motores}
+Un motor paso a paso es un tipo de motor que se mueve en pequeños pasos o incrementos discretos en lugar de girar continuamente. Estos pasos 
+son controlados por señales eléctricas que hacen girar al motor una cantidad específica de grados cada vez que se envía una señal. Debido a que se tiene 
+control sobre su avance son una excelente opción si se quiere tener un motor que sea capaz de posicionarse en un ángulo concreto con exactitud. A pesar
+de su gran precisión, los motores paso a paso convencionales no tienen el conocimiento absoluto de su posición, por lo que todos los movimientos son 
+relativos. Esto hace que se requiera de un \textit{homing} (proceso en el cual la máquina CNC lleva las partes móviles a una 
+posición conocida) en el arranque de la máquina para conocer su estado antes de operar.
+
+\section{Controladores de motores}
+\label{sec:controladorPAP}
+Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el controlador en una serie de pulsos de
+potencia que excitarán las bobinas del motor en un cierto orden para lograr el movimiento. 
+Existen motores bipolares, unipolares e híbridos. La diferencia entre ellos radica en la disposición de las bobinas de su interior. Los más usados 
+en impresoras 3D y CNC son los bipolares. Son reconocibles debido a que tienen 4 cables.
+En este tipo de placas base se pueden instalar distintos modelos de controladores. Cada uno de ellos tiene unas prestaciones diferentes y por tanto 
+un precio distinto. Unos ofrecen mayor capacidad de corriente (para controlar motores más grandes), pulsos más suaves que reducen el 
+ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumida para conocer el final de una articulación, entre otras tecnologías.  
+
