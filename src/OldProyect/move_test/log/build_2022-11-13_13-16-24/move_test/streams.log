@@ -1,0 +1,25 @@
+[0.571s] Invoking command in '/home/vidi/tfg/move_test/build/move_test': PYTHONPATH=/home/vidi/tfg/move_test/install/move_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /home/vidi/tfg/move_test/install/move_test --editable --build-directory /home/vidi/tfg/move_test/build/move_test/build --no-deps install_data --install-dir /home/vidi/tfg/move_test/install/move_test
+[0.803s] running develop
+[0.803s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.803s]   warnings.warn(
+[0.804s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[0.804s]   warnings.warn(
+[0.849s] /usr/lib/python3/dist-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 1.1build1 is an invalid version and will not be supported in a future release
+[0.849s]   warnings.warn(
+[0.850s] /usr/lib/python3/dist-packages/pkg_resources/__init__.py:116: PkgResourcesDeprecationWarning: 0.1.43ubuntu1 is an invalid version and will not be supported in a future release
+[0.850s]   warnings.warn(
+[0.933s] running egg_info
+[0.933s] writing move_test.egg-info/PKG-INFO
+[0.934s] writing dependency_links to move_test.egg-info/dependency_links.txt
+[0.934s] writing entry points to move_test.egg-info/entry_points.txt
+[0.934s] writing requirements to move_test.egg-info/requires.txt
+[0.934s] writing top-level names to move_test.egg-info/top_level.txt
+[0.935s] reading manifest file 'move_test.egg-info/SOURCES.txt'
+[0.935s] writing manifest file 'move_test.egg-info/SOURCES.txt'
+[0.937s] running build_ext
+[0.937s] Creating /home/vidi/tfg/move_test/install/move_test/lib/python3.10/site-packages/move-test.egg-link (link to .)
+[0.937s] Installing prius_move_test script to /home/vidi/tfg/move_test/install/move_test/lib/move_test
+[0.938s] 
+[0.938s] Installed /home/vidi/tfg/move_test/build/move_test
+[0.938s] running install_data
+[0.969s] Invoked command in '/home/vidi/tfg/move_test/build/move_test' returned '0': PYTHONPATH=/home/vidi/tfg/move_test/install/move_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --prefix /home/vidi/tfg/move_test/install/move_test --editable --build-directory /home/vidi/tfg/move_test/build/move_test/build --no-deps install_data --install-dir /home/vidi/tfg/move_test/install/move_test

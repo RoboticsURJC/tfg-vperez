@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="g_arm">
+
+  <!-- Definition of the base link -->
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/base.dae"/>
+      </geometry>
+  </visual>
+  </link>
+
+  <!-- Definition of the motors base link -->
+  <link name="motors_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/motors.dae"/>
+      </geometry>
+  </visual>
+  </link>
+
+
+  <joint name="base_rotation" type="revolute">
+    <origin
+      xyz="0 0 0.076"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motors_link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="200"
+      velocity="200" />
+  </joint>
+
+</robot>
