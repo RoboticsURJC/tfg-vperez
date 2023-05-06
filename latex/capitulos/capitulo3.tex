@@ -1,65 +1,72 @@
-\chapter{Plataforma de desarrollo}
+\chapter{Objetivos}
 \label{cap:capitulo3}
 
 \begin{flushright}
 \begin{minipage}[]{10cm}
-\emph{Las herramientas adecuadas en las manos adecuadas pueden cambiar el mundo}\\
+\emph{Un objetivo sin un plan es solo un deseo}\\
 \end{minipage}\\
-Steve Jobs\\
+
+Antoine de Saint-Exupéry\\
 \end{flushright}
 
 \vspace{1cm}
-Tras haber establecido los objetivos que se pretenden alcanzar en este trabajo de fin de grado, se procede a describir
-las herramientas software y hardware utilizadas para lograrlos. 
 
-\section{Software}
-\label{sec:software}
+Tras haber enmarcado el contexto en el cual se encuentra este trabajo de fin de grado, se procede a realizar
+una descripción del problema, requisitos, metodología y plan de trabajo usado.
+\section{Descripción del problema}
+\label{sec:descripcion}
+El objetivo principal de este trabajo de fin de grado es desarrollar un brazo robótico desde cero. Se pretende que
+el robot pueda ser empleado en la asignatura de Robótica Industrial en la Universidad Rey Juan Carlos para uso. Es por esto,
+que se busca que el sistema creado sea asequible y fácilmente replicable mediante el uso de la impresión 3D.\\
+Con el fin de alcanzar esta meta, se ha dividido el proyecto en los siguientes subobjetivos:
 
-\subsection{Python}
-\label{sec:pyhton}
-Python es
+\begin{enumerate}
+    \item Realizar una investigación acerca de los robots que actualmente están disponibles y que cumplan con 
+          las características y objetivos deseados. Estos robots deberán tener un tamaño y costo similar, y 
+          preferiblemente haber sido impresos en 3D. Se dará mayor relevancia a aquellos que utilicen un software y hardware 
+          libres.
+    \item Explorar diversas opciones de diseño para determinar la forma ideal del robot. Se analizará cuidadosamente 
+          qué tipo de robot se ajusta mejor al uso que se le pretende dar, así como los grados de libertad necesarios. 
+            
+    \item Realizar una investigación exhaustiva sobre los componentes de hardware disponibles en el mercado, con el fin de seleccionar 
+          aquellos que mejor se adapten a las necesidades y objetivos de construir un robot eficiente y funcional. Se llevará 
+          a cabo un análisis detallado de los precios y características de cada componente, para seleccionar aquellos 
+          que ofrezcan la mejor relación calidad-precio. Una vez evaluados todos los aspectos, se elegirá un conjunto 
+          final de componentes para construir el robot de manera efectiva. 
+    
+    \item Diseño CAD (diseño asistido por ordenador) del brazo. Se pretende hacer uso de FreeCad, entre otras herramientas, para
+          diseñar en 3D cada pieza que constituirá el robot. Puesto a que debe ser imprimible en una impresora FDM convencional,
+          debe estar pensado para no necesitar soportes y necesitar de poco material.
+    \item Emplear una impresora 3D convencional para materializar los diseños realizados anteriormente.
+    \item Programar el software necesario para poder controlar el robot desde el ordenador.
+    \item ROS de 
 
-\subsection{Grbl}
-\label{sec:grbl}
-Grbl\footnote{\url{https://github.com/gnea/grbl}} es un firmware de código abierto usado para controlar máquinas llamadas CNC (Control Numérico por Computadora). Este firmware se ejecuta en 
-un microcontrolador, que se encuentra dentro de la controladora de la máquina CNC, en nuestro caso, la placa base del robot. \\
-Básicamente, convierte las instrucciones de código G, que posteriormente hablaremos de él, en señales eléctricas que se envían a los motores de la máquina. Además, 
-comprueba los diferentes sensores de la máquina, como pueden ser los finales de carrera, para establecer los límites físicos de cada movimiento. \\
-Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque solo soporta movimientos lineales,
-en este trabajo se abordará la configuración necesaria para para poder usar las articulaciones rotativas del nuestro robot.
+  
+\end{enumerate}\
 
-\subsection{Código G}
-\label{sec:gcode}
-Se trata 
 
-\section{MKS DLC32}
-\label{sec:mksdlc32}
-Se trata de una placa destinada al mundo de las máquinas de grabado láser. Ha sido creada por \textit{MakerBase} y es considerada 
-\textit{Open Hardware} por lo que toda la información de la placa puede encontrarse en su repositorio de Github\footnote{\url{https://github.com/makerbase-mks/MKS-DLC32}}.
-Es fácilmente adquirible por \textit{Aliexpress} por un precio que ronda los 16\euro. Está basada en el microcontrolador de 32 bits: ESP32. 
-Se trata de un dispositivo muy asentado en la comunidad \textit{maker} debido a su bajo coste e integración en el 
-ecosistema Arduino. De hecho, gracias a su conectividad wifi y bluetooth ha ganado terreno a los microcontroladores Atmega que incorporan los propios Arduinos.\\
-Esta placa la ideal para este proyecto debido a que cuenta con la posibilidad de controlar 
-hasta 3 motores y es completamente compatible con Grbl. Además dispone de una salida de potencia regulable controlable mediante Grbl que nos 
-permite alimentar dispositivos. Estos podrían ser: electroimán (tipo de imán que es activado mediante electricidad), motor CC (motor de corriente 
-contínua) entre otros. Además se puede aprovechar las salidas PWM (\textit{Pulse Width Modulation}) para conectar un grabador láser o un servo. 
-El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser alimentado mediante baterías y con cargadores de ordenador. 
+\section{Requisitos}
+\label{sec:requisitos}
+De este trabajo se espera un brazo robot de tipo industrial de bajo coste cuya fabricación completa esté por debajo de 200\euro.
+Otro requisito es que la mayoría de las partes que componen el robot, sean imprimibles en cualquier impresora 3D de gama baja.\\\\
+Además, se busca un consumo reducido para poder ser usado en robots móviles sin necesidad de estar conectado a una gran fuente de 
+energía.\\\\
+En cuanto a sus dimensiones, se busca un tamaño idóneo para su uso en escritorios y fácilmente portable. Esto implica que no necesariamente 
+tiene que estar fijo al suelo, permitiendo su fácil traslado.\\\\
+Se busca continuidad en el proyecto a largo plazo, por lo que una integración en ecosistema ROS 2 es una pieza clave. 
 
-\section{Motores paso a paso}
-\label{sec:motores}
-Un motor paso a paso es un tipo de motor que se mueve en pequeños pasos o incrementos discretos en lugar de girar continuamente. Estos pasos 
-son controlados por señales eléctricas que hacen girar al motor una cantidad específica de grados cada vez que se envía una señal. Debido a que se tiene 
-control sobre su avance son una excelente opción si se quiere tener un motor que sea capaz de posicionarse en un ángulo concreto con exactitud. A pesar
-de su gran precisión, los motores paso a paso convencionales no tienen el conocimiento absoluto de su posición, por lo que todos los movimientos son 
-relativos. Esto hace que se requiera de un \textit{homing} (proceso en el cual la máquina CNC lleva las partes móviles a una 
-posición conocida) en el arranque de la máquina para conocer su estado antes de operar.
+\section{Metodología}
+\label{sec:metodologia}
 
-\section{Controladores de motores}
-\label{sec:controladorPAP}
-Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el controlador en una serie de pulsos de
-potencia que excitarán las bobinas del motor en un cierto orden para lograr el movimiento. 
-Existen motores bipolares, unipolares e híbridos. La diferencia entre ellos radica en la disposición de las bobinas de su interior. Los más usados 
-en impresoras 3D y CNC son los bipolares. Son reconocibles debido a que tienen 4 cables.
-En este tipo de placas base se pueden instalar distintos modelos de controladores. Cada uno de ellos tiene unas prestaciones diferentes y por tanto 
-un precio distinto. Unos ofrecen mayor capacidad de corriente (para controlar motores más grandes), pulsos más suaves que reducen el 
-ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumida para conocer el final de una articulación, entre otras tecnologías.  
+Durante el desarrollo del trabajo se ha establecido un protocolo de reuniones semanales con el tutor a 
+través de la plataforma Teams, con el objetivo de compartir los avances realizados y recibir retroalimentación 
+sobre el trabajo. Además, cada semana se han propuesto las actividades a realizar, asegurando así una adecuada 
+planificación y coordinación del proyecto. \\
+Para el desarrollo del sistema se ha utilizado un repositorio en la plataforma GitHub\footnote{\url{https://github.com/gnea/grbl}}, en el cual se ha ido
+subiendo el código y diseños generados a lo largo del proyecto. Adicionalmente, en este mismo repositorio 
+se ha incluido una Wiki\footnote{\url{https://github.com/gnea/grbl}} con las explicaciones detalladas de todas las actividades llevadas a cabo durante estos 
+meses de trabajo. De esta manera, se ha creado un registro completo y accesible de todo el proceso de desarrollo del sistema.
+
+\section{Plan de trabajo}
+\label{sec:plantrabajo}
+El desarrollo del TFG ha estado dividido en dos etapas. La primera, comenzó en octubre y fue abandonada en enero. 

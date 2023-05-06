@@ -1,116 +1,65 @@
-\chapter{Diseño}
+\chapter{Plataforma de desarrollo}
 \label{cap:capitulo4}
 
 \begin{flushright}
 \begin{minipage}[]{10cm}
-\emph{Quizás algún fragmento de libro inspirador...}\\
+\emph{Las herramientas adecuadas en las manos adecuadas pueden cambiar el mundo}\\
 \end{minipage}\\
-
-Autor, \textit{Título}\\
+Steve Jobs\\
 \end{flushright}
 
 \vspace{1cm}
+Tras haber establecido los objetivos que se pretenden alcanzar en este trabajo de fin de grado, se procede a describir
+las herramientas software y hardware utilizadas para lograrlos. 
 
-Escribe aquí un párrafo explicando brevemente lo que vas a contar en este capítulo. En este capítulo (y quizás alguno más) es donde, por fin, describes detalladamente qué has hecho y qué experimentos has llevado a cabo para validar tus desarrollos.
+\section{Software}
+\label{sec:software}
 
-\section{Snippets}
+\subsection{Python}
+\label{sec:pyhton}
+Python es
 
-Puede resultar interesante, para clarificar la descripción, mostrar fragmentos de código (o \textit{snippets}) ilustrativos. En el Código \ref{cod:codejemplo} vemos un ejemplo escrito en \texttt{C++}.
+\subsection{Grbl}
+\label{sec:grbl}
+Grbl\footnote{\url{https://github.com/gnea/grbl}} es un firmware de código abierto usado para controlar máquinas llamadas CNC (Control Numérico por Computadora). Este firmware se ejecuta en 
+un microcontrolador, que se encuentra dentro de la controladora de la máquina CNC, en nuestro caso, la placa base del robot. \\
+Básicamente, convierte las instrucciones de código G, que posteriormente hablaremos de él, en señales eléctricas que se envían a los motores de la máquina. Además, 
+comprueba los diferentes sensores de la máquina, como pueden ser los finales de carrera, para establecer los límites físicos de cada movimiento. \\
+Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque solo soporta movimientos lineales,
+en este trabajo se abordará la configuración necesaria para para poder usar las articulaciones rotativas del nuestro robot.
 
-\begin{code}[h]
-\begin{lstlisting}[language=C++]
-void Memory::hypothesizeParallelograms () {
-  for(it1 = this->controller->segmentMemory.begin(); it1++) {
-    squareFound = false; it2 = it1; it2++;
-    while ((it2 != this->controller->segmentMemory.end()) && (!squareFound)) {
-      if (geometry::haveACommonVertex((*it1),(*it2),&square)) {
-        dist1 = geometry::distanceBetweenPoints3D ((*it1).start, (*it1).end);
-        dist2 = geometry::distanceBetweenPoints3D ((*it2).start, (*it2).end);
-      }
-    // [...]
-\end{lstlisting}
-\caption[Función para buscar elementos 3D en la imagen]{Función para buscar elementos 3D en la imagen}
-\label{cod:codejemplo}
-\end{code}
+\subsection{Código G}
+\label{sec:gcode}
+Se trata 
 
-En el Código \ref{cod:codejemplo2} vemos un ejemplo escrito en \texttt{Python}.
+\section{MKS DLC32}
+\label{sec:mksdlc32}
+Se trata de una placa destinada al mundo de las máquinas de grabado láser. Ha sido creada por \textit{MakerBase} y es considerada 
+\textit{Open Hardware} por lo que toda la información de la placa puede encontrarse en su repositorio de Github\footnote{\url{https://github.com/makerbase-mks/MKS-DLC32}}.
+Es fácilmente adquirible por \textit{Aliexpress} por un precio que ronda los 16\euro. Está basada en el microcontrolador de 32 bits: ESP32. 
+Se trata de un dispositivo muy asentado en la comunidad \textit{maker} debido a su bajo coste e integración en el 
+ecosistema Arduino. De hecho, gracias a su conectividad wifi y bluetooth ha ganado terreno a los microcontroladores Atmega que incorporan los propios Arduinos.\\
+Esta placa la ideal para este proyecto debido a que cuenta con la posibilidad de controlar 
+hasta 3 motores y es completamente compatible con Grbl. Además dispone de una salida de potencia regulable controlable mediante Grbl que nos 
+permite alimentar dispositivos. Estos podrían ser: electroimán (tipo de imán que es activado mediante electricidad), motor CC (motor de corriente 
+contínua) entre otros. Además se puede aprovechar las salidas PWM (\textit{Pulse Width Modulation}) para conectar un grabador láser o un servo. 
+El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser alimentado mediante baterías y con cargadores de ordenador. 
 
-\begin{code}[h]
-\begin{lstlisting}[language=Python]
-def mostrarValores():
-    print (w1.get(), w2.get())
+\section{Motores paso a paso}
+\label{sec:motores}
+Un motor paso a paso es un tipo de motor que se mueve en pequeños pasos o incrementos discretos en lugar de girar continuamente. Estos pasos 
+son controlados por señales eléctricas que hacen girar al motor una cantidad específica de grados cada vez que se envía una señal. Debido a que se tiene 
+control sobre su avance son una excelente opción si se quiere tener un motor que sea capaz de posicionarse en un ángulo concreto con exactitud. A pesar
+de su gran precisión, los motores paso a paso convencionales no tienen el conocimiento absoluto de su posición, por lo que todos los movimientos son 
+relativos. Esto hace que se requiera de un \textit{homing} (proceso en el cual la máquina CNC lleva las partes móviles a una 
+posición conocida) en el arranque de la máquina para conocer su estado antes de operar.
 
-master = Tk()
-w1 = Scale(master, from_=0, to=42)
-w1.pack()
-w2 = Scale(master, from_=0, to=200, orient=HORIZONTAL)
-w2.pack()
-Button(master, text='Show', command=mostrarValores).pack()
-
-mainloop()
-\end{lstlisting}
-\caption[Cómo usar un Slider]{Cómo usar un Slider}
-\label{cod:codejemplo2}
-\end{code}
-
-\section{Verbatim}
-
-Para mencionar identificadores usados en el código ---como nombres de funciones o variables--- en el texto, usa el entorno literal o verbatim \verb|hypothesizeParallelograms()|. También se puede usar este entorno para varias líneas, como se ve a continuación:
-
-\begin{verbatim}
-void Memory::hypothesizeParallelograms () {
-  // add your code here
-}
-\end{verbatim}
-
-\section{Ecuaciones}
-
-Si necesitas insertar alguna ecuación, puedes hacerlo. Al igual que las figuras, no te olvides de referenciarlas. A continuación se exponen algunas ecuaciones de ejemplo: Ecuación \ref{ec:ec1} y Ecuación \ref{ec:ec2}.
-
-\begin{myequation}[h]
-\begin{equation}
-H = 1 - \frac{\sum_{i=0}^{N}\frac{(\frac{d_{j_s} + d_{j_e}}{2})}{N}}{M}
-\nonumber
-\label{ec:ec1}
-\end{equation}
-\caption[Ejemplo de ecuación con fracciones]{Ejemplo de ecuación con fracciones}
-\end{myequation} 
-
-\begin{myequation}[h]
-\begin{equation}
-v(entrada)= \left\{
-	\begin{array}{lcc}
-		0 & \mbox{if} & \epsilon_t < 0.1\\
-		K_p\cdot{(T_{t}-T)} & \mbox{if}& 0.1 \leq \epsilon_t < M_t\\
-		K_p \cdot M_t & \mbox{if}& M_t < \epsilon_t
-	\end{array}
-\right.
-\label{ec:ec2}
-\end{equation}
-\caption[Ejemplo de ecuación con array y letras y símbolos especiales]{Ejemplo de ecuación con array y letras y símbolos especiales}
-\end{myequation}
-
-\section{Tablas o cuadros}
-
-Si necesitas insertar una tabla, hazlo dígnamente usando las propias tablas de \LaTeX, no usando pantallazos e insertándolas como figuras... En el Cuadro \ref{cuadro:ejemplo} vemos un ejemplo.
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Parámetros} & \textbf{Valores} \\
-\hline
-Tipo de sensor & Sony IMX219PQ[7] CMOS 8-Mpx \\
-Tamaño del sensor & 3.674 x 2.760 mm (1/4" format) \\
-Número de pixels & 3280 x 2464 (active pixels) \\
-Tamaño de pixel & 1.12 x 1.12 um \\
-Lente & f=3.04 mm, f/2.0 \\
-Ángulo de visión & 62.2 x 48.8 degrees \\
-Lente SLR equivalente & 29 mm \\
-\hline
-\end{tabular}
-\caption{Parámetros intrínsecos de la cámara}
-\label{cuadro:ejemplo}
-\end{center}
-\end{table}
-
+\section{Controladores de motores}
+\label{sec:controladorPAP}
+Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el controlador en una serie de pulsos de
+potencia que excitarán las bobinas del motor en un cierto orden para lograr el movimiento. 
+Existen motores bipolares, unipolares e híbridos. La diferencia entre ellos radica en la disposición de las bobinas de su interior. Los más usados 
+en impresoras 3D y CNC son los bipolares. Son reconocibles debido a que tienen 4 cables.
+En este tipo de placas base se pueden instalar distintos modelos de controladores. Cada uno de ellos tiene unas prestaciones diferentes y por tanto 
+un precio distinto. Unos ofrecen mayor capacidad de corriente (para controlar motores más grandes), pulsos más suaves que reducen el 
+ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumida para conocer el final de una articulación, entre otras tecnologías.  
