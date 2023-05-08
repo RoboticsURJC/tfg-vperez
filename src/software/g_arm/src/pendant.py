@@ -34,12 +34,30 @@ def decreaseXYZStep():
     XYZStepSize.set(max(1, XYZStepSize.get() - 1))
 
 def statusThread():
-    while True:
-        if isConnected.get():
-            machineStatus.set("[IDLE]")
+ 
+    while statusAlive:
+        
+        # Update angle
+        j1, j2, j3 = arm.getAngles()
+
+        if j1 is None or j2 is None or j3 is None:
+            joint1.set("Unknown")
+            joint2.set("Unknown")
+            joint3.set("Unknown")
         else:
+            joint1.set(str(j1))
+            joint2.set(str(j2))
+            joint3.set(str(j3))
+                
+        if isConnected.get():
+            autohomeButton.grid(column=6, row=3, padx=5, pady=5)
+            machineStatus.set("[" + arm.getStatus() + "]")
+        else:
+            autohomeButton.grid_forget()
             machineStatus.set("[OFF]")
 
+        time.sleep(0.2)
+        
 def connectDisconnect():
     
     if isConnected.get():
@@ -64,6 +82,10 @@ root = tk.Tk()
 root.title("G-Arm Pendant")
 root.resizable(False, False)
 
+joint1 = tk.StringVar(value="Unknown")
+joint2 = tk.StringVar(value="Unknown")
+joint3 = tk.StringVar(value="Unknown")
+
 jointStepSize = tk.IntVar(value=1)
 XYZStepSize = tk.IntVar(value=1)
 machineStatus = tk.StringVar(value="[Undefined]")
@@ -87,6 +109,11 @@ ttk.Button(frame, text="Down", command=moveJoint2Down, width=10).grid(column=1, 
 ttk.Label(frame, text="Joint 3").grid(column=2, row=0, padx=5, pady=5)
 ttk.Button(frame, text="Up", command=moveJoint3Up, width=10).grid(column=2, row=1, padx=5, pady=5)
 ttk.Button(frame, text="Down", command=moveJoint3Down, width=10).grid(column=2, row=2, padx=5, pady=5)
+
+# Actual positions
+tk.Label(frame, textvariable=joint1,bg="green", fg="black", font=15).grid(column=0, row=3, padx=0, pady=0)
+tk.Label(frame, textvariable=joint2, bg="green", fg="black", font=15).grid(column=1, row=3, padx=0, pady=0)
+tk.Label(frame, textvariable=joint3, bg="green", fg="black", font=15).grid(column=2, row=3, padx=0, pady=0)
 
 # Add a separator between columns
 ttk.Separator(frame, orient='vertical').grid(column=3, row=0, padx=0, pady=0, rowspan=7, sticky='nsew')
@@ -117,6 +144,7 @@ ttk.Label(frame, text="Machine Status").grid(column=6, row=1, padx=5, pady=5)
 ttk.Label(frame, textvariable=machineStatus).grid(column=7, row=1, padx=5, pady=5)
 
 # Start thread
+statusAlive = True
 status = threading.Thread(target=statusThread)
 status.start()
 
@@ -145,6 +173,9 @@ ttk.Label(frame, text="Serial port:").grid(column=6, row=2, padx=5, pady=5)
 # Button to connect/disconnect
 ttk.Button(frame, textvariable=connectDisconnectText, command=connectDisconnect).grid(column=7, row=3, padx=5, pady=5)
 
+# Button to autohome
+autohomeButton = ttk.Button(frame, text="Homing", command=arm.autohome)
+
 # Add buttons to increase or decrease step size of the joint
 ttk.Button(frame, text="+", command=increaseJointStep).grid(column=2, row=6, padx=5, pady=5)
 ttk.Button(frame, text="-", command=decreaseJointStep).grid(column=0, row=6, padx=5, pady=5)
@@ -162,3 +193,5 @@ step_text = ttk.Label(frame, textvariable=XYZStepSize)
 step_text.grid(column=4, row=6, padx=5, pady=5)
 
 root.mainloop()
+statusAlive = False
+status.join()
