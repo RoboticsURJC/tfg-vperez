@@ -6,9 +6,9 @@ RELATION_X_DEG = 1 # Relation between x in grbl and degrees
 RELATION_Y_DEG = 1 # Relation between x in grbl and degrees
 RELATION_Z_DEG = 1 # Relation between x in grbl and degrees
 
-X_ZERO_REAL_ANGLE = 100 # Real angle when robot is zero X
+X_ZERO_REAL_ANGLE = 135 # Real angle when robot is zero X
 Y_ZERO_REAL_ANGLE = 15 # Real angle when robot is zero X
-Z_ZERO_REAL_ANGLE = -45 # Real angle when robot is zero X
+Z_ZERO_REAL_ANGLE = -36 # Real angle when robot is zero X
 
 class Robot:
     
@@ -34,12 +34,22 @@ class Robot:
         XGrbl, YGrbl, ZGrbl = self.__grbl.getXYZ()
         X0, Y0, Z0 = self.zeroGrblPosition   
         
-        X = ((XGrbl-X0) * RELATION_X_DEG) + X_ZERO_REAL_ANGLE
-        Y = ((YGrbl-Y0) * RELATION_Y_DEG) + Y_ZERO_REAL_ANGLE
-        Z = ((ZGrbl-Z0) * RELATION_Z_DEG) + Z_ZERO_REAL_ANGLE
+        j1 = ((XGrbl-X0) * RELATION_X_DEG) + X_ZERO_REAL_ANGLE
+        j2 = ((YGrbl-Y0) * RELATION_Y_DEG) + Y_ZERO_REAL_ANGLE
+        j3 = ((ZGrbl-Z0) * RELATION_Z_DEG) + Z_ZERO_REAL_ANGLE
         
-        return (X, Y, Z)
+        return (j1, j2, j3)
 
+    def setAngles(self, j1, j2, j3):  
+        
+        X0, Y0, Z0 = self.zeroGrblPosition 
+        
+        XGrbl = ((j1 - X_ZERO_REAL_ANGLE) / RELATION_X_DEG) + X0
+        YGrbl = ((j2 - Y_ZERO_REAL_ANGLE) / RELATION_Y_DEG) + Y0
+        ZGrbl = ((j3 - Z_ZERO_REAL_ANGLE) / RELATION_Z_DEG) + Z0
+        
+            
+        self.__grbl.asyncXYZMove((XGrbl, YGrbl, ZGrbl), feedrate=2000, relative=False)
 
     def autohome(self):
         print("Homing...")
