@@ -29,16 +29,26 @@ class Robot:
     def stop(self):
         self.__grbl.stop()
          
-   
+    def getStatus(self):
+        
+        if self.__status != "CALIBRATING":
+            return self.__grbl.getStatus()
+        else:
+            return self.__status
+    
     def getAngles(self):
-        XGrbl, YGrbl, ZGrbl = self.__grbl.getXYZ()
-        X0, Y0, Z0 = self.zeroGrblPosition   
         
-        j1 = ((XGrbl-X0) * RELATION_X_DEG) + X_ZERO_REAL_ANGLE
-        j2 = ((YGrbl-Y0) * RELATION_Y_DEG) + Y_ZERO_REAL_ANGLE
-        j3 = ((ZGrbl-Z0) * RELATION_Z_DEG) + Z_ZERO_REAL_ANGLE
-        
-        return (j1, j2, j3)
+        if self.__calibrated:
+            XGrbl, YGrbl, ZGrbl = self.__grbl.getXYZ()
+            X0, Y0, Z0 = self.zeroGrblPosition   
+            
+            X = ((XGrbl-X0) * RELATION_X_DEG) + X_ZERO_REAL_ANGLE
+            Y = ((YGrbl-Y0) * RELATION_Y_DEG) + Y_ZERO_REAL_ANGLE
+            Z = ((ZGrbl-Z0) * RELATION_Z_DEG) + Z_ZERO_REAL_ANGLE
+            
+            return (X, Y, Z)
+        else:
+            return (None, None, None)
 
     def setAngles(self, j1, j2, j3):  
         
@@ -52,6 +62,7 @@ class Robot:
         self.__grbl.asyncXYZMove((XGrbl, YGrbl, ZGrbl), feedrate=2000, relative=False)
 
     def autohome(self):
+        self.__status = "HOMING"
         print("Homing...")
         
         # Reach Z switch
@@ -81,7 +92,11 @@ class Robot:
         self.zeroGrblPosition = self.__grbl.getXYZ()
         print("Calibrating done!")
 
+        self.__calibrated = True
+        self.__status = "IDDLE"
         
     # Private
     __grbl = None 
     zeroGrblPosition = (0.0, 0.0, 0.0)
+    __calibrated = False
+    __status = "IDDLE"
