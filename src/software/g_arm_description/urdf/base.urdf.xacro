@@ -21,8 +21,28 @@
   </visual>
   </link>
 
+  <!-- Definition of the arm link 1 -->
+  <link name="link1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link1.dae"/>
+      </geometry>
+  </visual>
+  </link>
 
-  <joint name="base_rotation" type="revolute">
+  <!-- Definition of the arm link 2 -->
+  <link name="link2">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link2.dae"/>
+      </geometry>
+  </visual>
+  </link>
+
+
+  <joint name="joint1" type="revolute">
     <origin
       xyz="0 0 0.076"
       rpy="0 0 0" />
@@ -33,10 +53,44 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="200"
-      velocity="200" />
+      lower="0.0"
+      upper="0.0"
+      effort="200.0"
+      velocity="200.0" />
+  </joint>
+
+  <joint name="joint2" type="revolute">
+    <origin
+      xyz="0.035 0.0331 0.054"
+      rpy="1.5708 0 0" />
+    <parent
+      link="motors_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0.0"
+      upper="0.0"
+      effort="200.0"
+      velocity="200.0" />
+  </joint>
+
+  <joint name="joint3" type="revolute">
+    <origin
+      xyz="0.0 0.17 0.0362"
+      rpy="0 0 1.5708" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0.0"
+      upper="0.0"
+      effort="200.0"
+      velocity="200.0" />
   </joint>
 
 </robot>
