@@ -8,7 +8,16 @@
       <geometry>
         <mesh filename="package://g_arm_description/meshes/base.dae"/>
       </geometry>
-  </visual>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.035" />
+      <geometry>
+            <cylinder radius="0.07" length="0.07"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
   </link>
 
   <!-- Definition of the motors base link -->
@@ -18,7 +27,16 @@
       <geometry>
         <mesh filename="package://g_arm_description/meshes/motors.dae"/>
       </geometry>
-  </visual>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.00975 0 0.0445" />
+      <geometry>
+            <box size="0.159 0.210 0.089"/> r
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
   </link>
 
   <!-- Definition of the arm link 1 -->
@@ -28,7 +46,16 @@
       <geometry>
         <mesh filename="package://g_arm_description/meshes/link1.dae"/>
       </geometry>
-  </visual>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0975 0.028" />
+      <geometry>
+            <box size="0.035 0.195 0.034"/> r
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
   </link>
 
   <!-- Definition of the arm link 2 -->
@@ -38,7 +65,16 @@
       <geometry>
         <mesh filename="package://g_arm_description/meshes/link2.dae"/>
       </geometry>
-  </visual>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <geometry>
+            <box size="0.025 0.230 0.015"/> r
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
   </link>
 
 
@@ -53,8 +89,8 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0.0"
-      upper="0.0"
+      lower="-1.5707"
+      upper="1.5707"
       effort="200.0"
       velocity="200.0" />
   </joint>
@@ -70,8 +106,8 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0.0"
-      upper="0.0"
+      lower="-1.5707"
+      upper="1.5707"
       effort="200.0"
       velocity="200.0" />
   </joint>
@@ -87,8 +123,8 @@
     <axis
       xyz="0 0 1" />
     <limit
-      lower="0.0"
-      upper="0.0"
+      lower="-1.5707"
+      upper="1.5707"
       effort="200.0"
       velocity="200.0" />
   </joint>
