@@ -58,28 +58,6 @@
     </collision>
   </link>
 
-  <link name="link_j3_lever">
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <mesh filename="package://g_arm_description/meshes/visual_link_j3_lever.dae"/>
-      </geometry>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0975 0.028" />
-      <geometry>
-            <box size="0.035 0.195 0.034"/> r
-      </geometry>
-      <material name="blue">
-        <color rgba="0 0 1 1"/>
-      </material>
-    </collision>
-  </link>
-
-  <link name="link1_to_link2_intermediate">
-
-  </link>
-
   <!-- Definition of the arm link 2 -->
   <link name="link2">
     <visual>
@@ -118,10 +96,14 @@
     </collision>
   </link>
 
+    <!-- Definition of the invisible link of the end effector -->
+  <link name="invisible_end">
+
+  </link>
 
   <joint name="joint1" type="revolute">
     <origin
-      xyz="0 0 0.076"
+      xyz="0 0 0.075"
       rpy="0 0 0" />
     <parent
       link="base_link" />
@@ -155,29 +137,12 @@
 
   <joint name="joint3" type="revolute">
     <origin
-      xyz="0.035 -0.0341 0.054"
-      rpy="1.5708 0 0" />
-    <parent
-      link="motors_link" />
-    <child
-      link="link_j3_lever" />
-    <axis
-      xyz="0 0 1" />
-    <limit
-      lower="-1.5707"
-      upper="1.5707"
-      effort="200.0"
-      velocity="200.0" />
-  </joint>
-
-  <joint name="joint_link1_link2_intermediate" type="revolute">
-    <origin
       xyz="0.0 0.17 0.0362"
       rpy="0 0 1.5708" />
     <parent
       link="link1" />
     <child
-      link="link1_to_link2_intermediate" />
+      link="link2" />
     <axis
       xyz="0 0 1" />
     <limit
@@ -185,19 +150,16 @@
       upper="1.5707"
       effort="200.0"
       velocity="200.0" />
-    <mimic
-      joint="joint3"
-      multiplier="1"/> 
   </joint>
 
-  <joint name="joint_link1_link2" type="revolute">
+  <joint name="passive_joint4_mimic1" type="revolute">
     <origin
-      xyz="0.0 0.0 0.0"
-      rpy="0 0 0.0" />
+      xyz="0.0 -0.17 0.0"
+      rpy="0 0 -1.5708" />
     <parent
-      link="link1_to_link2_intermediate" />
-    <child
       link="link2" />
+    <child
+      link="invisible_end" />
     <axis
       xyz="0 0 1" />
     <limit
@@ -207,15 +169,16 @@
       velocity="200.0" />
     <mimic
       joint="joint2"
-      multiplier="-1"/> 
+      multiplier="-1"
+    /> 
   </joint>
 
-  <joint name="passive_joint4_mimic" type="revolute">
+  <joint name="passive_joint4_mimic2" type="revolute">
     <origin
-      xyz="0.0 -0.17 0.0"
-      rpy="0 0 -1.5708" />
+      xyz="0.0 0.0 0.0"
+      rpy="0 0 0" />
     <parent
-      link="link2" />
+      link="invisible_end" />
     <child
       link="end_effector" />
     <axis
@@ -228,6 +191,109 @@
     <mimic
       joint="joint3"
       multiplier="-1"
-    /> 
+    />
   </joint>
+
+
+  <!-- Here starts the definition of only for visual appearance and collisions links and joints -->
+  <link name="visual_link_j3_lever">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/visual_link_j3_lever.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0975 0.028" />
+      <geometry>
+            <box size="0.035 0.035 0.035"/> r
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="visual_joint_j3_lever" type="revolute">
+    <origin
+      xyz="0.035 -0.0341 0.054"
+      rpy="1.5708 0 0" />
+    <parent
+      link="motors_link" />
+    <child
+      link="visual_link_j3_lever" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="1"/>
+  </joint>
+
+  <link name="invisible_visual_link_j3_lever">
+  
+  </link>
+
+  <joint name="invert_visual_joint_j3_lever" type="revolute">
+    <origin
+      xyz="0.0 0.0 0.0"
+      rpy="0 0 0" />
+    <parent
+      link="visual_link_j3_lever" />
+    <child
+      link="invisible_visual_link_j3_lever" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="-1"/>
+  </joint>
+
+  <link name="visual_link_j3_rod">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.035 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/visual_link_j3_rod.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0975 0.028" />
+      <geometry>
+            <box size="0.035 0.035 0.035"/> r
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="visual_joint_j3_rod" type="revolute">
+    <origin
+      xyz="0.0 0.0 0.0"
+      rpy="0 0 0" />
+    <parent
+      link="invisible_visual_link_j3_lever" />
+    <child
+      link="visual_link_j3_rod" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint2"
+      multiplier="1"/>
+  </joint>
+
 </robot>
