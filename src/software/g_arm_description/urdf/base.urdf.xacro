@@ -367,7 +367,45 @@
       velocity="200.0" />
     <mimic
       joint="joint2"
-      multiplier="-1"/> 
+      multiplier="1"/> 
+  </joint>
+
+  <link name="parallel_end_link2">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <geometry>
+            <box size="0.025 0.230 0.015"/> r
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="passive_parallel_link2_intermediate" type="revolute">
+    <origin
+      xyz="0.029054 0.019516 -0.011"
+      rpy="0 0 1.5708" />
+    <parent
+      link="elbow_link" />
+    <child
+      link="parallel_end_link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="1"/> 
   </joint>
 
 </robot>
