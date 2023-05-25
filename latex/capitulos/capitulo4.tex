@@ -43,6 +43,9 @@ en este trabajo se abordará la configuración necesaria para para poder usar la
 \subsection{ROS 2}
 \label{subsec:ros2}
 
+\subsection{MoveIt!}
+\label{subsec:moveit}
+
 \section{Hardware}
 \label{sec:hardware}
 Cuando hablamos de \textit{hardware}, nos referimos a todos los componentes físicos de utilizados en el dispositivo electrónico, en este caso, un robot. Estos 
@@ -70,7 +73,7 @@ El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser
     \label{fig:robSoldering}
   \end{figure}\ 
 
-\section{Motores paso a paso}
+\section{Motores Nema 17}
 \label{subsec:motores}
 Un motor paso a paso es un tipo de motor que se mueve en pequeños pasos o incrementos discretos en lugar de girar continuamente. Estos pasos 
 son controlados por señales eléctricas que hacen girar al motor una cantidad específica de grados cada vez que se envía una señal. Debido a que se tiene 
@@ -78,15 +81,17 @@ control sobre su avance son una excelente opción si se quiere tener un motor qu
 de su gran precisión, los motores paso a paso convencionales no tienen el conocimiento absoluto de su posición, por lo que todos los movimientos son 
 relativos. Esto hace que se requiera de un \textit{homing} (proceso en el cual la máquina CNC lleva las partes móviles a una 
 posición conocida) en el arranque de la máquina para conocer su estado antes de operar.
+Para este trabajo, se han usado 3 motores Nema 17 de 60 milímetros de largo debido a las necesidades calculadas más adelante. Son motores bipolares de 
+2.1 amperios y una resistencia de 1,6 ohmios con un torque máximo de 0.65 newton-metro.
 \begin{figure} [h!]
     \begin{center}
       \includegraphics[width=8cm]{figs/nema17.jpg}
     \end{center}
-    \caption{Motor Nema 17}
+    \caption{Motores Nema 17 de 2.1A}
     \label{fig:robSoldering}
   \end{figure}\ 
 
-\section{Controladores de motores}
+\section{Controlador TMC2209}
 \label{subsec:controladorPAP}
 Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el controlador en una serie de pulsos de
 potencia que excitarán las bobinas del motor en un cierto orden para lograr el movimiento. 
@@ -102,3 +107,6 @@ ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumi
     \caption{Controlador TMC2209}
     \label{fig:robSoldering}
   \end{figure}\ 
+
+\section{Fuente de alimentación genérica}
+\label{subsec:fuente_alimentacion}

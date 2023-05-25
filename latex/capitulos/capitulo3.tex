@@ -15,9 +15,16 @@ Tras haber enmarcado el contexto en el cual se encuentra este trabajo de fin de 
 una descripción del problema, requisitos, metodología y plan de trabajo usado.
 \section{Descripción del problema}
 \label{sec:descripcion}
-El objetivo principal de este trabajo de fin de grado es desarrollar un brazo robótico desde cero. Se pretende que
-el robot pueda ser empleado en la asignatura de Robótica Industrial en la Universidad Rey Juan Carlos. Es por esto,
-que se busca que el sistema creado sea asequible y fácilmente replicable mediante el uso de la impresión 3D.\\
+Este trabajo de fin de grado nace de la necesidad de abordar el problema existente en nuestra universidad, donde la escasez de 
+robots disponibles y la dificultad para acceder a ellos han limitado nuestra experiencia práctica en robótica. 
+Estos dispositivos son costosos, lo que limita su disponibilidad, y su fragilidad impide que los estudiantes 
+interactúen plenamente con ellos por temor a dañarlos. Además, la cantidad limitada de robots en relación con el número de carreras que 
+quieren utilizarlos, crea una gran competencia por su uso. Sumado a ello, los profesores tienen que hacer frente a la burocracia asociada al 
+uso de los mismos. 
+La solución propuesta busca superar estas limitaciones al proporcionar a la enseñanza un robot casero impreso en 3D, que será
+económico, accesible y útil en el aprendizaje práctico de los estudiantes. 
+Por lo tanto, el objetivo principal de este trabajo de fin de grado es desarrollar un brazo robótico que pueda ser empleado en la 
+asignatura de Robótica Industrial de esta universidad. Asimismo, se busca que el sistema creado sea asequible y fácilmente replicable haciendo uso de las impresoras 3D de la universidad.\\
 Con el fin de alcanzar esta meta, se ha dividido el proyecto en los siguientes subobjetivos:
 
 \begin{enumerate}
@@ -47,13 +54,16 @@ Con el fin de alcanzar esta meta, se ha dividido el proyecto en los siguientes s
 
 \section{Requisitos}
 \label{sec:requisitos}
-De este trabajo se espera un brazo robot de tipo industrial de bajo coste cuya fabricación completa esté por debajo de 200\euro.
-Otro requisito es que la mayoría de las partes que componen el robot, sean imprimibles en cualquier impresora 3D de gama baja.\\\\
-Además, se busca un consumo reducido para poder ser usado en robots móviles sin necesidad de estar conectado a una gran fuente de 
-energía.\\\\
-En cuanto a sus dimensiones, se busca un tamaño idóneo para su uso en escritorios y fácilmente portable. Esto implica que no necesariamente 
-tiene que estar fijo al suelo, permitiendo su fácil traslado.\\\\
-Se busca continuidad en el proyecto a largo plazo, por lo que una integración en ecosistema \acs{ROS} 2 es una pieza clave. 
+Con el fin de solucionar el problema descrito, se han establecido los siguientes requisitos:
+\begin{enumerate}
+      \item Se espera un brazo robot de tipo industrial de bajo coste cuya fabricación completa esté por debajo de 200\euro.
+      \item La mayoría de las partes que componen el robot, deben ser imprimibles en cualquier impresora 3D convencional.
+      \item A fin de poder garantizar la portabilidad del robot, este debe de tener un consumo inferior a 25 vatios.
+      \item En cuanto a sus dimensiones, se busca un tamaño idóneo para su uso sobre un escritorio. Esto implica que no necesariamente 
+      tiene que estar unido al suelo, permitiendo su fácil traslado.
+      \item Se busca continuidad en el proyecto a largo plazo, por lo que debe estar integrado en ecosistema \acs{ROS} 2. 
+
+\end{enumerate}\
 
 \section{Metodología}
 \label{sec:metodologia}
