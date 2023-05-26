@@ -42,6 +42,32 @@ en este trabajo se abordará la configuración necesaria para para poder usar la
 
 \subsection{ROS 2}
 \label{subsec:ros2}
+ROS, por sus siglas en inglés, significa \textit{Robot Operating System}. Se trata de una plataforma de código abierto utilizada 
+para desarrollar y controlar sistemas robóticos.
+El objetivo principal de ROS es facilitar el desarrollo de sistemas robóticos al proporcionar una infraestructura que permite que
+los desarrolladores pueden centrarse en la lógica y el comportamiento específico de los robots, sin tener que preocuparse por la 
+infraestructura de comunicación y control. 
+Además, proporciona una colección de bibliotecas, herramientas y convenios que permiten a los programadores crear software para robots. 
+También proporciona herramientas para la visualización de datos, simulación de robots, depuración y pruebas. Además, 
+cuenta con una comunidad activa de usuarios y desarrolladores que contribuyen con paquetes adicionales y comparten su 
+conocimiento.
+
+Está diseñado para ser modular, lo que permite la creación de sistemas complejos mediante la reutilización de otros componentes existentes.
+
+Una de las características distintivas de ROS es su arquitectura basada en nodos. Los nodos son procesos independientes 
+que se comunican entre sí mediante mensajes. Cada nodo puede realizar tareas específicas, en función de la lógica atribuída por el programador.
+
+En este trabajo se utiliza ROS 2, la versión sucesora de ROS. Esta versión incorpora gran variedad de mejoras respecto a su anterior versión. En esta versión 
+los nodos no dependen de un nodo \textit{Master} para comunicarse ya que las comunicaciones están distribuidas mediante el uso de \ac{DDS}. Esto 
+incrementa la robusted del sistema y reduce significativamente los tiempos de latencia. \\
+La distribución de utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata de la última versión de ROS estable disponible para Ubuntu 22.04 LTS.
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=4cm]{figs/ros2logo.jpeg}
+  \end{center}
+  \caption{Logotipo de ROS 2 Humble}
+  \label{fig:ros2logo}
+\end{figure}\ 
 
 \subsection{MoveIt!}
 \label{subsec:moveit}
