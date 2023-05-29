@@ -63,5 +63,44 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         \caption{Robot UIArm}
         \label{fig:uiarm}
     \end{figure}\ 
+    \newpage
+    \item En el ámbito de los robots caseros, se puede destacar un referente reconocido, MeArm. Se trata de un 
+    brazo mecánico de diseño simple y completamente \textit{OpenSource}, lo que significa que su código fuente y planos están disponibles 
+    de forma gratuita para que cualquier persona interesada pueda acceder a ellos. De hecho, tal es su repercusión que miles de personas 
+    se han impreso el suyo o creado su propia versión mejorada. Prueba de ello es, la cantidad de modificaciones que ha ido subiendo la comunidad a 
+    páginas como Thingiverse\footnote{\url{https://www.thingiverse.com/search?q=mearm&page=1&type=things&sort=relevant}}. Hay variantes llamadas 
+    con otros nombres como puede ser EEZYBotArm, una versión más robusta y más atractiva pero basada en el mismo concepto. \\
+    Consta de 3 grados de libertad y de una pinza simple. Todos los motores del robots son servomotores de 9 gramos y se basa en el uso de 
+    paralelogramos para transferir el movimiento de los motores al extremo del robot, manteniendo el peso de los mismos en la base del robot. 
+    Se trata de un proyecto muy extendido, con una comunidad que ha creado muchas variantes de él, por lo que para evaluar los puntos fuertes y 
+    débiles del robot, se va a hacer referencia al robot original MeArm V1.
+    \begin{figure} [h!]
+        \centering    
+        \subfigure[MeArm robot]{\label{fig:mearm}\includegraphics[width=0.3\linewidth ]{figs/mearm.jpg}}
+        \hspace{3cm}
+        \subfigure[EEZYBotArm MK1]{\label{fig:eezy}\includegraphics[width=0.3\linewidth]{figs/eezy.jpg}}
+        \caption{Robots formados a partir de paralelogramos}
+    \end{figure}
+    \newpage
+    Los aspectos significativos de este robot son:
+    \begin{enumerate}
+        \item Se trata de un proyecto totalmente accesible y replicable ya que usa pocos materiales y estos son fáciles de adquirir.
+        \item El centro de masa del robot se concentra en la base, reduciendo la inercia del brazo y permitiendo así movimientos más rapidos y precisos.
+        \item No requiere de apenas tiempo de impresión y el montaje es muy sencillo y rápido gracias a las numerosas guías de 
+        montaje\footnote{\url{https://docs.rs-online.com/2bb1/0900766b81593e58.pdf}}.
+        \item Al usar servomotores, se puede establecer el ángulo de cada articulación fácilmente sin necesitar de ningún tipo de sensor externo.
+        \item Debido a su forma y materiales utilizados, tiene un peso muy reducido por lo que se puede montar sobre robots móviles sin afectar a 
+        su rendimiento.
+    \end{enumerate}
+    En cuanto a sus limitaciones, y no necesariamente defectos, se deben mencionar:
+    \begin{enumerate}
+    \item Se suele prescindir del uso de rodamientos en sus articulaciones. Esto reduce el tiempo de vida del brazo debido a que el propio rozamiento 
+    de los ejes acaba desgastando el plástico, creando holguras que afectan directamente en la precisión. Esta holgura obliga a apretar en exceso los tornillos 
+    que hacen de ejes de las articulaciones, aumentando el rozamiento y reduciendo fuerza útil de los pequeños motores.
+    \item Este robot está limitado en cuanto a fuerza debido al uso de servomotores. Usa los típicos SG90 o similares con un torque de apenas 
+    0.16 Newton-metro. El uso de servos más grandes aumenta significativamente el precio del dispositivo. 
+    \item A los servos, no solo se les atribuye el poco torque que ejercen, si no también las vibraciones al conectarle una carga. Esto hace 
+    que el conjunto tiemble en exceso reduciendo su exactitud
+    \end{enumerate}
 \end{itemize}\
 \vspace{1cm}
