@@ -35,16 +35,16 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         \caption{Robot HydraX}
         \label{fig:hydra}
     \end{figure}\ 
-    \item Existen soluciones más sencillas y reproducibles, como por ejemplo la presentada en \cite{adediran2023uiarm}. Se trata de un brazo robótico 
-    cuyo propósito es separar botellas de plástico en un proceso de reciclaje. Más allá de la aplicación que se le pretende dar, presentan 
-    un manipulador con 4 \ac{DOF} impreso en 3D, de un tamaño menor al anterior. 
+    \item Existen soluciones más sencillas y reproducibles, como por ejemplo, la presentada en \cite{adediran2023uiarm}. Se trata de un brazo robótico 
+    cuyo propósito es separar botellas de plástico en un proceso de reciclaje. Más allá de la aplicación que se le pretende dar, se hace uso de  
+    un manipulador de tamaño reducido, impreso en 3D y con 4 \ac{DOF}.
     A partir de la información proporcionada en este artículo, se han extraido los siguientes puntos fuertes:
     \begin{itemize}
         \item El diseño de las piezas se ha realizado mediante el uso de la herramienta de diseño FreeCad, esto supone una ventaja respecto 
         a \cite{KRIMPENIS2020103}, que utilizaba una herramienta privativa.
         \item Utiliza motores de pequeño tamaño con una reductora integrada, lo que aumenta su torque y abarata en gran medida los costes 
-        del robot. Al haber reducido el consumo de energía, se emplea una electrónica compacta y menos costosa.
-        \item Al estar compuesto por menos piezas y tener menos grados de libertad, se demora menos tiempo en imprimir y contruir este robot.
+        del robot. Debido a esto, el consumo de energía es menor pudiendo hacer uso de una electrónica compacta y menos costosa.
+        \item Al estar compuesto por menos piezas y tener pocos grados de libertad, se requiere menos tiempo para imprimir y contruir este robot.
     \end{itemize}\
     Cabe destacar los siguientes puntos negativos:
     \begin{itemize}
@@ -53,7 +53,7 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         posicionamiento, por lo que es imposible en la práctica abarcar todo el espacio 3D al alcance del brazo.
         \item Utiliza engranajes impresos en 3D para rotar la segunda articulación comenzando desde la base. Debido a esto, pierde exactitud en función 
         de la posición del brazo debido a la holgura de este tipo de transmisión.
-        \item Carece de integración con \ac{ROS} y no proporciona otro tipo de software que permita desarrollar programas para este robot perjudicando la 
+        \item Carece de integración con \ac{ROS} y el autor no proporciona otro tipo de software que permita desarrollar programas para este robot perjudicando la 
         continuidad del proyecto.
     \end{itemize}\
     \begin{figure} [h!]
@@ -66,14 +66,12 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
     \newpage
     \item En el ámbito de los robots caseros, se puede destacar un referente reconocido, MeArm. Se trata de un 
     brazo mecánico de diseño simple y completamente \textit{OpenSource}, lo que significa que su código fuente y planos están disponibles 
-    de forma gratuita para que cualquier persona interesada pueda acceder a ellos. De hecho, tal es su repercusión que miles de personas 
-    se han impreso el suyo o creado su propia versión mejorada. Prueba de ello es, la cantidad de modificaciones que ha ido subiendo la comunidad a 
-    páginas como Thingiverse\footnote{\url{https://www.thingiverse.com/search?q=mearm&page=1&type=things&sort=relevant}}. Hay variantes llamadas 
-    con otros nombres como puede ser EEZYBotArm, una versión más robusta y más atractiva pero basada en el mismo concepto. \\
+    de forma gratuita para que cualquier persona interesada pueda acceder a ellos. De hecho, tal es su repercusión, que miles de personas 
+    se han impreso el suyo o creado su propia versión mejorada. Prueba de ello es, la cantidad de modificaciones que se han ido subiendo a  
+    páginas como Thingiverse\footnote{\url{https://www.thingiverse.com/search?q=mearm&page=1&type=things&sort=relevant}}. Además, existen 
+    robots con diferentes nombres basados en el mismo concepto, como puede ser EEZYBotArm, una versión más robusta y atractiva que el original. \\
     Consta de 3 grados de libertad y de una pinza simple. Todos los motores del robots son servomotores de 9 gramos y se basa en el uso de 
-    paralelogramos para transferir el movimiento de los motores al extremo del robot, manteniendo el peso de los mismos en la base del robot. 
-    Se trata de un proyecto muy extendido, con una comunidad que ha creado muchas variantes de él, por lo que para evaluar los puntos fuertes y 
-    débiles del robot, se va a hacer referencia al robot original MeArm V1.
+    paralelogramos para transferir el movimiento de los motores al extremo del robot, manteniendo el peso de los mismos en la base. 
     \begin{figure} [h!]
         \centering    
         \subfigure[MeArm robot]{\label{fig:mearm}\includegraphics[width=0.3\linewidth ]{figs/mearm.jpg}}
@@ -82,25 +80,26 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         \caption{Robots formados a partir de paralelogramos}
     \end{figure}
     \newpage
+    Se trata de un proyecto muy extendido, con una comunidad que ha creado muchas variantes de él, por lo que para evaluar los puntos fuertes y 
+    débiles del robot, se va a hacer referencia al robot original MeArm V1.
     Los aspectos significativos de este robot son:
-    \begin{enumerate}
-        \item Se trata de un proyecto totalmente accesible y replicable ya que usa pocos materiales y estos son fáciles de adquirir.
-        \item El centro de masa del robot se concentra en la base, reduciendo la inercia del brazo y permitiendo así movimientos más rapidos y precisos.
-        \item No requiere de apenas tiempo de impresión y el montaje es muy sencillo y rápido gracias a las numerosas guías de 
-        montaje\footnote{\url{https://docs.rs-online.com/2bb1/0900766b81593e58.pdf}}.
+    \begin{itemize}
+        \item Se trata de un proyecto totalmente accesible y replicable, ya que usa pocos materiales y estos son fáciles de adquirir.
+        \item El centro de masa del robot se concentra en la base, reduciendo la inercia del brazo y permitiendo así movimientos más rapidos.
+        \item No requiere de apenas tiempo de impresión y el montaje es sencillo gracias a las numerosas guías de 
+        montaje\footnote{\url{https://docs.rs-online.com/2bb1/0900766b81593e58.pdf}} que circulan por internet.
         \item Al usar servomotores, se puede establecer el ángulo de cada articulación fácilmente sin necesitar de ningún tipo de sensor externo.
-        \item Debido a su forma y materiales utilizados, tiene un peso muy reducido por lo que se puede montar sobre robots móviles sin afectar a 
+        \item Debido a su forma y materiales utilizados, tiene un peso muy reducido pudiendose acoplar a robots móviles sin afectar a 
         su rendimiento.
-    \end{enumerate}
-    En cuanto a sus limitaciones, y no necesariamente defectos, se deben mencionar:
-    \begin{enumerate}
+    \end{itemize}
+    En cuanto a sus limitaciones, se deben mencionar:
+    \begin{itemize}
     \item Se suele prescindir del uso de rodamientos en sus articulaciones. Esto reduce el tiempo de vida del brazo debido a que el propio rozamiento 
     de los ejes acaba desgastando el plástico, creando holguras que afectan directamente en la precisión. Esta holgura obliga a apretar en exceso los tornillos 
     que hacen de ejes de las articulaciones, aumentando el rozamiento y reduciendo fuerza útil de los pequeños motores.
     \item Este robot está limitado en cuanto a fuerza debido al uso de servomotores. Usa los típicos SG90 o similares con un torque de apenas 
     0.16 Newton-metro. El uso de servos más grandes aumenta significativamente el precio del dispositivo. 
-    \item A los servos, no solo se les atribuye el poco torque que ejercen, si no también las vibraciones al conectarle una carga. Esto hace 
-    que el conjunto tiemble en exceso reduciendo su exactitud
-    \end{enumerate}
+    \item Los servomotores padecen de vibraciones al conectarle una carga. Esto hace que el conjunto tiemble en exceso durante los movimientos.
+    \end{itemize}
 \end{itemize}\
 \vspace{1cm}

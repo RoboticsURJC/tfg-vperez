@@ -39,6 +39,32 @@ Básicamente, convierte las instrucciones de código G, que posteriormente habla
 comprueba los diferentes sensores de la máquina, como pueden ser los finales de carrera, para establecer los límites físicos de cada movimiento. \\
 Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque solo soporta movimientos lineales,
 en este trabajo se abordará la configuración necesaria para para poder usar las articulaciones rotativas del nuestro robot.
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=4cm]{figs/grbl.png}
+  \end{center}
+  \caption{Logo de Grl}
+  \label{fig:grbllogo}
+\end{figure}\ 
+
+\subsection{FreeCAD}
+\label{subsec:freecad}
+FreeCAD es una aplicación de diseño asistido por ordenador de código abierto y gratuita, utilizada para el modelado de piezas en 3D .
+Está dirigida al mundo de la ingeniería mecánica y el diseño de productos, pero también es usada en arquitectura y otros campos.
+\\FreeCAD utiliza modelado paramétrico. Se trata de un enfoque de diseño que utiliza parámetros y relaciones entre ellos para 
+crear modelos 3D modificables, lo que permite realizar un cambio en la geometría modificando el valor de un cierto parámetro.
+También ofrece una variedad de bancos de trabajo (\textit{work benches}) especializados, como \textit{Part Design}, \textit{Sketcher} y \textit{Draft} para adaptarse a diferentes 
+necesidades de diseño. Además, permite incluir nuevas herramientas y funcionalidades creadas por la comunidad, mediante su administrador 
+de complementos.
+\\FreeCAD cuenta con una comunidad activa de usuarios que contribuyen al desarrollo y la mejora continua del software. Gracias a esto, 
+es sencillo aprender a utilizarlo a partir de las numerosas guías de uso y tutoriales.
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=4cm]{figs/freecad.png}
+  \end{center}
+  \caption{Logo de FreeCAD}
+  \label{fig:freecadlogo}
+\end{figure}\ 
 
 \subsection{ROS 2}
 \label{subsec:ros2}
@@ -134,6 +160,7 @@ ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumi
     \label{fig:robSoldering}
   \end{figure}\ 
 
+\newpage
 \section{Fuente de alimentación genérica}
 \label{subsec:fuente_alimentacion}
 Para alimentar el brazo se va a utilizar una fuente de alimentación genérica de 24 voltios y 6 amperios. Este tipo de fuentes pueden ser 
