@@ -46,6 +46,28 @@ en este trabajo se abordará la configuración necesaria para para poder usar la
   \caption{Logo de Grl}
   \label{fig:grbllogo}
 \end{figure}\ 
+\subsection{Código G}
+\label{sec:gcode}
+\textit{G-code}, también conocido como RS-274, es el nombre del lenguaje de programación más usado en máquinas de \ac{CNC}. 
+Proporciona control numérico basado en métricas para equipos controlados por \ac{CAM}, como pueden ser, fresadoras y tornos. 
+La programación de este lenguaje precisa de una sintaxis específica en la que se emplean letras y números para representar 
+diferentes comandos y parámetros. Por ejemplo, la letra "G" seguida de un número indica un comando de movimiento, mientras 
+que la letra "M" seguida de un número se utiliza para comandos misceláneos, como el encendido o apagado del láser/motor de fresado.
+Así es como se programan los movimientos necesarios para que la herramienta realice una trayectoria cuadrada en el plano XY:
+\begin{verbatim}
+  G90       ; Establecer modo de posicionamiento absoluto
+  G21       ; Establecer unidad de medida en milímetros
+  F200      ; Establecer velocidad de avance a 200 unidades por minuto 
+  
+  G0 X0 Y0  ; Mover a la posición inicial (esquina inferior izquierda) 
+  G1 X20    ; Mover horizontalmente hacia la derecha 20 mm
+  G1 Y20    ; Mover verticalmente hacia arriba 20 mm
+  G1 X0     ; Mover horizontalmente hacia la izquierda 20 mm
+  G1 Y0     ; Mover verticalmente hacia abajo 20 mm
+  G0 X0 Y0  ; Volver a la posición inicial (esquina inferior izquierda)
+  
+  M2        ; Fin del programa
+\end{verbatim}
 
 \subsection{FreeCAD}
 \label{subsec:freecad}
@@ -97,14 +119,25 @@ La distribución de utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata
 
 \subsection{MoveIt!}
 \label{subsec:moveit}
+MoveIt es una plataforma de desarrollo (\textit{framework}) para manipulación robótica de código abierto que permite desarrollar 
+aplicaciones de manipulación complejas utilizando ROS. Además, proporciona una amplia gama de herramientas y bibliotecas que 
+facilitan el control y planificación de movimientos de robots. Con MoveIt, puedes crear fácilmente aplicaciones que permitan
+a los robots realizar tareas de manipulación avanzadas, como agarrar objetos, ensamblar piezas y mover el brazo en entornos complejos. 
+Es altamente flexible gracias a su diseño modular y se puede utilizar con una gran variedad de robots. De hecho, incorpora la herramienta 
+\textit{MoveIt Setup Assistant}; se trata de una asistente de configuración con interfaz gráfica que te permite generar los ficheros 
+necesarios para utilizar tu propio robot en este ecosistema. 
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=8cm]{figs/moveit_intro.png}
+  \end{center}
+  \caption{Aspecto del plugin de MoveIt para Rviz2 (Franka Emika Robot)}
+  \label{fig:ros2logo}
+\end{figure}\ 
 
 \section{Hardware}
 \label{sec:hardware}
 Cuando hablamos de \textit{hardware}, nos referimos a todos los componentes físicos de utilizados en el dispositivo electrónico, en este caso, un robot. Estos 
 componentes son tangibles, es decir, se pueden tocar y ver.
-\subsection{Código G}
-\label{sec:gcode}
-Se trata 
 
 \section{MKS DLC32}
 \label{subsec:mksdlc32}
