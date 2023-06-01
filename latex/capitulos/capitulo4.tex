@@ -71,7 +71,7 @@ Así es como se programan los movimientos necesarios para que la herramienta rea
 
 \subsection{FreeCAD}
 \label{subsec:freecad}
-FreeCAD es una aplicación de diseño asistido por ordenador de código abierto y gratuita, utilizada para el modelado de piezas en 3D .
+FreeCAD\footnote{\url{https://www.freecad.org/index.php?lang=es_ES}} es una aplicación de diseño asistido por ordenador de código abierto y gratuita, utilizada para el modelado de piezas en 3D .
 Está dirigida al mundo de la ingeniería mecánica y el diseño de productos, pero también es usada en arquitectura y otros campos.
 \\FreeCAD utiliza modelado paramétrico. Se trata de un enfoque de diseño que utiliza parámetros y relaciones entre ellos para 
 crear modelos 3D modificables, lo que permite realizar un cambio en la geometría modificando el valor de un cierto parámetro.
@@ -128,7 +128,7 @@ Es altamente flexible gracias a su diseño modular y se puede utilizar con una g
 necesarios para utilizar tu propio robot en este ecosistema. 
 \begin{figure} [h!]
   \begin{center}
-    \includegraphics[width=8cm]{figs/moveit_intro.png}
+    \includegraphics[width=12cm]{figs/moveit_intro.png}
   \end{center}
   \caption{Aspecto del plugin de MoveIt para Rviz2 (Franka Emika Robot)}
   \label{fig:ros2logo}
@@ -152,7 +152,7 @@ permite alimentar dispositivos. Estos podrían ser: electroimán (tipo de imán 
 El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser alimentado mediante baterías y con cargadores de ordenador. 
 \begin{figure} [h!]
     \begin{center}
-      \includegraphics[width=8cm]{figs/MKS.png}
+      \includegraphics[width=10cm]{figs/MKS.png}
     \end{center}
     \caption{Placa base MakerBase DLC32}
     \label{fig:robSoldering}
@@ -176,6 +176,29 @@ Para este trabajo, se han usado 3 motores Nema 17 de 60 milímetros de largo deb
     \label{fig:robSoldering}
   \end{figure}\ 
 
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetros} & \textbf{Valores} \\
+\hline
+Nombre del motor & 17HS24-2104S \\
+Tipo de motor & Bipolar \\
+Ángulo de paso & 1.8º \\
+Resistencia de fase & 1.6$\Omega$ \\
+Corriente máx. de fase & 2.1A \\
+Torque de sujección & 0.65Nm. \\
+Dimensiones & 42x42x60mm \\
+Peso & 500g \\
+Diámetro del eje & 5mm \\
+Longitud del eje & 24mm \\
+\hline
+\end{tabular}
+\caption{Especificaciones técnicas de los motores utilizados}
+\label{cuadro:ejemplo}
+\end{center}
+\end{table}
+
 \section{Controlador TMC2209}
 \label{subsec:controladorPAP}
 Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el controlador en una serie de pulsos de
@@ -191,8 +214,28 @@ ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumi
     \end{center}
     \caption{Controlador TMC2209}
     \label{fig:robSoldering}
-  \end{figure}\ 
+\end{figure}\ 
 
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetros} & \textbf{Valores} \\
+\hline
+Nombre del controlador & TMC2209 \\
+Voltaje lógico & 3 - 5V \\
+Voltaje de alimentación & 5.5 - 28V \\
+Microsteps & Hasta 1/256 \\
+Corriente máx. de fase (RMS) & 2A \\
+Pérdida de conducción (RDS) & 0.2$\Omega$ \\
+Interfaz de comunicación & Pines CFG y UART \\
+\hline
+\end{tabular}
+\caption{Especificaciones técnicas del TMC2209}
+\label{cuadro:ejemplo}
+\end{center}
+\end{table}
+    
 \newpage
 \section{Fuente de alimentación genérica}
 \label{subsec:fuente_alimentacion}
@@ -203,9 +246,9 @@ brazo.
 
 \begin{figure} [h!]
   \centering    
-  \subfigure[Fuente de alimentación 24v 5A]{\label{fig:pw24}\includegraphics[width=0.4\linewidth ]{figs/pw24v.jpg}}
+  \subfigure[Fuente de alimentación 24v 5A]{\label{fig:pw24}\includegraphics[width=0.55\linewidth ]{figs/pw24v.jpg}}
   \hspace{3cm}
-  \subfigure[Cargador de portátil genérico]{\label{fig:pw19}\includegraphics[width=0.4\linewidth]{figs/pw19v.jpg}}
+  \subfigure[Cargador de portátil genérico]{\label{fig:pw19}\includegraphics[width=0.55\linewidth]{figs/pw19v.jpg}}
   \caption{Métodos usados para alimentar el robot}
 \end{figure}
 
