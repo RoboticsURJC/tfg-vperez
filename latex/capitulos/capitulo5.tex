@@ -36,8 +36,8 @@ para la rotación en el eje perpendicular al plano. No es muy utilizado ya que e
 Con hasta 4 grados de libertad podemos realizar los siguientes robots:
 Tipos:
 
-\begin{itemize}
-\item \ac{SCARA}: son una categoría de robots industriales ampliamente utilizados en aplicaciones de ensamblaje electrónico, operaciones de 
+\begin{enumerate}
+\item Robots \acs{SCARA}: son una categoría de robots industriales ampliamente utilizados en aplicaciones de ensamblaje electrónico, operaciones de 
 \textit{pick and place}(coger componentes y situarlos en una determinada posición) y empaquetado de productos, entre otras.
 Se caracterizan por su diseño de brazo articulado y su capacidad para realizar movimientos rápidos 
 y precisos en un plano horizontal. Este tipo de robot suele tener tres o cuatro grados de libertad, en función de si en el extremo del 
@@ -51,7 +51,7 @@ robot puede rotar sobre si mismo o no.
   \caption[Fanuc]{Ejemplo: \href{https://www.fanuc.eu/uk/en/robots/robot-filter-page/scara-series/scara-sr-3ia}{Fanuc SR-3iA}}
 \end{figure}
 
-\item \ac{RR convencional}:
+\item Robots articulados: estos robots tienen una estructura similar a un brazo humano con múltiples articulaciones y ejes rotatorios. Suelen tener entre 4 y 6 ejes y permiten movimientos complejos y flexibles. 
 \begin{figure} [h!]
   \centering    
   \subfigure[Robot real]{\label{fig:rebel}\includegraphics[width=0.3\linewidth ]{figs/rebel4dof.jpg}}
@@ -60,10 +60,44 @@ robot puede rotar sobre si mismo o no.
   \caption[Rebel]{Ejemplo: \href{https://www.igus.es/product/20962?artNr=REBEL-4DOF-01}{REBEL-4DOF-01}}
 \end{figure}
 
+
+
+\item Robots basados en paralelogramos:
+\begin{itemize}
+\item El robot Delta es un tipo de robot paralelo de 3 (o más) grados de libertad compuesto por dos bases unidas por tres cadenas 
+cinemáticas basadas en el uso de paralelogramos. La base superior se encuentra fija mientras la base inferior, donde se 
+ubica el efector final, es móvil y siempre está paralela a la base fija.
+Son rápidos y precisos, por lo que se utilizan en aplicaciones que requieren alta velocidad, como en la 
+industria alimentaria o en la selección y empaquetado de productos.
+
+M-410iC/185 
+
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Robot Delta ABB]{\label{fig:delta}\includegraphics[width=0.3\linewidth ]{figs/delta_flex_picker.png}}
+  \hspace{3cm}
+  \subfigure[Fanuc M-410iC/185]{\label{fig:paral}\includegraphics[width=0.3\linewidth]{figs/m_410.jpg}}
+  \caption{Robots basados en paralelogramos}
+\end{figure}
 \end{itemize}
 
+https://www.fanuc.eu/uk/en/robots/robot-filter-page/m-410-series/m-410ic-185
 
+\item Robots cartesianos: se mueven sobre rieles/guías a lo largo de tres ejes cartesianos (X, Y, Z) y cuyos ejes forman ángulos rectos unos respecto de 
+los otros. Se trata de un tipo de máquina muy común en la industria.
+\begin{figure} [h!]
+  \centering    
+  \subfigure[VP-2500DP]{\label{fig:pnp}\includegraphics[width=0.4\linewidth ]{figs/pnp.jpg}}
+  \hspace{1cm}
+  \subfigure[OpenBuilds CNC Lead 1010]{\label{fig:cnc}\includegraphics[width=0.4\linewidth]{figs/cnc.jpg}}
+  \caption{Ejemplos de robots cartesianos}
+\end{figure}
+
+https://openbuilds.com/builds/lead-cnc-1010-40-x-40.7832/
+
+https://www.orion-industry.com/pick-and-place/VP2500DP-WNE-eng.pdf
 Basado en paralelos
+\end{enumerate}
 
 \section{Modelo alámbrico}
 \subsection{En qué consiste}
