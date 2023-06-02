@@ -18,12 +18,50 @@ a los requisitos 1 y 5, que limitan en cuanto a precio de fabricación y complej
 libertad a un máximo de 4. 
 
 hablamos del tipo de joints que existente
+Existen muchos tipos de joints entre los que destacan:
 
-Con 4 grados de libertad vamos mal pero se puede.
+\begin{itemize}
+\item Revolución: Este tipo de \textit{joint} permite el movimiento de rotación alrededor de un eje fijo. Está restringido a 1 DOF. Es comúnmente usado en todo tipo de robots, sobre todo en industriales.
+\item Prismático: En este tipo de \textit{joint}, las partes del robot se pueden desplazar linealmente a lo largo de un eje específico. Está restringido a 1 DOF. Es usado ptincipalmente en 
+los carros de avance de robot industriales y en máquinas CNC.
+\item Esférico: Esta articulación permite la rotación en cualquier dirección. Está restringido a 3 DOF y suele ser usado como articulación pasiva, es decir, que 
+que su movimiento depende de restricciones externas.
+\item Cilíndrica: Esta articulación permite el movimiento de rotación alrededor de un eje y también un desplazamiento lineal a lo largo del mismo. Combina los movimientos rotacionales y prismáticos. Está restringido a 2 DOF. Es usado en el extremo de los 
+robots tipo \textit{Scara}.
+\item Planar: Este tipo de joint permite el movimiento en un plano específico. Restringe el movimiento a 2 grados de libertad para el posicionamiento, y otro 
+para la rotación en el eje perpendicular al plano. No es muy utilizado ya que es complejo de implementar.
+\end{itemize}
+
+
+Con hasta 4 grados de libertad podemos realizar los siguientes robots:
 Tipos:
-Scara
 
-RR
+\begin{itemize}
+\item \ac{SCARA}: son una categoría de robots industriales ampliamente utilizados en aplicaciones de ensamblaje electrónico, operaciones de 
+\textit{pick and place}(coger componentes y situarlos en una determinada posición) y empaquetado de productos, entre otras.
+Se caracterizan por su diseño de brazo articulado y su capacidad para realizar movimientos rápidos 
+y precisos en un plano horizontal. Este tipo de robot suele tener tres o cuatro grados de libertad, en función de si en el extremo del 
+robot puede rotar sobre si mismo o no. 
+
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Ensamblado de baterías]{\label{fig:fanuc}\includegraphics[width=0.3\linewidth ]{figs/fanuc.jpg}}
+  \hspace{3cm}
+  \subfigure[Espacio de trabajo]{\label{fig:fanuc_ws}\includegraphics[width=0.3\linewidth]{figs/fanuc_spacio.jpg}}
+  \caption[Fanuc]{Ejemplo: \href{https://www.fanuc.eu/uk/en/robots/robot-filter-page/scara-series/scara-sr-3ia}{Fanuc SR-3iA}}
+\end{figure}
+
+\item \ac{RR convencional}:
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Robot real]{\label{fig:rebel}\includegraphics[width=0.3\linewidth ]{figs/rebel4dof.jpg}}
+  \hspace{3cm}
+  \subfigure[Espacio de trabajo]{\label{fig:rebel_ws}\includegraphics[width=0.4\linewidth]{figs/igus_space.png}}
+  \caption[Rebel]{Ejemplo: \href{https://www.igus.es/product/20962?artNr=REBEL-4DOF-01}{REBEL-4DOF-01}}
+\end{figure}
+
+\end{itemize}
+
 
 Basado en paralelos
 
@@ -54,102 +92,3 @@ líneas y conexiones simbólicas, en lugar de mostrar detalles realistas del man
 \section{Diseño CAD}
 
 \section{Diseño CAD}
-
-
-\begin{code}[h]
-\begin{lstlisting}[language=C++]
-void Memory::hypothesizeParallelograms () {
-  for(it1 = this->controller->segmentMemory.begin(); it1++) {
-    squareFound = false; it2 = it1; it2++;
-    while ((it2 != this->controller->segmentMemory.end()) && (!squareFound)) {
-      if (geometry::haveACommonVertex((*it1),(*it2),&square)) {
-        dist1 = geometry::distanceBetweenPoints3D ((*it1).start, (*it1).end);
-        dist2 = geometry::distanceBetweenPoints3D ((*it2).start, (*it2).end);
-      }
-    // [...]
-\end{lstlisting}
-\caption[Función para buscar elementos 3D en la imagen]{Función para buscar elementos 3D en la imagen}
-\label{cod:codejemplo}
-\end{code}
-
-En el Código \ref{cod:codejemplo2} vemos un ejemplo escrito en \texttt{Python}.
-
-\begin{code}[h]
-\begin{lstlisting}[language=Python]
-def mostrarValores():
-    print (w1.get(), w2.get())
-
-master = Tk()
-w1 = Scale(master, from_=0, to=42)
-w1.pack()
-w2 = Scale(master, from_=0, to=200, orient=HORIZONTAL)
-w2.pack()
-Button(master, text='Show', command=mostrarValores).pack()
-
-mainloop()
-\end{lstlisting}
-\caption[Cómo usar un Slider]{Cómo usar un Slider}
-\label{cod:codejemplo2}
-\end{code}
-
-\section{Verbatim}
-
-Para mencionar identificadores usados en el código ---como nombres de funciones o variables--- en el texto, usa el entorno literal o verbatim \verb|hypothesizeParallelograms()|. También se puede usar este entorno para varias líneas, como se ve a continuación:
-
-\begin{verbatim}
-void Memory::hypothesizeParallelograms () {
-  // add your code here
-}
-\end{verbatim}
-
-\section{Ecuaciones}
-
-Si necesitas insertar alguna ecuación, puedes hacerlo. Al igual que las figuras, no te olvides de referenciarlas. A continuación se exponen algunas ecuaciones de ejemplo: Ecuación \ref{ec:ec1} y Ecuación \ref{ec:ec2}.
-
-\begin{myequation}[h]
-\begin{equation}
-H = 1 - \frac{\sum_{i=0}^{N}\frac{(\frac{d_{j_s} + d_{j_e}}{2})}{N}}{M}
-\nonumber
-\label{ec:ec1}
-\end{equation}
-\caption[Ejemplo de ecuación con fracciones]{Ejemplo de ecuación con fracciones}
-\end{myequation} 
-
-\begin{myequation}[h]
-\begin{equation}
-v(entrada)= \left\{
-	\begin{array}{lcc}
-		0 & \mbox{if} & \epsilon_t < 0.1\\
-		K_p\cdot{(T_{t}-T)} & \mbox{if}& 0.1 \leq \epsilon_t < M_t\\
-		K_p \cdot M_t & \mbox{if}& M_t < \epsilon_t
-	\end{array}
-\right.
-\label{ec:ec2}
-\end{equation}
-\caption[Ejemplo de ecuación con array y letras y símbolos especiales]{Ejemplo de ecuación con array y letras y símbolos especiales}
-\end{myequation}
-
-\section{Tablas o cuadros}
-
-Si necesitas insertar una tabla, hazlo dígnamente usando las propias tablas de \LaTeX, no usando pantallazos e insertándolas como figuras... En el Cuadro \ref{cuadro:ejemplo} vemos un ejemplo.
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Parámetros} & \textbf{Valores} \\
-\hline
-Tipo de sensor & Sony IMX219PQ[7] CMOS 8-Mpx \\
-Tamaño del sensor & 3.674 x 2.760 mm (1/4" format) \\
-Número de pixels & 3280 x 2464 (active pixels) \\
-Tamaño de pixel & 1.12 x 1.12 um \\
-Lente & f=3.04 mm, f/2.0 \\
-Ángulo de visión & 62.2 x 48.8 degrees \\
-Lente SLR equivalente & 29 mm \\
-\hline
-\end{tabular}
-\caption{Parámetros intrínsecos de la cámara}
-\label{cuadro:ejemplo}
-\end{center}
-\end{table}
-
