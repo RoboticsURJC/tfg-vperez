@@ -28,8 +28,18 @@ los carros de avance de robot industriales y en máquinas CNC.
 que su movimiento depende de restricciones externas.
 \item Cilíndrica: Esta articulación permite el movimiento de rotación alrededor de un eje y también un desplazamiento lineal a lo largo del mismo. Combina los movimientos rotacionales y prismáticos. Está restringido a 2 DOF. Es usado en el extremo de los 
 robots tipo \textit{Scara}.
-\item Planar: Este tipo de joint permite el movimiento en un plano específico. Restringe el movimiento a 2 grados de libertad para el posicionamiento, y otro 
-para la rotación en el eje perpendicular al plano. No es muy utilizado ya que es complejo de implementar.
+
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Revolución]{\label{fig:j_rot}\includegraphics[width=0.3\linewidth ]{figs/joint_rot.png}}
+  \hspace{1cm}
+  \subfigure[Prismático]{\label{fig:j_prism}\includegraphics[width=0.3\linewidth]{figs/joint_prism.png}}
+  \subfigure[Esférico]{\label{fig:j_esf}\includegraphics[width=0.3\linewidth ]{figs/joint_esf.png}}
+  \hspace{1cm}
+  \subfigure[Cilíndrico]{\label{fig:j_cil}\includegraphics[width=0.3\linewidth]{figs/joint_cil.png}}
+  \caption{Tipos de articulaciones más usadas en robótica}
+\end{figure}
+
 \end{itemize}
 
 
@@ -48,7 +58,7 @@ robot puede rotar sobre si mismo o no.
   \subfigure[Ensamblado de baterías]{\label{fig:fanuc}\includegraphics[width=0.3\linewidth ]{figs/fanuc.jpg}}
   \hspace{3cm}
   \subfigure[Espacio de trabajo]{\label{fig:fanuc_ws}\includegraphics[width=0.3\linewidth]{figs/fanuc_spacio.jpg}}
-  \caption[Fanuc]{Ejemplo: \href{https://www.fanuc.eu/uk/en/robots/robot-filter-page/scara-series/scara-sr-3ia}{Fanuc SR-3iA}}
+  \caption[Fanuc SR-3iA]{Ejemplo: FANUC SR-3iA\footnote{\url{https://www.fanuc.eu/uk/en/robots/robot-filter-page/scara-series/scara-sr-3ia}}}
 \end{figure}
 
 \item Robots articulados: estos robots tienen una estructura similar a un brazo humano con múltiples articulaciones y ejes rotatorios. Suelen tener entre 4 y 6 ejes y permiten movimientos complejos y flexibles. 
@@ -57,7 +67,7 @@ robot puede rotar sobre si mismo o no.
   \subfigure[Robot real]{\label{fig:rebel}\includegraphics[width=0.3\linewidth ]{figs/rebel4dof.jpg}}
   \hspace{3cm}
   \subfigure[Espacio de trabajo]{\label{fig:rebel_ws}\includegraphics[width=0.4\linewidth]{figs/igus_space.png}}
-  \caption[Rebel]{Ejemplo: \href{https://www.igus.es/product/20962?artNr=REBEL-4DOF-01}{REBEL-4DOF-01}}
+  \caption[REBEL-4DOF-01]{Ejemplo: REBEL-4DOF-01\footnote{\url{https://www.igus.es/product/20962?artNr=REBEL-4DOF-01}}}
 \end{figure}
 
 
@@ -76,7 +86,7 @@ M-410iC/185
   \centering    
   \subfigure[Robot Delta ABB]{\label{fig:delta}\includegraphics[width=0.3\linewidth ]{figs/delta_flex_picker.png}}
   \hspace{3cm}
-  \subfigure[Fanuc M-410iC/185]{\label{fig:paral}\includegraphics[width=0.3\linewidth]{figs/m_410.jpg}}
+  \subfigure[FANUC M-410iC/185]{\label{fig:paral}\includegraphics[width=0.3\linewidth]{figs/m_410.jpg}}
   \caption{Robots basados en paralelogramos}
 \end{figure}
 \end{itemize}
@@ -96,7 +106,7 @@ los otros. Se trata de un tipo de máquina muy común en la industria.
 https://openbuilds.com/builds/lead-cnc-1010-40-x-40.7832/
 
 https://www.orion-industry.com/pick-and-place/VP2500DP-WNE-eng.pdf
-Basado en paralelos
+
 \end{enumerate}
 
 \section{Modelo alámbrico}
@@ -115,14 +125,126 @@ líneas y conexiones simbólicas, en lugar de mostrar detalles realistas del man
 
 \subsection{Modelo alámbrico del brazo MeArm \ref{fig:mearm}}
 \label{subsec:mod_mearm}
+En esta sección se analiza el comportamiento del modelo alámbrico del manipulador en el que se basa este proyecto.
+Está compuesto por una serie de restricciones que definen la dinámica del brazo.
+
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetros} & \textbf{Valores} \\
+\hline
+L1 & 170mm \\
+L2 & 170mm \\
+P1 & 35mm \\
+P2 & 35mm \\
+P3 & 25mm \\
+Ángulo P2 & 135º \\
+\hline
+\end{tabular}
+\caption{Parámetros del modelo alámbrico de G-Arm}
+\label{cuadro:ejemplo}
+\end{center}
+\end{table}
 
 
 \section{Dinámica}
 
-\section{DH}
+
 
 \section{Bocetos}
 
-\section{Diseño CAD}
 
 \section{Diseño CAD}
+Para el diseño de 
+
+\section{Denavit-Hartenberg}
+La representación Denavit-Hartenberg consiste en un procedimieto sistemático para describir la estructura cinemática de una cadena 
+articulada constituida por articulaciones con un solo grado de libertad. El procedimiento consiste en los siguientes pasos:
+\begin{enumerate}
+\item Nombramos blabla
+\item Ponemos tal
+\end{enumerate}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Trasformación} & \textbf{$\theta$} & \textbf{d} & \textbf{a} & \textbf{$\alpha$}\\
+\hline
+0$\rightarrow$1 & L1 & 170mm & a & a \\
+\hline
+\end{tabular}
+\caption{Tabla resultante de Denavit-Hartenberg}
+\label{cuadro:tablaDH}
+\end{center}
+\end{table}
+  
+\section{Impresión y montaje}
+En esta sección se exponen todos los detalles a tener en cuenta a la hora de querer replicar este proyecto. Para la impresión 
+de G-Arm se ha utilizado una impresora Ender-3 Pro\footnote{\url{https://www.creality.com/products/ender-3-pro-3d-printer}} y un rollo 
+de 1Kg de filamento PLA Rojo convencional.
+\begin{figure} [h!]
+\begin{center}
+  \includegraphics[width=8cm]{figs/ender3.png}
+\end{center}
+\caption{Ender-3 Pro V1 2017}
+\label{fig:ender3pro}
+\end{figure}\   
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Componente} & \textbf{Modelo} & \textbf{Cantidad} & \textbf{Precio total} \\
+\hline
+Motor Nema 17 & 17HS24-2104S & 3 & 56\euro \\
+Controlador & TMC2209 & 3 & 10\euro \\
+Placa base & MKS DLC32 & 1 & 16\euro \\
+Final de carrera & MakerBot (rojo) & 3 & 5\euro \\
+Fuente de alimentación & 24V 5A (opcional)\ref{subsec:fuente_alimentacion} & 1 & 15\euro \\
+Rodamiento &  F695-2RS Fushi & 22 & 15\euro \\
+Rodamiento & F623RS Fushi & 6 & 5.5\euro \\
+Polea GT2 & Correa:6mm ID:5mm & 3 & 1.5\euro \\
+Correa GT2 & Correa:6mm Largo:252mm & 2 & 3.5\euro \\ 
+Correa GT2 &  Correa:6mm Largo:280mm & 1 & 1.8\euro \\ 
+Ventilador & 24V 4010 & 1 & 2\euro \\
+Electroimán & D20H15mm 3KG 24V & 1 & 3\euro \\
+Plástico para imprimir & PLA/PETG 1Kg & 1 & 22\euro \\
+\hline
+\end{tabular}
+\caption{Componentes hardware necesarios}
+\label{cuadro:componentes}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Componente} & \textbf{Cantidad} & \textbf{Precio total} \\
+\hline
+Tornillo M3 Allen & 3 & 56\euro \\
+
+\hline
+\end{tabular}
+\caption{Tornillería necesaria}
+\label{cuadro:tornilleria}
+\end{center}
+\end{table}
+
+El precio total de los componentes necesarios es: 156.3\euro
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Identificador} & \textbf{Cantidad} & \textbf{Relleno óptimo} \\
+\hline
+\#1 & 1 & 15\% \\
+\hline
+\end{tabular}
+\caption{Piezas necesarias}
+\label{cuadro:piezas}
+\end{center}
+\end{table}

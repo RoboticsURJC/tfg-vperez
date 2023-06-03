@@ -32,13 +32,44 @@ ejemplos de uso ugs
 \section{Adaptación de grbl para su uso en robótica}
 
 \section{Integración con ROS 2}
+Con el objetivo de conseguir que el proyecto cod
+hablar de urdf y xacro
+hablar de rviz y controladores
+
+\subsection{\ac{URDF}}
+Es un formato de archivo cuyo propósito es describir la estructura, cinemática y aspecto de un robot.  
+Se trata de un estándar ampliamente utilizado en la comunidad de robótica, especialmente en \ac{ROS}.
+
+En un archivo URDF, se especifica la geometría del robot mediante la definición de partes (links) y articulaciones (joints). 
+Cada parte se describe mediante su forma y tamaño, mientras que las articulaciones definen las restricciones de movimiento y las relaciones entre los enlaces.
+Además de esto, un archivo URDF también puede incluir información sobre la masa y la inercia de los enlaces, así como como texturas y modelos 3D.
+
+El formato URDF se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma estructurada y legible. Con la descripción 
+en URDF, los robots pueden ser simulados, visualizados y controlados.
 
 \section{Integración en MoveIt 2}
-
+hablar setup assistant y particularidades urdf pa que vaya
 \section{Pruebas}
+En esta sección se pone a prueba la fiabilidad del brazo robot, evaluando la exactitud, fiabilidad y repetitividad, entre otras 
+características.
+\subsection{Exactitud}
+\subsection{Fiabilidad}
+\subsection{Repetitividad}
 
-
-
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetro} & \textbf{Valor} \\
+\hline
+Precisión & $\pm9mm$\\
+\hline
+\end{tabular}
+\caption{Evaluación del brazo robot}
+\label{cuadro:evaluacion}
+\end{center}
+\end{table}
+  
 
 \begin{code}[h]
 \begin{lstlisting}[language=C++]

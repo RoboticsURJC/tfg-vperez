@@ -108,3 +108,9 @@
 \hyphenation{de-sa-rro-lla-dos}
 \hyphenation{re-pre-sen-tan-do}
 
+\AddToHook{env/figure/begin}{%
+  \DeclareRobustCommand\footnote[1]{%
+    \footnotemark
+    \expanded{\AddToHookNext{env/figure/after}%
+      {\noexpand\setcounter{footnote}{\thefootnote}%
+       \noexpand\footnotetext\unexpanded{{#1}}}}}}
