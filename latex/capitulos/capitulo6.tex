@@ -22,17 +22,29 @@ del controlador hardware utilizado y que realizxa por debajo
 Basado en paralelos
 
 \section{Comunicación ordenador $\leftrightarrows$ robot}
-
+En esta sección se examinarán las posibles opciones que existen para poder comunicar el ordenador con 
+el robot.
+Esta placa integra un MCU ESP32 con conectividad Wifi, además, incluye un puerto usb por el que se puede programar o mantener una 
+comunicación serie. 
 grbl wifi
 grbl cable
 biblioteca python usada
 detalles de la comunicacion via codigo G
 ejemplos de uso ugs 
 
-\section{Adaptación de grbl para su uso en robótica}
+\subsection{Adaptación de grbl para su uso en robótica}
+GRBL tiene ciertas limitaciones a la hora de su utilización en robótica. Es normal, debido a que está pensado para controlar máquinas 
+\acs{CNC} de 3 ejes prismáticos. Pese a esto, se pueden hacer ciertas modificaciones para adaptarlo a esta aplicación. 
+
+
+
 
 \section{Integración con ROS 2}
-Con el objetivo de conseguir que el proyecto cod
+En esta sección se detalla el proceso de integración de G-Arm en \acs{ROS}.
+Implementar un robot en \acs{ROS} es una buena idea porque te brinda acceso a una comunidad activa y una serie de herramientas 
+que permiten modularizar y reutilizar componentes de manera eficiente. Esto facilita el desarrollo y futuro despliegue de tu robot por 
+cualquier persona que quiera tenerlo.
+
 hablar de urdf y xacro
 hablar de rviz y controladores
 
@@ -48,13 +60,58 @@ El formato URDF se basa en el lenguaje \ac{XML}, lo que permite describir el rob
 en URDF, los robots pueden ser simulados, visualizados y controlados.
 
 \section{Integración en MoveIt 2}
+Con el fin de sacar el máximo partido de nuestro robot, es buena idea implementarlo también en MoveIt.
 hablar setup assistant y particularidades urdf pa que vaya
 \section{Pruebas}
-En esta sección se pone a prueba la fiabilidad del brazo robot, evaluando la exactitud, fiabilidad y repetitividad, entre otras 
+En esta sección se pone a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. 
 características.
-\subsection{Exactitud}
-\subsection{Fiabilidad}
-\subsection{Repetitividad}
+
+\subsection{Estabilidad y vibración}
+Este tipo de pruebas determinan como el movimiento del mismo afecta en su estabilidad y estructura. Además se determina el nivel de 
+vibraciones no deseadas que puedan afectar su precisión y desempeño.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetro} & \textbf{Valor} \\
+\hline
+Capacidad de carga máxima (completamente extendido) & $\pm9mm$\\
+Capacidad de carga máxima (medio extendido) & $\pm9mm$\\
+Capacidad de carga máxima (contraido) & $\pm9mm$\\
+Capacidad de carga máxima (operativa) & $\pm9mm$\\
+\hline
+\end{tabular}
+\caption{Evaluación de la estabilidad}
+\label{cuadro:evaluacion_estabilidad}
+\end{center}
+\end{table}
+
+\subsection{Capacidad de carga}
+En este tipo de pruebas se evalua la capacidad del brazo a la hora de levantar diferentes pesos. De esta manera se puede determinar 
+el límite de carga del brazo y verificar si puede manejar objetos de manera segura y eficiente sin perder capacidades.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetro} & \textbf{Valor} \\
+\hline
+Capacidad de carga máxima (completamente extendido) & \SI{10}{\kilo\gram} \\
+Capacidad de carga máxima (medio extendido) & \SI{10}{\gram} \\
+Capacidad de carga máxima (contraido) & \SI{10}{\gram} \\
+Capacidad de carga máxima (operativa) & \SI{10}{\gram} \\
+\hline
+\end{tabular}
+\caption{Evaluación de la capacidad de carga}
+\label{cuadro:evaluacion_carga}
+\end{center}
+\end{table}
+
+Tablita de como afecta el peso a la precisión y demás
+
+\subsection{Velocidad y tiempo de respuesta}
+Es importante realizar este tipo de pruebas para evaluar las distintas velocidades que es capaz de manejar el brazo en la ejecución 
+de diferentes movimientos. Además, se puede evaluar la capacidad del brazo para responder rápidamente a comandos y ajustar su 
+velocidad rápidamente.
 
 \begin{table}[H]
 \begin{center}
@@ -62,109 +119,20 @@ características.
 \hline
 \textbf{Parámetro} & \textbf{Valor} \\
 \hline
-Precisión & $\pm9mm$\\
+Velocidad máxima & \SI{10}{\meter\per\second}\\
+Aceleración máxima & \SI{10}{\meter\per\second}\\
+Tiempo de respuesta (señal de la herramienta) & \SI{35}{\milli\second} \\
+Tiempo de respuesta (movimiento del brazo) & \SI{35}{\milli\second} \\
 \hline
 \end{tabular}
-\caption{Evaluación del brazo robot}
-\label{cuadro:evaluacion}
+\caption{Evaluación de la velocidad y tiempo de respuesta}
+\label{cuadro:evaluacion_velocidad}
 \end{center}
 \end{table}
-  
 
-\begin{code}[h]
-\begin{lstlisting}[language=C++]
-void Memory::hypothesizeParallelograms () {
-  for(it1 = this->controller->segmentMemory.begin(); it1++) {
-    squareFound = false; it2 = it1; it2++;
-    while ((it2 != this->controller->segmentMemory.end()) && (!squareFound)) {
-      if (geometry::haveACommonVertex((*it1),(*it2),&square)) {
-        dist1 = geometry::distanceBetweenPoints3D ((*it1).start, (*it1).end);
-        dist2 = geometry::distanceBetweenPoints3D ((*it2).start, (*it2).end);
-      }
-    // [...]
-\end{lstlisting}
-\caption[Función para buscar elementos 3D en la imagen]{Función para buscar elementos 3D en la imagen}
-\label{cod:codejemplo}
-\end{code}
+\subsection{Exactitud y repetitividad} 
+Se procede a realiza pruebas para evaluar la precisión del brazo robot en la ejecución de movimientos y la repetibilidad 
+de estos movimientos. Se mide la desviación del brazo robot en comparación con las coordenadas objetivo y verificar si 
+es capaz de alcanzar de manera consistente los mismos puntos en un cierto número de intentos.
 
-En el Código \ref{cod:codejemplo2} vemos un ejemplo escrito en \texttt{Python}.
-
-\begin{code}[h]
-\begin{lstlisting}[language=Python]
-def mostrarValores():
-    print (w1.get(), w2.get())
-
-master = Tk()
-w1 = Scale(master, from_=0, to=42)
-w1.pack()
-w2 = Scale(master, from_=0, to=200, orient=HORIZONTAL)
-w2.pack()
-Button(master, text='Show', command=mostrarValores).pack()
-
-mainloop()
-\end{lstlisting}
-\caption[Cómo usar un Slider]{Cómo usar un Slider}
-\label{cod:codejemplo2}
-\end{code}
-
-\section{Verbatim}
-
-Para mencionar identificadores usados en el código ---como nombres de funciones o variables--- en el texto, usa el entorno literal o verbatim \verb|hypothesizeParallelograms()|. También se puede usar este entorno para varias líneas, como se ve a continuación:
-
-\begin{verbatim}
-void Memory::hypothesizeParallelograms () {
-  // add your code here
-}
-\end{verbatim}
-
-\section{Ecuaciones}
-
-Si necesitas insertar alguna ecuación, puedes hacerlo. Al igual que las figuras, no te olvides de referenciarlas. A continuación se exponen algunas ecuaciones de ejemplo: Ecuación \ref{ec:ec1} y Ecuación \ref{ec:ec2}.
-
-\begin{myequation}[h]
-\begin{equation}
-H = 1 - \frac{\sum_{i=0}^{N}\frac{(\frac{d_{j_s} + d_{j_e}}{2})}{N}}{M}
-\nonumber
-\label{ec:ec1}
-\end{equation}
-\caption[Ejemplo de ecuación con fracciones]{Ejemplo de ecuación con fracciones}
-\end{myequation} 
-
-\begin{myequation}[h]
-\begin{equation}
-v(entrada)= \left\{
-	\begin{array}{lcc}
-		0 & \mbox{if} & \epsilon_t < 0.1\\
-		K_p\cdot{(T_{t}-T)} & \mbox{if}& 0.1 \leq \epsilon_t < M_t\\
-		K_p \cdot M_t & \mbox{if}& M_t < \epsilon_t
-	\end{array}
-\right.
-\label{ec:ec2}
-\end{equation}
-\caption[Ejemplo de ecuación con array y letras y símbolos especiales]{Ejemplo de ecuación con array y letras y símbolos especiales}
-\end{myequation}
-
-\section{Tablas o cuadros}
-
-Si necesitas insertar una tabla, hazlo dígnamente usando las propias tablas de \LaTeX, no usando pantallazos e insertándolas como figuras... En el Cuadro \ref{cuadro:ejemplo} vemos un ejemplo.
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Parámetros} & \textbf{Valores} \\
-\hline
-Tipo de sensor & Sony IMX219PQ[7] CMOS 8-Mpx \\
-Tamaño del sensor & 3.674 x 2.760 mm (1/4" format) \\
-Número de pixels & 3280 x 2464 (active pixels) \\
-Tamaño de pixel & 1.12 x 1.12 um \\
-Lente & f=3.04 mm, f/2.0 \\
-Ángulo de visión & 62.2 x 48.8 degrees \\
-Lente SLR equivalente & 29 mm \\
-\hline
-\end{tabular}
-\caption{Parámetros intrínsecos de la cámara}
-\label{cuadro:ejemplo}
-\end{center}
-\end{table}
 

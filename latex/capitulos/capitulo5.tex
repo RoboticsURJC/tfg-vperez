@@ -157,15 +157,31 @@ P3 & 25mm \\
 
 
 \section{Diseño CAD}
-Para el diseño de 
+En esta sección se va a hablar de las particularidades del diseño y diversas cosas que hay que tener en cuenta a la hora de diseñar 
+cualquier pieza mecánica que posteriormente será impresa en plástico. Además se divaga sobre las posibles piezas mecánicas que se 
+pueden usar para lograr la mejor relación resultados-precio.
+Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
+la herramienta \textit{Fusion 360} y posteriormente se utilizó FreeCad\ref{freecad} para cumplir el objetivo de ser totalmente 
+\textit{Open Source} y parametrizado, para que cualquier persona pueda investigarlo, modificarlo y utilizarlo de forma gratuita. 
+
 
 \section{Denavit-Hartenberg}
 La representación Denavit-Hartenberg consiste en un procedimieto sistemático para describir la estructura cinemática de una cadena 
 articulada constituida por articulaciones con un solo grado de libertad. El procedimiento consiste en los siguientes pasos:
 \begin{enumerate}
-\item Nombramos blabla
-\item Ponemos tal
+\item \textbf{Numerar los eslabones:} Empezando nombrando con el \textbf{0} a la base (unida al suelo) y \textbf{1} al siguiente eslabón movil, y así con el resto.
+\item \textbf{Numerar las articulaciones:} La articulación \textbf{1} será el primer grado de libertad, y \textbf{n} el último.
+\item \textbf{Localizar el eje de cada articulación:} En \textit{joints} de revolución, es el eje de rotación y en los prismáticos será 
+el eje por el cual se mueve el eslabón.
+\item \textbf{Ejes Z:}
+\item \textbf{Sistema de coordenadas 0:}
+\item \textbf{Ejes X:}
+\item \textbf{Ejes Y:}
+\item \textbf{Sistema del extremo del robot:}
+
+
 \end{enumerate}
+Fuente: https://www.ciencia-explicada.com/2013/02/parametrizacion-denavit-hartenberg-para.html
 
 \begin{table}[H]
 \begin{center}
