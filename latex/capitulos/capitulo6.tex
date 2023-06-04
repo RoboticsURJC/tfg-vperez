@@ -36,6 +36,72 @@ ejemplos de uso ugs
 GRBL tiene ciertas limitaciones a la hora de su utilización en robótica. Es normal, debido a que está pensado para controlar máquinas 
 \acs{CNC} de 3 ejes prismáticos. Pese a esto, se pueden hacer ciertas modificaciones para adaptarlo a esta aplicación. 
 
+\subsubsection{Parámetros de Grbl}
+Para acceder y modificar los parámetros de Grbl se deben realizar los siguientes pasos:
+\begin{enumerate}
+\item Debemos tener conectada al ordenador la placa con el firmware de Grbl instalado.
+\item Podemos usar un programa especializado con interfaz gráfica como \ac{UGS} o mediante una terminal serial, como puede ser Cutecom.
+\item Introducimos la velocidad de trasmisión de Grbl por defecto; 115200 baudios. 
+\item Para preguntar al firmware sobre los parámetros que hay configurados, introducimos los caracteres: \$\$
+\item Para modificar un parámetro, introducimos un texto del estilo: \$número=nuevoValor
+\end{enumerate}
+
+Para su uso en robótica nos interesa modificar los siguientes parámetros: 
+\begin{itemize}
+\item \textbf{\$1}: Retardo o tiempo de espera entre pulsos de paso cuando el motor está inactivo (en milisegundos). Debemos configurar 
+este parámetro en su valor máximo, en este caso 255. Este valor tiene un significado especial, haciendo que los motores paso a paso 
+se mantendrán energizados constantemente aunque no se estén moviendo. Es de vital importancia para evitar que el brazo se desplome tras terminar un cierto movimiento.  
+\item \textbf{\$100}, \textbf{\$101} y \textbf{\$102}: Indican el número de pasos por unidad de movimiento para los ejes X, Y, Z respectivamente. 
+\\Por defecto está pensado para utilizar pasos por milímetro. Como se pretende utilizar articulaciones de rotación, debemos expresar esta relación 
+en función de alguna medida angular. La unidad a utilizar podría ser: grados, radianes o vueltas, entre otras. En este trabajo se 
+utilizan los grados debido a que en radianes y vueltas la unidad correspondía a un gran número de pasos y era dificil controlar la aceleración para incrementos de 
+0.1 vueltas. 
+
+\begin{myequation}[h!]
+\begin{equation}
+    PasosPorGrado = \frac{Microstepping * Ratio}{1.8^\circ}
+\nonumber
+\label{ec:pasos_por_grado}
+\end{equation}
+\caption[Cálculo de pasos por grado en Grbl]{Cálculo de pasos por grado en Grbl}
+\end{myequation} 
+
+\item \textbf{\$110}, \textbf{\$111} y \textbf{\$112}: Indican la velocida máxima a la que puede moverse cada eje X, Y, Z en "unidades" por segundo. 
+En este caso, grados por segundo. Estos valores se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
+caso de que el usuario quiera mover demasiado rápido un eje pudiendo dañar el brazo.
+
+\item \textbf{\$120}, \textbf{\$121} y \textbf{\$122}: Indican la aceleración máxima a la que puede moverse cada eje X, Y, Z en "unidades" por segundo cuadrado. 
+En este caso, grados por segundo cuadrado. Estos valores tambien se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
+caso de que el usuario quiera mover demasiado rápido un eje pudiendo dañar el brazo. Se debe encontrar una aceleración idónea para todos 
+los movimientos, una limitación de grbl es que no se puede comandar un movimiento diciendole una determinada aceleración.
+
+\end{itemize}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Parámetro} & \textbf{Valor} \\
+\hline
+\$0 & 0 \\
+\$1 & 255 \\
+\$2 & Bla \\
+\$0 & 0 \\
+\$0 & 0 \\
+\$0 & 0 \\
+\$0 & 0 \\
+
+\end{tabular}
+\caption{Parámetros Grbl usados en este trabajo}
+\label{cuadro:parametros_grbl}
+\end{center}
+\end{table}
+
+En esta página oficial de documentación se profundiza más en la finalidad de cada parámetro.
+Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md
+
+%26.\wideparen{6}\\
+Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/settings.md
 
 
 
