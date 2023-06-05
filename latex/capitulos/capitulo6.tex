@@ -22,15 +22,41 @@ del controlador hardware utilizado y que realizxa por debajo
 Basado en paralelos
 
 \section{Comunicación ordenador $\leftrightarrows$ robot}
-En esta sección se examinarán las posibles opciones que existen para poder comunicar el ordenador con 
-el robot.
-Esta placa integra un MCU ESP32 con conectividad Wifi, además, incluye un puerto usb por el que se puede programar o mantener una 
-comunicación serie. 
+En esta sección se exponen los mecanismos necesarios para permitir la comunicación entre el ordenador y el microcontrolador 
+integrado en la base del robot, así como, la arquitectura del sistema robótico. Además se detallan las configuraciones necesarias 
+para adaptar al mundo de la robótica las diferentes partes que lo componen.
+
+\subsection{Interfaces de comunicación de la placa MKS DLC32\ref{sec:mksdlc32}}
+En base a las especificaciones del manual\footnote{\url{https://raw.githubusercontent.com/makerbase-mks/MKS-DLC32/main/doc/DLC32\%20wiring\%20manual.pdf}} 
+de la placa, permite establecer comunicaciones via USB y existe la posibilidad (reside en el propio firmware) de utilizar la funcionalidad 
+Wi-Fi del ESP32. 
+La comunicación obtenida mediante el uso del puerto USB se realiza sobre el protocolo \ac{UART}. Este protocolo serie es utilizado para 
+transmitir datos de forma asíncrona entre dispositivos. Es comúnmente usado en la interconexión de microcontroladores, 
+periféricos y otros componentes electrónicos. El UART convierte los datos paralelos en datos serie y viceversa, utilizando bits 
+de inicio, datos, bits de parada y posiblemente bits de paridad para la sincronización y detección de errores. 
+\begin{figure} [h!]
+    \begin{center}
+    \includegraphics[width=12cm]{figs/uart.png}
+    \end{center}
+    \caption{Diagramas de tiempo de UART}
+    \label{fig:uart}
+\end{figure}\ 
+Otra forma de comunicarnos con la placa es mediante el uso del su adaptador inalámbrico Wi-Fi. Existen firmwares, como es el caso de 
+Grbl, que tienen una versión adaptada para microcontroladores con conectividad Wi-Fi que permiten enviar comandos usando una gran 
+variedad de protocolos convencionales usados en redes de ordenadores. En este caso, Telnet. 
+
+Además, el firmware de Grbl es capaz de levantar un punto de acceso inalámbrico al cual puedes conectarte como si de un router 
+se tratara y se puede acceder a un servidor alojado en su dirección IP. Para acceder a él, basta con introducir 192.168.1.1 en la 
+barra superior del navegador web para acceder a una interfaz de usuario que permite controlar los movimientos de la máquina. En este 
+caso tiene un aspecto peculiar y no amigable con el mundo de la robótica ya que está pensado para el uso en CNC. Es por esto que es 
+necesario realizar unas ciertas configuraciones para su uso en robótica.
+
 grbl wifi
 grbl cable
 biblioteca python usada
 detalles de la comunicacion via codigo G
 ejemplos de uso ugs 
+
 
 \subsection{Adaptación de grbl para su uso en robótica}
 GRBL tiene ciertas limitaciones a la hora de su utilización en robótica. Es normal, debido a que está pensado para controlar máquinas 
@@ -103,6 +129,37 @@ Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md
 %26.\wideparen{6}\\
 Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/settings.md
 
+\section{Denavit-Hartenberg}
+La representación Denavit-Hartenberg consiste en un procedimieto sistemático para describir la estructura cinemática de una cadena 
+articulada constituida por articulaciones con un solo grado de libertad. El procedimiento consiste en los siguientes pasos:
+\begin{enumerate}
+\item \textbf{Numerar los eslabones:} Empezando nombrando con el \textbf{0} a la base (unida al suelo) y \textbf{1} al siguiente eslabón movil, y así con el resto.
+\item \textbf{Numerar las articulaciones:} La articulación \textbf{1} será el primer grado de libertad, y \textbf{n} el último.
+\item \textbf{Localizar el eje de cada articulación:} En \textit{joints} de revolución, es el eje de rotación y en los prismáticos será 
+el eje por el cual se mueve el eslabón.
+\item \textbf{Ejes Z:}
+\item \textbf{Sistema de coordenadas 0:}
+\item \textbf{Ejes X:}
+\item \textbf{Ejes Y:}
+\item \textbf{Sistema del extremo del robot:}
+
+
+\end{enumerate}
+Fuente: https://www.ciencia-explicada.com/2013/02/parametrizacion-denavit-hartenberg-para.html
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Trasformación} & \textbf{$\theta$} & \textbf{d} & \textbf{a} & \textbf{$\alpha$}\\
+\hline
+0$\rightarrow$1 & L1 & 170mm & a & a \\
+\hline
+\end{tabular}
+\caption{Tabla resultante de Denavit-Hartenberg}
+\label{cuadro:tablaDH}
+\end{center}
+\end{table}
 
 
 \section{Integración con ROS 2}
@@ -114,6 +171,8 @@ cualquier persona que quiera tenerlo.
 hablar de urdf y xacro
 hablar de rviz y controladores
 
+Para conseguir llevar un robot físico al mundo virtual debemos conseguir representar, de una forma realista, todos los aspectos que 
+definen el robot en base a sus propiedades. Para ello se usará el siguiente formato.
 \subsection{\ac{URDF}}
 Es un formato de archivo cuyo propósito es describir la estructura, cinemática y aspecto de un robot.  
 Se trata de un estándar ampliamente utilizado en la comunidad de robótica, especialmente en \ac{ROS}.
