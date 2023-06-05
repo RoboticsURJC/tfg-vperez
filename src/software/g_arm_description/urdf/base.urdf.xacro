@@ -29,9 +29,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="-0.00975 0 0.0445" />
+      <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-            <box size="0.159 0.210 0.089"/> r
+          <mesh filename="package://g_arm_description/meshes/motors.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -48,9 +48,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0975 0.028" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.035 0.195 0.034"/> r
+        <mesh filename="package://g_arm_description/meshes/link1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -66,9 +66,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 0.0975 0.028" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.035 0.195 0.034"/> r
+        <mesh filename="package://g_arm_description/meshes/link_j3_lever.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -89,9 +89,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.025 0.230 0.015"/> r
+        <mesh filename="package://g_arm_description/meshes/link2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -108,9 +108,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.05 0.05 0.05"/> r
+        <mesh filename="package://g_arm_description/meshes/end.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -244,9 +244,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.05 0.05 0.05"/> r
+        <mesh filename="package://g_arm_description/meshes/link_j3_rod.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -302,9 +302,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.05 0.05 0.05"/> r
+        <mesh filename="package://g_arm_description/meshes/elbow.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -340,9 +340,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.05 0.05 0.05"/> r
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link1.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
@@ -378,9 +378,9 @@
       </geometry>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0.0 -0.0675 0.0085" />
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.0" />
       <geometry>
-            <box size="0.025 0.230 0.015"/> r
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/>
