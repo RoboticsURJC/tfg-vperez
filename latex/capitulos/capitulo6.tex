@@ -163,17 +163,78 @@ Fuente: https://www.ciencia-explicada.com/2013/02/parametrizacion-denavit-harten
 
 
 \section{Integración con ROS 2}
-En esta sección se detalla el proceso de integración de G-Arm en \acs{ROS}.
-Implementar un robot en \acs{ROS} es una buena idea porque te brinda acceso a una comunidad activa y una serie de herramientas 
-que permiten modularizar y reutilizar componentes de manera eficiente. Esto facilita el desarrollo y futuro despliegue de tu robot por 
-cualquier persona que quiera tenerlo.
+En esta sección se detalla el proceso de integración del robot G-Arm en \acs{ROS}.
 
-hablar de urdf y xacro
-hablar de rviz y controladores
+\subsection{Descripción del robot}
+\begin{enumerate}
+    \item Creamos una carpeta que será nuestro workspace:
+    \begin{verbatim}
+        cd && mkdir workspace
+    \end{verbatim}
+    
+    \item Creamos una carpeta src dentro de la carpeta anterior:
+    \begin{verbatim}
+        cd workspace && mkdir src
+    \end{verbatim}
+    
+    \item Dentro de la carpeta src creamos el paquete con:
+    
+    \begin{verbatim}
+        ros2 pkg create --build-type ament_cmake g_arm_description
+    \end{verbatim}
+    
+    \item Dentro de la carpeta g\_arm\_description, creamos una serie de carpetas con:
+    \begin{verbatim}
+        mkdir launch rviz urdf meshes
+    \end{verbatim}
+    
+    \item Podemos borrar la carpeta src que hay dentro de nuestro paquete ya que no es necesaria en la descripción del robot:
+    \begin{verbatim}
+        rm -r src
+    \end{verbatim}
+    
+    \item Añadimos al fichero \textit{package.xml}, entre  
+    %<buildtool_depend>ament_cmake</buildtool_depend> y <test_depend>ament_lint_auto</test_depend>
+    \lstset{
+        language=XML, % Establece el lenguaje como XML
+        basicstyle=\ttfamily, % Fuente monoespaciada
+        keywordstyle=\bfseries\color{blue}, % Estilo de las palabras clave
+        commentstyle=\itshape\color{gray}, % Estilo de los comentarios
+        stringstyle=\color{orange}, % Estilo de las cadenas de texto
+        showstringspaces=false, % No mostrar espacios en cadenas de texto
+        breaklines=true, % Dividir líneas largas
+        frame=lines, % Agregar un marco alrededor del código
+        numbers=left, % Mostrar números de línea
+        numberstyle=\tiny\color{gray}, % Estilo de los números de línea
+        captionpos=b % Posición de la leyenda del código (abajo)
+    }
+    
+    \begin{lstlisting}
+        <exec_depend>joint_state_publisher</exec_depend>
+        <exec_depend>robot_state_publisher</exec_depend>
+        <exec_depend>rviz</exec_depend>
+        <exec_depend>xacro</exec_depend>
+    \end{lstlisting}
+    
+    
+    
+    %%entre <buildtool_depend>ament_cmake</buildtool_depend> y  <test_depend>ament_lint_auto</test_depend>
+    
+    \item Compilamos el paquete desde la carpeta workspace:
+    
+    \begin{verbatim}
+        colcon build --symlink-install
+    \end{verbatim}
+    
+    \item Añadimos esto al final del .bashrc:
+    \begin{verbatim}
+        source ~/workspace/install/local_setup.bash
+    \end{verbatim}
+    
+    \end{enumerate}
+\subsubsection{Creación del paquete de descripción}
 
-Para conseguir llevar un robot físico al mundo virtual debemos conseguir representar, de una forma realista, todos los aspectos que 
-definen el robot en base a sus propiedades. Para ello se usará el siguiente formato.
-\subsection{\ac{URDF}}
+\subsubsection{Describir un robot mediante \ac{URDF} y Xacro}
 Es un formato de archivo cuyo propósito es describir la estructura, cinemática y aspecto de un robot.  
 Se trata de un estándar ampliamente utilizado en la comunidad de robótica, especialmente en \ac{ROS}.
 
@@ -183,6 +244,20 @@ Además de esto, un archivo URDF también puede incluir información sobre la ma
 
 El formato URDF se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma estructurada y legible. Con la descripción 
 en URDF, los robots pueden ser simulados, visualizados y controlados.
+
+Para crear un paquete para describir un robot en ros2 debemos de seguir el siguiente procedimiento:
+
+
+
+poner un tree para ver como queda todo 
+hablar de urdf y xacro
+hablar de rviz y controladores
+
+
+
+\subsection{Nodos}
+
+
 
 \section{Integración en MoveIt 2}
 Con el fin de sacar el máximo partido de nuestro robot, es buena idea implementarlo también en MoveIt.
