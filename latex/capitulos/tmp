@@ -149,3 +149,31 @@ sus propias soluciones robóticas.
   \label{fig:robSecundaria}
 \end{figure}\
 \newpage
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+
+Los robots de rescate están diseñados para asistir en operaciones de rescate y emergencias. Son capaces de realizan tareas 
+en situaciones peligrosas o de difícil acceso. Este tipo de robots son ampliamente utilizados en terremotos, incendios, 
+inundaciones y otro tipo de desastres naturales. 
+
+\begin{figure} [ht!]
+    \begin{center}
+      \includegraphics[width=8cm]{figs/drone.jpg}
+    \end{center}
+    \caption{Drone de búsqueda\footnote{Fuente de la imagen: \url{https://idc.apddrones.com/}}}
+    \label{fig:drone}
+\end{figure}\ 
+
+\subsubsection{Robótica de campo}
+
+\begin{figure} [ht!]
+    \begin{center}
+      \includegraphics[width=8cm]{figs/rover.jpg}
+    \end{center}
+    \caption{Robot Opportunity}
+    \label{fig:rover}
+\end{figure}\ 
