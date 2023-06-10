@@ -153,24 +153,110 @@ prototipos como el usado por Glovo en Londres para repartir comida.
 \end{figure}\ 
 
 \newpage
-\section{Robótica industrial}
+\subsection{Robótica industrial}
 \label{sec:rob_industrial}
 Se entiende por robot industrial a una máquina automatizada diseñada específicamente para llevar a cabo tareas en entornos industriales. 
 Disponen de numerosas articulaciones y una gran capacidad de maniobrabilidad. Su objetivo principal es remplazar a un 
 operario humano en tareas aburridas, sucias, peligrosas y exigentes (\textit{4D: Dull, Dirty, Dangerous and Demanding}).
+En función de el número de articulaciones y la geometría del manipulador, se pueden clasificar en diferentes categorías.
 
+\subsubsection{SCARA}
+Los robots de tipo \acs{SCARA} se caracterizan por la disposición de sus 4 articulaciones con todos los ejes de rotación perpendiculares al suelo. Su capacidad para 
+realizar movimientos rápidos y precisos en un plano horizontal lo hacen ideal para su uso en aplicaciones de ensamblaje electrónico, operaciones de 
+\textit{pick and place} (coger componentes y situarlos) y empaquetado de productos, entre otras.
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Ensamblado de baterías]{\label{fig:fanuc}\includegraphics[width=0.3\linewidth ]{figs/fanuc.jpg}}
+  \hspace{3cm}
+  \subfigure[Espacio de trabajo]{\label{fig:fanuc_ws}\includegraphics[width=0.4\linewidth]{figs/fanuc_spacio.jpg}}
+  \caption[Fanuc SR-3iA]{Ejemplo: FANUC SR-3iA \footnote{\url{https://www.fanuc.eu/uk/en/robots/robot-filter-page/scara-series/scara-sr-3ia}}}
+\end{figure}
+\newpage
+\subsubsection{Articulados}
+Es el tipo de brazo robótico más usado en la industria. Están formados por una estructura similar a la de un brazo humano. Poseen entre 4 y 6 articulaciones de tipo 
+revolución (giran en torno a un eje) permitiendo realizar movimientos complejos. 
+\begin{figure} [h!]
+  \centering    
+  \subfigure[KUKA IONTEC \footnote{\url{https://www.kuka.com/es-es/productos-servicios/sistemas-de-robot/robot-industrial/kr-iontec}}]{\label{fig:iontec}\includegraphics[width=0.4\linewidth ]{figs/kuka_articulado.jpg}}
+  \hspace{1.5cm}
+  \subfigure[ABB IRB 6700 \footnote{\url{https://new.abb.com/products/robotics/robots/articulated-robots/irb-6700}}]{\label{fig:irb6700}\includegraphics[width=0.4\linewidth]{figs/irb.jpg}}
+  \caption{Robot articulados}
+\end{figure}
 
+\subsubsection{Paralelos}
+Son un tipo de robot industrial que se caracteriza por tener una estructura mecánica en la cual varios brazos o cadenas cinemáticas se conectan de forma paralela a una plataforma móvil o 
+base. Estos robots son rápidos y liviano, por lo que son ideales para aplicaciones que requieren alta velocidad, como en la industria alimentaria o en la selección y
+empaquetado de productos.
 
-\subsection{SCARA}
-\subsection{Articulados}
-\subsection{Paralelos}
-\subsection{Cartesianos}
+\begin{figure} [ht!]
+  \centering    
+  \subfigure[Robot Delta ABB]{\label{fig:delta}\includegraphics[width=0.4\linewidth ]{figs/delta_flex_picker.png}}
+  \hspace{1cm}
+  \subfigure[FANUC M-410iC]{\label{fig:paral}\includegraphics[width=0.4\linewidth]{figs/m_410.jpg}}
+  \caption{Robots basados en paralelogramos}
+\end{figure}
 
+\newpage
+\subsubsection{Cartesianos}
+Los robots pertenecientes a esta categoría, se mueven a lo largo de unas guías lineales en la dirección de los tres ejes cartesianos (X, Y, Z) y cuyos ejes forman ángulos rectos entre sí. \\
+Se trata de un tipo de máquina muy común en la industria y es usada en tareas de \textit{pick and place} y fresado, entre otras.
+
+\begin{figure} [h!]
+  \centering    
+  \subfigure[VP-2500DP \footnote{\url{https://www.smallsmt.biz/bestueckungsautomat/}}]{\label{fig:pnp}\includegraphics[width=0.4\linewidth ]{figs/pnp.jpg}}
+  \hspace{1cm}
+  \subfigure[OpenBuilds CNC Lead 1010 \footnote{\url{https://openbuilds.com/builds/lead-cnc-1010-40-x-40.7832/}}]{\label{fig:cnc}\includegraphics[width=0.4\linewidth]{figs/cnc.jpg}}
+  \caption{Robots cartesianos}
+\end{figure}
+
+\section*{}
+En resumen, la robótica es un campo en constante evolución que busca crear máquinas autónomas e inteligentes capaces de realizar una gran variedad de tareas cada vez 
+más complejas.Sin embargo, a medida que la demanda de habilidades en robótica y automatización aumenta, se hace evidente la necesidad de formar a más personas en este campo.
+
+\newpage
 \section{Robótica educativa}
+La robótica educativa es una disciplina que ha adquirido una gran relevancia en los últimos años debido a la creciente necesidad de formar a las nuevas generaciones en
+competencias tecnológicas.
+
 \label{sec:rob_educativa}
 \subsection{Robótica en institutos}
+En los institutos, se ha convertido en una herramienta pedagógica eficaz para desarrollar habilidades y conocimientos en áreas como la programación, 
+la matemática, la electrónica y la resolución de problemas. Esto es conocido como \ac{STEM}. Gracias a esta formación, los 
+estudiantes aprenden a diseñar, construir y programar robots simples para llevar a cabo una tarea específica, lo que les ayuda a comprender  
+los conceptos de ciencia y tecnología de una manera más práctica e interactiva.\\
+\begin{figure} [ht!]
+  \centering    
+  \subfigure[Instituto en Argentina \footnote{\url{https://www.diariodecuyo.com.ar/suplementos/Robotica-la-ciencia-de-aprender-jugando-20170907-0087.html}}]{\label{fig:instituto_sanjuan}\includegraphics[width=0.4\linewidth ]{figs/robots_instituto.jpg}}
+  \hspace{1cm}
+  \subfigure[Institutos en Toledo \footnote{\url{https://www.uclmtv.uclm.es/institutos-de-camarena-y-madridejos-ganan-el-viii-torneo-de-robotica-organizado-por-la-uclm-en-toledo/}}]{\label{fig:instituto_toledo}\includegraphics[width=0.5\linewidth]{figs/robot_batalla_instituto.jpg}}
+  \caption{Robots en institutos}
+\end{figure}
+
+\newpage
 \subsection{Robótica en universidades}
+\begin{figure} [ht!]
+  \centering    
+  \subfigure[Kobuki Turtlebot 2 \footnote{\url{https://www.turtlebot.com/turtlebot2/}}]{\label{fig:turtlebot}\includegraphics[width=0.4\linewidth ]{figs/turtlebot.jpg}}
+  \hspace{1cm}
+  \subfigure[Dobot Magician \footnote{\url{https://www.robotlab.com/store/dobot-robotic-arm}}]{\label{fig:dobot}\includegraphics[width=0.5\linewidth]{figs/dobot.png}}
+  \caption{Robots usados en universidades}
+\end{figure}
+
 
 \section{Robótica de bajo coste}
 \label{sec:rob_bajo:coste}
+\begin{figure} [ht!]
+  \centering    
+  \subfigure[OSTR \footnote{\url{https://www.instructables.com/Low-Cost-Arduino-Compatible-Drawing-Robot/}}]{\label{fig:osrt}\includegraphics[width=0.4\linewidth ]{figs/OSTR.jpg}}
+  \hspace{1cm}
+  \subfigure[Dobot Magician \footnote{\url{https://www.robotlab.com/store/dobot-robotic-arm}}]{\label{fig:dobot}\includegraphics[width=0.5\linewidth]{figs/dobot.png}}
+  \caption{Robots usados en universidades}
+\end{figure}
 
+
+
+
+
+
+Estado del arte
+https://www.active-robots.com/our-blog/niryo-ned-robot/
