@@ -10,37 +10,70 @@
 Winston Churchill\\
 \end{flushright}
 
-\vspace{1cm}
-
 
 \section{Robótica}
 \label{sec:rob}
+La robótica es la ciencia encargada del diseño, construcción y programación de robots. Se entiende por robot, a una máquina programable 
+capaz de llevar a cabo tareas de forma autónoma o asistida capaz de percibir su entorno mediante sensores e interactuar con él mediante 
+actuadores.\\
+Pese a la creencia popular, esta disciplina se remonta a la antigüedad, donde se encuentran referencias a autómatas y dispositivos mecánicos diseñados 
+que tratan de imitar acciones humanas. Sin embargo, no es hasta mediados del siglo XX cuando surge el concepto de robot tal y como los conocemos hoy en día. 
+En 1954, George Devol y Joseph Engelberger desarrollaron el primer robot industrial programable llamado Unimate \ref{fig:unimate}, el cual fue usado en una fábrica General Motors 
+para realizar tareas de soldadura en la línea de producción de automóviles. Este hito, marcó el comienzo de la automatización industrial y sentó las bases para 
+el desarrollo futuro de robots industriales.
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=7cm]{figs/unimate.jpg}
+  \end{center}
+  \caption{Robot Unimate}
+  \label{fig:unimate}
+\end{figure}\ 
+\\
+En las décadas posteriores, se produjeron numerosos avances en robótica. Se desarrollaron robots cada vez más sofisticados, que cubrian una amplia gama de tareas más allá de la 
+automatización industrial. Un claro ejemplo de ello, fue el robot Shakey \ref{fig:shakey}, desarrollado por el laboratorio de investigación de la universidad de Stanford en 1966. Se trataba 
+de un robot cuyo único propósito era navegar autónomamente en una sala con obstáculos gracias al uso de sensores y el uso de algoritmos de planificación.
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=7cm]{figs/shakey.jpg}
+  \end{center}
+  \caption{Robot Shakey}
+  \label{fig:shakey}
+\end{figure}\
+\\ 
+En la década de 1970, el uso de robot industriales se había disparado en todo el mundo. Estos robots, conocidos como robots manipuladores, fueron utilizados para 
+realizar todo tipo de tareas repetitivas y peligrosas en fábricas.
+\\
+En las últimas décadas, la robótica ha seguido avanzando a pasos agigantados. Los avances en la capacidad de cómputo, el aprendizaje automático y la visión 
+artificial han permitido el desarrollo de robots cada vez más inteligentes.
+\\
+En la actualidad, la robótica se está presente en numerosos sectores, abarcando una gran variedad de aplicaciones. Estaa versatilidad ha llevado al surgimiento 
+de diversos grupos y categorías que nos permiten clasificar las diferentes tipos de robots. 
+\newpage
 
-donde iene este termino
-de las esntanforms y primero robot
-
-Los robots se pueden clasificar en dos grupos.
-\subsection{Robots de servicio}
+\subsection{Robótica de servicio}
 Un robot de servicio es un tipo de robot diseñado para realizar tareas en beneficio de los seres humanos. Estos robots están 
-destinados a interactuar directamente con las personas y ayudar en diversas actividades. 
-Debido a la necesidad de interactuar con los humanos, están equipados con gran variedad de sensores, actuadores y sistemas de 
+destinados a interactuar directamente con las personas por lo que están equipados con gran variedad de sensores, actuadores y sistemas de 
 inteligencia artificial que les permiten percibir y comprender el entorno que los rodea. 
 En función de su ámbito de uso, pueden llegar a realizar una amplia gama de tareas, como limpieza y mantenimiento del hogar, 
 asistencia en la intervención médica, entrega de alimentos y productos, cuidado de personas mayores, entre otros.
 
 \subsubsection{Robots de campo}
-Se considera robot de campo a un robot diseñado para su uso en exterior, bajo unas duras condiciones. Se trata de un sector hetereogenio en el cual se engloban los 
+Se considera robot de campo a un robot diseñado para su uso en exterior, bajo unas duras condiciones. Se trata de un sector hetereogeneo en el cual se engloban los 
 robots espaciales, agrícolas, búsqueda y rescate, inspección de instalaciones, minería, submarinos y conducción autónoma.
-\begin{figure} [h!]
+\begin{figure} [ht!]
   \centering    
-  \subfigure[NASA Opportunity]{\label{fig:opportunity}\includegraphics[width=0.3\linewidth ]{figs/rover.jpg}}
+  \subfigure[NASA Opportunity]{\label{fig:opportunity}\includegraphics[width=0.25\linewidth ]{figs/rover.jpg}}
   \hspace{3cm}
-  \subfigure[Tractor autónomo]{\label{fig:roomba_agua}\includegraphics[width=0.3\linewidth]{figs/tractor.jpg}}
+  \subfigure[Tractor autónomo]{\label{fig:roomba_agua}\includegraphics[width=0.25\linewidth]{figs/tractor.jpg}}
   \hspace{3cm}
-  \subfigure[Drone de rescate]{\label{fig:drone}\includegraphics[width=0.3\linewidth]{figs/drone.jpg}}
+  \subfigure[Drone de rescate]{\label{fig:drone}\includegraphics[width=0.25\linewidth]{figs/drone.jpg}}
   \hspace{3cm}
-  \subfigure[ROV Victor 6000]{\label{fig:rov}\includegraphics[width=0.3\linewidth]{figs/rov.jpg}}
-  \caption{Robots de limpieza}
+  \subfigure[ROV Victor 6000]{\label{fig:rov}\includegraphics[width=0.25\linewidth]{figs/rov.jpg}}
+  \hspace{3cm}
+  \subfigure[Boston Dynamics Spot]{\label{fig:spot}\includegraphics[width=0.25\linewidth]{figs/spot.png}}
+  \hspace{3cm}
+  \subfigure[Waymo]{\label{fig:autopilot}\includegraphics[width=0.25\linewidth]{figs/waymo.jpg}}
+  \caption{Robots de campo}
 \end{figure}
 
 \subsubsection{Robots de limpieza}
@@ -49,20 +82,44 @@ para limpiar los cristales exteriores de los edificios. Se trata de una tecnolog
 se pueden encontrar diferentes categorías de robot en función de las necesidades. En la actualidad, integran cada vez más sensores para realizar una limpieza más eficaz y 
 en entornos más imprevisibles (cables, animales, objetos tirados, etc).
 
-\begin{figure} [h!]
+\begin{figure} [ht!]
   \centering    
-  \subfigure[Roomba J7+]{\label{fig:roomba}\includegraphics[width=0.3\linewidth ]{figs/roomba.jpg}}
-  \hspace{3cm}
-  \subfigure[Roomba Braava M6]{\label{fig:roomba_agua}\includegraphics[width=0.3\linewidth]{figs/roombaAgua.jpg}}
-  \hspace{3cm}
-  \subfigure[Hobot 388]{\label{fig:hobot}\includegraphics[width=0.3\linewidth]{figs/hobot.jpg}}
+  \subfigure[Roomba J7+]{\label{fig:roomba}\includegraphics[width=0.25\linewidth ]{figs/roomba.jpg}}
+  \hspace{1cm}
+  \subfigure[Roomba Braava]{\label{fig:roomba_agua}\includegraphics[width=0.25\linewidth]{figs/roombaAgua.jpg}}
+  \hspace{1cm}
+  \subfigure[Hobot 388]{\label{fig:hobot}\includegraphics[width=0.25\linewidth]{figs/hobot.jpg}}
   \caption{Robots de limpieza}
 \end{figure}
 
-
-
 \subsubsection{Robots de entretenimiento}
+Los robots de entretenimiento son máquinas diseñadas para proporcionar diversión y compañía a las personas. Estos robots están equipados con capacidades y 
+características específicas que los hacen adecuados para interactuar con las personas. Tienen una apariencia amigable y agradable. Están pensados para 
+evitar el efecto del Valle Inquietante. Esta teoría sugiere que a medida que los robots se vuelven mas humanos en apariencia y comportamiento, la respuesta 
+emocional de las personas hacia ellos es más negativa, antes de volver a ser positiva a medida que se vuelven prácticamente 
+indistinguibles de los seres humanos reales.
+\begin{figure} [ht!]
+  \centering    
+  \subfigure[Aibo Sony]{\label{fig:aibo}\includegraphics[width=0.28\linewidth ]{figs/aibo.jpeg}}
+  \hspace{1cm}
+  \subfigure[Foca Paro]{\label{fig:paro}\includegraphics[width=0.4\linewidth]{figs/paro.jpeg}}
+  \caption{Robots de entretenimiento}
+\end{figure}
+
 \subsubsection{Robots en salud}
+Los robots en el campo de la salud están diseñados para proporcionar ayuda en entornos médicos y de atención sanitaria. Desempeñan tareas 
+variadas como pueden ser la cirujía \ref{fig:davinci}, la rehabilitación \ref{fig:rehabilitacion} y la trasferencia de pacientes \ref{fig:trasferencia}, entre otros.
+
+\begin{figure} [ht!]
+  \centering    
+  \subfigure[Da Vinci]{\label{fig:davinci}\includegraphics[width=0.35\linewidth ]{figs/davinci.jpg}}
+  \hspace{1cm}
+  \subfigure[Atlas Marsi Bionics]{\label{fig:rehabilitacion}\includegraphics[width=0.35\linewidth]{figs/rehabilitacion.jpg}}
+  \hspace{1cm}
+  \subfigure[Riba 2]{\label{fig:trasferencia}\includegraphics[width=0.35\linewidth]{figs/trasferencia.jpg}}
+  \caption{Robots en el campo de la salud}
+\end{figure}
+
 
 \subsubsection{Robots en logística}
 Los robots de logística están enfocados a tareas de trasporte y organización de mercancías en almacenes y centros de distribución. 
@@ -76,14 +133,14 @@ detectar obstáculos. Son capaces de navegar autonomamente transportando cargas 
 con el resto de la flota. Además son adaptables y fáciles de desplegar pero su coste es más elevado.
 \end{itemize}
 
-\begin{figure} [h!]
+\begin{figure} [ht!]
     \centering    
-    \subfigure[Robot AGV Linde C-MATIC \footnote{\url{https://www.linde-mh.es/es/Productos/Carretillas-automatizadas/C-MATIC/}}]{\label{fig:agv}\includegraphics[width=0.4\linewidth ]{figs/agv.jpg}}
+    \subfigure[AGV Linde C-MATIC \footnote{\url{https://www.linde-mh.es/es/Productos/Carretillas-automatizadas/C-MATIC/}}]{\label{fig:agv}\includegraphics[width=0.4\linewidth ]{figs/agv.jpg}}
     \hspace{1cm}
-    \subfigure[Robot AMR Amazon Robotics]{\label{fig:amr}\includegraphics[width=0.4\linewidth]{figs/amr.jpg}}
+    \subfigure[AMR Amazon Robotics]{\label{fig:amr}\includegraphics[width=0.4\linewidth]{figs/amr.jpg}}
     \caption{Robots de logística usados en almacenes}
 \end{figure}
-\newpage
+
 Más allá de su uso de almacenes, cabe destacar los llamados robots de "última milla". Son aquellos usados en el reparto de comida y 
 paquetes en las ciudades. Aunque actualmente se encuentra en fase de desarrollo, ya ha sido probados algunos 
 prototipos como el usado por Glovo en Londres para repartir comida.
@@ -95,17 +152,13 @@ prototipos como el usado por Glovo en Londres para repartir comida.
     \label{fig:glovo}
 \end{figure}\ 
 
-
-
 \newpage
-
-\subsection{Robots industriales}
+\section{Robótica industrial}
+\label{sec:rob_industrial}
 Se entiende por robot industrial a una máquina automatizada diseñada específicamente para llevar a cabo tareas en entornos industriales. 
 Disponen de numerosas articulaciones y una gran capacidad de maniobrabilidad. Su objetivo principal es remplazar a un 
 operario humano en tareas aburridas, sucias, peligrosas y exigentes (\textit{4D: Dull, Dirty, Dangerous and Demanding}).
 
-\section{Robótica industrial}
-\label{sec:rob_industrial}
 
 
 \subsection{SCARA}
