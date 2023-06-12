@@ -16,41 +16,37 @@ una descripción del problema, requisitos, metodología y plan de trabajo usado.
 \section{Descripción del problema}
 \label{sec:descripcion}
 Este trabajo de fin de grado nace de la necesidad de abordar el problema existente en nuestra universidad, donde la escasez de 
-robots disponibles y la dificultad para acceder a ellos han limitado nuestra experiencia práctica en robótica. 
-Estos dispositivos son costosos, lo que limita su disponibilidad, y su fragilidad impide que los estudiantes 
-interactúen plenamente con ellos por temor a dañarlos. Además, la cantidad limitada de robots en relación con el número de carreras que 
-quieren utilizarlos, crea una gran competencia por su uso. Sumado a ello, los profesores tienen que hacer frente a la burocracia asociada al 
-uso de los mismos. 
-La solución propuesta busca superar estas limitaciones al proporcionar a la enseñanza un robot casero impreso en 3D, que será
+robots disponibles, y la dificultad para acceder a ellos, han limitado nuestra experiencia práctica en robótica. 
+\\
+En gran medida, esto es debido a que los robots son frágiles y costosos, lo cual limita la interacción plena de los estudiantes 
+por el temor de dañarlos. Además, la cantidad limitada de robots en relación con el número de carreras que 
+quieren utilizarlos limita su disponibilidad. Sumado a ello, los profesores tienen que hacer frente a la burocracia asociada a su uso.
+\\ 
+La solución propuesta busca superar estas limitaciones al proporcionar a la enseñanza un robot casero impreso en 3D, que es
 económico, accesible y útil en el aprendizaje práctico de los estudiantes. 
+\\
 Por lo tanto, el objetivo principal de este trabajo de fin de grado es desarrollar un brazo robótico que pueda ser empleado en la 
-asignatura de Robótica Industrial de esta universidad. Asimismo, se busca que el sistema creado sea asequible y fácilmente replicable haciendo uso de las impresoras 3D de la universidad.\\
+asignatura de Robótica Industrial de esta universidad. Asimismo, se busca que el sistema creado sea barato y fácilmente replicable.
+\\
 Con el fin de alcanzar esta meta, se ha dividido el proyecto en los siguientes subobjetivos:
 
 \begin{enumerate}
     \item Realizar una investigación acerca de los robots que actualmente están disponibles y que cumplan con 
-          las características y objetivos deseados. Estos robots deberán tener un tamaño y costo similar, y 
-          preferiblemente haber sido impresos en 3D. Se dará mayor relevancia a aquellos que utilicen un software y hardware 
-          libres.
-    \item Explorar diversas opciones de diseño para determinar la forma ideal del robot. Se analizará cuidadosamente 
-          qué tipo de robot se ajusta mejor al uso que se le pretende dar, así como los grados de libertad necesarios. 
-            
+          las características y objetivos deseados. 
+    \item Explorar diversas opciones de diseño para determinar la forma del robot. 
+      
     \item Realizar una investigación exhaustiva sobre los componentes de hardware disponibles en el mercado, con el fin de seleccionar 
-          aquellos que mejor se adapten a las necesidades y objetivos de construir un robot eficiente y funcional. Se llevará 
-          a cabo un análisis detallado de los precios y características de cada componente, para seleccionar aquellos 
-          que ofrezcan la mejor relación calidad-precio. Una vez evaluados todos los aspectos, se elegirá un conjunto 
-          final de componentes para construir el robot de manera efectiva. 
+          aquellos que mejor se adapten a las necesidades y objetivos.
     
-    \item Realizar el \ac{CAD} del brazo. Se pretende hacer uso de \nameref{subsec:freecad}, entre otras herramientas, para
-          diseñar en 3D cada pieza que constituirá el robot. Puesto a que debe ser imprimible en una impresora \acs{FDM} convencional,
-          debe estar pensado para no necesitar soportes y utilizar el mínimo material posible.
-    \item Emplear una impresora 3D convencional para materializar los diseños realizados anteriormente.
-    \item Programar el software necesario para poder controlar el robot desde el ordenador.
-    \item Realizar la integración del robot realizado en el ecosistema \ac{ROS}. 
+    \item Realizar el diseño \acs{CAD} de las piezas mediante el uso de herramientas libres. 
 
-  
+    \item Emplear una impresora 3D convencional para materializar las piezas realizados.
+
+    \item Realizar el software necesario para poder controlar el robot desde el ordenador.
+
+    \item Integrar el robot en el ecosistema \ac{ROS}2/MoveIt. 
+ 
 \end{enumerate}\
-
 
 \section{Requisitos}
 \label{sec:requisitos}
@@ -83,3 +79,43 @@ meses de trabajo. De esta manera, se ha creado un registro completo y accesible 
 \label{sec:plantrabajo}
 El desarrollo del TFG ha estado dividido en dos etapas. La primera, comenzó en octubre y fue abandonada en enero. 
 //TODO
+
+\begin{enumerate}
+\item \textit{Investigación del estado del arte}. Fase inicial en la que se realizaron diferentes
+búsquedas en plataformas online como Google Schoolar con el fin de encontrar posibles soluciones al problema descrito. Se buscaban 
+palabras clave como "DIY", "educational", "low-cost", "robot", "arm", "DOF" y "3D printed". Además se priorizó aquellos trabajos que utilizaban un 
+software y hardware libre. 
+\item \textit{Encontrar la anatomía ideal}. Se analizó cuidadosamente qué tipo de robot se ajusta mejor a los requisitos propuestos. Se establecieron los 
+grados de libertad necesarios y su principio de funcionamiento. Para ello, se investigó los posibles tipos de articulaciones y 
+su configuración.
+
+\item \textit{Análisis del mercado de componentes}. En esta fase, se realizó un análisis detallado de los precios y características 
+técnicas de cada componente, para seleccionar aquellos que ofrezcan la mejor relación calidad-precio. Una vez evaluados todos los 
+aspectos, se eligió el conjunto final de componentes que componen el robot.
+
+\item \textit{Diseño CAD}. Tras haber definido el concepto y haber seleccionado los componentes físicos que lo componen, se comenzó con 
+el diseño del manipulador. Primero de todo, se realizaron numerosos bocetos a mano alzada para establecer la posición espacial de cada 
+pieza. Posteriormente se concretó la forma exacta de cada pieza teniendo en cuenta que dichas piezas debían ser impresas en 3D y requerir 
+de la menor cantidad de material posible. Finalmente, se hizo uso de la herramienta \nameref{subsec:freecad} para diseñar por ordenador 
+todas y cada una de las piezas.
+
+\item \textit{Impresión 3D}. En esta fase del proyecto, se materializaron los diseños previos mediante la técnica de impresión 3D haciendo 
+uso de una impresora de filamento (tipo \acs{FDM}) convencional. Previamente, se habían realizado pruebas de tolerancias para garantizar 
+que las piezas impresas cumplían con las medidas especificadas en el diseño y calibrar la dilatación térmica en función de eso. Esta fase 
+finalizó con el ensamblado de todos los componentes y piezas.
+
+\item \textit{Desarrollo del software de control}. Una vez fue construido el robot, se desarrolló toda la programación de bajo nivel 
+necesaria para poder controlar el robot desde el ordenador. Para ello se investigó las posibles opciones de comunicación con la electrónica elegida. Además,  
+se calculó todas la matemáticas necesarias para su control numérico.
+
+\item \textit{Integración en ROS2 y MoveIt}. Tras poder controlar el robot mediante el ordenador, se realizó una integración en el 
+ecosistema ROS. Se describió el robot mediante el formato URDF y se integraron los controladores de articulaciones de ROS necesarios 
+para su control mediante \textit{topics}. Posteriormente, se realizó la integración con el \textit{framework} MoveIt a partir del paquete 
+de descripción generado previamente. 
+
+\item \textit{Evaluación del desempeño}. En esta etapa final, se evaluó las distintas capacidades técnicas del manipulador con el 
+software final. Se encontraron las limitaciones físicas del robot y se generaron una serie de tablas con los resultados obtenidos.
+
+\end{enumerate}
+
+
