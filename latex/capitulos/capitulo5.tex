@@ -141,8 +141,8 @@ A & 135º \\
 \section{Bocetos}
 Una parte importante del diseño son los bocetos previos al modelado 3D. En estos bocetos se busca tener una idea clara de la forma 
 y posición de cada pieza, así como de su lugar en el espacio.  
-Para el desarrollo de este brazo, se han realizado numerosos bocetos, de los cuales se conservan aquellos dibujados digitalmente por medio 
-de un iPad.
+Para el desarrollo de este brazo, se han realizado numerosos bocetos, de los cuales se conservan aquellos dibujados digitalmente en 
+un iPad.
 \section{Elección de componentes hardware}
 En esta sección se analiza las necesidades que deben satisfacer los componentes hardware (motores, placas, fuentes de alimentación etc.)
 y se busca la mejor opción rendimiento-precio existente en el mercado. 
@@ -178,24 +178,60 @@ el torque del motor. A mayor longitud, mayor torque es capaz de ejercer.
 Fotito de lo necesario
 
 \subsection{Reductora}
-Para poder reducir la velocidad de giro de un motor y, a su vez convertirla en fuerza, es necesario la implementación de una reductora. 
+Para poder reducir la velocidad de giro de un motor y, a su vez convertirla en fuerza, es necesario implementar una reductora. 
 Existen diferentes formas de hacerlo, como pueden ser los engranajes (normales, planetarios, helicoidales...) y las correas (lisas y 
 dentadas).
 
-Se ha optado por el uso de correas dentadas sobre el uso de engranajes debido a que estos últimos siempre añaden una cierta holgura 
+Se ha optado por el uso de correas dentadas sobre el uso de engranajes, debido a que estos últimos siempre añaden una cierta holgura 
 al movimiento final, haciendo el robot inexacto y añadiendo incertidumbre en los movimientos. Las correas dentadas en cambio, utilizan 
 tensores para asegurar que siempre está en contacto con ambas poleas.
 
 Foto de correa dentadas
-Se pretenden usar correas de tipo GT2. Este tipo de correa es ampliamente utilizado en impresoras 3D, por lo que es realmente económico y 
+Se pretende usar correas de tipo GT2. Este tipo de correa es ampliamente utilizado en impresoras 3D, por lo que es realmente económico y 
 fácil de encontrar. Dentro de esta categoría existen diferentes anchos de correa en función de la tensión soportada. En este caso, 
-se ha elegido el ancho de 6mm puesto que es el más económico con diferencia y más que suficiente para esta aplicación. En la construcción 
-de robot industriales caseros y profesionales de metal y de gran tamaño, se utilizana correas y cadenas con mayor grosor y tamaño de diente.
+se ha elegido el ancho de 6mm puesto que es el más económico con diferencia y es más que suficiente para esta aplicación.En la construcción 
+de robot industriales caseros y profesionales de metal y de gran tamaño, se utilizan correas y cadenas con mayor grosor y tamaño de diente.
 Foto de mi correa.
 
+Además, las poleas necesarias para este tipo de correas son fáciles de diseñar e imprimir en 3D, lo que permite hacer poleas con 
+un número de dientes concreto y por un precio casi nulo.
+
+En este caso, para dos de los grados de libertad, se ha elegido utilizar una polea comercial de 20 dientes de metal unida al 
+eje del motor en conjunto con otra de 100 dientes impresa en 3D, logrando así una reducción de 1:5. En el grado de libertad restante, 
+se pretende utilizar el mismo concepto pero con una polea de 120 dientes (Reducción 1:6).
+
 \subsection{Controladores}
-Debido a que se prentende utilizar motores paso a paso bipolares, es necesario utilizar controladores de motores paso a paso. 
-xiste un formato y estas opciones
+Debido a que se prentende utilizar motores paso a paso bipolares, es necesario utilizar un tipo de electrónica específica para 
+este tipo de motor. Este componente hardware es llamado controlador, y su objetivo es convertir una señal eléctrica del controlador 
+en una serie de pulsos de mayor potencia que excitarán las bobinas del motor. 
+Para motores paso a paso de baja corriente (hasta 2A), existe un formato de forma común en el mundo \textit{maker}. Es por esto que la 
+mayor parte de los controladores paso a paso que encontramos en el mercado son intercambiables entre sí. La diferencia entre ellos, reside 
+en la tecnología de su interior y las capacidades técnicas que ofrecen. 
+\begin{table}[htbp]
+  \centering
+  \caption{Comparación de especificaciones de los controladores existentes}
+  \begin{tabular}{|c|c|c|c|c|c|}
+      \hline
+      \multirow{2}{*}{Modelo} & Voltaje de & Corriente & \multirow{2}{*}{Microstepping} & Nivel de & \multirow{2}{*}{Precio} \\
+                             & alimentación & máxima & & ruido &\\
+      \hline
+      A4988 & 8-35V & 2A & Hasta 1/16 & Muy ruidoso & 1\euro \\
+      \hline
+      DRV8825 & 8.2-45V & 2.5A & Hasta 1/32 & Ruido aceptable & 2\euro \\
+      \hline
+      TMC2225 & 4.7-36V & 2A & Hasta 1/32 & Bajo ruido  & 2.8\euro \\
+      \hline
+      TMC2208 & 4-35V & 2A &  Hasta 1/256 & Totalmente silencioso & 2.8\euro \\
+      \hline
+      TMC2209 & 5.5-28V & 2.5A & Hasta 1/256 & Totalmente silencioso & 3.4\euro \\
+      \hline
+  \end{tabular}
+\end{table}
+
+Debido a que se pretende utilizar motores Nema 17 de más de 2A, la decisión debe estar entre el DRV8825 y el TMC2209. Finalmente, se 
+ha elegido este último debido a que es realmente silencioso e incorpora una tecnología superior que garantiza una señal más definida que 
+evita la pérdida de pasos del motor. Además, a la hora de adquirirlo, suele venir acompañado de un disipador de calor más grande que, unido 
+a su mayor eficiencia energética, se traduce en una menor cantidad de calor dentro de nuestro robot. 
 
 \subsection{Placa base}
 La placa base es una targeta de circuito impreso que proporciona conexiones físicas y eléctricas entre las diferentes componentes y 
@@ -213,12 +249,21 @@ un motor de hasta x vatios, un electroimán etc. Además incluye una serie de pi
 módulos de grabado láser y etc. Todo ello por un precio de 16€.
 
 \subsection{Fuente de alimentación}
-Un elemento clave de un sistema electrónico es la fuente de alimentación. Es importante conocer \textit{a priori} las 
+Se trata de un elemento clave del robot. Es importante conocer \textit{a priori} las 
 características necesarias de la fuente.
 
-Los motores Bla
-La placa es capaz de trabajar en un rango de 12 a 24v 
-el consumo tal
+Por ello, se ha realizado una estimación del consumo del robot final. La mayor parte del consumo viene dado por los propios motores que 
+se encontrarán permanentemente excitados con el fin de mantener el robot en una determinada posición sin desplomarse. Según las especificaciones 
+de los motores escogidos, cada uno consume en torno a 7W. Es decir, el consumo de los motores es de 21W. A esto hay que añadir el consumo del 
+microcontrolador y de los controladores (unos 4W). Además, si se quiere añadir un electroimán al extremo o algún servo, se necesitará de 
+un extra de potencia. 
+En base  a la estimación, se establece que lo ideal y recomendable para alimentar este equipo es una fuente de alimentación de 12 a 24V capaz 
+de entregar al menos 30W. Si se desea usar una fuente de baja calidad, lo ideal es elegir una un 30\% más potente para evitar forzarla y aumentar 
+su vida útil.
+Debido al amplio rango de voltaje y de su bajo consumo, es perfectamente alimentable con un cargador típico de portátil de 19V sin temor 
+a dañarlo. Pese a esto, se ha decidido utilizar una fuente de alimentacion genérica de 24V 150W para poder realizar \textit{a posteriori} 
+todas las mediciones de consumos descartando a la fuente como factor limitante. El precio de esta fuente es de 15\euro.
+
 \subsection{Rodamientos}
 Para mejorar la eficiencia de las articulaciones y garantizar que todas roten con suavidad, se pretende hacer uso de rodamientos 
 en cada una de ellas. 
@@ -236,21 +281,93 @@ recibe un esfuerzo lateral.
   \caption{Rodamientos F695-2RS Fushi \footnote{\url{https://es.aliexpress.com/item/32850989216.html}}}
 \end{figure}\ 
 
-
-
 \subsection{Finales de carrera}
+Son útiles para conocer el final del recorrido de una articulación y poder establecer la posición absoluta al inicio de la 
+máquina. 
+Existen cantidad de ellos en el mercado y con distintas tecnologías. Se ha decidido utilizar unos basados en \textit{microswitches} debido a 
+que son baratos y cumplen su función. Además son compatibles con la placa previamente elegida. 
+\subsection{Electroimán}
+Para realizar las pruebas, se pretende crear una herramienta para el robot que consiste en un electroimán para poder mover objetos metálicos 
+de sitio. En el mercado existen muchos tipos de electroimán con distintos consumos y fuerzas. Uno ideal para esta aplicación es el \textit{D20H15}.
+Su nombre indica que es un electroimán de diámetro 20mm y altura 15mm. Según las especificaciones del producto, es capaz de levantar hasta 3Kg. 
+Además, es necesario comprar la versión de 24v para poder alimentarlo con tensiones entre 18 y 24v. En caso de alimentar el robot con 12v, se debería 
+adquirir la versión de 12 para poder aprovechar toda su fuerza. El consumo de este electroimán es de 3W.
 \newpage
 \section{Diseño CAD}
-En esta sección se va a hablar de las particularidades del diseño y diversas cosas que hay que tener en cuenta a la hora de diseñar 
-cualquier pieza mecánica que posteriormente será impresa en plástico. 
+En esta sección se va a hablar de las particularidades del diseño y diversas aspectos a tener en cuenta a la hora de diseñar 
+cualquier pieza mecánica que posteriormente será impresa en 3D. 
 \\
 Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
-la herramienta \textit{Fusion 360} y posteriormente se utilizó FreeCad\ref{sec:freecad} para cumplir el objetivo de ser totalmente 
-\textit{Open Source} y parametrizado, para que cualquier persona pueda investigarlo, modificarlo y utilizarlo de forma gratuita.
+la herramienta \textit{Fusion 360} y posteriormente se utilizó FreeCad\ref{sec:freecad} para cumplir con el objetivo de ser totalmente 
+\textit{Open Source} y estar parametrizado, para que cualquier persona pueda investigarlo, modificarlo y utilizarlo de forma gratuita.
 \\ 
-El diseño 3D se ha ido contruyendo a partir de los bocetos y modificando ligeramente en función de como iba quedando.
 
-pruebas que hice
+\subsection{Base principal}
+Este conjunto es el encargado de unir el resto del robot al suelo. Dentro de ella debe encontrarse la placa base junto con los controladores 
+y toda la electrónica a excepción de la fuente de alimentación. Esto es así debido a que se puede alimentar de múltiples formas (baterías, 
+cargadores de ordenador, fuentes de PC, salidas de alimentación de robots móviles, etc). Además, esta electrónica debe poder estar refrigerada 
+por un pequeño ventilador incorporado en la propia base. \\
+Se optó por realizar dos piezas circulares y una serie de espaciadores anchos que unían el conjunto, dejando espacio en el interior para 
+la placa base. Este tipo de piezas son muy robustas y fáciles de imprimir. 
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=12cm]{figs/base_principal.png}
+  \end{center}
+  \caption{Base principal}
+\end{figure}\ 
+
+\subsubsection{Pieza circular superior}
+La pieza circular superior, incluye una serie de agujeros y huecos hexgonales para insertar las tuercas M3 que permiten
+acoplar la polea de 120 dientes. Además, incluye un rebaje de 40mm en un lateral para poder insertar y atornillar un ventilador 4010.
+\subsubsection{Espaciadores}
+Los espaciadores constan de 4 cilindros perforados con un agujero de 5mm por el que entrarán los tornillos de métrica 5.
+\subsubsection{Pieza circular inferior}
+La pieza circular inferior, contiene una serie de agujeros para poder atornillar la placa base. Además contiene una serie de agujeros en su perímetro 
+para poder atornillar el robot al suelo. 
+
+\subsection{Base de los motores}
+Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal
+\subsection{Paralelogramos}
+
+\subsection{Elemento terminal}
+Esta pieza está la situada en el extremo del robot. Es la encargada de realizar la unión entre el robot y la herramienta. Por esto, 
+se ha ideado con una forma particular que permite acoplar las herramientas que se realicen para él de una forma sólida e inequívoca. 
+Consiste en una acanaladura a 45 grados con un agujero que la atraviesa, por el que pasará el tornillo unirá ambas piezas. Este acople,
+diseñado específicamente para este proyecto, es extremadamente sencillo de apretar/soltar e impide que la herramienta rote o 
+tenga algún tipo de holgura. De hecho, las paredes están en ángulo para obligar a la herramienta a centrarse en la acanaladura y hacer 
+la unión muy robusta.
+
+\subsection{Herramienta electroimán}
+Para dotar al robot de una utilidad, se ha creado una herramienta que contiene un electroimán. Esta herramienta debe de tener la forma 
+de la acanaladura anterior para poder encajar en el robot. Además se ha redondeado las esquinas para que visualmente se adapte mejor a la 
+forma del extremo del robot. Para unir el conjunto se ha utilizado el propio orificio roscado del electroimán.
+\subsubsection{Diseño de las poleas dentadas}
+Primero, se ha utilizado la herramienta \textit{online} 
+gt2-gear-generator\footnote{\url{https://avtehnik.github.io/gt2-gear-genaretor/}} para generar de manera paramétrica el contorno de la polea 
+en formato DXF.\\
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/dxf_polea.png}
+  \end{center}
+  \caption{Contorno de la polea de 100 dientes}
+\end{figure}\ 
+Posteriormente, abrimos el fichero DXF mediante el \textit{workbench} Draft de FreeCad y seleccionamos todos los contornos. A continuación, 
+pulsamos en el icono de "Borrador a Croquis" de la barra superior de herramientas y se nos generará un boceto de FreeCad que podremos extruir 
+con el \textit{workbench} Part Design. 
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/polea_freecad.png}
+  \end{center}
+  \caption{Contorno de la polea de extruido}
+\end{figure}\ 
+
+\subsubsection{Mecanismo de tensado de la correa}
+
+\subsection{Articulaciones}
+
+\subsection{Tuercas insertadas}
+
+
 
 \newpage
 \section{Impresión y montaje}
