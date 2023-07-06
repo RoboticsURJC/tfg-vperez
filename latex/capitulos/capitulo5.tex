@@ -294,7 +294,7 @@ Además, es necesario comprar la versión de 24v para poder alimentarlo con tens
 adquirir la versión de 12 para poder aprovechar toda su fuerza. El consumo de este electroimán es de 3W.
 \newpage
 \section{Diseño CAD}
-En esta sección se va a hablar de las particularidades del diseño y diversas aspectos a tener en cuenta a la hora de diseñar 
+En esta sección se va a hablar de las particularidades del diseño y diversos aspectos a tener en cuenta a la hora de diseñar 
 cualquier pieza mecánica que posteriormente será impresa en 3D. 
 \\
 Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
@@ -337,27 +337,45 @@ para poder atornillar el robot al suelo.
 \end{figure}
 \newpage
 \subsection{Base de los motores}
-Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal
+\noindent Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=12cm]{figs/base_motores.png}
   \end{center}
   \caption{Base de los motores}
 \end{figure}\ 
+\\
+Consiste principalmente en 4 piezas; las dos laterales, la inferior y un espaciador de lado a lado que refuerza el conjunto. Esta ideado así 
+para realizar piezas que serán imprimidas en dirección horizontal que es como mayor resistencia tienen las piezas en impresora 3d por la 
+dirección de las capas. Además se consigue la máxima exactitud en los orificios y formas circulares. Todo el conjunto se une a través de 
+varillas roscadas y tuercas.
 
+Cabe recalcar el sistema de tensado de las correas. Consiste en una serie de orificios longitulidanes y una pieza que agarra el motor por 
+el otro lado a modo de sandwich.
+foto de lateral que se vea eso
+
+Además esta pieza incorpora 2 de los 3 finales de carrera del robot. Además tiene una serie de ranueras para poder poner bridas a posteriori y 
+organizar bien los cables.
 \subsection{Paralelogramos}
 \newpage
 \subsection{Elemento terminal}
-\noindent Esta pieza está la situada en el extremo del robot. Es la encargada de realizar la unión entre el robot y la herramienta. Por esto, 
-se ha ideado con una forma particular que permite acoplar las herramientas que se realicen para él de una forma sólida e inequívoca. 
-
-Consiste en una acanaladura a 45 grados (Figura \ref{fig:vistas_extremo}) con un agujero que la atraviesa, por el que pasará el tornillo unirá ambas piezas. Este acople,
-diseñado específicamente para este proyecto, es extremadamente sencillo de apretar/soltar e impide que la herramienta rote o 
-tenga algún tipo de holgura. De hecho, las paredes están en ángulo para obligar a la herramienta a centrarse en la acanaladura y hacer 
-la unión muy robusta.
+\noindent Esta pieza (Figura \ref{fig:extremo_pieza}) está la situada en el extremo del robot. Es la encargada de realizar la unión entre el robot y la herramienta. Por esto, 
+se ha ideado con una forma particular que permite acoplar herramientas de una forma sólida e inequívoca. 
 \begin{figure} [ht!]
   \begin{center}
-    \includegraphics[width=15cm]{figs/vistas_extremo.png}
+    \includegraphics[width=10cm]{figs/extremo_robot.png}
+  \end{center}
+  \caption{Elemento terminal}
+  \label{fig:extremo_pieza}
+\end{figure}\ 
+\\
+Consiste en una acanaladura a 45 grados (Figura \ref{fig:vistas_extremo}) con un agujero que la atraviesa, por el que pasará el tornillo unirá ambas piezas. 
+Este acople, diseñado específicamente para este proyecto, es sencillo de usar e impide que la herramienta rote o 
+tenga algún tipo de holgura. De hecho, las paredes están en ángulo para obligar a la herramienta a centrarse en la acanaladura y hacer 
+la unión muy robusta y precisa.
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/vistas_extremo.png}
   \end{center}
   \caption{Vistas del elemento terminal}
   \label{fig:vistas_extremo}
@@ -366,7 +384,15 @@ la unión muy robusta.
 \subsection{Herramienta electroimán}
 \noindent Para dotar al robot de una utilidad, se ha creado una herramienta que contiene un electroimán. Esta herramienta debe de tener la forma 
 de la acanaladura anterior para poder encajar en el robot. Además se ha redondeado las esquinas para que visualmente se adapte mejor a la 
-forma del extremo del robot. Para unir el conjunto se ha utilizado el propio orificio roscado del electroimán.
+forma del extremo del robot. Para unir el conjunto se ha utilizado el propio orificio roscado del electroimán, como se puede ver en la Figura tal
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=10cm]{figs/electroiman_solo.png}
+  \end{center}
+  \caption{Herramienta electroimán}
+\end{figure}\ 
+
+
 \subsubsection{Diseño de las poleas dentadas}
 Primero, se ha utilizado la herramienta \textit{online} 
 gt2-gear-generator\footnote{\url{https://avtehnik.github.io/gt2-gear-genaretor/}} para generar de manera paramétrica el contorno de la polea 
@@ -388,12 +414,6 @@ con el \textit{workbench} Part Design.
 \end{figure}\ 
 
 \subsubsection{Mecanismo de tensado de la correa}
-
-\subsection{Articulaciones}
-
-\subsection{Tuercas insertadas}
-
-
 
 \newpage
 \section{Impresión y montaje}

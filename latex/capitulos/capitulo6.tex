@@ -257,7 +257,7 @@ hablar de rviz y controladores
 
 \newpage
 \section{Integración en MoveIt 2}
-Con el fin de sacar el máximo partido de nuestro robot, es buena idea implementarlo también en MoveIt.
+\noindent Con el fin de sacar el máximo partido de este robot, es necesario implementarlo también en MoveIt.
 hablar setup assistant y particularidades urdf pa que vaya
 
 Primero de todo, debemos tener instalado MoveIt 2. Para ello se debe seguir el proceso de 
@@ -265,16 +265,16 @@ instalación\footnote{\url{https://moveit.picknik.ai/main/doc/tutorials/getting_
 
 Para crear el paquete de MoveIt de G-Arm, se ha seguido los siguientes pasos:
 \begin{enumerate}
-\item Lanzamos en asistente de configuración.
+\item Lanzamos el asistente de configuración.
 \begin{verbatim}
     ros2 launch moveit_setup_assistant setup_assistant.launch.py
 \end{verbatim}
-\item Pulsamos sobre \textit{Create New MoveIt Configuration Package} y cargamos el URDF/Xacro del paquete de descripción 
+\item Pulsamos sobre \textit{"Create New MoveIt Configuration Package"} y cargamos el URDF/Xacro del paquete de descripción 
 del robot. Si el fichero es válido, aparecerán una serie de apartados a configuar en el lateral izquierdo del asistente. 
-\item Comenzamos configurando \textit{Self-Collisions} (Auto colisiones). En este apartado se hace uso de la descripción 
+\item Comenzamos configurando \textit{"Self-Collisions"} (Auto colisiones). En este apartado se hace uso de la descripción 
 de colisiones del brazo para generar una matriz de posibles colisiones que se pueden dar. Dejando el valor 
-por defecto, pulsamos sobre \textit{Generate Collision Matrix}.
-\item A continuación, configuramos los \textit{Planning Groups}. 
+por defecto, pulsamos sobre \textit{"Generate Collision Matrix"}.
+\item A continuación, configuramos los \textit{"Planning Groups"}. 
 \end{enumerate}
 
 
