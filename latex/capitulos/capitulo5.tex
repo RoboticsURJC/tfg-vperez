@@ -299,7 +299,7 @@ En esta sección se va a hablar de las particularidades del diseño y diversos a
 cualquier pieza mecánica que posteriormente será impresa en 3D. 
 \\
 Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
-la herramienta \textit{Fusion 360} y posteriormente se utilizó FreeCad\ref{sec:freecad} para cumplir con el objetivo de ser totalmente 
+la herramienta \textit{Fusion 360} y posteriormente se utilizó \textit{FreeCAD}\ref{subsec:freecad} para cumplir con el objetivo de ser totalmente 
 \textit{Open Source} y estar parametrizado, para que cualquier persona pueda investigarlo, modificarlo y utilizarlo de forma gratuita.
 \\ 
 
@@ -357,6 +357,7 @@ foto de lateral que se vea eso
 
 Además esta pieza incorpora 2 de los 3 finales de carrera del robot. Además tiene una serie de ranueras para poder poner bridas a posteriori y 
 organizar bien los cables.
+\newpage
 \subsection{Paralelogramos}
 \newpage
 \subsection{Elemento terminal}
@@ -383,17 +384,21 @@ la unión muy robusta y precisa.
 \end{figure}\ 
 
 \subsection{Herramienta electroimán}
-\noindent Para dotar al robot de una utilidad, se ha creado una herramienta que contiene un electroimán. Esta herramienta debe de tener la forma 
+\noindent Para dotar al robot de una utilidad, se ha creado una herramienta que contiene el electroimán (Figura \ref{fig:electroiman_pieza}). Esta herramienta debe de tener la forma 
 de la acanaladura anterior para poder encajar en el robot. Además se ha redondeado las esquinas para que visualmente se adapte mejor a la 
-forma del extremo del robot. Para unir el conjunto se ha utilizado el propio orificio roscado del electroimán, como se puede ver en la Figura tal
+forma del extremo del robot. Para unir el conjunto se ha utilizado el propio orificio roscado del electroimán, como se puede ver en la Figura 
+\ref{fig:electroiman_montaje}
+
 \begin{figure} [ht!]
-  \begin{center}
-    \includegraphics[width=10cm]{figs/electroiman_solo.png}
-  \end{center}
+  \centering    
+  \subfigure[Pieza]{\label{fig:electroiman_pieza}\includegraphics[width=0.8\linewidth ]{figs/electroiman_solo.png}}
+
+  \subfigure[Montaje]{\label{fig:electroiman_montaje}\includegraphics[width=0.8\linewidth]{figs/electroiman_montaje.png}}
+  
   \caption{Herramienta electroimán}
-\end{figure}\ 
+\end{figure}
 
-
+\newpage
 \subsubsection{Diseño de las poleas dentadas}
 Primero, se ha utilizado la herramienta \textit{online} 
 gt2-gear-generator\footnote{\url{https://avtehnik.github.io/gt2-gear-genaretor/}} para generar de manera paramétrica el contorno de la polea 
