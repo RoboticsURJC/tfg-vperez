@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/g_arm.srdf
   package_settings:
-    author_name: Vidal Perez Bohoyo
+    author_name: vidal perez bohoyo
     author_email: mosstrike1@gmail.com
-    generated_timestamp: 1689065135
+    generated_timestamp: 1689072140
   control_xacro:
     command:
       - position
