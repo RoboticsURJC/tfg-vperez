@@ -257,26 +257,32 @@ hablar de rviz y controladores
 
 \newpage
 \section{Integración en MoveIt 2}
-\noindent Con el fin de sacar el máximo partido de este robot, es necesario implementarlo también en MoveIt.
-hablar setup assistant y particularidades urdf pa que vaya
+\noindent En esta sección se enumeran y describen los pasos necesarios para, apartir de un paquete de descripción de un robot, generar 
+un paquete de MoveIt.
 
-Primero de todo, debemos tener instalado MoveIt 2. Para ello se debe seguir el proceso de 
+Antes de comenzar, debemos tener instalado MoveIt 2 para ROS Humble. Para ello, se ha seguido el proceso de 
 instalación\footnote{\url{https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html}} de la documentación.
 
-Para crear el paquete de MoveIt de G-Arm, se ha seguido los siguientes pasos:
+Para crear el paquete de MoveIt de este robot, se ha seguido los siguientes pasos:
 \begin{enumerate}
 \item Lanzamos el asistente de configuración.
 \begin{verbatim}
     ros2 launch moveit_setup_assistant setup_assistant.launch.py
 \end{verbatim}
-\item Pulsamos sobre \textit{"Create New MoveIt Configuration Package"} y cargamos el URDF/Xacro del paquete de descripción 
+\item Pulsamos sobre \textit{\guillemotleft Create New MoveIt Configuration Package\guillemotright} y cargamos el URDF/Xacro del paquete de descripción 
 del robot. Si el fichero es válido, aparecerán una serie de apartados a configuar en el lateral izquierdo del asistente. 
-\item Comenzamos configurando \textit{"Self-Collisions"} (Auto colisiones). En este apartado se hace uso de la descripción 
-de colisiones del brazo para generar una matriz de posibles colisiones que se pueden dar. Dejando el valor 
-por defecto, pulsamos sobre \textit{"Generate Collision Matrix"}.
+\item Comenzamos configurando la apartado \textit{\guillemotleft Self-Collisions\guillemotright}. Aquí se hace uso de la colisiones 
+descritas anteriormente para generar una matriz de posibles colisiones que se pueden dar. Para ello, pulsamos sobre
+ \textit{\guillemotleft Generate Collision Matrix\guillemotright}.
 \item A continuación, configuramos los \textit{"Planning Groups"}. 
+\item Acto seguido se configura el apartado \textit{"Planning Groups"}. 
+
 \end{enumerate}
 
+A la hora de usar esta herramienta, se debe de tener en cuenta que a día de la publicación de este trabajo, existe un error en el asistente
+que hace que el paquete no se cree bien del todo. Para corregirlo es necesario cambiar todos los número del fichero %\textit{joints_limits.yaml}
+del paquete generado a coma flotante. Es decir, cambiar 
+por ejemplo el 200 por 200.0
 
 \section{Pruebas}
 En esta sección se pone a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. 
