@@ -11,7 +11,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     package_path = get_package_share_path('g_arm_description')
-    default_model_path = os.path.join(package_path, 'urdf', 'base.urdf.xacro')
+    default_model_path = os.path.join(package_path, 'urdf', 'robot.urdf.xacro')
     default_rviz_config_path = os.path.join(package_path, 'rviz', 'urdf.rviz')
 
     gui_arg = DeclareLaunchArgument(name='gui', default_value='true', choices=['true', 'false'],

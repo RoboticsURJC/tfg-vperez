@@ -1,0 +1,5 @@
+# Default initial positions for g_arm's ros2_control fake system
+
+initial_positions:
+  joint1: 0
+  joint2: 0
