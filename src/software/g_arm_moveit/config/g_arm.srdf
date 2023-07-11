@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="g_arm">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm_group">
+        <link name="motors_link"/>
+        <link name="link1"/>
+        <link name="link1_to_link2_intermediate"/>
+        <link name="link2"/>
+        <link name="end_effector"/>
+        <link name="elbow_link"/>
+        <link name="parallel_end_link2"/>
+        <link name="link_j3_lever"/>
+        <link name="link_j3_lever_to_rod_intermediate"/>
+        <link name="link_j3_rod"/>
+        <link name="parallel_end_link1"/>
+        <joint name="joint1"/>
+        <joint name="joint2"/>
+        <joint name="joint_link1_link2_intermediate"/>
+        <joint name="joint_link1_link2"/>
+        <joint name="passive_joint4_mimic"/>
+        <joint name="passive_elbow_joint"/>
+        <joint name="passive_parallel_link2_intermediate"/>
+        <joint name="joint3"/>
+        <joint name="passive_joint_j3_lever_to_rod_intermediate"/>
+        <joint name="passive_joint_j3_lever_to_rod"/>
+        <joint name="passive_parallel_link1_joint"/>
+        <chain base_link="base_link" tip_link="end_effector"/>
+    </group>
+    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
+    <passive_joint name="joint_link1_link2_intermediate"/>
+    <passive_joint name="joint_link1_link2"/>
+    <passive_joint name="passive_joint4_mimic"/>
+    <passive_joint name="passive_elbow_joint"/>
+    <passive_joint name="passive_parallel_link2_intermediate"/>
+    <passive_joint name="passive_joint_j3_lever_to_rod_intermediate"/>
+    <passive_joint name="passive_joint_j3_lever_to_rod"/>
+    <passive_joint name="passive_parallel_link1_joint"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="elbow_link" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link1" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_j3_lever" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_j3_rod" reason="Never"/>
+    <disable_collisions link1="base_link" link2="motors_link" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="parallel_end_link1" reason="Never"/>
+    <disable_collisions link1="elbow_link" link2="end_effector" reason="Never"/>
+    <disable_collisions link1="elbow_link" link2="link1" reason="Adjacent"/>
+    <disable_collisions link1="elbow_link" link2="link2" reason="Never"/>
+    <disable_collisions link1="elbow_link" link2="link_j3_lever" reason="Never"/>
+    <disable_collisions link1="elbow_link" link2="link_j3_rod" reason="Never"/>
+    <disable_collisions link1="elbow_link" link2="motors_link" reason="Never"/>
+    <disable_collisions link1="elbow_link" link2="parallel_end_link1" reason="Default"/>
+    <disable_collisions link1="elbow_link" link2="parallel_end_link2" reason="Adjacent"/>
+    <disable_collisions link1="end_effector" link2="link2" reason="Adjacent"/>
+    <disable_collisions link1="end_effector" link2="parallel_end_link1" reason="Never"/>
+    <disable_collisions link1="end_effector" link2="parallel_end_link2" reason="Never"/>
+    <disable_collisions link1="link1" link2="link2" reason="Adjacent"/>
+    <disable_collisions link1="link1" link2="link_j3_lever" reason="Never"/>
+    <disable_collisions link1="link1" link2="motors_link" reason="Adjacent"/>
+    <disable_collisions link1="link1" link2="parallel_end_link1" reason="Never"/>
+    <disable_collisions link1="link2" link2="parallel_end_link1" reason="Never"/>
+    <disable_collisions link1="link2" link2="parallel_end_link2" reason="Never"/>
+    <disable_collisions link1="link_j3_lever" link2="link_j3_rod" reason="Adjacent"/>
+    <disable_collisions link1="link_j3_lever" link2="motors_link" reason="Adjacent"/>
+    <disable_collisions link1="link_j3_lever" link2="parallel_end_link1" reason="Never"/>
+    <disable_collisions link1="link_j3_lever" link2="parallel_end_link2" reason="Never"/>
+    <disable_collisions link1="link_j3_rod" link2="parallel_end_link1" reason="Never"/>
+    <disable_collisions link1="link_j3_rod" link2="parallel_end_link2" reason="Never"/>
+    <disable_collisions link1="motors_link" link2="parallel_end_link1" reason="Adjacent"/>
+</robot>
