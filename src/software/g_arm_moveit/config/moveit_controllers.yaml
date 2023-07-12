@@ -13,3 +13,4 @@ moveit_simple_controller_manager:
     joints:
       - joint1
       - joint2
+      - joint3

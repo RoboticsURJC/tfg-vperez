@@ -6,7 +6,7 @@
   <description>
      An automatically generated package with all the configuration and launch files for using the g_arm with the MoveIt Motion Planning Framework
   </description>
-  <maintainer email="mosstrike1@gmail.com">vidal perez bohoyo</maintainer>
+  <maintainer email="mosstrike1@gmail.com">Vidal Perez Bohoyo</maintainer>
 
   <license>BSD</license>
 
@@ -14,7 +14,7 @@
   <url type="bugtracker">https://github.com/ros-planning/moveit2/issues</url>
   <url type="repository">https://github.com/ros-planning/moveit2</url>
 
-  <author email="mosstrike1@gmail.com">vidal perez bohoyo</author>
+  <author email="mosstrike1@gmail.com">Vidal Perez Bohoyo</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
