@@ -1,7 +1,9 @@
 import rclpy
 from rclpy.node import Node
-
+from rclpy.action import ActionServer
 from sensor_msgs.msg import JointState
+
+from moveit_msgs.action import MoveGroup 
 
 class Controller(Node):
 
@@ -13,6 +15,13 @@ class Controller(Node):
         timer_period = 0.5  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
+        
+        self._action_server = ActionServer(self, MoveGroup, '/arm_controller/follow_joint_trajectory', self.execute_callback)
+
+    def execute_callback(self, goal_handle):
+        self.get_logger().info('Executing goal...')
+        result = MoveGroup.Result()
+        return result
 
     def timer_callback(self):
         msg = JointState()

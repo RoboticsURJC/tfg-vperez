@@ -76,18 +76,7 @@ def generate_launch_description():
         )
     )
 
-    # If database loading was enabled, start mongodb as well
-    ld.add_action(
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                str(moveit_config.package_path / "launch/warehouse_db.launch.py")
-            ),
-            condition=IfCondition(LaunchConfiguration("db")),
-        )
-    )
-
-
-    
+    '''
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -95,5 +84,5 @@ def generate_launch_description():
             ),
         )
     )
-
+    '''
     return ld
