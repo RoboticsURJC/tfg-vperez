@@ -2,30 +2,33 @@
 \label{cap:capitulo6}
 
 \vspace{1cm}
-
-En este capítulo se aborda el desarrollo software necesario para poder controlar el hardware creado en el capítulo anterior. Para ello 
-se hace uso de las herramientas mencionadas en \ref{sec:software}.
-
-Poner fotito UML 
+\noindent En este capítulo se aborda el desarrollo software necesario para poder usar el robot realizado 
+tanto en simulaciones como en el mundo real.
 
 \section{Control de los actuadores}
-En robótica, los actuadores son los componentes responsables de convertir las señales eléctricas en movimiento físico. 
 
-\subsection{Control de motores paso a paso}
-\label{subsec:control_pap}
-hablar de gbl y lo q simplifica esto
-del controlador hardware utilizado y que realizxa por debajo
+En robótica, los actuadores son los componentes responsables de convertir las señales eléctricas 
+en movimiento físico.
 
-Basado en paralelos
+Para realizar el control de los actuadores se ha optado por utilizar el firmware de control numérico 
+GRBL\ref{subsec:grbl}. Se ha optado por el uso de este firmware por encima de realizar uno propio, 
+debido a que es una solución robusta con años de desarrollo y una comunidad que lo respalda.
 
-\section{Comunicación ordenador $\leftrightarrows$ robot}
-En esta sección se exponen los mecanismos necesarios para permitir la comunicación entre el ordenador y el microcontrolador 
-integrado en la base del robot, así como, la arquitectura del sistema robótico. Además se detallan las configuraciones necesarias 
+Este firmware, permite controlar hasta 3 motores paso a paso simultáneamente. Además está optimizado para ejecutarse en 
+microcontroladores de bajos recursos y hace uso de herramientas hardware de bajo nivel, como los \textit{timers} o los 
+contadores para garantizar una operación fiable.
+
+Para que GRBL sepa qué posición debe tener cada motor en un momento dado, necesita recibir 
+una serie de datos codificados a través de una de sus interfaces. Los detalles de la comunicación 
+serán descritos en la siguiente sección.
+
+\section{Comunicación con el robot}
+En esta sección se exponen los mecanismos necesarios para permitir la comunicación entre el ordenador y 
+el microcontrolador alojado en la base del robot, así como, la arquitectura del sistema robótico. Además se detallan las configuraciones necesarias 
 para adaptar al mundo de la robótica las diferentes partes que lo componen.
 
-\subsection{Interfaces de comunicación de la placa MKS DLC32\ref{sec:mksdlc32}}
 En base a las especificaciones del manual\footnote{\url{https://raw.githubusercontent.com/makerbase-mks/MKS-DLC32/main/doc/DLC32\%20wiring\%20manual.pdf}} 
-de la placa, permite establecer comunicaciones via USB y existe la posibilidad (reside en el propio firmware) de utilizar la funcionalidad 
+de la placa, permite establecer comunicaciones via USB serie y existe la posibilidad (reside en el propio firmware) de utilizar la funcionalidad 
 Wi-Fi del ESP32. 
 La comunicación obtenida mediante el uso del puerto USB se realiza sobre el protocolo \ac{UART}. Este protocolo serie es utilizado para 
 transmitir datos de forma asíncrona entre dispositivos. Es comúnmente usado en la interconexión de microcontroladores, 
@@ -126,73 +129,27 @@ Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md
 %26.\wideparen{6}\\
 Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/settings.md
 
-\section{Denavit-Hartenberg}
-La representación Denavit-Hartenberg consiste en un procedimieto sistemático para describir la estructura cinemática de una cadena 
-articulada constituida por articulaciones con un solo grado de libertad. El procedimiento consiste en los siguientes pasos:
-\begin{enumerate}
-\item \textbf{Numerar los eslabones:} Empezando nombrando con el \textbf{0} a la base (unida al suelo) y \textbf{1} al siguiente eslabón movil, y así con el resto.
-\item \textbf{Numerar las articulaciones:} La articulación \textbf{1} será el primer grado de libertad, y \textbf{n} el último.
-\item \textbf{Localizar el eje de cada articulación:} En \textit{joints} de revolución, es el eje de rotación y en los prismáticos será 
-el eje por el cual se mueve el eslabón.
-\item \textbf{Ejes Z:}
-\item \textbf{Sistema de coordenadas 0:}
-\item \textbf{Ejes X:}
-\item \textbf{Ejes Y:}
-\item \textbf{Sistema del extremo del robot:}
 
-
-\end{enumerate}
-Fuente: https://www.ciencia-explicada.com/2013/02/parametrizacion-denavit-hartenberg-para.html
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-\textbf{Trasformación} & \textbf{$\theta$} & \textbf{d} & \textbf{a} & \textbf{$\alpha$}\\
-\hline
-0$\rightarrow$1 & L1 & 170mm & a & a \\
-\hline
-\end{tabular}
-\caption{Tabla resultante de Denavit-Hartenberg}
-\label{cuadro:tablaDH}
-\end{center}
-\end{table}
-
-
+\newpage
 \section{Integración con ROS 2}
 En esta sección se detalla el proceso de integración del robot G-Arm en \acs{ROS}.
 
 \subsection{Descripción del robot}
+
+\subsubsection{Creación del paquete de descripción}
+\noindent Para crear el paquete, se ha seguido el siguiente
 \begin{enumerate}
-    \item Creamos una carpeta que será nuestro workspace:
-    \begin{verbatim}
-        cd && mkdir workspace
-    \end{verbatim}
-    
-    \item Creamos una carpeta src dentro de la carpeta anterior:
-    \begin{verbatim}
-        cd workspace && mkdir src
-    \end{verbatim}
-    
-    \item Dentro de la carpeta src creamos el paquete con:
-    
+    \item Dentro de la carpeta \textit{src} del workspace ejecutamos:
     \begin{verbatim}
         ros2 pkg create --build-type ament_cmake g_arm_description
-    \end{verbatim}
-    
-    \item Dentro de la carpeta g\_arm\_description, creamos una serie de carpetas con:
+    \end{verbatim}   
+    \item Dentro de la carpeta que se ha generado, creamos 3 nuevos directorios:
     \begin{verbatim}
         mkdir launch rviz urdf meshes
-    \end{verbatim}
-    
-    \item Podemos borrar la carpeta src que hay dentro de nuestro paquete ya que no es necesaria en la descripción del robot:
-    \begin{verbatim}
-        rm -r src
-    \end{verbatim}
-    
-    \item Añadimos al fichero \textit{package.xml}, entre  
-    %<buildtool_depend>ament_cmake</buildtool_depend> y <test_depend>ament_lint_auto</test_depend>
-    \lstset{
+    \end{verbatim} 
+        
+    \item Añadimos al fichero \textit{package.xml}: 
+        \lstset{
         language=XML, % Establece el lenguaje como XML
         basicstyle=\ttfamily, % Fuente monoespaciada
         keywordstyle=\bfseries\color{blue}, % Estilo de las palabras clave
@@ -207,29 +164,26 @@ En esta sección se detalla el proceso de integración del robot G-Arm en \acs{R
     }
     
     \begin{lstlisting}
+        <buildtool_depend>ament_cmake</buildtool_depend>
+
         <exec_depend>joint_state_publisher</exec_depend>
         <exec_depend>robot_state_publisher</exec_depend>
         <exec_depend>rviz</exec_depend>
         <exec_depend>xacro</exec_depend>
+
+        <test_depend>ament_lint_auto</test_depend>
     \end{lstlisting}
-    
-    
-    
-    %%entre <buildtool_depend>ament_cmake</buildtool_depend> y  <test_depend>ament_lint_auto</test_depend>
-    
-    \item Compilamos el paquete desde la carpeta workspace:
-    
+        
+    \item Compilamos el paquete desde la raíz del workspace:
     \begin{verbatim}
         colcon build --symlink-install
     \end{verbatim}
-    
-    \item Añadimos esto al final del .bashrc:
+    \item Añadimos la siguiente línea al final del .bashrc para que ROS pueda encontrar el paquete:
     \begin{verbatim}
         source ~/workspace/install/local_setup.bash
     \end{verbatim}
     
     \end{enumerate}
-\subsubsection{Creación del paquete de descripción}
 
 \subsubsection{Describir un robot mediante \ac{URDF} y Xacro}
 Es un formato de archivo cuyo propósito es describir la estructura, cinemática y aspecto de un robot.  
@@ -252,37 +206,142 @@ hablar de rviz y controladores
 
 
 
-\subsection{Nodos}
 
 
 \newpage
-\section{Integración en MoveIt 2}
+\subsection{Integración en MoveIt 2}
 \noindent En esta sección se enumeran y describen los pasos necesarios para, apartir de un paquete de descripción de un robot, generar 
 un paquete de MoveIt.
-
+\\
 Antes de comenzar, debemos tener instalado MoveIt 2 para ROS Humble. Para ello, se ha seguido el proceso de 
 instalación\footnote{\url{https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html}} de la documentación.
+\\
 
-Para crear el paquete de MoveIt de este robot, se ha seguido los siguientes pasos:
+Para crear el paquete de MoveIt de este robot, se han llevado a cabo los siguientes pasos:
 \begin{enumerate}
 \item Lanzamos el asistente de configuración.
 \begin{verbatim}
     ros2 launch moveit_setup_assistant setup_assistant.launch.py
 \end{verbatim}
-\item Pulsamos sobre \textit{\guillemotleft Create New MoveIt Configuration Package\guillemotright} y cargamos el URDF/Xacro del paquete de descripción 
+\item Pulsamos sobre \textbf{\textit{\guillemotleft Create New MoveIt Configuration Package\guillemotright}} y cargamos el URDF/Xacro del paquete de descripción 
 del robot. Si el fichero es válido, aparecerán una serie de apartados a configuar en el lateral izquierdo del asistente. 
-\item Comenzamos configurando la apartado \textit{\guillemotleft Self-Collisions\guillemotright}. Aquí se hace uso de la colisiones 
+\item Comenzamos configurando la apartado \textbf{\textit{\guillemotleft Self-Collisions\guillemotright}}. Aquí se hace uso de la colisiones 
 descritas anteriormente para generar una matriz de posibles colisiones que se pueden dar. Para ello, pulsamos sobre
- \textit{\guillemotleft Generate Collision Matrix\guillemotright}.
-\item A continuación, configuramos los \textit{"Planning Groups"}. 
-\item Acto seguido se configura el apartado \textit{"Planning Groups"}. 
+\textbf{\textit{\guillemotleft Generate Collision Matrix\guillemotright}}.
+\item Acto seguido se configura el apartado \textbf{\textit{\guillemotleft Planning Groups\guillemotright}}, donde se establecen los eslabones y articulaciones que serán consideradas 
+a la hora de realizar la planificación. Para ello, pulsamos sobre \textbf{\textit{\guillemotleft Add Group\guillemotright}} y acto seguido 
+le damos un nombre. Posteriormente, pulsamos sobre \textbf{\textit{\guillemotleft Add Kin. Chain\guillemotright}} y seleccionamos como 
+eslabón base, el eslabón que irá unido al suelo, y como eslabón \textit{tip}, el extremo del robot. Entonces, guardamos los cambios. Ahora, 
+se añaden todos los \textit{links} y \textit{joints} al grupo de planificación creado, dando en \textbf{\textit{\guillemotleft Edit Selected\guillemotright}} 
 
+\item En el apartado \textbf{\textit{\guillemotleft Robot Poses\guillemotright}} se pueden configurar una serie de posiciones predeterminadas 
+para poder usarse posteriormente cuando se necesiten. Por ejemplo, es recomendable crear al menos dos; una que haga de posición \textit{Home} 
+(Posición cómoda para empezar a trabajar) y otra como posición de reposo (Posición que evita que el robot se desplome al cortar la electricidad).
+
+\item Usamos el apartado \textbf{\textit{\guillemotleft End Effectors \guillemotright}} para configurar el extremo de nuestro robot como tal. Para ello, 
+seleccionamos el eslabón del extremo y el grupo de planificación creado anteriormente. 
+
+\item En \textbf{\textit{\guillemotleft Passive Joints\guillemotright}}, añadimos todos aquellas articulaciones que no sean grados de libertad, 
+es decir, todas aquellas que no sean \textit{joint1, joint2 o joint3}.
+
+\item En los apartados \textbf{\textit{\guillemotleft ROS 2 Controllers\guillemotright}} y 
+\textbf{\textit{\guillemotleft MoveIt Controllers\guillemotright}}, añadimos automaticamente los controladores pulsando sobre el único botón que hay.
+
+\item Finalmente rellenamos nuestra información personal en \textbf{\textit{\guillemotleft Author information\guillemotright}} y generamos el 
+paquete en el \textit{src} del \textit{workspace}. Acto seguido, compilamos.
 \end{enumerate}
 
 A la hora de usar esta herramienta, se debe de tener en cuenta que a día de la publicación de este trabajo, existe un error en el asistente
-que hace que el paquete no se cree bien del todo. Para corregirlo es necesario cambiar todos los número del fichero %\textit{joints_limits.yaml}
-del paquete generado a coma flotante. Es decir, cambiar 
-por ejemplo el 200 por 200.0
+que hace que el paquete no se cree bien del todo. Para corregirlo, es necesario cambiar todos los número del fichero \textit{joints\_limits.yaml}
+del paquete generado a \textit{double}. Es decir, cambiar por ejemplo un ``200" por ``200.0".
+\\
+
+Para probar que ha salido todo bien, ejecutamos:
+\begin{verbatim}
+    ros2 launch g_arm_moveit demo.launch.py
+\end{verbatim}
+Si todo se ha configurado bien deberíamos ver algo parecido a lo mostrado en la Figura \ref{fig:moveit_demo}. Para comprobar que resuelve una trayectoria sin 
+problema, podemos establecer dos posiciones aleatorias y ejecutar la trayectoria (Figura \ref{fig:moveit_trayectory_demo}).
+\begin{figure} [ht!]
+    \begin{center}
+      \includegraphics[width=15cm]{figs/moveit_demo.png}
+    \end{center}
+    \caption{Rviz al lanzar el \textit{demo.launch.py}}
+    \label{fig:moveit_demo}
+\end{figure}\ 
+
+\begin{figure} [ht!]
+    \begin{center}
+      \includegraphics[width=15cm]{figs/moveit_demo_trajectory.png}
+    \end{center}
+    \caption{Planificando una trayectoria simple}
+    \label{fig:moveit_trayectory_demo}
+\end{figure}\ 
+\\
+\newpage
+\subsection{Nodo ROS}
+\noindent En esta sección se crea un nodo ROS capaz de interpretar los mensajes resultantes de MoveIt y mover el brazo real en función de ellos.
+\\
+
+Según la documentación\footnote{\url{https://moveit.picknik.ai/humble/doc/concepts/move_group.html}}, existe un nodo llamado 
+\textit{move\_group} (Véase la Figura\ref{fig:arquitectura_moveit}) que se comunica con resto del framework 
+a través de los \textit{topics} y acciones de ROS. Además, se comunica con el robot para obtener información acerca del estado 
+actual (posiciones de las articulaciones, etc.), para obtener nubes de puntos y otros datos de los sensores del 
+robot, y para interactuar con sus controladores.
+
+Principalmente hay que centrarse en un \textit{topic} y una acción de ROS 2. 
+
+El \textit{topic} es \textit{/joint\_states}, el cual es publicado por el nodo que debemos de crear nosotros 
+y es recibido por \textit{move\_group}. La acción es \textit{/arm\_controller/follow\_joint\_trajectory} (el controlador ha sido nombrado como 
+arm\_controller por defecto). 
+
+%moveit_simple_controller_manager Es un cliente que hace caso a la acción
+
+\begin{figure} [ht!]
+    \begin{center}
+      \includegraphics[width=15cm]{figs/moveit_arquitectura.png}
+    \end{center}
+    \caption{Relación de \textit{move\_group} con el resto del Firmware}
+    \label{fig:arquitectura_moveit}
+\end{figure}\ 
+
+Primeramente, es necesario crear un \textit{launcher}, esto es, una herramienta que se utiliza para iniciar, configurar, gestionar y desplegar nodos. Para ello, 
+se ha implementado un fichero llamado \textit{real\_robot\_GUI.launch.py} que se encarga de lanzar una ventana de Rviz con todo lo necesario 
+para controlar de forma gráfica el robot, además de lanzar el nodo \textit{move\_group}, entre otros. Este launcher se ha creado a partir 
+de la demo que se crea automaticamente al generar el paquete. Era necesario modificar este para eliminar el controlador falso que se desplegaba 
+para hacer pensar a moveit que habia un robot conectado y poder realizar la simulación. Esto es así ya que se desea poder utilizar el robot 
+real. Se puede lanzar este launcher con:
+\begin{verbatim}
+    ros2 launch g_arm_moveit real_robot_GUI.launch.py
+\end{verbatim}
+
+Para rellenar el mensaje de tipo \textit{sensor\_msgs/JointState} enviado a través del topic \textit{/joint\_states} me he basado 
+en la documentación\footnote{\url{http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/JointState.html}}. 
+Este es un ejemplo de rellenar este tipo de mensajes:
+\lstnewenvironment{pythoncode}[1][]{
+  \lstset{
+    language=Python,
+    basicstyle=\small\ttfamily,
+    frame=tb,
+    columns=fullflexible,
+    showstringspaces=false,
+    breaklines=true,
+    breakatwhitespace=true,
+    captionpos=b,
+    #1
+  }
+}{}
+\begin{pythoncode}
+from sensor_msgs.msg import JointState
+def update_joints(self):
+    msg = JointState()
+    msg.name = ["joint1", "joint2", "joint3"]
+    msg.position = [0.32, 0.1, -0.4]
+    msg.velocity = [2, 3.2, 10]     
+    self.publisher_.publish(msg)
+\end{pythoncode}
+\newpage
+\subsubsection{Interpretando tal}
 
 \section{Pruebas}
 En esta sección se pone a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. 

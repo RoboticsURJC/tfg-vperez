@@ -295,17 +295,16 @@ Además, es necesario comprar la versión de 24v para poder alimentarlo con tens
 adquirir la versión de 12 para poder aprovechar toda su fuerza. El consumo de este electroimán es de 3W.
 \newpage
 \section{Diseño CAD}
-En esta sección se va a hablar de las particularidades del diseño y diversos aspectos a tener en cuenta a la hora de diseñar 
+\noindent En esta sección se habla de las particularidades del diseño y diversos aspectos a tener en cuenta a la hora de diseñar 
 cualquier pieza mecánica que posteriormente será impresa en 3D. 
 \\
 Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
 la herramienta \textit{Fusion 360} y posteriormente se utilizó \textit{FreeCAD}\ref{subsec:freecad} para cumplir con el objetivo de ser totalmente 
 \textit{Open Source} y estar parametrizado, para que cualquier persona pueda investigarlo, modificarlo y utilizarlo de forma gratuita.
-\\ 
 
 \subsection{Base principal}
-Este conjunto es el encargado de unir el resto del robot al suelo. Dentro de ella debe encontrarse la placa base junto con los controladores 
-y toda la electrónica a excepción de la fuente de alimentación. Esto es así debido a que se puede alimentar de múltiples formas (baterías, 
+\noindent Es la parte encargada de unir el resto del robot al suelo. Dentro de ella se encuentra la placa base junto con los controladores 
+y toda la electrónica a excepción de la fuente de alimentación. Esto es así debido a que puede ser alimentado de múltiples formas (baterías, 
 cargadores de ordenador, fuentes de PC, salidas de alimentación de robots móviles, etc). Además, esta electrónica debe poder estar refrigerada 
 por un pequeño ventilador incorporado en la propia base. \\
 Se optó por realizar dos piezas circulares y una serie de espaciadores anchos que unían el conjunto, dejando espacio en el interior para 
@@ -318,12 +317,12 @@ la placa base. Este tipo de piezas son muy robustas y fáciles de imprimir.
 \end{figure}\ 
 
 \subsubsection{Pieza circular superior}
-La pieza circular superior (Figura \ref{fig:base_principal_superior}), incluye una serie de agujeros y huecos hexgonales para insertar las tuercas M3 que permiten
+\noindent La pieza circular superior (Figura \ref{fig:base_principal_superior}), incluye una serie de agujeros y huecos hexgonales para insertar las tuercas M3 que permiten
 acoplar la polea de 120 dientes (Figura \ref{fig:base_principal_polea}). Además, incluye un rebaje de 40mm en un lateral para poder insertar y atornillar un ventilador 4010.
 \subsubsection{Espaciadores}
-Los espaciadores (Figura \ref{fig:base_principal_espaciadores}) constan de 4 cilindros perforados con un agujero de 5mm por el que entrarán los tornillos de métrica 5.
+\noindent Los espaciadores (Figura \ref{fig:base_principal_espaciadores}) constan de 4 cilindros perforados con un agujero de 5mm por el que entrarán los tornillos de métrica 5.
 \subsubsection{Pieza circular inferior}
-La pieza circular inferior (Figura \ref{fig:base_principal_inferior}), contiene una serie de agujeros para poder atornillar la placa base. Además contiene una serie de agujeros en su perímetro 
+\noindent La pieza circular inferior (Figura \ref{fig:base_principal_inferior}), contiene una serie de agujeros para poder atornillar la placa base. Además contiene una serie de agujeros en su perímetro 
 para poder atornillar el robot al suelo. 
 
 \begin{figure} [ht!]
@@ -338,7 +337,7 @@ para poder atornillar el robot al suelo.
 \end{figure}
 \newpage
 \subsection{Base de los motores}
-\noindent Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal
+\noindent Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal.
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=12cm]{figs/base_motores.png}
