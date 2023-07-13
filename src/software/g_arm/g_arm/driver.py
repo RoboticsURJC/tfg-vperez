@@ -3,12 +3,13 @@ from rclpy.node import Node
 from sensor_msgs.msg import JointState
 
 import math
+from termcolor import colored
 from g_arm.g_arm_lib import robot
 
 
 class Driver(Node):
     
-    _goal_joints_state = dict()
+    __goal_joints_state = dict()
     
     def __init__(self):
         super().__init__('g_arm_driver')
@@ -23,9 +24,9 @@ class Driver(Node):
             self.get_logger().error("Unable to start communications in /dev/ttyUSB0. Do you have permissions? (Try: sudo chmod 777 /dev/ttyUSB0)")
             exit(1)
             
-        self.get_logger().info("Robot is ready to move!")
+        self.get_logger().info(colored("Robot is ready to move!", "green"))
         
-        timer_period = 0.5  # seconds
+        timer_period = 0.1  # seconds
         self.timer = self.create_timer(timer_period, self.joints_state_apply)
            
     def joints_state_callback(self, msg):
@@ -37,29 +38,23 @@ class Driver(Node):
             joint_name = msg.name[i]
             joint_position = msg.position[i]
             
-            self._goal_joints_state[joint_name] = joint_position
+            self.__goal_joints_state[joint_name] = joint_position
             
-        
-    
     def joints_state_apply(self):
         
-        j1 = math.degrees(self._goal_joints_state["joint1"])
-        j2 = math.degrees(self._goal_joints_state["joint2"])
-        j3 = math.degrees(self._goal_joints_state["joint3"])
+        j1 = math.degrees(self.__goal_joints_state["joint1"])
+        j2 = math.degrees(self.__goal_joints_state["joint2"])
+        j3 = math.degrees(self.__goal_joints_state["joint3"])
         
-        print([j1, j2, j3])
         self.robot.setAngles(j1, j2, j3)
     
 def main(args=None):
     rclpy.init(args=args)
 
     driver = Driver()
-
+    
     rclpy.spin(driver)
 
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     driver.destroy_node()
     rclpy.shutdown()
 

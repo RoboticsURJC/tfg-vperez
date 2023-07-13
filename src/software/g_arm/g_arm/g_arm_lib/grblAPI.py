@@ -134,7 +134,7 @@ class Grbl:
             
             if responseValid:
                 if "error" in receive:
-                    print("Grbl response: " + receive[2:][:-5])
+                    print("[ERROR] [GrblAPI] Grbl response: " + receive[2:][:-5])
                     self.__threadRunning = True # Reactivate thread
                     return False                
                 i += 1

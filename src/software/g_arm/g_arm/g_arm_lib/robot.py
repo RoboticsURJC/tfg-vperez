@@ -60,12 +60,16 @@ class Robot:
             
         self.__grbl.asyncXYZMove((XGrbl, YGrbl, ZGrbl), feedrate=2000, relative=False)
 
+    def toolPWM(self, value):
+        assert value < 0.0 or value > 1.0, "[ERROR] [Robot] The tool PWM value is a number between 0.0 and 1.0"
+        self.__grbl.setSpindleSpeed(int(value*1000))
+    
     def autohome(self):
         self.__status = "HOMING"
-        print("Homing...")
+        print("[INFO] [Robot] Starting calibration")
         
         # Reach Z switch
-        print("Calibrating Z...")
+        print("[INFO] [Robot] Calibrating Joint 3")
         self.__grbl.asyncAxisMove('Z', -360, 200, True)
         while not 'Z' in self.__grbl.getSwitchStatus():
             pass
@@ -73,7 +77,7 @@ class Robot:
         time.sleep(2) # Wait for restart
         
         # Reach Y switch
-        print("Calibrating Y...")
+        print("[INFO] [Robot] Calibrating Joint 2")
         self.__grbl.asyncXYZMove((0, 360, 360), 100, True)
         while not 'Y' in self.__grbl.getSwitchStatus():
             pass
@@ -81,7 +85,7 @@ class Robot:
         time.sleep(2) # Wait for restart
         
         # Reach X switch
-        print("Calibrating X...")
+        print("[INFO] [Robot] Calibrating Joint 1")
         self.__grbl.asyncAxisMove('X', 360, 400, True)
         while not 'X' in self.__grbl.getSwitchStatus():
             pass
@@ -89,7 +93,7 @@ class Robot:
         time.sleep(2) # Wait for restart
                 
         self.zeroGrblPosition = self.__grbl.getXYZ()
-        print("Calibrating done!")
+        print("[INFO] [Robot] Calibration done")
 
         self.__calibrated = True
         self.__status = "IDDLE"
