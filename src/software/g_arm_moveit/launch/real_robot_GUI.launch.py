@@ -76,7 +76,7 @@ def generate_launch_description():
         )
     )
 
-    '''
+    
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -84,5 +84,5 @@ def generate_launch_description():
             ),
         )
     )
-    '''
+    
     return ld

@@ -6,6 +6,11 @@ setup(
     name=package_name,
     version='0.0.0',
     packages=[package_name],
+    py_modules=[
+        'g_arm.g_arm_lib.robot',
+        'g_arm.g_arm_lib.grblAPI'
+        
+    ],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -20,7 +25,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'g_arm_controller = g_arm.ros2_controller:main',
+        	'driver = g_arm.driver:main',
         ],
     },
 )
