@@ -1,0 +1,425 @@
+<?xml version="1.0"?>
+<robot name="g_arm">
+
+  <!-- Definition of the base link -->
+  <link name="base_link">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/base.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.035" />
+      <geometry>
+            <cylinder radius="0.07" length="0.07"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <!-- Definition of the motors base link -->
+  <link name="motors_link">
+    <visual>
+      <origin rpy="0.0 0.0 0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/motors.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0 0 0" />
+      <geometry>
+          <mesh filename="package://g_arm_description/meshes/motors.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <!-- Definition of the arm link 1 -->
+  <link name="link1">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <link name="link_j3_lever">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link_j3_lever.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link_j3_lever.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <link name="link1_to_link2_intermediate">
+
+  </link>
+
+  <!-- Definition of the arm link 2 -->
+  <link name="link2">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <!-- Definition of the arm end effector -->
+  <link name="end_effector">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/end.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/end.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+
+  <joint name="joint1" type="revolute">
+    <origin
+      xyz="0.0 0.0 0.076"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motors_link" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+  </joint>
+
+  <joint name="joint2" type="revolute">
+    <origin
+      xyz="0.035 0.0331 0.055"
+      rpy="1.5708 0 0" />
+    <parent
+      link="motors_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+  </joint>
+
+  <joint name="joint3" type="revolute">
+    <origin
+      xyz="0.035 -0.0341 0.055"
+      rpy="1.5708 0.0 0.0" />
+    <parent
+      link="motors_link" />
+    <child
+      link="link_j3_lever" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="0.1"
+      effort="200.0"
+      velocity="200.0" />
+  </joint>
+
+  <joint name="joint_link1_link2_intermediate" type="revolute">
+    <origin
+      xyz="0.0 0.17 0.0362"
+      rpy="0.0 0.0 1.5708" />
+    <parent
+      link="link1" />
+    <child
+      link="link1_to_link2_intermediate" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="1.0"/> 
+  </joint>
+
+  <joint name="joint_link1_link2" type="revolute">
+    <origin
+      xyz="0.0 0.0 0.0"
+      rpy="0 0 0.0" />
+    <parent
+      link="link1_to_link2_intermediate" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint2"
+      multiplier="-1.0"/> 
+  </joint>
+
+  <joint name="passive_joint4_mimic" type="revolute">
+    <origin
+      xyz="0.0 -0.17 0.0"
+      rpy="0.0 0.0 -1.5708" />
+    <parent
+      link="link2" />
+    <child
+      link="end_effector" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="-1.0"
+    /> 
+  </joint>
+
+  <!--Rest of the palalegrams: This is not neccesary for the IK but its important for appearance and collision avoidance-->
+  <link name="link_j3_lever_to_rod_intermediate">
+
+  </link>
+  
+  <link name="link_j3_rod">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link_j3_rod.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/link_j3_rod.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="passive_joint_j3_lever_to_rod_intermediate" type="revolute">
+    <origin
+      xyz="-0.035 0.0 -0.030"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="link_j3_lever" />
+    <child
+      link="link_j3_lever_to_rod_intermediate" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint2"
+      multiplier="1.0"/> 
+  </joint>
+
+  <joint name="passive_joint_j3_lever_to_rod" type="revolute">
+    <origin
+      xyz="0.0 0.0 0.0"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="link_j3_lever_to_rod_intermediate" />
+    <child
+      link="link_j3_rod" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="-1.0"/> 
+  </joint>
+
+  <link name="elbow_link">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/elbow.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/elbow.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="passive_elbow_joint" type="revolute">
+    <origin
+      xyz="0.0 0.17 0.009"
+      rpy="0.0 0.0 0.0" />
+    <parent
+      link="link1" />
+    <child
+      link="elbow_link" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint2"
+      multiplier="-1.0"/> 
+  </joint>
+
+  <link name="parallel_end_link1">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link1.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="passive_parallel_link1_joint" type="revolute">
+    <origin
+      xyz="0.004474 0.058 0.080712"
+      rpy="1.5707 0.0 0.0" />
+    <parent
+      link="motors_link" />
+    <child
+      link="parallel_end_link1" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5707"
+      upper="1.5707"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint2"
+      multiplier="1.0"/> 
+  </joint>
+
+  <link name="parallel_end_link2">
+    <visual>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <geometry>
+        <mesh filename="package://g_arm_description/meshes/parallel_end_link2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 1.0 1.0"/>
+      </material>
+    </collision>
+  </link>
+
+  <joint name="passive_parallel_link2_intermediate" type="revolute">
+    <origin
+      xyz="0.029054 0.019516 -0.011"
+      rpy="0.0 0.0 1.5708" />
+    <parent
+      link="elbow_link" />
+    <child
+      link="parallel_end_link2" />
+    <axis
+      xyz="0.0 0.0 1.0" />
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="200.0"
+      velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="1.0"/> 
+  </joint>
+
+  <link name="tcp">
+
+  </link>
+
+  <joint name="tcp_joint" type="fixed">
+    <origin
+      xyz="0.014525 -0.0075 -0.0185"
+      rpy="1.5708 0.0 0.0" />
+    <parent
+      link="end_effector" />
+    <child
+      link="tcp" />
+  </joint>
+
+</robot>
