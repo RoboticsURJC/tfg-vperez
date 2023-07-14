@@ -305,8 +305,8 @@ arm\_controller por defecto).
     \label{fig:arquitectura_moveit}
 \end{figure}\ 
 
-Primeramente, es necesario crear un \textit{launcher}, esto es, una herramienta que se utiliza para iniciar, configurar, gestionar y desplegar nodos. Para ello, 
-se ha implementado un fichero llamado \textit{real\_robot\_GUI.launch.py} que se encarga de lanzar una ventana de Rviz con todo lo necesario 
+Primeramente, es necesario crear tener \textit{launcher}, esto es, una herramienta que se utiliza para iniciar, configurar, gestionar y desplegar 
+nodos. Para ello, se va a hacer uso del ya existente implementado un fichero llamado \textit{real\_robot\_GUI.launch.py} que se encarga de lanzar una ventana de Rviz con todo lo necesario 
 para controlar de forma gráfica el robot, además de lanzar el nodo \textit{move\_group}, entre otros. Este launcher se ha creado a partir 
 de la demo que se crea automaticamente al generar el paquete. Era necesario modificar este para eliminar el controlador falso que se desplegaba 
 para hacer pensar a moveit que habia un robot conectado y poder realizar la simulación. Esto es así ya que se desea poder utilizar el robot 
@@ -315,31 +315,11 @@ real. Se puede lanzar este launcher con:
     ros2 launch g_arm_moveit real_robot_GUI.launch.py
 \end{verbatim}
 
-Para rellenar el mensaje de tipo \textit{sensor\_msgs/JointState} enviado a través del topic \textit{/joint\_states} me he basado 
-en la documentación\footnote{\url{http://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/JointState.html}}. 
-Este es un ejemplo de rellenar este tipo de mensajes:
-\lstnewenvironment{pythoncode}[1][]{
-  \lstset{
-    language=Python,
-    basicstyle=\small\ttfamily,
-    frame=tb,
-    columns=fullflexible,
-    showstringspaces=false,
-    breaklines=true,
-    breakatwhitespace=true,
-    captionpos=b,
-    #1
-  }
-}{}
-\begin{pythoncode}
-from sensor_msgs.msg import JointState
-def update_joints(self):
-    msg = JointState()
-    msg.name = ["joint1", "joint2", "joint3"]
-    msg.position = [0.32, 0.1, -0.4]
-    msg.velocity = [2, 3.2, 10]     
-    self.publisher_.publish(msg)
-\end{pythoncode}
+Por simplicidad y robusted, se ha optado por utilizar un controlador virtual de ROS Control e imitar el estado de los joints en el robot 
+real. Esto permite desacoplar toda la lógica de control de nuestro robot.
+
+
+
 \newpage
 \subsubsection{Interpretando tal}
 
