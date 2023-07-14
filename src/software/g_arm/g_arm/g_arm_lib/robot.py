@@ -61,7 +61,6 @@ class Robot:
         self.__grbl.asyncXYZMove((XGrbl, YGrbl, ZGrbl), feedrate=2000, relative=False)
 
     def toolPWM(self, value):
-        assert value < 0.0 or value > 1.0, "[ERROR] [Robot] The tool PWM value is a number between 0.0 and 1.0"
         self.__grbl.setSpindleSpeed(int(value*1000))
     
     def autohome(self):

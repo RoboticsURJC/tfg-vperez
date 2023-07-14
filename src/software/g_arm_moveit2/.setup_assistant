@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: g_arm_description
+    relative_path: urdf/robot_electromagnet.urdf
+  srdf:
+    relative_path: config/g_arm.srdf
+  package_settings:
+    author_name: Vidal Perez Bohoyo
+    author_email: mosstrike1@gmail.com
+    generated_timestamp: 1689350980
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

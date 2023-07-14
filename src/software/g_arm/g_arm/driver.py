@@ -10,6 +10,7 @@ from g_arm.g_arm_lib import robot
 class Driver(Node):
     
     __goal_joints_state = dict()
+    __received_joint_states = False
     
     def __init__(self):
         super().__init__('g_arm_driver')
@@ -30,6 +31,7 @@ class Driver(Node):
         self.timer = self.create_timer(timer_period, self.joints_state_apply)
            
     def joints_state_callback(self, msg):
+        self.__received_joint_states = True
         
         n_joints = len(msg.name)
         
@@ -42,12 +44,20 @@ class Driver(Node):
             
     def joints_state_apply(self):
         
-        j1 = math.degrees(self.__goal_joints_state["joint1"])
-        j2 = math.degrees(self.__goal_joints_state["joint2"])
-        j3 = math.degrees(self.__goal_joints_state["joint3"])
-        
-        self.robot.setAngles(j1, j2, j3)
-    
+        if self.__received_joint_states:
+            
+            j1 = math.degrees(self.__goal_joints_state["joint1"])
+            j2 = math.degrees(self.__goal_joints_state["joint2"])
+            j3 = math.degrees(self.__goal_joints_state["joint3"])
+            pwm = self.__goal_joints_state["jointPWM"] * 1000
+            
+            if pwm < 0.5:
+                self.robot.toolPWM(0.0) # FULL OFF
+            else: 
+                self.robot.toolPWM(1.0) # FULL ON
+                
+            self.robot.setAngles(j1, j2, j3)
+            
 def main(args=None):
     rclpy.init(args=args)
 
