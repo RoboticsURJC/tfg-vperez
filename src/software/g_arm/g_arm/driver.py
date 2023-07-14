@@ -2,10 +2,9 @@ import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
 
-import math
+import math, time
 from termcolor import colored
 from g_arm.g_arm_lib import robot
-
 
 class Driver(Node):
     
