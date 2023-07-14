@@ -268,7 +268,15 @@
     <parent link="elbow_link"/>
     <child link="parallel_end_link2"/>
     <axis xyz="0.0 0.0 1.0"/>
-    <limit effort="200.0" lower="-1.5707" upper="1.5707" velocity="200.0"/>
+    <limit effort="200.0" lower="-1.5708" upper="1.5708" velocity="200.0"/>
     <mimic joint="joint3" multiplier="1.0"/>
+  </joint>
+  <link name="tcp">
+
+  </link>
+  <joint name="tcp_joint" type="fixed">
+    <origin rpy="1.5708 0.0 0.0" xyz="0.014525 -0.0075 -0.0185"/>
+    <parent link="end_effector"/>
+    <child link="tcp"/>
   </joint>
 </robot>

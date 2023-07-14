@@ -7,7 +7,7 @@ moveit_setup_assistant_config:
   package_settings:
     author_name: Vidal Perez Bohoyo
     author_email: mosstrike1@gmail.com
-    generated_timestamp: 1689146642
+    generated_timestamp: 1689329401
   control_xacro:
     command:
       - position

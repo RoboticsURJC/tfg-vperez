@@ -399,13 +399,27 @@
     <axis
       xyz="0.0 0.0 1.0" />
     <limit
-      lower="-1.5707"
-      upper="1.5707"
+      lower="-1.5708"
+      upper="1.5708"
       effort="200.0"
       velocity="200.0" />
     <mimic
       joint="joint3"
       multiplier="1.0"/> 
+  </joint>
+
+  <link name="tcp">
+
+  </link>
+
+  <joint name="tcp_joint" type="fixed">
+    <origin
+      xyz="0.014525 -0.0075 -0.0185"
+      rpy="1.5708 0.0 0.0" />
+    <parent
+      link="end_effector" />
+    <child
+      link="tcp" />
   </joint>
 
 </robot>

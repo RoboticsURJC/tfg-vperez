@@ -22,6 +22,7 @@
         <link name="link_j3_lever_to_rod_intermediate"/>
         <link name="link_j3_rod"/>
         <link name="parallel_end_link1"/>
+        <link name="tcp"/>
         <joint name="joint1"/>
         <joint name="joint2"/>
         <joint name="joint_link1_link2_intermediate"/>
@@ -33,7 +34,8 @@
         <joint name="passive_joint_j3_lever_to_rod_intermediate"/>
         <joint name="passive_joint_j3_lever_to_rod"/>
         <joint name="passive_parallel_link1_joint"/>
-        <chain base_link="base_link" tip_link="end_effector"/>
+        <joint name="tcp_joint"/>
+        <chain base_link="base_link" tip_link="tcp"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="Home" group="arm">
@@ -47,7 +49,7 @@
         <joint name="joint3" value="-0.5988"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="END_EFFECTOR" parent_link="end_effector" group="arm"/>
+    <end_effector name="END_EFFECTOR" parent_link="tcp" group="arm"/>
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
     <passive_joint name="joint_link1_link2_intermediate"/>
     <passive_joint name="joint_link1_link2"/>
