@@ -399,8 +399,8 @@
     <axis
       xyz="0.0 0.0 1.0" />
     <limit
-      lower="0.0"
-      upper="0.2"
+      lower="-1.5707"
+      upper="1.5707"
       effort="200.0"
       velocity="200.0" />
     <mimic
