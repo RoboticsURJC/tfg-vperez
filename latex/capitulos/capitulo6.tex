@@ -212,14 +212,19 @@ En el caso concreto de este proyecto, se ha utilizado la configuración mostrada
 
 \newpage
 \section{Integración con ROS 2}
-En esta sección se detalla el proceso de integración del robot G-Arm en \acs{ROS}.
+\noindent TODO En esta sección se detalla el proceso de integración del robot G-Arm en \acs{ROS}, pasando 
+por la creación de la descripción 
 
 \subsection{Descripción del robot}
+\noindent El primer paso en la integración de un robot en el ecosistema ROS, es lograr expresar 
+su forma y funcionamiento de tal manera que pueda ser visualizado, simulado y controlado en el mundo 
+virtual. Esto es conocido como describir un robot. Para este propósito existen diferentes formatos que pueden 
+ser utilizados entre los que destacan URDF y Xacro.
 
 \subsubsection{Creación del paquete de descripción}
 \noindent Para crear el paquete, se ha seguido el siguiente
 \begin{enumerate}
-    \item Dentro de la carpeta \textit{src} del workspace ejecutamos:
+    \item En el \textit{src} del workspace ejecutamos:
     \begin{verbatim}
         ros2 pkg create --build-type ament_cmake g_arm_description
     \end{verbatim}   
@@ -253,7 +258,7 @@ En esta sección se detalla el proceso de integración del robot G-Arm en \acs{R
 
         <test_depend>ament_lint_auto</test_depend>
     \end{lstlisting}
-        
+    
     \item Compilamos el paquete desde la raíz del workspace:
     \begin{verbatim}
         colcon build --symlink-install
@@ -265,31 +270,32 @@ En esta sección se detalla el proceso de integración del robot G-Arm en \acs{R
     
     \end{enumerate}
 
-\subsubsection{Describir un robot mediante \ac{URDF} y Xacro}
-Es un formato de archivo cuyo propósito es describir la estructura, cinemática y aspecto de un robot.  
-Se trata de un estándar ampliamente utilizado en la comunidad de robótica, especialmente en \ac{ROS}.
+\subsubsection{Describir un robot mediante URDF y Xacro}
+\ac{URDF} es un formato de archivo cuyo propósito es describir la estructura, cinemática y aspecto de un robot.  
+Se trata de un estándar ampliamente utilizado en la comunidad robótica, especialmente en \ac{ROS}.
 
-En un archivo URDF, se especifica la geometría del robot mediante la definición de partes (links) y articulaciones (joints). 
-Cada parte se describe mediante su forma y tamaño, mientras que las articulaciones definen las restricciones de movimiento y las relaciones entre los enlaces.
-Además de esto, un archivo URDF también puede incluir información sobre la masa y la inercia de los enlaces, así como como texturas y modelos 3D.
+En este tipo de archivo, se especifica la geometría del robot mediante la definición de eslabones (links) 
+y articulaciones (joints). 
+Cada eslabón es descrito por su aspecto y geometría, mientras que las articulaciones están definidas
+en cuanto a su tipo, recorrido y posición. Además de esto, un archivo URDF 
+también puede incluir información sobre la masa y la inercia de los eslabones, así como 
+como texturas y modelos 3D.
 
-El formato URDF se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma estructurada y legible. Con la descripción 
-en URDF, los robots pueden ser simulados, visualizados y controlados.
+Este formato se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma 
+estructurada y legible. 
 
-Para crear un paquete para describir un robot en ros2 debemos de seguir el siguiente procedimiento:
+que es xacro?
 
+Para que el modelo del robot sea lo más visual y realista posible, se ha optado por utilizar las propias geometrías del diseño 3D realizadas
+en el capítulo anterior. Para poder utilizarlas en URDF, es necesario exportar las piezas al formato \textit{Collada} (.dae). Este formato 
+contiene información acerca de la geometría, posición, tamaño y colores, de la pieza en cuestión.
+\\
+Además del aspecto visual, hay que definir el volumen físico que ocupan en el espacio. Las mallas de colisión son la representación 
+geométrica simplificada utilizada para calcular interacciones físicas y detectar colisiones en simulaciones. En este caso se va a utilizar 
+un formato muy liviano de malla, el \ac{STL}. Para generar este tipo de mallas, al igual que los ficheros \textit{Collada}, se puede 
+utilizar el propio FreeCAD para exportarlo directamente a este formato.
 
-
-poner un tree para ver como queda todo 
-hablar de urdf y xacro
-hablar de rviz y controladores
-
-
-
-
-
-\newpage
-\subsection{Integración en MoveIt 2}
+\subsection{Integración con MoveIt 2}
 \noindent En esta sección se enumeran y describen los pasos necesarios para, apartir de un paquete de descripción de un robot, generar 
 un paquete de MoveIt.
 \\
