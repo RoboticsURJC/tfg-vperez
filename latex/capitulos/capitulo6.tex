@@ -104,24 +104,33 @@ A pesar de que ya podemos comandar movimientos en los distintos ejes de la máqu
 de configuraciones para definir las características concretas de cada articulación.
 \newpage
 \subsection{Configuración de Grbl para su uso en robótica}
-GRBL tiene ciertas limitaciones a la hora de su utilización en robótica. Es normal, debido a que está pensado para controlar máquinas 
-\acs{CNC} de 3 ejes prismáticos. Pese a esto, se pueden hacer ciertas modificaciones para adaptarlo a esta aplicación. 
+\noindent GRBL tiene ciertas limitaciones a la hora de usarse en robótica. Es normal, debido a que está pensado para controlar máquinas 
+\acs{CNC} de 3 ejes prismáticos. Pese a esto, se pueden unas ciertas configuraciones para adaptarlo a esta aplicación. 
 
 \subsubsection{Parámetros de Grbl}
-Para acceder y modificar los parámetros de Grbl se deben realizar los siguientes pasos:
-\begin{enumerate}
-\item Debemos tener conectada al ordenador la placa con el \textit{firmware} de Grbl instalado.
-\item Podemos usar un programa especializado con interfaz gráfica como \ac{UGS} o mediante una terminal serial, como puede ser Cutecom.
-\item Introducimos la velocidad de trasmisión de Grbl por defecto; 115200 baudios. 
-\item Para preguntar al \textit{firmware} sobre los parámetros que hay configurados, introducimos los caracteres: \$\$
-\item Para modificar un parámetro, introducimos un texto del estilo: \$número=nuevoValor
-\end{enumerate}
+Este \textit{firmware} guarda en su memoria interna una serie de parámetros que definen su 
+comportamiento. Si se quiere visualizar cuáles son y sus respectivos valores, hay que enviar 
+el mensaje \textbf{\$\$} a través del puerto serie. Para modificar un cierto valor, hay que introducir una cadena 
+con el formato: \textbf{\$identificador del parámetro=nuevoValor}.
 
-Para su uso en robótica nos interesa modificar los siguientes parámetros: 
+Para modificar la configuración de una forma cómoda, se recomienda utilizar herramientas como 
+\textit{UniversalGcodeSender} (Figura \ref{fig:ugs}).
+
+\begin{figure} [ht!]
+\begin{center}
+    \includegraphics[width=15cm]{figs/ugs.png}
+\end{center}
+\caption{Interfaz de UniversalGcodeSender\footnote{\url{https://winder.github.io/ugs_website/download/}}}
+\label{fig:ugs}
+\end{figure}
+
+Puesto que se quiere utilizar Grbl para controlar un brazo robot, debemos 
+realizar las siguientes configuraciones:
 \begin{itemize}
-\item \textbf{\$1}: Retardo o tiempo de espera entre pulsos de paso cuando el motor está inactivo (en milisegundos). Debemos configurar 
+\item \textbf{\$1}: Retardo o tiempo de espera entre pulsos de paso cuando el motor está inactivo (en milisegundos). 
+\\Debemos configurar 
 este parámetro en su valor máximo, en este caso 255. Este valor tiene un significado especial, haciendo que los motores paso a paso 
-se mantendrán energizados constantemente aunque no se estén moviendo. Es de vital importancia para evitar que el brazo se desplome tras terminar un cierto movimiento.  
+se mantendrán energizados constantemente aunque no se estén moviendo. Es de vital importancia para evitar que el brazo se desplome al detenerse en una cierta posición.  
 \item \textbf{\$100}, \textbf{\$101} y \textbf{\$102}: Indican el número de pasos por unidad de movimiento para los ejes X, Y, Z respectivamente. 
 \\Por defecto está pensado para utilizar pasos por milímetro. Como se pretende utilizar articulaciones de rotación, debemos expresar esta relación 
 en función de alguna medida angular. La unidad a utilizar podría ser: grados, radianes o vueltas, entre otras. En este trabajo se 
@@ -137,16 +146,23 @@ utilizan los grados debido a que en radianes y vueltas la unidad correspondía a
 \caption[Cálculo de pasos por grado en Grbl]{Cálculo de pasos por grado en Grbl}
 \end{myequation} 
 
-\item \textbf{\$110}, \textbf{\$111} y \textbf{\$112}: Indican la velocida máxima a la que puede moverse cada eje X, Y, Z en "unidades" por segundo. 
+\item \textbf{\$110}, \textbf{\$111} y \textbf{\$112}: Indican la velocida máxima a la que puede moverse cada eje X, Y, Z en unidades por segundo. 
 En este caso, grados por segundo. Estos valores se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
 caso de que el usuario quiera mover demasiado rápido un eje pudiendo dañar el brazo.
 
-\item \textbf{\$120}, \textbf{\$121} y \textbf{\$122}: Indican la aceleración máxima a la que puede moverse cada eje X, Y, Z en "unidades" por segundo cuadrado. 
+\item \textbf{\$120}, \textbf{\$121} y \textbf{\$122}: Indican la aceleración máxima a la que puede moverse cada eje X, Y, Z en unidades por segundo cuadrado. 
 En este caso, grados por segundo cuadrado. Estos valores tambien se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
 caso de que el usuario quiera mover demasiado rápido un eje pudiendo dañar el brazo. Se debe encontrar una aceleración idónea para todos 
 los movimientos, una limitación de grbl es que no se puede comandar un movimiento diciendole una determinada aceleración.
-
 \end{itemize}
+
+Para profundizar más en la finalidad de cada parámetro, código y configuración se 
+recomienda leer la documentación \footnote{\url{https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md}}
+\footnote{\url{https://github.com/gnea/grbl/blob/master/doc/markdown/settings.md}}
+\\
+\newpage
+En el caso concreto de este proyecto, se ha utilizado la configuración mostrada en la Tabla \ref{cuadro:parametros_grbl}.
+\\
 
 \begin{table}[H]
 \begin{center}
@@ -154,26 +170,45 @@ los movimientos, una limitación de grbl es que no se puede comandar un movimien
 \hline
 \textbf{Parámetro} & \textbf{Valor} \\
 \hline
-\$0 & 0 \\
-\$1 & 255 \\
-\$2 & Bla \\
-\$0 & 0 \\
-\$0 & 0 \\
-\$0 & 0 \\
-\$0 & 0 \\
-
+\textdollar0 & $10$ \quad (Step pulse time, microseconds) \\
+\textdollar1 & $255$ \quad (Step idle delay, milliseconds) \\
+\textdollar2 & $0$ \quad (Step pulse invert, mask) \\
+\textdollar3 & $1$ \quad (Step direction invert, mask) \\
+\textdollar4 & $0$ \quad (Invert step enable pin, boolean) \\
+\textdollar5 & $1$ \quad (Invert limit pins, boolean) \\
+\textdollar6 & $1$ \quad (Invert probe pin, boolean) \\
+\textdollar10 & $1$ \quad (Status report options, mask) \\
+\textdollar11 & $0.010$ \quad (Junction deviation, millimeters) \\
+\textdollar12 & $0.002$ \quad (Arc tolerance, millimeters) \\
+\textdollar13 & $0$ \quad (Report in inches, boolean) \\
+\textdollar20 & $0$ \quad (Soft limits enable, boolean) \\
+\textdollar21 & $0$ \quad (Hard limits enable, boolean) \\
+\textdollar22 & $1$ \quad (Homing cycle enable, boolean) \\
+\textdollar23 & $1$ \quad (Homing direction invert, mask) \\
+\textdollar24 & $1.000$ \quad (Homing locate feed rate, mm/min) \\
+\textdollar25 & $1.000$ \quad (Homing search seek rate, mm/min) \\
+\textdollar26 & $250.000$ \quad (Homing switch debounce delay, milliseconds) \\
+\textdollar27 & $1.000$ \quad (Homing switch pull-off distance, millimeters) \\
+\textdollar30 & $10000.000$ \quad (Maximum spindle speed, RPM) \\
+\textdollar31 & $0.000$ \quad (Minimum spindle speed, RPM) \\
+\textdollar32 & $0$ \quad (Laser-mode enable, boolean) \\
+\textdollar100 & $26.666$ \quad (X-axis travel resolution, step/mm) \\
+\textdollar101 & $22.222$ \quad (Y-axis travel resolution, step/mm) \\
+\textdollar102 & $22.222$ \quad (Z-axis travel resolution, step/mm) \\
+\textdollar110 & $6000.000$ \quad (X-axis maximum rate, mm/min) \\
+\textdollar111 & $6000.000$ \quad (Y-axis maximum rate, mm/min) \\
+\textdollar112 & $6000.000$ \quad (Z-axis maximum rate, mm/min) \\
+\textdollar120 & $60.000$ \quad (X-axis acceleration, mm/sec\textasciicircum2) \\
+\textdollar121 & $60.000$ \quad (Y-axis acceleration, mm/sec\textasciicircum2) \\
+\textdollar122 & $60.000$ \quad (Z-axis acceleration, mm/sec\textasciicircum2) \\
+\textdollar130 & $450.000$ \quad (X-axis maximum travel, millimeters) \\
+\textdollar131 & $450.000$ \quad (Y-axis maximum travel, millimeters) \\
+\textdollar132 & $50.000$ \quad (Z-axis maximum travel, millimeters) \\
 \end{tabular}
 \caption{Parámetros Grbl usados en este trabajo}
 \label{cuadro:parametros_grbl}
 \end{center}
 \end{table}
-
-En esta página oficial de documentación se profundiza más en la finalidad de cada parámetro.
-Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/commands.md
-
-%26.\wideparen{6}\\
-Para mas info: https://github.com/gnea/grbl/blob/master/doc/markdown/settings.md
-
 
 \newpage
 \section{Integración con ROS 2}
