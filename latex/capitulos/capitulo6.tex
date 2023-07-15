@@ -6,69 +6,114 @@
 tanto en simulaciones como en el mundo real.
 
 \section{Control de los actuadores}
+\noindent En esta sección se concretan los mecanismos y herramientas software utilizadas para poder controlar, desde 
+un ordenador cualquiera, el hardware creado en el anterior capítulo.
 
-En robótica, los actuadores son los componentes responsables de convertir las señales eléctricas 
-en movimiento físico.
+\subsection{Grbl como \textit{firmware} del robot}
+\noindent Para realizar el control de los actuadores se ha tomado la decisión de utilizar el \textit{firmware} de control numérico 
+Grbl\ref{subsec:grbl}. Se ha optado por el uso de este \textit{firmware} (software específico para el harware elegido), por encima 
+de realizar uno propio, debido a que es una solución robusta con años de desarrollo y con unas ciertas garantías dificiles de superar.
+\\
 
-Para realizar el control de los actuadores se ha optado por utilizar el firmware de control numérico 
-GRBL\ref{subsec:grbl}. Se ha optado por el uso de este firmware por encima de realizar uno propio, 
-debido a que es una solución robusta con años de desarrollo y una comunidad que lo respalda.
+Actualmente, este \textit{firmware} permite controlar hasta 3 motores paso a paso simultáneamente. Además, tiene la posibilidad de utilizar 
+un canal PWM (usualmente usado en las CNC para modificar la velocidad de la herramienta). Sobre estos motores, podemos realizar 
+un control en posición, es decir, recibe una serie de coordenadas y automáticamente alcanza esos puntos. Este tipo de controlador 
+es perfectamente válido para esta aplicación y simplifica bastante su uso. Aunque esta placa en concreto viene con Grbl 1.1 instalado 
+de fábrica, existen numerosas guías en Internet acerca de como instalarlo.
 
-Este firmware, permite controlar hasta 3 motores paso a paso simultáneamente. Además está optimizado para ejecutarse en 
-microcontroladores de bajos recursos y hace uso de herramientas hardware de bajo nivel, como los \textit{timers} o los 
-contadores para garantizar una operación fiable.
+Para que Grbl sepa qué posición debe tener cada motor en un momento dado, necesita recibir 
+una serie de datos codificados a través de una de sus interfaces. Los detalles esta la comunicación 
+se detallan en la siguiente subsección.
+\newpage
+\subsection{Comunicación con Grbl}
+\noindent En esta sección se exponen las distintas opciones de comunicación con el robot, así como el formato de mensaje que se debe utilizar.
+\\ 
 
-Para que GRBL sepa qué posición debe tener cada motor en un momento dado, necesita recibir 
-una serie de datos codificados a través de una de sus interfaces. Los detalles de la comunicación 
-serán descritos en la siguiente sección.
+Debido a las características hardware de la placa utilizada, se puede establecer comunicación con Grbl a través de 2 interfaces diferentes. 
+La primera, es a través del propio puerto USB integrado, utilizando el protocolo serie UART. Este modo de comunicación tiene la ventaja de 
+ser rápido pero te fuerza a estar conectado al robot a través de un cable. Por otro lado, debido a las características técnicas del 
+microcontrolador, se puede establecer una comunicación inalámbrica a través de Wifi utilizando el protocolo Telnet. Finalmente, se ha optado 
+por utilizar la interfaz USB debido a que es más rápida y permite al usuario estar conectado a internet, en vez de a la propia red 
+\textit{offline} que crea la placa.
+\\
 
-\section{Comunicación con el robot}
-En esta sección se exponen los mecanismos necesarios para permitir la comunicación entre el ordenador y 
-el microcontrolador alojado en la base del robot, así como, la arquitectura del sistema robótico. Además se detallan las configuraciones necesarias 
-para adaptar al mundo de la robótica las diferentes partes que lo componen.
+Una forma de poder probar si está instalado y probar el funcionamiento de este, es utilizar una terminal serie, como 
+puede ser \textit{Cutecom}. Establecemos una velocidad de 115200 baudios y nos conectamos al puerto que aparezca disponible 
+al conectar la placa al ordenador. Si está instalado, veremos una serie de mensajes que indican la versión de Grbl y las 
+distintas configuraciones internas. 
 
-En base a las especificaciones del manual\footnote{\url{https://raw.githubusercontent.com/makerbase-mks/MKS-DLC32/main/doc/DLC32\%20wiring\%20manual.pdf}} 
-de la placa, permite establecer comunicaciones via USB serie y existe la posibilidad (reside en el propio firmware) de utilizar la funcionalidad 
-Wi-Fi del ESP32. 
-La comunicación obtenida mediante el uso del puerto USB se realiza sobre el protocolo \ac{UART}. Este protocolo serie es utilizado para 
-transmitir datos de forma asíncrona entre dispositivos. Es comúnmente usado en la interconexión de microcontroladores, 
-periféricos y otros componentes electrónicos. El UART convierte los datos paralelos en datos serie y viceversa, utilizando bits 
-de inicio, datos, bits de parada y posiblemente bits de paridad para la sincronización y detección de errores. 
-\begin{figure} [h!]
-    \begin{center}
-    \includegraphics[width=12cm]{figs/uart.png}
-    \end{center}
-    \caption{Diagramas de tiempo de UART}
-    \label{fig:uart}
-\end{figure}\ 
-Otra forma de comunicarnos con la placa es mediante el uso del su adaptador inalámbrico Wi-Fi. Existen firmwares, como es el caso de 
-Grbl, que tienen una versión adaptada para microcontroladores con conectividad Wi-Fi que permiten enviar comandos usando una gran 
-variedad de protocolos convencionales usados en redes de ordenadores. En este caso, Telnet. 
+Grbl recibe instrucciones de G-Code\ref{sec:gcode} a través del puerto serie. Aunque existen una gran 
+cantidad de ellas, solo ha sido necesario utilizar algunas:
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Comando} & \textbf{Explicación} \\
+\hline
+G92 X0 Y0 Z0 & G92 establece los valores de posición de cada eje\\
+G01 & Establece que todos los ejes se moverán a la vez de forma lineal  \\
+G90 X1 Y2 Z3 F34 & Mueve los motores a velocidad 34 hasta una coordenada absoluta  \\
+S500 & Establece la velocidad del motor auxiliar a 500. Rango: 0-1000  \\
+M3 & Enciende el motor auxiliar  \\
+M5 & Apaga el motor auxiliar  \\
+? & Pecibir el estado actual de la maquina  \\
+! & Para el movimiento actual \\
+\textasciitilde & Continua con el movimiento parado anteriormente \\
+\hline
+\end{tabular}
+\caption{Comandos utilizados en la realización del proyecto}
+\end{center}
+\end{table}
+\newpage
+Con el fin de poder abstraer al software del robot de esta comunicación, se ha implementado 
+una clase en Python\ref{subsec:pyhton} llamada \textit{Grbl}. En este software, utiliza la librería 
+PySerial\footnote{\url{https://pypi.org/project/pyserial/}} para establecer una comunicación serie 
+debido a la facilidad que aporta. En el siguiente bloque de código, se muestra un ejemplo de su uso.
 
-Además, el firmware de Grbl es capaz de levantar un punto de acceso inalámbrico al cual puedes conectarte como si de un router 
-se tratara y se puede acceder a un servidor alojado en su dirección IP. Para acceder a él, basta con introducir 192.168.1.1 en la 
-barra superior del navegador web para acceder a una interfaz de usuario que permite controlar los movimientos de la máquina. En este 
-caso tiene un aspecto peculiar y no amigable con el mundo de la robótica ya que está pensado para el uso en CNC. Es por esto que es 
-necesario realizar unas ciertas configuraciones para su uso en robótica.
+\begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1]
+import serial
 
-grbl wifi
-grbl cable
-biblioteca python usada
-detalles de la comunicacion via codigo G
-ejemplos de uso ugs 
+# Puerto '/dev/ttyUSB0' y velocidad 115200 baudios
+bus = serial.Serial('/dev/ttyUSB0', 115200) # Comenzamos la comunicación 
+
+texto = 'Hola Mundo'
+bus.write(bytes(texto.encode())) # Enviar mensaje
+
+bus.close() # Terminamos la comunicación
+\end{lstlisting}
 
 
-\subsection{Adaptación de grbl para su uso en robótica}
+\noindent La clase \textit{Grbl} creada puede ser utilizada a través de los siguientes métodos:
+
+\begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1]
+start(puerto) # Devuelve true/false en función de si ha sido posible conectarse
+stop() # Finaliza la comunicación
+setSpindleSpeed(value) # Establece la velocidad del motor auxiliar
+enableSpindle() # Activa el motor auxiliar
+disableSpindle() # Desactiva el motor auxiliar
+setCoordinates(x, y, z) # Establece las coordenadas x, y, z 
+getXYZ() # Devuelve la posición actual
+asyncXYZMove(posición, velocidad, relative) # Mueve los motores a una posición con la velodicad dada. Permite realizar movimientos relativos y absolutos.
+\end{lstlisting}
+
+Su código fuente puede ser encontrado en el repositorio del 
+proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/96fc1e44bef6a31c272fb0673b5a33a7571c5ee7/src/software/g_arm/g_arm/g_arm_lib/grblAPI.py}}.
+\\
+
+A pesar de que ya podemos comandar movimientos en los distintos ejes de la máquina, se requiere realizar una serie 
+de configuraciones para definir las características concretas de cada articulación.
+\newpage
+\subsection{Configuración de Grbl para su uso en robótica}
 GRBL tiene ciertas limitaciones a la hora de su utilización en robótica. Es normal, debido a que está pensado para controlar máquinas 
 \acs{CNC} de 3 ejes prismáticos. Pese a esto, se pueden hacer ciertas modificaciones para adaptarlo a esta aplicación. 
 
 \subsubsection{Parámetros de Grbl}
 Para acceder y modificar los parámetros de Grbl se deben realizar los siguientes pasos:
 \begin{enumerate}
-\item Debemos tener conectada al ordenador la placa con el firmware de Grbl instalado.
+\item Debemos tener conectada al ordenador la placa con el \textit{firmware} de Grbl instalado.
 \item Podemos usar un programa especializado con interfaz gráfica como \ac{UGS} o mediante una terminal serial, como puede ser Cutecom.
 \item Introducimos la velocidad de trasmisión de Grbl por defecto; 115200 baudios. 
-\item Para preguntar al firmware sobre los parámetros que hay configurados, introducimos los caracteres: \$\$
+\item Para preguntar al \textit{firmware} sobre los parámetros que hay configurados, introducimos los caracteres: \$\$
 \item Para modificar un parámetro, introducimos un texto del estilo: \$número=nuevoValor
 \end{enumerate}
 
@@ -301,7 +346,7 @@ arm\_controller por defecto).
     \begin{center}
       \includegraphics[width=15cm]{figs/moveit_arquitectura.png}
     \end{center}
-    \caption{Relación de \textit{move\_group} con el resto del Firmware}
+    \caption{Relación de \textit{move\_group} con el resto del \textit{Firmware}}
     \label{fig:arquitectura_moveit}
 \end{figure}\ 
 
