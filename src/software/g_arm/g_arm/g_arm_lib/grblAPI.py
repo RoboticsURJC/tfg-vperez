@@ -167,7 +167,11 @@ class Grbl:
         
         order = "S" + str(speed)
         self.__sendOrder(order)
-    
+        
+        if speed < 100:
+            self.__sendOrder("M5")
+        else:
+            self.__sendOrder("M3")
     def setZero(self):
         self.__sendOrder("G92 X0 Y0 Z0")
     
