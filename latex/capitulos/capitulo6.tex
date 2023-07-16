@@ -316,17 +316,32 @@ El robot de este trabajo esta constituido enteramente por cadenas cinemáticas c
 articulación específico para lograr describir este tipo de robot de forma exacta. Se llama \textit{Mimic joint} y
 es un tipo de articulación pasiva que imita el ángulo de otra. Con una cierta combinación de varias de ellas, y una serie de 
 eslabones invisibles se puede lograr describir este tipo de robot. 
+Además, ha sido necesario añadir una cuarta articulación \enquote{falsa}. Esta indica la intensidad del electroimán acoplado al robot. 
+Es de tipo revolución, pero su recorrido es de 0.001 radianes por lo que apenas afecta a la cinemática. 
 
 El fichero\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/8d3b281d701ec4a57602a9dcfcdd04888955319b/src/software/g_arm_description/urdf/robot_electromagnet.urdf}} 
 URDF final puede ser encontrado junto al resto del proyecto en el repositorio de Git.
 \newpage
 \subsubsection{Creación de un launcher para visualizar el robot}
-\noindent Para poder visualizar el fichero que hemos creado anteriormente, podemos realizar tal utilizando una herramienta de ROS 
-llamada RViz.
-Creamos un fichero terminado en \textit{.launch.py} en la carpeta \textit{launch} y le añadimos el siguiente contenido:
+\noindent Para visualizar el fichero que hemos creado anteriormente, podemos realizar una herramienta de ROS 
+llamada RViz. Esta herramienta no solo permite visualizar, sino también analizar datos de sensores, modelos de robot y 
+planificaciones de movimiento de forma interactiva. Además se le pueden añadir complementos para agregale funcionalidades extra. 
+\\
 
+Para que se pueda cargar la descripción del robot en este visualizador, debe haber algo que la esté publicando en el topic 
+\textit{robot\_description}. Es por esto que existe un nodo de ROS llamado \textit{robot\_state\_publisher} que se encarga 
+de ello. Además, si queremos algo más que una representación estática, podemos utilizar un nodo llamado \mbox{\textit{joint\_state\_publisher\_gui}}. Este nodo 
+muestra una ventana gráfica con una serie de controles para controlar manualmente cada joint. 
+\\
 
-Al ejecutar el siguiente comando, se nos abrirá una ventana de RViz y una serie de controles deslizantes para cada articulación (Figura \ref{fig:rviz}).
+Teniendo en cuenta que se requiere lanzar una serie de nodos y programas, es útil crear un \textit{launcher} de ROS. Un \textit{launcher} es una 
+herramienta que se utiliza para iniciar, configurar, gestionar y desplegar nodos. Este tipo de fichero terminado en 
+\textit{.launch.py} se almacenan en la carpeta \textit{launch}. Para crearlo, se ha usado como inspiración el lanzador \textit{visualize\_franka.launch.py} del 
+robot Franka Emika\footnote{\url{https://github.com/frankaemika/franka_ros2/blob/develop/franka_description/launch/visualize_franka.launch.py}}.
+\\
+
+Finalmente, el paqute de descripción está terminado. Ejecutando el siguiente comando, se nos abrirá una ventana de RViz y una 
+serie de controles deslizantes para cada articulación (Figura \ref{fig:rviz}).
 \begin{verbatim}
     ros2 launch g_arm_description display_tool.launch.py
 \end{verbatim}
@@ -386,16 +401,17 @@ A la hora de usar esta herramienta, se debe de tener en cuenta que a día de la 
 que hace que el paquete no se cree bien del todo. Para corregirlo, es necesario cambiar todos los número del fichero \textit{joints\_limits.yaml}
 del paquete generado a \textit{double}. Es decir, cambiar por ejemplo un ``200" por ``200.0".
 \\
-
-Para probar que ha salido todo bien, ejecutamos:
+\newpage
+Para comprobar que el paquete ha sido configurado bien, ejecutamos un \textit{launcher} generado automáticamente por el asistente :
 \begin{verbatim}
     ros2 launch g_arm_moveit demo.launch.py
 \end{verbatim}
-Si todo se ha configurado bien deberíamos ver algo parecido a lo mostrado en la Figura \ref{fig:moveit_demo}. Para comprobar que resuelve una trayectoria sin 
-problema, podemos establecer dos posiciones aleatorias y ejecutar la trayectoria (Figura \ref{fig:moveit_trayectory_demo}).
+Tras ejecutarlo, se debería abrir una ventana de RViz con un aspecto similar a lo mostrado en la Figura \ref{fig:moveit_demo}. A pesar que 
+visualmente todo este correcto, hay que comprobar que es capaz de resolver y ejecutar una trayectoria sin problema. Podemos utilizar 
+el propio complemento de MoveIt para establecer una posiciones aleatoria y tratar de llegar a ella (Figura \ref{fig:moveit_trayectory_demo}).
 \begin{figure} [ht!]
     \begin{center}
-      \includegraphics[width=15cm]{figs/moveit_demo.png}
+      \includegraphics[width=14cm]{figs/moveit_demo.png}
     \end{center}
     \caption{Rviz al lanzar el \textit{demo.launch.py}}
     \label{fig:moveit_demo}
@@ -403,57 +419,70 @@ problema, podemos establecer dos posiciones aleatorias y ejecutar la trayectoria
 
 \begin{figure} [ht!]
     \begin{center}
-      \includegraphics[width=15cm]{figs/moveit_demo_trajectory.png}
+      \includegraphics[width=10cm]{figs/moveit_demo_trajectory.png}
     \end{center}
     \caption{Planificando una trayectoria simple}
     \label{fig:moveit_trayectory_demo}
 \end{figure}\ 
+
+\subsection{Driver para ROS}
+\noindent En esta sección se detalla el funcionamiento del nodo ROS creado para ejecutar simultáneamente las trayectorias en el robot real.
 \\
-\newpage
-\subsection{Nodo ROS}
-\noindent En esta sección se crea un nodo ROS capaz de interpretar los mensajes resultantes de MoveIt y mover el brazo real en función de ellos.
-\\
 
-Según la documentación\footnote{\url{https://moveit.picknik.ai/humble/doc/concepts/move_group.html}}, existe un nodo llamado 
-\textit{move\_group} (Véase la Figura\ref{fig:arquitectura_moveit}) que se comunica con resto del framework 
-a través de los \textit{topics} y acciones de ROS. Además, se comunica con el robot para obtener información acerca del estado 
-actual (posiciones de las articulaciones, etc.), para obtener nubes de puntos y otros datos de los sensores del 
-robot, y para interactuar con sus controladores.
 
-Principalmente hay que centrarse en un \textit{topic} y una acción de ROS 2. 
-
-El \textit{topic} es \textit{/joint\_states}, el cual es publicado por el nodo que debemos de crear nosotros 
-y es recibido por \textit{move\_group}. La acción es \textit{/arm\_controller/follow\_joint\_trajectory} (el controlador ha sido nombrado como 
-arm\_controller por defecto). 
-
-%moveit_simple_controller_manager Es un cliente que hace caso a la acción
-
+Primeramente es necesario comprender el funcionamiento de este framework, al menos su parte más externa, aquella que 
+se comunica con el exterior. 
+Según la documentación\footnote{\url{https://moveit.picknik.ai/humble/doc/concepts/move_group.html}}, existe 
+un nodo llamado \textit{move\_group} (Véase la Figura\ref{fig:arquitectura_moveit}) que se comunica con resto del framework 
+a través de los topics y acciones de ROS. De cara al exterior, puede establecer conexión con dos elementos del propio entorno del robot. 
+El primero es la percepción, en este caso permite obtener información de la escena a través de los datos de una cámara 3D. El segundo es el 
+controlador del robot, que se encarga de aceptar y ejecutar las trayectorias requeridas, además de devolver información acerca del 
+progreso.
 \begin{figure} [ht!]
     \begin{center}
-      \includegraphics[width=15cm]{figs/moveit_arquitectura.png}
+      \includegraphics[width=12cm]{figs/moveit_arquitectura.png}
     \end{center}
     \caption{Relación de \textit{move\_group} con el resto del \textit{Firmware}}
     \label{fig:arquitectura_moveit}
 \end{figure}\ 
+\newpage
+Según la propia documentación, la forma más simple y eficaz de controlar el robot real es utilizando un controlador de 
+\mbox{\textit{ros2\_control}\footnote{\url{https://control.ros.org/master/index.html}}}
+e imitar en el robot real las posiciones de los distintos joints publicadas por el controlador. En sí \mbox{\textit{ros2\_control}} es un 
+framework que incorpora una gran cantidad de herramientas para implementar sistemas de control en ROS. Dentro de él, existen los llamados 
+controladores y según su tipo pueden controlar robots de tracción diferencial, direcciones Ackermann, entre otros. Para esta aplicación el que nos 
+interesa es \mbox{\textit{Joint Trajectory Controller}}, un controlador diseñado para ejecutar trayectorias en el espacio de 
+articulaciones, interpolando entre uno o más puntos de referencia. Conjuntamente con esto, hay que 
+utilizar otro nodo llamado \textit{joint\_state\_broadcaster}, que lee las interfaces de estado del controlador y las publica en los topics
+\textit{/dynamic\_joint\_states} y \textit{/joint\_states}. Siendo finalmente este último topic el que deberá ser escuchado por el 
+nodo del robot real para extraer la posición 
+de cada articulación. El tipo de mensaje empleado en este topic es \mbox{\textit{sensor\_msgs/msg/JointState}}, el
+cuál cuenta con los siguientes campos:
+\lstset{language=C++,
+        basicstyle=\ttfamily,
+        keywordstyle=\color{blue},
+        commentstyle=\color{green},
+        stringstyle=\color{orange},
+        showstringspaces=false,
+        breaklines=true,
+        breakatwhitespace=true}
 
-Primeramente, es necesario crear tener \textit{launcher}, esto es, una herramienta que se utiliza para iniciar, configurar, gestionar y desplegar 
-nodos. Para ello, se va a hacer uso del ya existente implementado un fichero llamado \textit{real\_robot\_GUI.launch.py} que se encarga de lanzar una ventana de Rviz con todo lo necesario 
-para controlar de forma gráfica el robot, además de lanzar el nodo \textit{move\_group}, entre otros. Este launcher se ha creado a partir 
-de la demo que se crea automaticamente al generar el paquete. Era necesario modificar este para eliminar el controlador falso que se desplegaba 
-para hacer pensar a moveit que habia un robot conectado y poder realizar la simulación. Esto es así ya que se desea poder utilizar el robot 
-real. Se puede lanzar este launcher con:
-\begin{verbatim}
-    ros2 launch g_arm_moveit real_robot_GUI.launch.py
-\end{verbatim}
+\begin{lstlisting}
+Header header
 
-Por simplicidad y robusted, se ha optado por utilizar un controlador virtual de ROS Control e imitar el estado de los joints en el robot 
-real. Esto permite desacoplar toda la lógica de control de nuestro robot.
+string[] name
+float64[] position
+float64[] velocity
+float64[] effort
+\end{lstlisting}
 
+Por suerte, el propio lanzador de demostración mencionado en la sección anterior ya levanta estos nodos por lo que no es necesario crear 
+uno nuevo para realizar las pruebas. Más adelante si es recomendable crear uno propio para poder tener mayor control sobre los nodos 
+que se ejecutan y añadir nuevos.
 
+Por otro lado, el funcionamiento del driver se ha organizado de la siguiente manera:
 
 \newpage
-\subsubsection{Interpretando tal}
-
 \section{Pruebas}
 En esta sección se pone a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. 
 características.

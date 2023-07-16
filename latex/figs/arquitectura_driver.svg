@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5181"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="arquitectura_driver.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview5183"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0444209"
+     inkscape:cx="300.64507"
+     inkscape:cy="526.60761"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs5178">
+    <marker
+       style="overflow:visible"
+       id="Arrow1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1"
+       markerWidth="4.0606604"
+       markerHeight="6.7071066"
+       viewBox="0 0 4.0606602 6.7071068"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         id="path5057"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1-6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow1"
+       markerWidth="4.0606604"
+       markerHeight="6.7071066"
+       viewBox="0 0 4.0606602 6.7071068"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         id="path5057-6"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:none"
+       id="rect5354"
+       width="28.840168"
+       height="26.332327"
+       x="38.354328"
+       y="41.326904"
+       inkscape:label="rect5354"
+       rx="5"
+       ry="5" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.25006px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.131252"
+       x="40.831604"
+       y="38.943935"
+       id="text5773"><tspan
+         sodipodi:role="line"
+         id="tspan5771"
+         style="stroke-width:0.131252"
+         x="40.831604"
+         y="38.943935">Callback()</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-dasharray:none"
+       id="rect5354-9"
+       width="28.840168"
+       height="26.332327"
+       x="86.072678"
+       y="41.126945"
+       inkscape:label="rect5354"
+       rx="5"
+       ry="5" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.810833;stroke-dasharray:none"
+       id="rect5354-9-4"
+       width="46.769108"
+       height="42.702229"
+       x="84.027443"
+       y="87.307999"
+       inkscape:label="rect5354"
+       rx="8.1083279"
+       ry="8.1083279" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.46978;stroke-dasharray:none"
+       id="rect5354-9-4-6"
+       width="27.097076"
+       height="24.740808"
+       x="100.07005"
+       y="101.09017"
+       inkscape:label="rect5354"
+       rx="4.6978016"
+       ry="4.6978016" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.25006px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.131252"
+       x="85.821388"
+       y="38.523243"
+       id="text5773-5"><tspan
+         sodipodi:role="line"
+         id="tspan5771-7"
+         style="stroke-width:0.131252"
+         x="85.821388"
+         y="38.523243">JointsApply()</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.25006px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.131252"
+       x="91.148552"
+       y="82.937332"
+       id="text5773-5-8"><tspan
+         sodipodi:role="line"
+         id="tspan5771-7-7"
+         style="stroke-width:0.131252"
+         x="91.148552"
+         y="82.937332">Obj: Robot</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.25006px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.131252"
+       x="99.277328"
+       y="98.137138"
+       id="text5773-5-8-3"><tspan
+         sodipodi:role="line"
+         id="tspan5771-7-7-6"
+         style="stroke-width:0.131252"
+         x="99.277328"
+         y="98.137138">Obj: GrblAPI</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1)"
+       d="m 4.3066129,53.705996 31.0329451,0"
+       id="path5863"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.03919px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12598"
+       x="3.9820578"
+       y="51.266628"
+       id="text5903"><tspan
+         sodipodi:role="line"
+         id="tspan5901"
+         style="stroke-width:0.12598"
+         x="3.9820578"
+         y="51.266628">/joint_states</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1-6)"
+       d="m 121.93962,115.47682 42.68613,0"
+       id="path5863-6"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.03919px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12598"
+       x="133.33235"
+       y="111.68124"
+       id="text5903-7"><tspan
+         sodipodi:role="line"
+         id="tspan5901-9"
+         style="stroke-width:0.12598"
+         x="133.33235"
+         y="111.68124">USB Serial</tspan></text>
+  </g>
+</svg>
