@@ -26,7 +26,7 @@ una serie de datos codificados a través de una de sus interfaces. Los detalles 
 se detallan en la siguiente subsección.
 \newpage
 \subsection{Comunicación con Grbl}
-\noindent En esta sección se exponen las distintas opciones de comunicación con el robot, así como el formato de mensaje que se debe utilizar.
+\noindent En esta sección se exponen las distintas opciones de comunicación con el robot, así como el formato de mensaje que se debe emplear.
 \\ 
 
 Debido a las características hardware de la placa utilizada, se puede establecer comunicación con Grbl a través de 2 interfaces diferentes. 
@@ -43,7 +43,7 @@ al conectar la placa al ordenador. Si está instalado, veremos una serie de mens
 distintas configuraciones internas. 
 
 Grbl recibe instrucciones de G-Code\ref{sec:gcode} a través del puerto serie. Aunque existen una gran 
-cantidad de ellas, solo ha sido necesario utilizar algunas:
+cantidad de ellas, solo ha sido necesario usar algunas:
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|l|l|}
@@ -212,14 +212,13 @@ En el caso concreto de este proyecto, se ha utilizado la configuración mostrada
 
 \newpage
 \section{Integración con ROS 2}
-\noindent TODO En esta sección se detalla el proceso de integración del robot G-Arm en \acs{ROS}, pasando 
-por la creación de la descripción 
+\noindent En esta sección se detalla el proceso de integración del robot G-Arm en \acs{ROS}, pasando 
+por la creación de la descripción, la visualización, la configuración y la simulación. 
 
 \subsection{Descripción del robot}
 \noindent El primer paso en la integración de un robot en el ecosistema ROS, es lograr expresar 
 su forma y funcionamiento de tal manera que pueda ser visualizado, simulado y controlado en el mundo 
-virtual. Esto es conocido como describir un robot. Para este propósito existen diferentes formatos que pueden 
-ser utilizados entre los que destacan URDF y Xacro.
+virtual. Esto es conocido como describir un robot y para ello existen diferentes formatos entre los que destacan URDF y Xacro.
 
 \subsubsection{Creación del paquete de descripción}
 \noindent Para crear el paquete, se ha seguido el siguiente
@@ -234,7 +233,7 @@ ser utilizados entre los que destacan URDF y Xacro.
     \end{verbatim} 
         
     \item Añadimos al fichero \textit{package.xml}: 
-        \lstset{
+    \lstset{
         language=XML, % Establece el lenguaje como XML
         basicstyle=\ttfamily, % Fuente monoespaciada
         keywordstyle=\bfseries\color{blue}, % Estilo de las palabras clave
@@ -281,19 +280,172 @@ en cuanto a su tipo, recorrido y posición. Además de esto, un archivo URDF
 también puede incluir información sobre la masa y la inercia de los eslabones, así como 
 como texturas y modelos 3D.
 
-Este formato se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma 
-estructurada y legible. 
+\begin{figure} [ht!]
+    \begin{center}
+        \includegraphics[width=11cm]{figs/urdf.png}
+    \end{center}
+    \caption{Elementos del formato URDF\footnote{\url{http://library.isr.ist.utl.pt/docs/roswiki/urdf\%282f\%29XML\%282f\%29Joint.html}}}
+\label{fig:urdf}
+\end{figure}
 
-que es xacro?
-
-Para que el modelo del robot sea lo más visual y realista posible, se ha optado por utilizar las propias geometrías del diseño 3D realizadas
-en el capítulo anterior. Para poder utilizarlas en URDF, es necesario exportar las piezas al formato \textit{Collada} (.dae). Este formato 
+\newpage
+Con el objetivo de que la descripción del robot sea lo más realista posible, se han empleado las propias geometrías del diseño \acs{CAD} del 
+capítulo anterior. Para poder incluirlas en el URDF, es necesario exportar las piezas al formato \textit{Collada} (.dae). Este formato 
 contiene información acerca de la geometría, posición, tamaño y colores, de la pieza en cuestión.
 \\
 Además del aspecto visual, hay que definir el volumen físico que ocupan en el espacio. Las mallas de colisión son la representación 
 geométrica simplificada utilizada para calcular interacciones físicas y detectar colisiones en simulaciones. En este caso se va a utilizar 
 un formato muy liviano de malla, el \ac{STL}. Para generar este tipo de mallas, al igual que los ficheros \textit{Collada}, se puede 
-utilizar el propio FreeCAD para exportarlo directamente a este formato.
+utilizar el propio FreeCAD para exportarlo directamente a este formato. 
+
+Tanto los ficheros Collada como los ficheros STL, deben estar en la carpeta \textit{meshes} creada anteriormente. En cambio el fichero 
+URDF debe estar en la carpeta \textit{urdf}.
+
+Este formato se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma 
+estructurada y legible. Por otro lado, Xacro es un lenguaje de macros XML que simplifica la 
+creación de descripciones URDF al permitir la reutilización de código y la parametrización 
+de modelos. Se puede convertir un fichero Xacro a URDF ejecutando el siguiente comando:
+\begin{verbatim}
+    xacro fichero.xacro > fichero.urdf
+\end{verbatim}
+
+En este código se muestra un fragmento de la descripción del robot creado que utiliza todo lo mencionado anteriormente:
+
+\lstset{
+    language=XML, % Establece el lenguaje como XML
+    basicstyle=\ttfamily, % Fuente monoespaciada
+    keywordstyle=\bfseries\color{blue}, % Estilo de las palabras clave
+    commentstyle=\itshape\color{gray}, % Estilo de los comentarios
+    stringstyle=\color{orange}, % Estilo de las cadenas de texto
+    showstringspaces=false, % No mostrar espacios en cadenas de texto
+    breaklines=true, % Dividir líneas largas
+    frame=lines, % Agregar un marco alrededor del código
+    numbers=left, % Mostrar números de línea
+    numberstyle=\tiny\color{gray}, % Estilo de los números de línea
+    captionpos=b % Posición de la leyenda del código (abajo)
+}
+
+\begin{lstlisting}
+<?xml version="1.0"?>
+<robot name="g_arm">
+
+    <!-- Definition of the motors base link -->
+    <link name="motors_link">
+        <visual>
+            <origin rpy="0.0 0.0 0" xyz="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://g_arm_description/meshes/motors.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0.0 0.0 0.0" xyz="0 0 0" />
+            <geometry>
+                <!-- Attention: STL file needs to be scaled down 1000 percent -->
+                <mesh filename="package://g_arm_description/meshes/motors.stl" scale="0.001 0.001 0.001"/> 
+            </geometry>
+        </collision>
+    </link>
+    <!-- Definition of the arm link 1 -->
+    <link name="link1">
+        <visual>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://g_arm_description/meshes/link1.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+            <geometry>
+                <mesh filename="package://g_arm_description/meshes/link1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Definition joint 2 -->
+    <joint name="joint2" type="revolute">
+        <origin xyz="0.035 0.0331 0.055" rpy="1.5708 0 0" />
+        <parent link="motors_link" />
+        <child link="link1" />
+        <axis xyz="0.0 0.0 1.0" />
+        <limit
+            lower="-1.5707"
+            upper="1.5707"
+            effort="200.0"
+            velocity="200.0" />
+    </joint>
+</robot>
+\end{lstlisting}
+
+\subsubsection{Creación de un launcher para visualizar el robot}
+\noindent Para poder visualizar el fichero que hemos creado anteriormente, podemos realizar tal utilizando una herramienta de ROS 
+llamada RViz.
+Creamos un fichero terminado en \textit{.launch.py} en la carpeta \textit{launch} y le añadimos el siguiente contenido:
+
+\begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1]
+import os
+from ament_index_python.packages import get_package_share_path
+
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.conditions import IfCondition, UnlessCondition
+from launch.substitutions import Command, LaunchConfiguration
+
+from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
+
+def generate_launch_description():
+    package_path = get_package_share_path('g_arm_description')
+    default_model_path = os.path.join(package_path, 'urdf', 'robot.urdf.xacro')
+    default_rviz_config_path = os.path.join(package_path, 'rviz', 'urdf.rviz')
+
+    gui_arg = DeclareLaunchArgument(name='gui', default_value='true', choices=['true', 'false'],
+                                    description='Flag to enable joint_state_publisher_gui')
+    model_arg = DeclareLaunchArgument(name='model', default_value=str(default_model_path),
+                                      description='Absolute path to robot urdf file')
+    rviz_arg = DeclareLaunchArgument(name='rvizconfig', default_value=str(default_rviz_config_path),
+                                     description='Absolute path to rviz config file')
+
+    robot_description = ParameterValue(Command(['xacro ', LaunchConfiguration('model')]),
+                                       value_type=str)
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[{'robot_description': robot_description}]
+    )
+
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        condition=UnlessCondition(LaunchConfiguration('gui'))
+    )
+
+    joint_state_publisher_gui_node = Node(
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
+        condition=IfCondition(LaunchConfiguration('gui'))
+    )
+
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', LaunchConfiguration('rvizconfig')],
+    )
+
+    return LaunchDescription([
+        gui_arg,
+        model_arg,
+        rviz_arg,
+        joint_state_publisher_node,
+        joint_state_publisher_gui_node,
+        robot_state_publisher_node,
+        rviz_node
+    ])
+\end{lstlisting}
+
+
 
 \subsection{Integración con MoveIt 2}
 \noindent En esta sección se enumeran y describen los pasos necesarios para, apartir de un paquete de descripción de un robot, generar 
