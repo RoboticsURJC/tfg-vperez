@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.23)  10 JUN 2023 15:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.5.23)  17 JUL 2023 15:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -95,6 +95,9 @@ Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
 )
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -242,16 +245,10 @@ File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
-(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/eurosym\eurosym.sty
-Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
-\@eurobox=\box56
-)
-(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2023-04-22 v7.00x Hypertext links for LaTeX
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/listingsutf8\listingsutf
+8.sty
+Package: listingsutf8 2019-12-10 v1.5 Allow UTF-8 in listings input (HO)
 
-(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.
 sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
@@ -260,11 +257,27 @@ Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.st
 y
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.st
+y
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.st
+y
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+))) (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/eurosym\eurosym.sty
+Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
+\@eurobox=\box56
+) (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2023-04-22 v7.00x Hypertext links for LaTeX
+
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
@@ -272,10 +285,7 @@ Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 eys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.st
-y
-Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-) (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro.
@@ -557,8 +567,174 @@ LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 97.
 LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 99.
 LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 101.
 )
-Package color Info: Redefining color cyan on input line 33.
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/svg\svg.sty
+Package: svg 2020/11/26 v2.02k (include SVG pictures)
 
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrbase.sty
+Package: scrbase 2023/04/24 v3.40 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlfile.sty
+Package: scrlfile 2023/04/24 v3.40 KOMA-Script package (file load hooks)
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlfile-hoo
+k.sty
+Package: scrlfile-hook 2023/04/24 v3.40 KOMA-Script package (using LaTeX hooks)
+
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/koma-script\scrlogo.sty
+Package: scrlogo 2023/04/24 v3.40 KOMA-Script package (logo)
+)))
+Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 368.
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.st
+y
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+) (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/tools\shellesc.sty
+Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
+Package shellesc Info: Restricted shell escape enabled on input line 77.
+)
+\c@svg@param@lastpage=\count320
+\svg@box=\box69
+\c@svg@param@currpage=\count321
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+LaTeX Info: Redefining \color on input line 711.
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
+Package xcolor Info: Model `RGB' extended on input line 1369.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/transparent\transparent.
+sty
+Package: transparent 2022-10-27 v1.5 Transparency with color stacks
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/transparent\transparent-
+nometadata.sty
+Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color
+ stack (HO)
+))
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.s
+ty
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-
+common.tex
+\pgfutil@everybye=\toks33
+\pgfutil@tempdima=\dimen191
+\pgfutil@tempdimb=\dimen192
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-
+latex.def
+\pgfutil@abb=\box70
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.c
+ode.tex
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.
+code.tex
+\pgfkeys@pathtoks=\toks34
+\pgfkeys@temptoks=\toks35
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeysl
+ibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks36
+))
+\pgf@x=\dimen193
+\pgf@y=\dimen194
+\pgf@xa=\dimen195
+\pgf@ya=\dimen196
+\pgf@xb=\dimen197
+\pgf@yb=\dimen198
+\pgf@xc=\dimen199
+\pgf@yc=\dimen256
+\pgf@xd=\dimen257
+\pgf@yd=\dimen258
+\w@pgf@writea=\write3
+\r@pgf@reada=\read3
+\c@pgf@counta=\count322
+\c@pgf@countb=\count323
+\c@pgf@countc=\count324
+\c@pgf@countd=\count325
+\t@pgf@toka=\toks37
+\t@pgf@tokb=\toks38
+\t@pgf@tokc=\toks39
+\pgf@sys@id@count=\count326
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cf
+g
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+-pdftex.def
+File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)))
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+softpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count327
+\pgfsyssoftpath@bigbuffer@items=\count328
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsys
+protocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip71
+\multirow@cntb=\count329
+\multirow@dima=\skip72
+\bigstrutjot=\dimen259
+)
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.sty
+Package: csquotes 2022-09-14 v5.2n context-sensitive quotations (JAW)
+\csq@reset=\count330
+\csq@gtype=\count331
+\csq@glevel=\count332
+\csq@qlevel=\count333
+\csq@maxlvl=\count334
+\csq@tshold=\count335
+\csq@ltx@everypar=\toks40
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.def
+File: csquotes.def 2022-09-14 v5.2n csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/csquotes\csquotes.cfg
+File: csquotes.cfg 
+))
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
@@ -572,7 +748,7 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 Package caption Info: Option `declare type' requires the `newfloat' package on 
-input line 110.
+input line 115.
 
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/newfloat\newfloat.sty
 Package: newfloat 2019/09/02 v1.1l Defining new floating environments (AR)
@@ -586,31 +762,35 @@ chapter .
 Package newfloat Info: \Hy@org@chapter = macro:[#1]#2->\NR@gettitle {#1}\NR@cha
 pter [{#1}]{#2}.
 )
-Package newfloat Info: New float `code' with options `' on input line 110.
-\c@code=\count320
-Package newfloat Info: float type `code'=4 on input line 110.
-\c@locodedepth=\count321
-Package caption Info: New subtype `subcode' on input line 110.
-\c@subcode=\count322
-Package newfloat Info: New float `myequation' with options `' on input line 111
+Package newfloat Info: New float `code' with options `' on input line 115.
+\c@code=\count336
+Package newfloat Info: float type `code'=4 on input line 115.
+\c@locodedepth=\count337
+Package caption Info: New subtype `subcode' on input line 115.
+\c@subcode=\count338
+Package newfloat Info: New float `myequation' with options `' on input line 116
 .
-\c@myequation=\count323
-Package newfloat Info: float type `myequation'=8 on input line 111.
-\c@lomyequationdepth=\count324
-Package caption Info: New subtype `submyequation' on input line 111.
-\c@submyequation=\count325
+\c@myequation=\count339
+Package newfloat Info: float type `myequation'=8 on input line 116.
+\c@lomyequationdepth=\count340
+Package caption Info: New subtype `submyequation' on input line 116.
+\c@submyequation=\count341
 )
-\@indexfile=\write3
-\openout3 = `memoria.idx'.
+\@indexfile=\write4
+\openout4 = `memoria.idx'.
 
 
 Writing index file memoria.idx
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'spanish'.
 
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdft
 ex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count326
-\l__pdf_internal_box=\box69
+\l__color_backend_stack_int=\count342
+\l__pdf_internal_box=\box71
 )
 No file memoria.aux.
 \openout1 = `memoria.aux'.
@@ -673,23 +853,30 @@ LaTeX Info: Redefining \% on input line 5.
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
 i
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count327
-\scratchdimen=\dimen191
-\scratchbox=\box70
-\nofMPsegments=\count328
-\nofMParguments=\count329
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count330
-\MPscratchDim=\dimen192
-\MPnumerator=\count331
-\makeMPintoPDFobject=\count332
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count343
+\scratchdimen=\dimen260
+\scratchbox=\box72
+\nofMPsegments=\count344
+\nofMParguments=\count345
+\everyMPshowfont=\toks41
+\MPscratchCnt=\count346
+\MPscratchDim=\dimen261
+\MPnumerator=\count347
+\makeMPintoPDFobject=\count348
+\everyMPtoPDFconversion=\toks42
 )
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-ba
 se.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cf
 g
@@ -701,10 +888,10 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count333
+\c@lstlisting=\count349
 Package hyperref Info: Link coloring OFF on input line 5.
-\@outlinefile=\write4
-\openout4 = `memoria.out'.
+\@outlinefile=\write5
+\openout5 = `memoria.out'.
 
 
 (C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\trans
@@ -720,7 +907,7 @@ Package newfloat Info: `float' package detected.
 (C:/Users/vidi/Pictures/tfg-vperez/latex\portada/indice.tex
 (C:/Users/vidi/Pictures/tfg-vperez/latex\portada/portada.tex
 LaTeX Info: Redefining \footnote on input line 4.
-<figs/logo_urjc.jpg, id=3, 525.965pt x 210.7875pt>
+<figs/logo_urjc.jpg, id=6, 525.965pt x 210.7875pt>
 File: figs/logo_urjc.jpg Graphic file (type jpg)
 <use figs/logo_urjc.jpg>
 Package pdftex.def Info: figs/logo_urjc.jpg  used on input line 5.
@@ -732,7 +919,7 @@ Package pdftex.def Info: figs/logo_urjc.jpg  used on input line 5.
 /Pictures/tfg-vperez/latex/figs/logo_urjc.jpg>])
 (C:/Users/vidi/Pictures/tfg-vperez/latex\portada/licencia.tex
 LaTeX Info: Redefining \footnote on input line 7.
-<figs/by-nc-sa.png, id=13, 97.0827pt x 33.9669pt>
+<figs/by-nc-sa.png, id=19, 97.0827pt x 33.9669pt>
 File: figs/by-nc-sa.png Graphic file (type png)
 <use figs/by-nc-sa.png>
 Package pdftex.def Info: figs/by-nc-sa.png  used on input line 8.
@@ -940,44 +1127,63 @@ input line 25.
 LaTeX Warning: Hyper reference `acro:AMR' on page \es@scroman {v} undefined on 
 input line 25.
 
-) [5
+
+LaTeX Warning: Hyper reference `acro:BLCD' on page \es@scroman {v} undefined on
+ input line 26.
 
 
-]
+LaTeX Warning: Hyper reference `acro:BLCD' on page \es@scroman {v} undefined on
+ input line 26.
+
+
+LaTeX Warning: Hyper reference `acro:STL' on page \es@scroman {v} undefined on 
+input line 27.
+
+
+LaTeX Warning: Hyper reference `acro:STL' on page \es@scroman {v} undefined on 
+input line 27.
+
+[5
+
+
+])
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+ [6]
 No file memoria.toc.
-\tf@toc=\write5
-\openout5 = `memoria.toc'.
+\tf@toc=\write6
+\openout6 = `memoria.toc'.
 
-[6
+[7
 
 
 ]
 No file memoria.lof.
-\tf@lof=\write6
-\openout6 = `memoria.lof'.
-
-[7
-
-]
-No file memoria.locode.
-\tf@locode=\write7
-\openout7 = `memoria.locode'.
+\tf@lof=\write7
+\openout7 = `memoria.lof'.
 
 [8
 
 ]
-No file memoria.lomyequation.
-\tf@lomyequation=\write8
-\openout8 = `memoria.lomyequation'.
+No file memoria.locode.
+\tf@locode=\write8
+\openout8 = `memoria.locode'.
 
 [9
 
 ]
-No file memoria.lot.
-\tf@lot=\write9
-\openout9 = `memoria.lot'.
+No file memoria.lomyequation.
+\tf@lomyequation=\write9
+\openout9 = `memoria.lomyequation'.
 
 [10
+
+]
+No file memoria.lot.
+\tf@lot=\write10
+\openout10 = `memoria.lot'.
+
+[11
 
 ]) (C:/Users/vidi/Pictures/tfg-vperez/latex\capitulos/capitulo1.tex
 Cap\'{\i }tulo 1.
@@ -1005,253 +1211,1042 @@ File: OMXyhex.fd
 File: OMXyhex.fd 2013/07/03 v1.1 YH's humble contribution to TeX maths (NP)
 )
 
-LaTeX Warning: Reference `fig:unimate' on page 1 undefined on input line 21.
+LaTeX Warning: Reference `fig:unimate' on page 1 undefined on input line 22.
 
-LaTeX Info: Redefining \footnote on input line 24.
-<figs/unimate.jpg, id=85, 662.475pt x 455.7025pt>
+LaTeX Info: Redefining \footnote on input line 25.
+<figs/unimate.jpg, id=99, 662.475pt x 455.7025pt>
 File: figs/unimate.jpg Graphic file (type jpg)
 <use figs/unimate.jpg>
-Package pdftex.def Info: figs/unimate.jpg  used on input line 26.
+Package pdftex.def Info: figs/unimate.jpg  used on input line 27.
 (pdftex.def)             Requested size: 199.16928pt x 137.00385pt.
 
-LaTeX Warning: Reference `fig:shakey' on page 1 undefined on input line 33.
+LaTeX Warning: Reference `fig:shakey' on page 1 undefined on input line 34.
 
-LaTeX Info: Redefining \footnote on input line 35.
-<figs/shakey.jpg, id=86, 574.39594pt x 770.88pt>
+LaTeX Info: Redefining \footnote on input line 36.
+<figs/shakey.jpg, id=100, 574.39594pt x 770.88pt>
 File: figs/shakey.jpg Graphic file (type jpg)
 <use figs/shakey.jpg>
-Package pdftex.def Info: figs/shakey.jpg  used on input line 37.
+Package pdftex.def Info: figs/shakey.jpg  used on input line 38.
 (pdftex.def)             Requested size: 199.16928pt x 267.29483pt.
-
-Underfull \hbox (badness 1527) in paragraph at lines 16--51
-\OT1/cmr/m/n/12 En las d^^Secadas posteriores, se produjeron numerosos avances 
-en rob^^Sotica. Se
- []
-
 [1
 
 
 
  <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/unimate.jpg>]
-LaTeX Info: Redefining \. on input line 51.
-LaTeX Info: Redefining \% on input line 51.
+LaTeX Info: Redefining \. on input line 52.
+LaTeX Info: Redefining \% on input line 52.
  [2 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/shakey.jpg>]
-LaTeX Info: Redefining \footnote on input line 63.
-<figs/rover.jpg, id=100, 913.4125pt x 730.73pt>
+LaTeX Info: Redefining \footnote on input line 65.
+<figs/rover.jpg, id=114, 913.4125pt x 730.73pt>
 File: figs/rover.jpg Graphic file (type jpg)
 <use figs/rover.jpg>
-Package pdftex.def Info: figs/rover.jpg  used on input line 65.
+Package pdftex.def Info: figs/rover.jpg  used on input line 67.
 (pdftex.def)             Requested size: 110.25443pt x 88.19672pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 65--65
-[]\OT1/cmr/m/n/12 (a) NASA
+Underfull \hbox (badness 10000) in paragraph at lines 67--67
+[]\T1/cmr/m/n/12 (a) NASA
  []
 
-<figs/tractor.jpg, id=101, 1975.38pt x 1274.7625pt>
+<figs/tractor.jpg, id=115, 1975.38pt x 1274.7625pt>
 File: figs/tractor.jpg Graphic file (type jpg)
 <use figs/tractor.jpg>
-Package pdftex.def Info: figs/tractor.jpg  used on input line 67.
+Package pdftex.def Info: figs/tractor.jpg  used on input line 69.
 (pdftex.def)             Requested size: 110.25443pt x 71.13335pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--67
-[]\OT1/cmr/m/n/12 (b) Tractor
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+[]\T1/cmr/m/n/12 (b) Tractor
  []
 
-<figs/drone.jpg, id=102, 803.0pt x 534.99875pt>
+<figs/drone.jpg, id=116, 803.0pt x 534.99875pt>
 File: figs/drone.jpg Graphic file (type jpg)
 <use figs/drone.jpg>
-Package pdftex.def Info: figs/drone.jpg  used on input line 69.
+Package pdftex.def Info: figs/drone.jpg  used on input line 71.
 (pdftex.def)             Requested size: 110.25443pt x 73.45438pt.
-<figs/rov.jpg, id=103, 1606.0pt x 1122.1925pt>
+<figs/rov.jpg, id=117, 1606.0pt x 1122.1925pt>
 File: figs/rov.jpg Graphic file (type jpg)
 <use figs/rov.jpg>
-Package pdftex.def Info: figs/rov.jpg  used on input line 71.
+Package pdftex.def Info: figs/rov.jpg  used on input line 73.
 (pdftex.def)             Requested size: 110.25443pt x 77.03752pt.
-<figs/spot.png, id=104, 499.8675pt x 458.46281pt>
+<figs/spot.png, id=118, 499.8675pt x 458.46281pt>
 File: figs/spot.png Graphic file (type png)
 <use figs/spot.png>
-Package pdftex.def Info: figs/spot.png  used on input line 73.
+Package pdftex.def Info: figs/spot.png  used on input line 75.
 (pdftex.def)             Requested size: 110.25443pt x 101.12096pt.
-<figs/waymo.jpg, id=105, 1027.84pt x 628.3475pt>
+<figs/waymo.jpg, id=119, 1027.84pt x 628.3475pt>
 File: figs/waymo.jpg Graphic file (type jpg)
 <use figs/waymo.jpg>
-Package pdftex.def Info: figs/waymo.jpg  used on input line 75.
+Package pdftex.def Info: figs/waymo.jpg  used on input line 77.
 (pdftex.def)             Requested size: 110.25443pt x 67.39262pt.
-LaTeX Info: Redefining \. on input line 84.
-LaTeX Info: Redefining \% on input line 84.
+LaTeX Info: Redefining \. on input line 86.
+LaTeX Info: Redefining \% on input line 86.
 [3 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/rover.jpg> <C:/Users/vidi/Pict
 ures/tfg-vperez/latex/figs/tractor.jpg> <C:/Users/vidi/Pictures/tfg-vperez/late
 x/figs/drone.jpg (PNG copy)> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/rov.
 jpg> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/spot.png> <C:/Users/vidi/Pic
 tures/tfg-vperez/latex/figs/waymo.jpg>]
-LaTeX Info: Redefining \footnote on input line 85.
-<figs/roomba.jpg, id=121, 1967.35pt x 1475.5125pt>
+LaTeX Info: Redefining \footnote on input line 87.
+<figs/roomba.jpg, id=134, 1967.35pt x 1475.5125pt>
 File: figs/roomba.jpg Graphic file (type jpg)
 <use figs/roomba.jpg>
-Package pdftex.def Info: figs/roomba.jpg  used on input line 87.
+Package pdftex.def Info: figs/roomba.jpg  used on input line 89.
 (pdftex.def)             Requested size: 110.25443pt x 82.67316pt.
-<figs/roombaAgua.jpg, id=122, 752.0597pt x 612.03656pt>
+<figs/roombaAgua.jpg, id=135, 752.0597pt x 612.03656pt>
 File: figs/roombaAgua.jpg Graphic file (type jpg)
 <use figs/roombaAgua.jpg>
-Package pdftex.def Info: figs/roombaAgua.jpg  used on input line 89.
+Package pdftex.def Info: figs/roombaAgua.jpg  used on input line 91.
 (pdftex.def)             Requested size: 110.25443pt x 89.71893pt.
-<figs/hobot.jpg, id=123, 1606.0pt x 1218.5525pt>
+<figs/hobot.jpg, id=136, 1606.0pt x 1218.5525pt>
 File: figs/hobot.jpg Graphic file (type jpg)
 <use figs/hobot.jpg>
-Package pdftex.def Info: figs/hobot.jpg  used on input line 91.
+Package pdftex.def Info: figs/hobot.jpg  used on input line 93.
 (pdftex.def)             Requested size: 110.25443pt x 83.65256pt.
-LaTeX Info: Redefining \footnote on input line 101.
-<figs/aibo.jpeg, id=124, 1244.65pt x 933.4875pt>
+LaTeX Info: Redefining \footnote on input line 103.
+<figs/aibo.jpeg, id=137, 1244.65pt x 933.4875pt>
 File: figs/aibo.jpeg Graphic file (type jpg)
 <use figs/aibo.jpeg>
-Package pdftex.def Info: figs/aibo.jpeg  used on input line 103.
+Package pdftex.def Info: figs/aibo.jpeg  used on input line 105.
 (pdftex.def)             Requested size: 123.48442pt x 92.61353pt.
-<figs/paro.jpeg, id=125, 2409.0pt x 1264.725pt>
+<figs/paro.jpeg, id=138, 2409.0pt x 1264.725pt>
 File: figs/paro.jpeg Graphic file (type jpg)
 <use figs/paro.jpeg>
-Package pdftex.def Info: figs/paro.jpeg  used on input line 105.
+Package pdftex.def Info: figs/paro.jpeg  used on input line 107.
 (pdftex.def)             Requested size: 176.40439pt x 92.6117pt.
 
-Underfull \hbox (badness 1527) in paragraph at lines 96--108
-\OT1/cmr/m/n/12 y compa~n^^S^^Pa a las personas. Estos robots est^^San equipado
-s con capacidades y
+Underfull \hbox (badness 1533) in paragraph at lines 98--110
+\T1/cmr/m/n/12 y compañía a las personas. Estos robots están equipados con capa
+cidades y
  []
 
 
-LaTeX Warning: Reference `fig:davinci' on page 4 undefined on input line 111.
+LaTeX Warning: Reference `fig:davinci' on page 4 undefined on input line 113.
 
 
 LaTeX Warning: Reference `fig:rehabilitacion' on page 4 undefined on input line
- 111.
+ 113.
 
 
 LaTeX Warning: Reference `fig:trasferencia' on page 4 undefined on input line 1
-11.
+13.
 
-LaTeX Info: Redefining \. on input line 112.
-LaTeX Info: Redefining \% on input line 112.
+LaTeX Info: Redefining \. on input line 114.
+LaTeX Info: Redefining \% on input line 114.
 [4 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/roomba.jpg> <C:/Users/vidi/Pic
 tures/tfg-vperez/latex/figs/roombaAgua.jpg> <C:/Users/vidi/Pictures/tfg-vperez/
 latex/figs/hobot.jpg> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/aibo.jpeg> 
 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/paro.jpeg>]
-LaTeX Info: Redefining \footnote on input line 113.
-<figs/davinci.jpg, id=140, 602.25pt x 389.20406pt>
+LaTeX Info: Redefining \footnote on input line 115.
+<figs/davinci.jpg, id=153, 602.25pt x 389.20406pt>
 File: figs/davinci.jpg Graphic file (type jpg)
 <use figs/davinci.jpg>
-Package pdftex.def Info: figs/davinci.jpg  used on input line 115.
+Package pdftex.def Info: figs/davinci.jpg  used on input line 117.
 (pdftex.def)             Requested size: 154.35889pt x 99.75348pt.
-<figs/rehabilitacion.jpg, id=141, 1368.11125pt x 950.55125pt>
+<figs/rehabilitacion.jpg, id=154, 1368.11125pt x 950.55125pt>
 File: figs/rehabilitacion.jpg Graphic file (type jpg)
 <use figs/rehabilitacion.jpg>
-Package pdftex.def Info: figs/rehabilitacion.jpg  used on input line 117.
+Package pdftex.def Info: figs/rehabilitacion.jpg  used on input line 119.
 (pdftex.def)             Requested size: 154.35889pt x 107.24423pt.
-<figs/trasferencia.jpg, id=142, 1459.4525pt x 1204.5pt>
+<figs/trasferencia.jpg, id=155, 1459.4525pt x 1204.5pt>
 File: figs/trasferencia.jpg Graphic file (type jpg)
 <use figs/trasferencia.jpg>
-Package pdftex.def Info: figs/trasferencia.jpg  used on input line 119.
+Package pdftex.def Info: figs/trasferencia.jpg  used on input line 121.
 (pdftex.def)             Requested size: 154.35889pt x 127.386pt.
 Package acronym Info: Label `acro:AGV' newly defined as it shall be overridden
-although it is yet undefined on input line 129.
-
-
-Package acronym Warning: Acronym `AGV' is not defined on input line 129.
-
-
-Package acronym Warning: Acronym `AGV' is not defined on input line 129.
-
-Package acronym Info: Label `acro:AMR' newly defined as it shall be overridden
 although it is yet undefined on input line 131.
-
-Package acronym Warning: Acronym `AMR' is not defined on input line 131.
-
-
-Package acronym Warning: Acronym `AMR' is not defined on input line 131.
 
 
 Package acronym Warning: Acronym `AGV' is not defined on input line 131.
 
-LaTeX Info: Redefining \. on input line 134.
-LaTeX Info: Redefining \% on input line 134.
+
+Package acronym Warning: Acronym `AGV' is not defined on input line 131.
+
+Package acronym Info: Label `acro:AMR' newly defined as it shall be overridden
+although it is yet undefined on input line 133.
+
+Package acronym Warning: Acronym `AMR' is not defined on input line 133.
+
+
+Package acronym Warning: Acronym `AMR' is not defined on input line 133.
+
+
+Package acronym Warning: Acronym `AGV' is not defined on input line 133.
+
+LaTeX Info: Redefining \. on input line 136.
+LaTeX Info: Redefining \% on input line 136.
 [5 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/davinci.jpg> <C:/Users/vidi/Pi
 ctures/tfg-vperez/latex/figs/rehabilitacion.jpg> <C:/Users/vidi/Pictures/tfg-vp
 erez/latex/figs/trasferencia.jpg>]
-LaTeX Info: Redefining \footnote on input line 136.
-<figs/agv.jpg, id=155, 173.448pt x 84.315pt>
+LaTeX Info: Redefining \footnote on input line 138.
+<figs/agv.jpg, id=168, 173.448pt x 84.315pt>
 File: figs/agv.jpg Graphic file (type jpg)
 <use figs/agv.jpg>
-Package pdftex.def Info: figs/agv.jpg  used on input line 138.
+Package pdftex.def Info: figs/agv.jpg  used on input line 140.
 (pdftex.def)             Requested size: 176.40439pt x 85.75697pt.
-<figs/amr.jpg, id=157, 1712.3975pt x 963.6pt>
+<figs/amr.jpg, id=170, 1712.3975pt x 963.6pt>
 File: figs/amr.jpg Graphic file (type jpg)
 <use figs/amr.jpg>
-Package pdftex.def Info: figs/amr.jpg  used on input line 140.
+Package pdftex.def Info: figs/amr.jpg  used on input line 142.
 (pdftex.def)             Requested size: 176.40439pt x 99.26219pt.
-LaTeX Info: Redefining \footnote on input line 147.
-<figs/reparto.jpg, id=159, 1204.5pt x 677.53125pt>
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
+44.
+
+(C:\Users\vidi\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
+)
+LaTeX Info: Redefining \footnote on input line 149.
+<figs/reparto.jpg, id=172, 1204.5pt x 677.53125pt>
 File: figs/reparto.jpg Graphic file (type jpg)
 <use figs/reparto.jpg>
-Package pdftex.def Info: figs/reparto.jpg  used on input line 149.
+Package pdftex.def Info: figs/reparto.jpg  used on input line 151.
 (pdftex.def)             Requested size: 227.62204pt x 128.02927pt.
-LaTeX Info: Redefining \. on input line 155.
-LaTeX Info: Redefining \% on input line 155.
+LaTeX Info: Redefining \. on input line 157.
+LaTeX Info: Redefining \% on input line 157.
  [6 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/agv.jpg> <C:/Users/vidi/Pictu
 res/tfg-vperez/latex/figs/amr.jpg (PNG copy)> <C:/Users/vidi/Pictures/tfg-vpere
 z/latex/figs/reparto.jpg>]
-Underfull \hbox (badness 3271) in paragraph at lines 158--162
-[]\OT1/cmr/m/n/12 Se entiende por robot industrial a una m^^Saquina automatizad
-a dise~nada
+Underfull \hbox (badness 3291) in paragraph at lines 160--164
+[]\T1/cmr/m/n/12 Se entiende por robot industrial a una máquina automatizada di
+señada
  []
 
 
-Package acronym Warning: Acronym `SCARA' is not defined on input line 164.
+Package acronym Warning: Acronym `SCARA' is not defined on input line 166.
 
-LaTeX Info: Redefining \footnote on input line 167.
-<figs/fanuc.jpg, id=172, 602.25pt x 581.92406pt>
+LaTeX Info: Redefining \footnote on input line 169.
+<figs/fanuc.jpg, id=185, 602.25pt x 581.92406pt>
 File: figs/fanuc.jpg Graphic file (type jpg)
 <use figs/fanuc.jpg>
-Package pdftex.def Info: figs/fanuc.jpg  used on input line 169.
+Package pdftex.def Info: figs/fanuc.jpg  used on input line 171.
 (pdftex.def)             Requested size: 132.30666pt x 127.83722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
-[]\OT1/cmr/m/n/12 (a) Ensamblado de
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
+[]\T1/cmr/m/n/12 (a) Ensamblado de
  []
 
-<figs/fanuc_spacio.jpg, id=173, 1606.0pt x 1606.0pt>
+<figs/fanuc_spacio.jpg, id=186, 1606.0pt x 1606.0pt>
 File: figs/fanuc_spacio.jpg Graphic file (type jpg)
 <use figs/fanuc_spacio.jpg>
-Package pdftex.def Info: figs/fanuc_spacio.jpg  used on input line 171.
+Package pdftex.def Info: figs/fanuc_spacio.jpg  used on input line 173.
 (pdftex.def)             Requested size: 176.40439pt x 176.39098pt.
 
-Underfull \hbox (badness 1237) in paragraph at lines 164--174
-[]\OT1/cmr/m/n/12 Los robots de tipo [][] se caracterizan por la disposici^^Son
- de sus 4
+Underfull \hbox (badness 1242) in paragraph at lines 166--176
+[]\T1/cmr/m/n/12 Los robots de tipo [][] se caracterizan por la disposición de 
+sus 4
  []
 
-LaTeX Info: Redefining \footnote on input line 178.
-<figs/kuka_articulado.jpg, id=176, 2633.84pt x 1836.8625pt>
+LaTeX Info: Redefining \. on input line 176.
+LaTeX Info: Redefining \% on input line 176.
+[7 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/fanuc.jpg> <C:/Users/vidi/Pict
+ures/tfg-vperez/latex/figs/fanuc_spacio.jpg>]
+LaTeX Info: Redefining \footnote on input line 180.
+<figs/kuka_articulado.jpg, id=199, 2633.84pt x 1836.8625pt>
 File: figs/kuka_articulado.jpg Graphic file (type jpg)
 <use figs/kuka_articulado.jpg>
-Package pdftex.def Info: figs/kuka_articulado.jpg  used on input line 180.
-(pdftex.def)             Requested size: 132.30666pt x 92.26892pt.
-File: figs/fanuc_spacio.jpg Graphic file (type jpg)
-<use figs/fanuc_spacio.jpg>
-Package pdftex.def Info: figs/fanuc_spacio.jpg  used on input line 182.
-(pdftex.def)             Requested size: 176.40439pt x 176.39098pt.
-! TeX capacity exceeded, sorry [input stack size=10000].
-\caption@ifstrut #1#2->#1
-                         
-l.184 \end
-          {figure}
-If you really absolutely need more capacity,
-you can ask a wizard to enlarge me.
+Package pdftex.def Info: figs/kuka_articulado.jpg  used on input line 182.
+(pdftex.def)             Requested size: 176.40439pt x 123.01588pt.
+<figs/irb.jpg, id=201, 564.60938pt x 389.20406pt>
+File: figs/irb.jpg Graphic file (type jpg)
+<use figs/irb.jpg>
+Package pdftex.def Info: figs/irb.jpg  used on input line 184.
+(pdftex.def)             Requested size: 176.40439pt x 121.6022pt.
+LaTeX Info: Redefining \footnote on input line 193.
+<figs/delta_flex_picker.png, id=205, 4401.69469pt x 2934.46312pt>
+File: figs/delta_flex_picker.png Graphic file (type png)
+<use figs/delta_flex_picker.png>
+Package pdftex.def Info: figs/delta_flex_picker.png  used on input line 195.
+(pdftex.def)             Requested size: 176.40439pt x 117.58241pt.
+<figs/m_410.jpg, id=206, 496.10344pt x 422.32782pt>
+File: figs/m_410.jpg Graphic file (type jpg)
+<use figs/m_410.jpg>
+Package pdftex.def Info: figs/m_410.jpg  used on input line 197.
+(pdftex.def)             Requested size: 176.40439pt x 150.16908pt.
+LaTeX Info: Redefining \. on input line 201.
+LaTeX Info: Redefining \% on input line 201.
+ [8
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.4})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.201 \newpage
+               <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/kuka_articulado.jp
+g> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/irb.jpg> <C:/Users/vidi/Pictur
+es/tfg-vperez/latex/figs/delta_flex_picker.png> <C:/Users/vidi/Pictures/tfg-vpe
+rez/latex/figs/m_410.jpg>]
+LaTeX Info: Redefining \footnote on input line 206.
+<figs/pnp.jpg, id=223, 555.0336pt x 416.2752pt>
+File: figs/pnp.jpg Graphic file (type jpg)
+<use figs/pnp.jpg>
+Package pdftex.def Info: figs/pnp.jpg  used on input line 208.
+(pdftex.def)             Requested size: 176.40439pt x 132.30247pt.
+<figs/cnc.jpg, id=225, 813.0375pt x 526.21594pt>
+File: figs/cnc.jpg Graphic file (type jpg)
+<use figs/cnc.jpg>
+Package pdftex.def Info: figs/cnc.jpg  used on input line 210.
+(pdftex.def)             Requested size: 176.40439pt x 114.17001pt.
+LaTeX Info: Redefining \. on input line 218.
+LaTeX Info: Redefining \% on input line 218.
+ [9
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.6})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.218 \newpage
+               <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/pnp.jpg> <C:/Users
+/vidi/Pictures/tfg-vperez/latex/figs/cnc.jpg>]
+Package acronym Info: Label `acro:STEM' newly defined as it shall be overridden
+
+although it is yet undefined on input line 225.
+
+
+Package acronym Warning: Acronym `STEM' is not defined on input line 225.
+
+
+Package acronym Warning: Acronym `STEM' is not defined on input line 225.
+
+LaTeX Info: Redefining \footnote on input line 228.
+<figs/robots_instituto.jpg, id=240, 1204.5pt x 903.375pt>
+File: figs/robots_instituto.jpg Graphic file (type jpg)
+<use figs/robots_instituto.jpg>
+Package pdftex.def Info: figs/robots_instituto.jpg  used on input line 230.
+(pdftex.def)             Requested size: 176.40439pt x 132.30243pt.
+<figs/robot_batalla_instituto.jpg, id=242, 1716.4125pt x 963.6pt>
+File: figs/robot_batalla_instituto.jpg Graphic file (type jpg)
+<use figs/robot_batalla_instituto.jpg>
+Package pdftex.def Info: figs/robot_batalla_instituto.jpg  used on input line 2
+32.
+(pdftex.def)             Requested size: 220.50887pt x 123.78735pt.
+LaTeX Info: Redefining \. on input line 236.
+LaTeX Info: Redefining \% on input line 236.
+[10
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.8})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 \newpage
+               <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/robots_instituto.j
+pg (PNG copy)> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/robot_batalla_inst
+ituto.jpg>]
+
+LaTeX Warning: Reference `fig:robots_universidades' on page 11 undefined on inp
+ut line 240.
+
+LaTeX Info: Redefining \footnote on input line 243.
+<figs/turtlebot.jpg, id=260, 476.982pt x 480.997pt>
+File: figs/turtlebot.jpg Graphic file (type jpg)
+<use figs/turtlebot.jpg>
+Package pdftex.def Info: figs/turtlebot.jpg  used on input line 245.
+(pdftex.def)             Requested size: 123.48442pt x 124.52048pt.
+<figs/dobot.png, id=262, 5061.7908pt x 3494.9772pt>
+File: figs/dobot.png Graphic file (type png)
+<use figs/dobot.png>
+Package pdftex.def Info: figs/dobot.png  used on input line 247.
+(pdftex.def)             Requested size: 158.76665pt x 109.59106pt.
+<figs/UR3e.jpg, id=264, 1003.75pt x 1003.75pt>
+File: figs/UR3e.jpg Graphic file (type jpg)
+<use figs/UR3e.jpg>
+Package pdftex.def Info: figs/UR3e.jpg  used on input line 248.
+(pdftex.def)             Requested size: 119.07666pt x 119.06636pt.
+LaTeX Info: Redefining \. on input line 257.
+LaTeX Info: Redefining \% on input line 257.
+[11
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.11}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.257 \newpage
+              
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.11}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.257 \newpage
+               <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/turtlebot.jpg> <C:
+/Users/vidi/Pictures/tfg-vperez/latex/figs/dobot.png> <C:/Users/vidi/Pictures/t
+fg-vperez/latex/figs/UR3e.jpg>]
+Package acronym Info: Label `acro:DIY' newly defined as it shall be overridden
+although it is yet undefined on input line 271.
+
+
+Package acronym Warning: Acronym `DIY' is not defined on input line 271.
+
+
+Package acronym Warning: Acronym `DIY' is not defined on input line 271.
+
+
+Package acronym Warning: Acronym `DIY' is not defined on input line 275.
+
+LaTeX Info: Redefining \footnote on input line 278.
+<figs/OSTR.jpg, id=282, 192.72pt x 192.72pt>
+File: figs/OSTR.jpg Graphic file (type jpg)
+<use figs/OSTR.jpg>
+Package pdftex.def Info: figs/OSTR.jpg  used on input line 280.
+(pdftex.def)             Requested size: 154.35889pt x 154.3585pt.
+<figs/diyroboticsarm.png, id=284, 192.72pt x 192.72pt>
+File: figs/diyroboticsarm.png Graphic file (type png)
+<use figs/diyroboticsarm.png>
+Package pdftex.def Info: figs/diyroboticsarm.png  used on input line 282.
+(pdftex.def)             Requested size: 154.35889pt x 154.3585pt.
+) (C:/Users/vidi/Pictures/tfg-vperez/latex\capitulos/capitulo2.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [12
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.13}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \chapter
+            {Estado del arte} <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/OST
+R.jpg> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/diyroboticsarm.png>]
+Cap\'{\i }tulo 2.
+
+LaTeX Warning: Citation `KRIMPENIS2020103' on page 13 undefined on input line 8
+.
+
+Package acronym Info: Label `acro:DOF' newly defined as it shall be overridden
+although it is yet undefined on input line 9.
+
+Package acronym Warning: Acronym `DOF' is not defined on input line 9.
+
+
+Package acronym Warning: Acronym `DOF' is not defined on input line 9.
+
+
+LaTeX Warning: Citation `PAPAPASCHOS2020109' on page 13 undefined on input line
+ 11.
+
+LaTeX Info: Redefining \footnote on input line 13.
+<figs/Hydra.png, id=301, 1718.42pt x 1780.6525pt>
+File: figs/Hydra.png Graphic file (type png)
+<use figs/Hydra.png>
+Package pdftex.def Info: figs/Hydra.png  used on input line 15.
+(pdftex.def)             Requested size: 170.71652pt x 176.88017pt.
+[13
+
+ <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/Hydra.png>]
+Package acronym Info: Label `acro:ROS' newly defined as it shall be overridden
+although it is yet undefined on input line 33.
+
+
+Package acronym Warning: Acronym `ROS' is not defined on input line 33.
+
+
+Package acronym Warning: Acronym `ROS' is not defined on input line 33.
+
+
+LaTeX Warning: Reference `subsec:ros2' on page 14 undefined on input line 33.
+
+LaTeX Info: Redefining \. on input line 40.
+LaTeX Info: Redefining \% on input line 40.
+[14]
+
+LaTeX Warning: Citation `adediran2023uiarm' on page 15 undefined on input line 
+41.
+
+
+Package acronym Warning: Acronym `DOF' is not defined on input line 43.
+
+LaTeX Info: Redefining \footnote on input line 44.
+<figs/uiarm.png, id=322, 1543.7675pt x 1152.305pt>
+File: figs/uiarm.png Graphic file (type png)
+<use figs/uiarm.png>
+Package pdftex.def Info: figs/uiarm.png  used on input line 46.
+(pdftex.def)             Requested size: 227.62204pt x 169.90198pt.
+
+LaTeX Warning: Reference `subsec:freecad' on page 15 undefined on input line 54
+.
+
+
+LaTeX Warning: Citation `KRIMPENIS2020103' on page 15 undefined on input line 5
+5.
+
+LaTeX Info: Redefining \. on input line 67.
+LaTeX Info: Redefining \% on input line 67.
+[15 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/uiarm.png>]
+
+Package acronym Warning: Acronym `ROS' is not defined on input line 67.
+
+LaTeX Info: Redefining \footnote on input line 79.
+<figs/niryo.png, id=333, 1166.3575pt x 543.02875pt>
+File: figs/niryo.png Graphic file (type png)
+<use figs/niryo.png>
+Package pdftex.def Info: figs/niryo.png  used on input line 81.
+(pdftex.def)             Requested size: 312.9803pt x 145.71654pt.
+LaTeX Info: Redefining \. on input line 86.
+LaTeX Info: Redefining \% on input line 86.
+[16 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/niryo.png>]
+LaTeX Info: Redefining \. on input line 107.
+LaTeX Info: Redefining \% on input line 107.
+ [17]
+LaTeX Info: Redefining \footnote on input line 117.
+<figs/mearm.jpg, id=358, 702.625pt x 702.625pt>
+File: figs/mearm.jpg Graphic file (type jpg)
+<use figs/mearm.jpg>
+Package pdftex.def Info: figs/mearm.jpg  used on input line 119.
+(pdftex.def)             Requested size: 132.30666pt x 132.29936pt.
+<figs/eezy.jpg, id=359, 630.355pt x 473.77pt>
+File: figs/eezy.jpg Graphic file (type jpg)
+<use figs/eezy.jpg>
+Package pdftex.def Info: figs/eezy.jpg  used on input line 121.
+(pdftex.def)             Requested size: 132.30666pt x 99.4368pt.
+LaTeX Info: Redefining \. on input line 134.
+LaTeX Info: Redefining \% on input line 134.
+ [18 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/mearm.jpg> <C:/Users/vidi/Pi
+ctures/tfg-vperez/latex/figs/eezy.jpg>])
+(C:/Users/vidi/Pictures/tfg-vperez/latex\capitulos/capitulo3.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [19]
+Cap\'{\i }tulo 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+[20
+
+]
+Underfull \hbox (badness 1014) in paragraph at lines 37--39
+[]\T1/cmr/m/n/12 Realizar una investigación exhaustiva sobre los componentes de
+ hardware
+ []
+
+
+Package acronym Warning: Acronym `CAD' is not defined on input line 40.
+
+
+Package acronym Warning: Acronym `ROS' is not defined on input line 46.
+
+
+Package acronym Warning: Acronym `ROS' is not defined on input line 61.
+
+LaTeX Info: Redefining \. on input line 76.
+LaTeX Info: Redefining \% on input line 76.
+[21]
+
+LaTeX Warning: Reference `subsec:freecad' on page 22 undefined on input line 97
+.
+
+
+Underfull \hbox (badness 1742) in paragraph at lines 94--99
+[]\T1/cmr/m/it/12 Diseño CAD\T1/cmr/m/n/12 . Tras haber definido el concepto y 
+haber seleccionado los
+ []
+
+LaTeX Info: Redefining \. on input line 99.
+LaTeX Info: Redefining \% on input line 99.
+[22]
+
+Package acronym Warning: Acronym `FDM' is not defined on input line 101.
+
+) (C:/Users/vidi/Pictures/tfg-vperez/latex\capitulos/capitulo4.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [23]
+Cap\'{\i }tulo 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+[24
+
+]
+
+Package acronym Warning: Acronym `CNC' is not defined on input line 36.
+
+
+Package acronym Warning: Acronym `CNC' is not defined on input line 37.
+
+LaTeX Info: Redefining \footnote on input line 42.
+<figs/grbl.png, id=433, 385.44pt x 288.3272pt>
+File: figs/grbl.png Graphic file (type png)
+<use figs/grbl.png>
+Package pdftex.def Info: figs/grbl.png  used on input line 44.
+(pdftex.def)             Requested size: 113.81102pt x 85.13496pt.
+Package acronym Info: Label `acro:CNC' newly defined as it shall be overridden
+although it is yet undefined on input line 51.
+
+Package acronym Warning: Acronym `CNC' is not defined on input line 51.
+
+
+Package acronym Warning: Acronym `CNC' is not defined on input line 51.
+
+Package acronym Info: Label `acro:CAM' newly defined as it shall be overridden
+although it is yet undefined on input line 52.
+
+Package acronym Warning: Acronym `CAM' is not defined on input line 52.
+
+
+Package acronym Warning: Acronym `CAM' is not defined on input line 52.
+
+LaTeX Info: Redefining \. on input line 57.
+LaTeX Info: Redefining \% on input line 57.
+[25 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/grbl.png>]
+LaTeX Info: Redefining \footnote on input line 83.
+<figs/freecad.png, id=447, 196.38586pt x 54.98804pt>
+File: figs/freecad.png Graphic file (type png)
+<use figs/freecad.png>
+Package pdftex.def Info: figs/freecad.png  used on input line 85.
+(pdftex.def)             Requested size: 113.81102pt x 31.86705pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Info: Redefining \. on input line 102.
+LaTeX Info: Redefining \% on input line 102.
+[26]
+Package acronym Info: Label `acro:DDS' newly defined as it shall be overridden
+although it is yet undefined on input line 109.
+
+
+Package acronym Warning: Acronym `DDS' is not defined on input line 109.
+
+
+Package acronym Warning: Acronym `DDS' is not defined on input line 109.
+
+LaTeX Info: Redefining \footnote on input line 112.
+<figs/ros2logo.jpeg, id=456, 945.5325pt x 1180.41pt>
+File: figs/ros2logo.jpeg Graphic file (type jpg)
+<use figs/ros2logo.jpeg>
+Package pdftex.def Info: figs/ros2logo.jpeg  used on input line 114.
+(pdftex.def)             Requested size: 113.81102pt x 142.07536pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+LaTeX Info: Redefining \footnote on input line 129.
+<figs/moveit_intro.png, id=457, 1216.545pt x 662.475pt>
+File: figs/moveit_intro.png Graphic file (type png)
+<use figs/moveit_intro.png>
+Package pdftex.def Info: figs/moveit_intro.png  used on input line 131.
+(pdftex.def)             Requested size: 341.43306pt x 185.9264pt.
+LaTeX Info: Redefining \. on input line 136.
+LaTeX Info: Redefining \% on input line 136.
+[27 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/freecad.png>]
+
+LaTeX Warning: Reference `subsec:grbl' on page 28 undefined on input line 150.
+
+
+LaTeX Warning: Reference `subsec:grbl' on page 28 undefined on input line 150.
+
+Package acronym Info: Label `acro:CC' newly defined as it shall be overridden
+although it is yet undefined on input line 151.
+
+Package acronym Warning: Acronym `CC' is not defined on input line 151.
+
+
+Package acronym Warning: Acronym `CC' is not defined on input line 151.
+
+Package acronym Info: Label `acro:PWM' newly defined as it shall be overridden
+although it is yet undefined on input line 151.
+
+Package acronym Warning: Acronym `PWM' is not defined on input line 151.
+
+
+Package acronym Warning: Acronym `PWM' is not defined on input line 151.
+
+LaTeX Info: Redefining \footnote on input line 153.
+<figs/MKS.png, id=468, 700.86844pt x 562.35094pt>
+File: figs/MKS.png Graphic file (type png)
+<use figs/MKS.png>
+Package pdftex.def Info: figs/MKS.png  used on input line 155.
+(pdftex.def)             Requested size: 284.52756pt x 228.30005pt.
+LaTeX Info: Redefining \. on input line 160.
+LaTeX Info: Redefining \% on input line 160.
+[28 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/ros2logo.jpeg> <C:/Users/vidi
+/Pictures/tfg-vperez/latex/figs/moveit_intro.png>]
+LaTeX Info: Redefining \footnote on input line 171.
+<figs/nema17.jpg, id=477, 1003.75pt x 1003.75pt>
+File: figs/nema17.jpg Graphic file (type jpg)
+<use figs/nema17.jpg>
+Package pdftex.def Info: figs/nema17.jpg  used on input line 173.
+(pdftex.def)             Requested size: 227.62204pt x 227.61066pt.
+LaTeX Info: Redefining \. on input line 178.
+LaTeX Info: Redefining \% on input line 178.
+ [29 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/MKS.png>]
+LaTeX Info: Redefining \. on input line 201.
+LaTeX Info: Redefining \% on input line 201.
+ [30 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/nema17.jpg>]
+LaTeX Info: Redefining \footnote on input line 211.
+<figs/TMC2209.jpg, id=494, 917.4275pt x 692.5875pt>
+File: figs/TMC2209.jpg Graphic file (type jpg)
+<use figs/TMC2209.jpg>
+Package pdftex.def Info: figs/TMC2209.jpg  used on input line 213.
+(pdftex.def)             Requested size: 170.71652pt x 128.877pt.
+LaTeX Info: Redefining \. on input line 238.
+LaTeX Info: Redefining \% on input line 238.
+ [31 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/TMC2209.jpg>]
+LaTeX Info: Redefining \. on input line 239.
+LaTeX Info: Redefining \% on input line 239.
+[32]
+LaTeX Info: Redefining \footnote on input line 247.
+<figs/pw24v.jpg, id=509, 1371.1225pt x 1195.46625pt>
+File: figs/pw24v.jpg Graphic file (type jpg)
+<use figs/pw24v.jpg>
+Package pdftex.def Info: figs/pw24v.jpg  used on input line 249.
+(pdftex.def)             Requested size: 242.5611pt x 211.47165pt.
+<figs/pw19v.jpg, id=510, 1505.625pt x 713.66624pt>
+File: figs/pw19v.jpg Graphic file (type jpg)
+<use figs/pw19v.jpg>
+Package pdftex.def Info: figs/pw19v.jpg  used on input line 251.
+(pdftex.def)             Requested size: 242.5611pt x 114.97298pt.
+) (C:/Users/vidi/Pictures/tfg-vperez/latex\capitulos/capitulo5.tex
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+ [33 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/pw24v.jpg> <C:/Users/vidi/Pi
+ctures/tfg-vperez/latex/figs/pw19v.jpg>]
+Cap\'{\i }tulo 5.
+
+LaTeX Warning: Reference `sec:requisitos' on page 34 undefined on input line 16
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--18
+
+ []
+
+
+Package acronym Warning: Acronym `DOF' is not defined on input line 19.
+
+LaTeX Info: Redefining \footnote on input line 22.
+<figs/coordinates.png, id=519, 366.95093pt x 366.95093pt>
+File: figs/coordinates.png Graphic file (type png)
+<use figs/coordinates.png>
+Package pdftex.def Info: figs/coordinates.png  used on input line 24.
+(pdftex.def)             Requested size: 142.26378pt x 142.2648pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--32
+
+ []
+
+[34
+
+ <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/coordinates.png>]
+LaTeX Info: Redefining \footnote on input line 41.
+<figs/joint_rot.png, id=528, 275.52937pt x 125.71968pt>
+File: figs/joint_rot.png Graphic file (type png)
+<use figs/joint_rot.png>
+Package pdftex.def Info: figs/joint_rot.png  used on input line 43.
+(pdftex.def)             Requested size: 132.30666pt x 60.3716pt.
+<figs/joint_prism.png, id=529, 277.035pt x 146.79843pt>
+File: figs/joint_prism.png Graphic file (type png)
+<use figs/joint_prism.png>
+Package pdftex.def Info: figs/joint_prism.png  used on input line 45.
+(pdftex.def)             Requested size: 132.30666pt x 70.10852pt.
+<figs/joint_esf.png, id=530, 232.61906pt x 147.55125pt>
+File: figs/joint_esf.png Graphic file (type png)
+<use figs/joint_esf.png>
+Package pdftex.def Info: figs/joint_esf.png  used on input line 46.
+(pdftex.def)             Requested size: 132.30666pt x 83.92496pt.
+<figs/joint_cil.png, id=531, 248.42813pt x 122.70844pt>
+File: figs/joint_cil.png Graphic file (type png)
+<use figs/joint_cil.png>
+Package pdftex.def Info: figs/joint_cil.png  used on input line 48.
+(pdftex.def)             Requested size: 132.30666pt x 65.35158pt.
+LaTeX Info: Redefining \. on input line 57.
+LaTeX Info: Redefining \% on input line 57.
+ [35 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/joint_rot.png> <C:/Users/vid
+i/Pictures/tfg-vperez/latex/figs/joint_prism.png> <C:/Users/vidi/Pictures/tfg-v
+perez/latex/figs/joint_esf.png> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/j
+oint_cil.png>]
+
+LaTeX Warning: Reference `sec:rob_industrial' on page 36 undefined on input lin
+e 59.
+
+
+LaTeX Warning: Reference `fig:mearm' on page 36 undefined on input line 60.
+
+LaTeX Info: Redefining \footnote on input line 71.
+<figs/pinza_evol.png, id=545, 2111.63907pt x 1026.83624pt>
+File: figs/pinza_evol.png Graphic file (type png)
+<use figs/pinza_evol.png>
+Package pdftex.def Info: figs/pinza_evol.png  used on input line 73.
+(pdftex.def)             Requested size: 426.79134pt x 207.52582pt.
+LaTeX Info: Redefining \. on input line 79.
+LaTeX Info: Redefining \% on input line 79.
+[36 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/pinza_evol.png>]
+LaTeX Info: Redefining \footnote on input line 88.
+<figs/mearm_params.png, id=556, 1979.395pt x 1088.065pt>
+File: figs/mearm_params.png Graphic file (type png)
+<use figs/mearm_params.png>
+Package pdftex.def Info: figs/mearm_params.png  used on input line 90.
+(pdftex.def)             Requested size: 426.79134pt x 234.59352pt.
+LaTeX Info: Redefining \. on input line 101.
+LaTeX Info: Redefining \% on input line 101.
+ [37 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/mearm_params.png>]
+LaTeX Info: Redefining \footnote on input line 112.
+<figs/alambrico_garm.png, id=566, 865.73438pt x 511.15968pt>
+File: figs/alambrico_garm.png Graphic file (type png)
+<use figs/alambrico_garm.png>
+Package pdftex.def Info: figs/alambrico_garm.png  used on input line 114.
+(pdftex.def)             Requested size: 426.79134pt x 251.99136pt.
+LaTeX Info: Redefining \. on input line 120.
+LaTeX Info: Redefining \% on input line 120.
+ [38 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/alambrico_garm.png>]
+
+LaTeX Warning: Reference `sec:eligiendo_geometrÃ­a' on page 39 undefined on inp
+ut line 154.
+
+LaTeX Info: Redefining \. on input line 166.
+LaTeX Info: Redefining \% on input line 166.
+[39]
+LaTeX Info: Redefining \footnote on input line 170.
+<figs/MotorsNema.png, id=588, 1194.71344pt x 892.08281pt>
+File: figs/MotorsNema.png Graphic file (type png)
+<use figs/MotorsNema.png>
+Package pdftex.def Info: figs/MotorsNema.png  used on input line 172.
+(pdftex.def)             Requested size: 426.79134pt x 318.68578pt.
+LaTeX Info: Redefining \. on input line 187.
+LaTeX Info: Redefining \% on input line 187.
+ [40 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/MotorsNema.png>]
+Overfull \hbox (12.64937pt too wide) in paragraph at lines 216--232
+ [][] 
+ []
+
+LaTeX Info: Redefining \. on input line 238.
+LaTeX Info: Redefining \% on input line 238.
+[41]
+Package acronym Info: Label `acro:MCU' newly defined as it shall be overridden
+although it is yet undefined on input line 242.
+
+
+Package acronym Warning: Acronym `MCU' is not defined on input line 242.
+
+
+Package acronym Warning: Acronym `MCU' is not defined on input line 242.
+
+
+Package acronym Warning: Acronym `MCU' is not defined on input line 249.
+
+LaTeX Info: Redefining \. on input line 269.
+LaTeX Info: Redefining \% on input line 269.
+[42]
+LaTeX Info: Redefining \. on input line 269.
+LaTeX Info: Redefining \% on input line 269.
+ [43]
+
+LaTeX Warning: Reference `fig:rodamientos_fushi' on page 44 undefined on input 
+line 274.
+
+
+LaTeX Warning: Reference `fig:ejemplo_rodamiento' on page 44 undefined on input
+ line 278.
+
+LaTeX Info: Redefining \footnote on input line 280.
+<figs/F695-2RS.jpeg, id=616, 1003.75pt x 1003.75pt>
+File: figs/F695-2RS.jpeg Graphic file (type jpg)
+<use figs/F695-2RS.jpeg>
+Package pdftex.def Info: figs/F695-2RS.jpeg  used on input line 282.
+(pdftex.def)             Requested size: 176.40439pt x 176.39404pt.
+<figs/RodamientosBrida.png, id=619, 894.34125pt x 642.11896pt>
+File: figs/RodamientosBrida.png Graphic file (type png)
+<use figs/RodamientosBrida.png>
+Package pdftex.def Info: figs/RodamientosBrida.png  used on input line 284.
+(pdftex.def)             Requested size: 220.50887pt x 158.315pt.
+LaTeX Info: Redefining \. on input line 299.
+LaTeX Info: Redefining \% on input line 299.
+[44
+pdfTeX warning (ext4): destination with the same identifier (name{Hfootnote.30}
+) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.299 \newpage
+               <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/F695-2RS.jpeg> <C:
+/Users/vidi/Pictures/tfg-vperez/latex/figs/RodamientosBrida.png>]
+LaTeX Info: Redefining \. on input line 299.
+LaTeX Info: Redefining \% on input line 299.
+ [45]
+
+LaTeX Warning: Reference `subsec:freecad' on page 46 undefined on input line 30
+5.
+
+LaTeX Info: Redefining \footnote on input line 315.
+<figs/base_principal.png, id=639, 1053.1847pt x 560.0925pt>
+File: figs/base_principal.png Graphic file (type png)
+<use figs/base_principal.png>
+Package pdftex.def Info: figs/base_principal.png  used on input line 317.
+(pdftex.def)             Requested size: 341.43306pt x 181.57495pt.
+
+LaTeX Warning: Reference `fig:base_principal_superior' on page 46 undefined on 
+input line 323.
+
+
+LaTeX Warning: Reference `fig:base_principal_polea' on page 46 undefined on inp
+ut line 324.
+
+LaTeX Info: Redefining \. on input line 325.
+LaTeX Info: Redefining \% on input line 325.
+[46 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/base_principal.png>]
+
+LaTeX Warning: Reference `fig:base_principal_espaciadores' on page 47 undefined
+ on input line 326.
+
+
+LaTeX Warning: Reference `fig:base_principal_inferior' on page 47 undefined on 
+input line 328.
+
+LaTeX Info: Redefining \footnote on input line 331.
+<figs/base_principal_polea.png, id=648, 1132.23pt x 658.71094pt>
+File: figs/base_principal_polea.png Graphic file (type png)
+<use figs/base_principal_polea.png>
+Package pdftex.def Info: figs/base_principal_polea.png  used on input line 333.
+
+(pdftex.def)             Requested size: 198.45662pt x 115.45705pt.
+<figs/base_principal_superior.png, id=649, 1132.23pt x 658.71094pt>
+File: figs/base_principal_superior.png Graphic file (type png)
+<use figs/base_principal_superior.png>
+Package pdftex.def Info: figs/base_principal_superior.png  used on input line 3
+35.
+(pdftex.def)             Requested size: 198.45662pt x 115.45705pt.
+<figs/base_principal_espaciadores.png, id=650, 1132.23pt x 658.71094pt>
+File: figs/base_principal_espaciadores.png Graphic file (type png)
+<use figs/base_principal_espaciadores.png>
+Package pdftex.def Info: figs/base_principal_espaciadores.png  used on input li
+ne 337.
+(pdftex.def)             Requested size: 198.45662pt x 115.45705pt.
+<figs/base_principal_inferior.png, id=651, 1132.23pt x 658.71094pt>
+File: figs/base_principal_inferior.png Graphic file (type png)
+<use figs/base_principal_inferior.png>
+Package pdftex.def Info: figs/base_principal_inferior.png  used on input line 3
+39.
+(pdftex.def)             Requested size: 198.45662pt x 115.45705pt.
+LaTeX Info: Redefining \. on input line 341.
+LaTeX Info: Redefining \% on input line 341.
+[47 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/base_principal_polea.png (PNG
+ copy)> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/base_principal_superior.p
+ng (PNG copy)> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/base_principal_esp
+aciadores.png (PNG copy)> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/base_pr
+incipal_inferior.png (PNG copy)>]
+LaTeX Info: Redefining \footnote on input line 344.
+<figs/base_motores.png, id=664, 1132.23pt x 585.68813pt>
+File: figs/base_motores.png Graphic file (type png)
+<use figs/base_motores.png>
+Package pdftex.def Info: figs/base_motores.png  used on input line 346.
+(pdftex.def)             Requested size: 341.43306pt x 176.61935pt.
+LaTeX Info: Redefining \. on input line 362.
+LaTeX Info: Redefining \% on input line 362.
+ [48 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/base_motores.png (PNG copy)>
+]
+LaTeX Info: Redefining \. on input line 364.
+LaTeX Info: Redefining \% on input line 364.
+ [49]
+
+LaTeX Warning: Reference `fig:extremo_pieza' on page 50 undefined on input line
+ 366.
+
+LaTeX Info: Redefining \footnote on input line 368.
+<figs/extremo_robot.png, id=676, 1132.23pt x 658.71094pt>
+File: figs/extremo_robot.png Graphic file (type png)
+<use figs/extremo_robot.png>
+Package pdftex.def Info: figs/extremo_robot.png  used on input line 370.
+(pdftex.def)             Requested size: 284.52756pt x 165.53166pt.
+
+LaTeX Warning: Reference `fig:vistas_extremo' on page 50 undefined on input lin
+e 376.
+
+LaTeX Info: Redefining \footnote on input line 380.
+<figs/vistas_extremo.png, id=677, 862.72313pt x 520.94624pt>
+File: figs/vistas_extremo.png Graphic file (type png)
+<use figs/vistas_extremo.png>
+Package pdftex.def Info: figs/vistas_extremo.png  used on input line 382.
+(pdftex.def)             Requested size: 398.33858pt x 240.52847pt.
+
+LaTeX Warning: Reference `fig:electroiman_pieza' on page 50 undefined on input 
+line 389.
+
+
+LaTeX Warning: Reference `fig:electroiman_montaje' on page 50 undefined on inpu
+t line 392.
+
+LaTeX Info: Redefining \. on input line 393.
+LaTeX Info: Redefining \% on input line 393.
+[50 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/extremo_robot.png (PNG copy)>
+ <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/vistas_extremo.png>]
+LaTeX Info: Redefining \footnote on input line 394.
+<figs/electroiman_solo.png, id=686, 1132.23pt x 585.68813pt>
+File: figs/electroiman_solo.png Graphic file (type png)
+<use figs/electroiman_solo.png>
+Package pdftex.def Info: figs/electroiman_solo.png  used on input line 396.
+(pdftex.def)             Requested size: 352.81552pt x 182.4998pt.
+<figs/electroiman_montaje.png, id=687, 934.24031pt x 657.95813pt>
+File: figs/electroiman_montaje.png Graphic file (type png)
+<use figs/electroiman_montaje.png>
+Package pdftex.def Info: figs/electroiman_montaje.png  used on input line 398.
+(pdftex.def)             Requested size: 352.81552pt x 248.48059pt.
+LaTeX Info: Redefining \. on input line 403.
+LaTeX Info: Redefining \% on input line 403.
+ [51 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/electroiman_solo.png (PNG co
+py)> <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/electroiman_montaje.png>]
+LaTeX Info: Redefining \footnote on input line 408.
+<figs/dxf_polea.png, id=699, 1202.99437pt x 710.655pt>
+File: figs/dxf_polea.png Graphic file (type png)
+<use figs/dxf_polea.png>
+Package pdftex.def Info: figs/dxf_polea.png  used on input line 410.
+(pdftex.def)             Requested size: 398.33858pt x 235.30846pt.
+LaTeX Info: Redefining \footnote on input line 417.
+<figs/polea_freecad.png, id=700, 887.56593pt x 517.935pt>
+File: figs/polea_freecad.png Graphic file (type png)
+<use figs/polea_freecad.png>
+Package pdftex.def Info: figs/polea_freecad.png  used on input line 419.
+(pdftex.def)             Requested size: 28.45274pt x 16.59637pt.
+LaTeX Info: Redefining \. on input line 427.
+LaTeX Info: Redefining \% on input line 427.
+ [52 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/dxf_polea.png> <C:/Users/vid
+i/Pictures/tfg-vperez/latex/figs/polea_freecad.png>]
+LaTeX Info: Redefining \footnote on input line 432.
+<figs/ender3.png, id=712, 3011.25pt x 2583.6525pt>
+File: figs/ender3.png Graphic file (type png)
+<use figs/ender3.png>
+Package pdftex.def Info: figs/ender3.png  used on input line 434.
+(pdftex.def)             Requested size: 227.62204pt x 195.26366pt.
+
+
+LaTeX Warning: Reference `cuadro:componentes' on page 53 undefined on input lin
+e 441.
+
+
+LaTeX Warning: Reference `cuadro:tornilleria' on page 53 undefined on input lin
+e 444.
+
+
+LaTeX Warning: Reference `cuadro:piezas' on page 53 undefined on input line 445
+.
+
+
+LaTeX Warning: Reference `subsec:fuente_alimentacion' on page 53 undefined on i
+nput line 458.
+
+LaTeX Info: Redefining \. on input line 473.
+LaTeX Info: Redefining \% on input line 473.
+[53 <C:/Users/vidi/Pictures/tfg-vperez/latex/figs/ender3.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.514 F
+       inalmente, el robot montado se ve asÃ­.
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.514 F
+       inalmente, el robot montado se ve asÃ­.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 20278 strings out of 476410
- 382996 string characters out of 5789585
- 1859845 words of memory out of 5000000
- 40233 multiletter control sequences out of 15000+600000
- 524006 words of font info for 74 fonts, out of 8000000 for 9000
+ 24687 strings out of 476410
+ 473010 string characters out of 5789585
+ 1870845 words of memory out of 5000000
+ 44204 multiletter control sequences out of 15000+600000
+ 533076 words of font info for 83 fonts, out of 8000000 for 9000
  1147 hyphenation exceptions out of 8191
- 10000i,10n,10006p,688b,1041s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,11n,95p,688b,1182s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

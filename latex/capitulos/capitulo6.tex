@@ -507,55 +507,98 @@ que se están lanzando y añadir nuevos si es necesario.
 
 \newpage
 \section{Pruebas}
-En esta sección se pone a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. 
+\noindent En esta sección se ponen a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. Para ello, 
+se han llevado a cabo una serie de tests, bajo distintas circunstancias, y se han apuntado los resultados.
 características.
 
-\subsection{Estabilidad y vibración}
-Este tipo de pruebas determinan como el movimiento del mismo afecta en su estabilidad y estructura. Además se determina el nivel de 
-vibraciones no deseadas que puedan afectar su precisión y desempeño.
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Parámetro} & \textbf{Valor} \\
-\hline
-Capacidad de carga máxima (completamente extendido) & $\pm9mm$\\
-Capacidad de carga máxima (medio extendido) & $\pm9mm$\\
-Capacidad de carga máxima (contraido) & $\pm9mm$\\
-Capacidad de carga máxima (operativa) & $\pm9mm$\\
-\hline
-\end{tabular}
-\caption{Evaluación de la estabilidad}
-\label{cuadro:evaluacion_estabilidad}
-\end{center}
-\end{table}
+\subsection{Estabilidad y flexión}
+\noindent En esta prueba se determina afectan diferentes fuerzas a la estructura del propio brazo, evaluando por ejemplo, cuanto se dobla 
+cuando se le aplica una cierta carga.
+Para ello, se han considerado los siguientes 3 escenarios:
+\begin{itemize}
+    \item Escenario 1: El robot está completamente retraido y se le aplican una serie de cargas de 10 a 150 gramos.
+    \item Escenario 2: El robot está en una posición de operación normal y se le aplican una serie de cargas de 10 a 150 gramos.
+    \item Escenario 3: El robot está completamente extendido horizontalmente y se le aplican una serie de cargas de 10 a 150 gramos.
+\end{itemize}
+
+\begin{figure} [ht!]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=12cm, 
+        %height=8cm,  
+        xlabel={Carga (gramos)},
+        ylabel={Flexión (mm)},
+        legend pos=north west, % Posición de la leyenda
+        title={Evolución de la flexión en función de la carga}
+      ]
+
+      % Datos de los tres escenarios
+      \addplot [color=blue, mark=square] coordinates {
+        (100, 3)
+        (200, 5)
+        (300, 7)
+        % ...
+      };
+      
+      \addplot [color=red, mark=triangle] coordinates {
+        (100, 2)
+        (200, 4)
+        (300, 6)
+        % ...
+      };
+      
+      \addplot [color=green, mark=diamond] coordinates {
+        (100, 1)
+        (200, 3)
+        (300, 5)
+        % ...
+      };
+      
+      % Leyendas para las series de datos
+      \legend{Escenario 1, Escenario 2, Escenario 3}
+      
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Gráfica de evolución de flexión en función de la carga aplicada}
+    \label{fig:grafica-flexion}
+  \end{figure}
+En cuanto a la estabilidad, el robot es capaz de mantenerse en su posición más extendida de forma horizontal si volcar hasta los 400g 
+de peso. Esto considerando que la base no está anclada al suelo de ninguna manera. Aún así, a la hora de hacer movimientos en los que involucra 
+la rotación de la base, la propia inercia hace que, al frenar y acelerar, la base se deslice. Por lo que es recomendable atornillar la base al 
+suelo o ponerle unas patas de goma antideslizante. 
 
 \subsection{Capacidad de carga}
-En este tipo de pruebas se evalua la capacidad del brazo a la hora de levantar diferentes pesos. De esta manera se puede determinar 
-el límite de carga del brazo y verificar si puede manejar objetos de manera segura y eficiente sin perder capacidades.
+\noindent En este apartado se pone a prueba la capacidad del robot a la hora de levantar y mover cargas con diferentes masas. Concretamente, 
+se realiza esta prueba para encontrar las limitaciones a la hora de manipular objetos pesados. \\
+En esta prueba se han considerado los siguientes escenarios:
+\begin{itemize}
+    \item Escenario 1: El robot comienza a nivel de suelo, con el extremo del robot lejos de la base y empieza a levantar lentamente las distintas cargas. La 
+    prueba finaliza cuando los motores empiezan a perder pasos y no son capaces de elevar la carga.
+    \item Escenario 2: Repetir el escenario 1 pero situando la carga cerca de la base del robot.
+    \item Escenario 3: El robot hace uso de su herramienta electroimán (teóricamente de 3Kg de fuerza) para levantar distintas cargas unidas a un 
+    objeto ferromagnético. La prueba finaliza cuando el electroimán no es capaz de sujetar la carga o bien, el robot no es capaz de levantarla.
+\end{itemize}
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
-\textbf{Parámetro} & \textbf{Valor} \\
+\textbf{Escenario} & \textbf{Carga máxima} \\
 \hline
-Capacidad de carga máxima (completamente extendido) & \SI{10}{\kilo\gram} \\
-Capacidad de carga máxima (medio extendido) & \SI{10}{\gram} \\
-Capacidad de carga máxima (contraido) & \SI{10}{\gram} \\
-Capacidad de carga máxima (operativa) & \SI{10}{\gram} \\
+Escenario 1& \SI{10}{\kilo\gram} \\
+Escenario 2 & \SI{10}{\gram} \\
+Escenario 3 & \SI{10}{\gram} \\
 \hline
 \end{tabular}
-\caption{Evaluación de la capacidad de carga}
+\caption{Resultados de los diferentes resultados en la prueba de carga}
 \label{cuadro:evaluacion_carga}
 \end{center}
 \end{table}
-
-Tablita de como afecta el peso a la precisión y demás
-
+\newpage
 \subsection{Velocidad y tiempo de respuesta}
-Es importante realizar este tipo de pruebas para evaluar las distintas velocidades que es capaz de manejar el brazo en la ejecución 
-de diferentes movimientos. Además, se puede evaluar la capacidad del brazo para responder rápidamente a comandos y ajustar su 
-velocidad rápidamente.
+\noindent En esta prueba se evalúa que tan rápido se puede mover sin afectar a su funcionamiento normal 
+llevando diferentes cargas. Además, se determina que tan rápido se responde a una orden desde la capa 
+de nivel de ROS, hasta el propio movimiento.
 
 \begin{table}[H]
 \begin{center}
@@ -579,4 +622,32 @@ Se procede a realiza pruebas para evaluar la precisión del brazo robot en la ej
 de estos movimientos. Se mide la desviación del brazo robot en comparación con las coordenadas objetivo y verificar si 
 es capaz de alcanzar de manera consistente los mismos puntos en un cierto número de intentos.
 
+\subsection{Consumo eléctrico} 
+\noindent Este tipo de pruebas evaluan cuanta energía está consumiendo el robot bajo unas conciciones concretas. Es útil para 
+conocer el coste de tener en funcionamiento este robot y si es viable utilizarlo sobre plataformas móviles a baterías. 
+\\
+Para realizar este test, se han considerado 4 escenarios:
+\begin{itemize}
+\item Escenario 1: El robot se mueve sin ningún tipo de carga realizando un movimiento rápido entre dos puntos alejados.
+\item Escenario 2: El robot se mueve sin ningún tipo de carga realizando un movimiento lento entre dos puntos alejados.
+\item Escenario 3: El robot se mueve con una carga de 50g gramos (mando a distancia de la televisión) a velocidad moderada entre dos puntos alejados.
+\item Escenario 4: El robot se mueve con una carga de 100 gramos (teléfono móvil) a velocidad moderada entre dos puntos alejados.
 
+\end{itemize}
+Los resultados de las pruebas se muestran en el Cuadro \label{cuadro:consumos}.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Escenario} & \textbf{Consumo medio} & \textbf{Pico de consumo}\\
+\hline
+Escenario 1 & \SI{10}{\meter\per\second} & w\\
+Escenario 2 & \SI{10}{\meter\per\second} & 2\\
+Escenario 3 & \SI{35}{\milli\second} & s \\
+Escenario 4 & \SI{35}{\milli\second} & df\\
+\hline
+\end{tabular}
+\caption{Consumos eléctricos en distintos escenarios}
+\label{cuadro:consumos}
+\end{center}
+\end{table}
