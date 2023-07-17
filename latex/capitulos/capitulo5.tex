@@ -57,7 +57,7 @@ móviles.
 \newpage
 Acto seguido, se debe establecer la forma del manipulador en función del tipo y número de articulaciones elegidas anteriormente. 
 En base a las categorías de manipulador descritas en \ref{sec:rob_industrial}, se ha decidido implementar un robot basado 
-en paralelogramos al estilo MeArm \ref{fig:mearm}.
+en paralelogramos al estilo MeArm (Figura \ref{fig:mearm}).
 \\ 
 El tipo de brazo elegido tiene la peculiaridad de tener su elemento terminal siempre paralelo al suelo por lo que es ideal para 
 tareas \textit{pick and place}. 
@@ -67,7 +67,7 @@ tareas \textit{pick and place}.
 \label{subsec:eqc_mod_alambrico}
 El modelo alámbrico es una forma de analizar el movimiento de un sistema mecánico compuesto por ejes y eslabones. Este 
 enfoque simplifica la representación visual al destacar las relaciones espaciales entre las diferentes partes del sistema mediante 
-líneas y conexiones simbólicas, en lugar de mostrar detalles realistas del manipulador. 
+líneas y conexiones simbólicas.
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/pinza_evol.png}
@@ -81,20 +81,17 @@ líneas y conexiones simbólicas, en lugar de mostrar detalles realistas del man
 \label{subsec:modelo_alambrico}
 Para desarrollar el modelo alámbrico de este manipulador, se ha tomado como referencia el modelo alámbrico de MeArm del 
 repositorio de github\footnote{\url{https://github.com/myTeachingURJC/Mecatronica/wiki/S3:-Estructuras-mec\%C3\%A1nicas-(II)}}. 
-\\
-Para abordar adecuadamente la modificación de modelo, es fundamental comprenderlo en su totalidad. Por suerte, el repositorio anterior  
-contiene una explicación detallada de la razón de ser de cada elemento.
 
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/mearm_params.png}
   \end{center}
-  \caption{Parámetros del modelo alámbrico}
+  \caption{Principio fundamental del brazo MeArm}
   \label{fig:mod_pinza_figure}
 \end{figure}\ 
 
-Este robot está definido por una serie de parámetros (L1, L2, P1, P2, P3, A). Para realizar la obtención de los parámetros que definen a 
-G-Arm se ha utilizado la experimentación. El procedimiento ha consistido en modificar una medida y evaluar como se 
+Este robot está definido por una serie de parámetros (L1, L2, P1, P2, P3, A). Para realizar la obtención de los parámetros que definen el 
+nuestro brazo robot, se ha utilizado la experimentación. El procedimiento ha consistido en modificar una medida y evaluar como se 
 comporta a la hora de alcanzar ciertas zonas críticas. El objetivo final es encontrar una combinación de parámetros que 
 permita alcanzar la mayor cantidad de puntos sin que sus eslabones intersecten entre sí. 
 
@@ -105,7 +102,7 @@ Más concretamente, la obtención de los parámetros adecuados se realizó en el
 cada uno de ellos, y de los motores utilizados, ambos deberían medir 17cm o menos.
 \item El siguiente paso es elegir P1, P2 y P3. Estos son los lados cortos del los paralelogramos. Es importante jugar con estos valores 
 de tal manera que se consiga obtener los más largos posibles. Esto es debido a que las piezas reales ocupan un cierto espacio y si el paralelogramo es 
-muy pequeño no realizarán todo el recorrido ya que chocarán entre sí. Codo
+muy pequeño no realizarán todo el recorrido ya que chocarán entre sí. 
 \item El ángulo A restringe el paralelogramo que mantiene el extremo del robot paralelo al suelo.   
 \end{enumerate}
 En esta imagen se muestra el modelo alámbrico de G-Arm:\\
@@ -192,8 +189,7 @@ tensores para asegurar que siempre está en contacto con ambas poleas.
 Foto de correa dentadas
 Se pretende usar correas de tipo GT2. Este tipo de correa es ampliamente utilizado en impresoras 3D, por lo que es realmente económico y 
 fácil de encontrar. Dentro de esta categoría existen diferentes anchos de correa en función de la tensión soportada. En este caso, 
-se ha elegido el ancho de 6mm puesto que es el más económico con diferencia y es más que suficiente para esta aplicación.En la construcción 
-de robot industriales caseros y profesionales de metal y de gran tamaño, se utilizan correas y cadenas con mayor grosor y tamaño de diente.
+se ha elegido el ancho de 6mm puesto que es el más económico con diferencia y es más que suficiente para esta aplicación.
 Foto de mi correa.
 
 Además, las poleas necesarias para este tipo de correas son fáciles de diseñar e imprimir en 3D, lo que permite hacer poleas con 
@@ -201,7 +197,7 @@ un número de dientes concreto y por un precio casi nulo.
 
 En este caso, para dos de los grados de libertad, se ha elegido utilizar una polea comercial de 20 dientes de metal unida al 
 eje del motor en conjunto con otra de 100 dientes impresa en 3D, logrando así una reducción de 1:5. En el grado de libertad restante, 
-se pretende utilizar el mismo concepto pero con una polea de 120 dientes (Reducción 1:6).
+se pretende utilizar el mismo concepto pero con una polea de 120 dientes (Reducción 1:6)\footnote{Se habla de reducción 1:b cuando tal}.
 
 \subsection{Controladores}
 Debido a que se prentende utilizar motores paso a paso bipolares, es necesario utilizar un tipo de electrónica específica para 

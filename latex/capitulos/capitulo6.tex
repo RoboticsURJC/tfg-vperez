@@ -10,12 +10,11 @@ tanto en simulaciones como en el mundo real.
 un ordenador cualquiera, el hardware creado en el anterior capítulo.
 
 \subsection{Grbl como \textit{firmware} del robot}
-\noindent Para realizar el control de los actuadores se ha tomado la decisión de utilizar el \textit{firmware} de control numérico 
-Grbl\ref{subsec:grbl}. Se ha optado por el uso de este \textit{firmware} (software específico para el harware elegido), por encima 
+\noindent Para realizar el control de los actuadores se ha tomado la decisión de utilizar el 
+\textit{firmware}\footnote{software específico para el harware elegido} de control numérico Grbl\ref{subsec:grbl}, por encima 
 de realizar uno propio, debido a que es una solución robusta con años de desarrollo y con unas ciertas garantías dificiles de superar.
 \\
-
-Actualmente, este \textit{firmware} permite controlar hasta 3 motores paso a paso simultáneamente. Además, tiene la posibilidad de utilizar 
+Actualmente, este firmware permite controlar hasta 3 motores paso a paso simultáneamente. Además, tiene la posibilidad de utilizar 
 un canal PWM (usualmente usado en las CNC para modificar la velocidad de la herramienta). Sobre estos motores, podemos realizar 
 un control en posición, es decir, recibe una serie de coordenadas y automáticamente alcanza esos puntos. Este tipo de controlador 
 es perfectamente válido para esta aplicación y simplifica bastante su uso. Aunque esta placa en concreto viene con Grbl 1.1 instalado 
@@ -23,26 +22,31 @@ de fábrica, existen numerosas guías en Internet acerca de como instalarlo.
 
 Para que Grbl sepa qué posición debe tener cada motor en un momento dado, necesita recibir 
 una serie de datos codificados a través de una de sus interfaces. Los detalles esta la comunicación 
-se detallan en la siguiente subsección.
+se presentan en la siguiente subsección.
 \newpage
 \subsection{Comunicación con Grbl}
 \noindent En esta sección se exponen las distintas opciones de comunicación con el robot, así como el formato de mensaje que se debe emplear.
 \\ 
-
-Debido a las características hardware de la placa utilizada, se puede establecer comunicación con Grbl a través de 2 interfaces diferentes. 
+\indent Debido a las características hardware de la placa utilizada, se puede establecer comunicación con Grbl a través de 2 interfaces diferentes. 
 La primera, es a través del propio puerto USB integrado, utilizando el protocolo serie UART. Este modo de comunicación tiene la ventaja de 
 ser rápido pero te fuerza a estar conectado al robot a través de un cable. Por otro lado, debido a las características técnicas del 
 microcontrolador, se puede establecer una comunicación inalámbrica a través de Wifi utilizando el protocolo Telnet. Finalmente, se ha optado 
 por utilizar la interfaz USB debido a que es más rápida y permite al usuario estar conectado a internet, en vez de a la propia red 
 \textit{offline} que crea la placa.
-\\
 
-Una forma de poder probar si está instalado y probar el funcionamiento de este, es utilizar una terminal serie, como 
+\indent Una forma de poder saber si viene ya instalado en la placa que hemos comprado, es utilizar una terminal serie, como 
 puede ser \textit{Cutecom}. Establecemos una velocidad de 115200 baudios y nos conectamos al puerto que aparezca disponible 
 al conectar la placa al ordenador. Si está instalado, veremos una serie de mensajes que indican la versión de Grbl y las 
-distintas configuraciones internas. 
+distintas configuraciones internas. (Figura \ref{fig:cutecom})
+\begin{figure} [ht!]
+\begin{center}
+    \includegraphics[width=14cm]{figs/cutecom.png}
+\end{center}
+\caption{Terminal gráfica de Cutecom al conectarse a una placa con Grbl}
+\label{fig:cutecom}
+\end{figure}
 
-Grbl recibe instrucciones de G-Code\ref{sec:gcode} a través del puerto serie. Aunque existen una gran 
+\indent Grbl recibe instrucciones de G-Code\ref{sec:gcode} a través del puerto serie. Aunque existen una gran 
 cantidad de ellas, solo ha sido necesario usar algunas:
 \begin{table}[H]
 \begin{center}
@@ -64,24 +68,11 @@ M5 & Apaga el motor auxiliar  \\
 \caption{Comandos utilizados en la realización del proyecto}
 \end{center}
 \end{table}
-\newpage
-Con el fin de poder abstraer al software del robot de esta comunicación, se ha implementado 
+
+
+Con el objetivo de abstraer al futuro software del robot de esta comunicación, se ha implementado 
 una clase en Python\ref{subsec:pyhton} llamada \textit{Grbl}. En este software, utiliza la librería 
-PySerial\footnote{\url{https://pypi.org/project/pyserial/}} para establecer una comunicación serie 
-debido a la facilidad que aporta. En el siguiente bloque de código, se muestra un ejemplo de su uso.
-
-\begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1]
-import serial
-
-# Puerto '/dev/ttyUSB0' y velocidad 115200 baudios
-bus = serial.Serial('/dev/ttyUSB0', 115200) # Comenzamos la comunicación 
-
-texto = 'Hola Mundo'
-bus.write(bytes(texto.encode())) # Enviar mensaje
-
-bus.close() # Terminamos la comunicación
-\end{lstlisting}
-
+PySerial\footnote{\url{https://pypi.org/project/pyserial/}} para establecer una comunicación serie.
 
 \noindent La clase \textit{Grbl} creada puede ser utilizada a través de los siguientes métodos:
 
@@ -130,7 +121,7 @@ realizar las siguientes configuraciones:
 \item \textbf{\$1}: Retardo o tiempo de espera entre pulsos de paso cuando el motor está inactivo (en milisegundos). 
 \\Debemos configurar 
 este parámetro en su valor máximo, en este caso 255. Este valor tiene un significado especial, haciendo que los motores paso a paso 
-se mantendrán energizados constantemente aunque no se estén moviendo. Es de vital importancia para evitar que el brazo se desplome al detenerse en una cierta posición.  
+se mantengan energizados constantemente aunque no se estén moviendo. Es de vital importancia para evitar que el brazo se desplome al detenerse en una cierta posición.  
 \item \textbf{\$100}, \textbf{\$101} y \textbf{\$102}: Indican el número de pasos por unidad de movimiento para los ejes X, Y, Z respectivamente. 
 \\Por defecto está pensado para utilizar pasos por milímetro. Como se pretende utilizar articulaciones de rotación, debemos expresar esta relación 
 en función de alguna medida angular. La unidad a utilizar podría ser: grados, radianes o vueltas, entre otras. En este trabajo se 
