@@ -426,7 +426,7 @@ el propio complemento de MoveIt para establecer una posiciones aleatoria y trata
 \end{figure}\ 
 
 \subsection{Driver para ROS}
-\noindent En esta sección se detalla el funcionamiento del nodo ROS creado para ejecutar simultáneamente las trayectorias en el robot real.
+\noindent En esta sección se detalla el funcionamiento del nodo ROS creado para ejecutar las trayectorias en el robot real.
 \\
 
 
@@ -476,11 +476,34 @@ float64[] velocity
 float64[] effort
 \end{lstlisting}
 
-Por suerte, el propio lanzador de demostración mencionado en la sección anterior ya levanta estos nodos por lo que no es necesario crear 
-uno nuevo para realizar las pruebas. Más adelante si es recomendable crear uno propio para poder tener mayor control sobre los nodos 
-que se ejecutan y añadir nuevos.
 
-Por otro lado, el funcionamiento del driver se ha organizado de la siguiente manera:
+El driver creado, hace uso de una clase intermedia entre el nodo ROS y la clase \textit{grbl} con el fin de abstraer al nodo de la conversión 
+de unidades. Además, esta nueva clase incorpora lo necesario para encontrar los límites físicos de cada articulación sumado a una serie de 
+constantes usadas para hacer que la posición absoluta de las articulaciones concuerde con la usada en la descripción del robot. \\
+
+Al comenzar, trata 
+de conectarse al robot y busca el 0,0 de cada joint. Posteriormente crea una subscripción al topic \textit{/joint\_states} para recibir y 
+guardar el último mensaje que llega a través de  este topic. En paralelo a esto, existe una función llamada con una cierta frecuencia (utilizando un 
+\textit{timer} de ROS) que envía las posiciones del mensaje, previamente guardado, al robot real. Se ha decidido separar ambos comportamientos 
+para tener un cierto control sobre la frecuencia de envíos de datos por el puerto serie y evitar saturar el firmware del robot. 
+
+En la Figura \ref{fig:dia_driver1} se muestra el diagrama de actividades que ilustra el funcionamiento básico del driver creado.\\
+\\
+
+
+\begin{figure} [ht!]
+    \begin{center}
+      \includegraphics[width=12cm]{figs/driver_diagram1.jpg}
+    \end{center}
+    \caption{Diagrama de actividades del driver}
+    \label{fig:dia_driver1}
+\end{figure}\ 
+
+
+Por suerte, el propio lanzador de demostración mencionado en la sección anterior, ya levanta estos nodos por lo que no es necesario crear 
+uno nuevo para realizar las pruebas. Más adelante sí es recomendable hacerlo, para poder tener mayor control sobre los nodos 
+que se están lanzando y añadir nuevos si es necesario.
+\\
 
 \newpage
 \section{Pruebas}

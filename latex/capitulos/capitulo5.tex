@@ -3,7 +3,7 @@
 
 \vspace{1cm}
 
-En este capítulo se aborda el desarrollo necesario para, a partir de un concepto, acabar construyendo un prototipo real funcional. Se 
+\noindent En este capítulo se aborda el desarrollo necesario para, a partir de un concepto, acabar construyendo un prototipo real funcional. Se 
 hace incisión en cada etapa necesaria para este cometido.
 
 \section{Eligiendo la geometría del manipulador}
@@ -416,16 +416,17 @@ pulsamos en el icono de "Borrador a Croquis" de la barra superior de herramienta
 con el \textit{workbench} Part Design. 
 \begin{figure} [ht!]
   \begin{center}
-    \includegraphics[width=14cm]{figs/polea_freecad.png}
+    \includegraphics[width=1cm]{figs/polea_freecad.png}
   \end{center}
   \caption{Contorno de la polea de extruido}
 \end{figure}\ 
 
 \subsubsection{Mecanismo de tensado de la correa}
 
+
 \newpage
 \section{Impresión y montaje}
-En esta sección se exponen todos los detalles a tener en cuenta a la hora de querer replicar este proyecto. Para la impresión 
+\noindent En esta sección se exponen todos los detalles a tener en cuenta a la hora de querer replicar este proyecto. Para la impresión 
 de G-Arm se ha utilizado una impresora Ender-3 Pro\footnote{\url{https://www.creality.com/products/ender-3-pro-3d-printer}} y un rollo 
 de 1Kg de filamento PLA Rojo convencional.
 \begin{figure} [h!]
@@ -436,6 +437,14 @@ de 1Kg de filamento PLA Rojo convencional.
 \label{fig:ender3pro}
 \end{figure}\   
 
+Con la intención de lograr la mejor organización posible, se ha decidido incluir una serie de tablas 
+detallando los componentes necesarios para el montaje del robot. En la Tabla \ref{cuadro:componentes} se listan aquellos 
+componentes que deben ser comprados y su precio. Se recomienda adquirirlos a través de páginas como \textit{Aliexpress} ya que 
+resulta significativamente más barato que comprarlos a través de \textit{Amazon}. Por otro lado, es necesaria la tornillería 
+de la Tabla \ref{cuadro:tornilleria}, comprada en ferreterías locales y nacionales como \textit{Randrade} (Online). El resto 
+de piezas detalladas en la Tabla \ref{cuadro:piezas}, son enteramente imprimibles en 3D. Se recomienda configurar el laminador 
+con las densidades de relleno propuestas en dicha tabla. Cada pieza está diferenciada con un número y se pueden requerir varias 
+unidades de una misma pieza (indicado en la propia tabla).
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
@@ -477,7 +486,7 @@ Tornillo M3 Allen & 3 & 56\euro \\
 \end{center}
 \end{table}
 
-El precio total de los componentes necesarios es: 156.3\euro
+
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -492,3 +501,11 @@ El precio total de los componentes necesarios es: 156.3\euro
 \end{center}
 \end{table}
 
+El precio total de los componentes necesarios es de 156.3\euro sumado a los tantos de tornillería, hacen un coste total de tanto.\\
+
+La impresión de todas las piezas (utilizando una altura de capa de 0.12mm) puede llevar cerca de 60 horas. En cambio, 
+el montaje requiere de apenas 2, o incluso, menos dependiendo de la habilidad del usuario. Para saber la posición de cada pieza 
+y dónde montarla, se recomienda consultar el montaje 
+completo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/280861172bce3b1c0cfbb155a434364ea68eeb30/src/design/FreeCad/\%230\_ASSEMBLY.FCStd}} 
+realizado mediante A2Plus en FreeCAD. En él, se puede ver 
+el nombre de cada pieza, tornillo necesario y posición.
