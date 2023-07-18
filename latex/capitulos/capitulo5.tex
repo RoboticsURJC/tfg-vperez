@@ -3,21 +3,16 @@
 
 \vspace{1cm}
 
-\noindent En este capítulo se aborda el desarrollo necesario para, a partir de un concepto, acabar construyendo un prototipo real funcional. Se 
-hace incisión en cada etapa necesaria para este cometido.
-
+\noindent En este capítulo se aborda el desarrollo necesario para, a partir de un concepto, acabar construyendo un brazo robot real. 
 \section{Eligiendo la geometría del manipulador}
 \label{sec:eligiendo_geometría}
-En esta sección se expone como es el proceso de encontrar y definir la forma y funcionamiento del robot, en función de 
-los objetivos propuestos, evaluando las distintas opciones para encontrar el que mejor se adapte.  
+\noindent En esta sección se detalla el proceso llevado a cabo para definir el concepto y forma del robot, en base a 
+los requisitos propuestos en el Capítulo 3. 
 
-
-Primero de todo, se comenzar estableciendo el número de grados de libertad. Esto número esta limitado por los requisitos 
-establecidos en la sección \ref{sec:requisitos}. En base a los requisitos 1 y 5, que limitan en cuanto a precio de fabricación y 
-complejidad de los mismos, se ha optado por usar 3 grados de libertad.\\
-
-En relación al espacio tridimensional, este cuenta con 6 \acs{DOF}, 3 de ellos para el 
-posicionamiento (X, Y, Z) y los otros 3 para las orientaciones (RX, RY, RZ).
+Primeramente, se debe escoger el número de grados de libertad\footnote{número de movimientos independientes que puede realizar} del manipulador. 
+En relación al espacio tridimensional (Figura \ref{fig:espacio_tridimensional}), este cuenta con 6, estando 3 de ellos ligados al 
+posicionamiento (X, Y, Z) y los otros 3 a las orientaciones (RX, RY, RZ). Es por esto que 3 es el mímimo número de grados de libertad necesarios 
+para poder posicionar el extremo del robot un punto cualquiera del espacio.
 
 \begin{figure} [ht!]
   \begin{center}
@@ -27,47 +22,44 @@ posicionamiento (X, Y, Z) y los otros 3 para las orientaciones (RX, RY, RZ).
   \label{fig:espacio_tridimensional}
 \end{figure}\ 
 
-En base a lo anterior, con 3 grados de libertad no podremos situar el elemento terminal del manipulador en un punto del espacio 
-y a la vez controlar la orientación de la herramienta en ese punto.\\
+Teniendo esto en cuenta, se ha optado por usar ese número, y no uno mayor, debido a que esto encarecería los costes totales del robot, no pudiendo cumplir así 
+los requisitos 1 y 5 (límite de precio y complejidad). 
 
-Seguidamente, se debe elegir el tipo de articulación que se pretende usar. En robótica, son ampliamente utilizados estos tipos de 
-articulaciones:
+Seguidamente, se debe elegir el tipo de articulación a utilizar. Aunque en robótica existen varias, en la práctica destacan dos:
 \begin{itemize}
 \item Revolución: Permite el movimiento de rotación alrededor de un eje fijo.
 \item Prismático: Las partes del robot se pueden desplazar linealmente a lo largo de un eje específico. 
-\item Esférico: Permite la rotación en cualquier dirección. Está restringido a 3 DOF y suele ser usado como articulación pasiva.
-\item Cilíndrica: Permite el movimiento de rotación alrededor de un eje y también un desplazamiento lineal a lo largo del mismo. Combina los movimientos rotacionales y prismáticos. 
 
 \begin{figure} [h!]
   \centering    
-  \subfigure[Revolución 1 DOF]{\label{fig:j_rot}\includegraphics[width=0.3\linewidth ]{figs/joint_rot.png}}
+  \subfigure[Revolución]{\label{fig:j_rot}\includegraphics[width=0.4\linewidth ]{figs/joint_rot.png}}
   \hspace{1cm}
-  \subfigure[Prismático 1 DOF]{\label{fig:j_prism}\includegraphics[width=0.3\linewidth]{figs/joint_prism.png}}
-  \subfigure[Esférico 3 DOF]{\label{fig:j_esf}\includegraphics[width=0.3\linewidth ]{figs/joint_esf.png}}
-  \hspace{1cm}
-  \subfigure[Cilíndrico 2 DOF]{\label{fig:j_cil}\includegraphics[width=0.3\linewidth]{figs/joint_cil.png}}
+  \subfigure[Prismática]{\label{fig:j_prism}\includegraphics[width=0.4\linewidth]{figs/joint_prism.png}}
   \caption{Tipos de articulaciones más usadas en robótica}
 \end{figure}
 
 \end{itemize}
 
-Se ha optado por articulaciones de tipo revolución, debido a que son sencillas de implementar y están compuestas por pocas partes 
-móviles.
+Finalmente, se ha optado por emplear articulaciones de tipo revolución, debido a que son más sencillas de implementar y 
+están constituidas por un menor número de partes.
 
-\newpage
-Acto seguido, se debe establecer la forma del manipulador en función del tipo y número de articulaciones elegidas anteriormente. 
-En base a las categorías de manipulador descritas en \ref{sec:rob_industrial}, se ha decidido implementar un robot basado 
-en paralelogramos al estilo MeArm (Figura \ref{fig:mearm}).
-\\ 
-El tipo de brazo elegido tiene la peculiaridad de tener su elemento terminal siempre paralelo al suelo por lo que es ideal para 
-tareas \textit{pick and place}. 
+En cuanto a la geometría del manipulador, se debe contar con la limitación existente a la hora de tener únicamente 3 grados de libertad. Esta es 
+que, aunque podemos alcanzar cualquier punto del espacio, no podemos controlar la orientación del extremo del robot en dicho punto. En base a esto, 
+se ha investigado en Internet qué tipos de robot existen con ese número de grados de libertad y como lo solventan. Principalmente destacan dos 
+soluciones: los robots SCARA y los robots basados en paralelogramos (presentados en la Sección \ref{sec:scara}). Ambos, tienen en común la 
+característica de mantener su extremo siempre paralelo al suelo, por lo que se tiene conocimiento sobre 2 de las 3 orientaciones en ese punto. En 
+la última orientación (Rotación en Z) se le suele incluir un cuarto grado de libertad, que en nuestro caso no tenemos. Aún así puede utilizarse con 
+herramientas tipo electroimán o ventosas para tareas sencillas de movimiento de objetos.
 
-\section{Modelo alámbrico}
-\subsection{En qué consiste}
-\label{subsec:eqc_mod_alambrico}
-El modelo alámbrico es una forma de analizar el movimiento de un sistema mecánico compuesto por ejes y eslabones. Este 
+Concretamente, se pretende implementar un robot basado en paralelogramos que utilice el mismo principio de funcionamiento que los utilizados en 
+tareas de paletizado\footnote{Colocar objetos en un \textit{palet} de forma ordenada y eficiente}.
+
+\section{Modelo alámbrico del manipulador}
+\noindent El modelo alámbrico es una forma de analizar el movimiento de un sistema mecánico compuesto por ejes y eslabones. Este 
 enfoque simplifica la representación visual al destacar las relaciones espaciales entre las diferentes partes del sistema mediante 
 líneas y conexiones simbólicas.
+
+En la Figura \ref{fig:mod_pinza_figure} se muestra un ejemplo creado específicamente para ilustrar este concepto.
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/pinza_evol.png}
@@ -76,46 +68,46 @@ líneas y conexiones simbólicas.
   \label{fig:mod_pinza_figure}
 \end{figure}\ 
 
-\newpage
-\subsection{Desarrollo del modelo alámbrico de G-Arm}
-\label{subsec:modelo_alambrico}
-Para desarrollar el modelo alámbrico de este manipulador, se ha tomado como referencia el modelo alámbrico de MeArm del 
-repositorio de github\footnote{\url{https://github.com/myTeachingURJC/Mecatronica/wiki/S3:-Estructuras-mec\%C3\%A1nicas-(II)}}. 
-
+A la hora de crear el modelo alámbrico de este robot, se ha tomado como referencia el del robot 
+casero MeArm (Figura \ref{fig:mearm}), en concreto el modelo alámbrico usado por Juan González en la asignatura de 
+Mecatrónica\footnote{\url{https://github.com/myTeachingURJC/Mecatronica/wiki/S3:-Estructuras-mec\%C3\%A1nicas-(II)}} de esta Universidad.\\
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/mearm_params.png}
   \end{center}
   \caption{Principio fundamental del brazo MeArm}
-  \label{fig:mod_pinza_figure}
+  \label{fig:mearm_params}
 \end{figure}\ 
 
-Este robot está definido por una serie de parámetros (L1, L2, P1, P2, P3, A). Para realizar la obtención de los parámetros que definen el 
-nuestro brazo robot, se ha utilizado la experimentación. El procedimiento ha consistido en modificar una medida y evaluar como se 
-comporta a la hora de alcanzar ciertas zonas críticas. El objetivo final es encontrar una combinación de parámetros que 
-permita alcanzar la mayor cantidad de puntos sin que sus eslabones intersecten entre sí. 
+
+Este robot está definido por una serie de parámetros a los que se les ha puesto nombre: L1, L2, P1, P2, P3 y A (mostrados 
+en la Figura \ref{fig:mearm_params}). En función de los valores de estos parámetros, el comportamiento del brazo será diferente. Para 
+encontrar los adecuados, no queda otra que utilizar la experimentación. Aún así, si se sigue un cierto orden, el proceso resulta realmente sencillo. 
 
 \newpage
-Más concretamente, la obtención de los parámetros adecuados se realizó en el siguiente orden:
+\noindent Es por esto que se ha seguido el siguiente procedimiento: 
+
 \begin{enumerate}
-\item Una manera de comenzar, es estableciendo de antemano el largo de los eslabones primarios L1 y L2. En base al peso estimado de 
-cada uno de ellos, y de los motores utilizados, ambos deberían medir 17cm o menos.
-\item El siguiente paso es elegir P1, P2 y P3. Estos son los lados cortos del los paralelogramos. Es importante jugar con estos valores 
-de tal manera que se consiga obtener los más largos posibles. Esto es debido a que las piezas reales ocupan un cierto espacio y si el paralelogramo es 
+\item Una manera de comenzar, es estableciendo el largo de los eslabones primarios L1 y L2. En base al tamaño de escritorio que se le pretende 
+dar al robot, 17 centímetros por eslabón es un buen punto de partida.
+\item El siguiente paso es elegir P1, P2 y P3. Estos son los lados cortos de los paralelogramos. Es importante jugar con estos valores 
+de tal manera que se consiga obtener los más largos posibles y estos no intersecten entre sí. Esto es debido a que las piezas reales ocupan un cierto espacio y si el paralelogramo es 
 muy pequeño no realizarán todo el recorrido ya que chocarán entre sí. 
-\item El ángulo A restringe el paralelogramo que mantiene el extremo del robot paralelo al suelo.   
+\item El ángulo A restringe el paralelogramo que mantiene el extremo del robot paralelo al suelo. Este ángulo hay que variarlo ligeramente. Un buen 
+punto de partida es 120º. Este valor es crítico ya que afecta significativamente a la accesibilidad del brazo a lugares próximos a su base. 
 \end{enumerate}
-En esta imagen se muestra el modelo alámbrico de G-Arm:\\
+\newpage
+En la Figura \ref{fig:g_arm_alambrico} se muestra el modelo alámbrico final de este manipulador, bautizado como G-Arm\footnote{Bautizado así 
+debido al lenguaje de programación que será utilizado posteriormente para comunicarse con él}:\\
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/alambrico_garm.png}
   \end{center}
   \caption{Modelo alámbrico de G-Arm}
-  \label{fig:mod_pinza_figure}
+  \label{fig:g_arm_alambrico}
 \end{figure}\ 
-Revisar parametros
-\newpage
-En la siguiente tabla se muestran los valores obtenidos: 
+
+Dando como resultado la siguiente tabla de parámetros:
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -134,10 +126,10 @@ A & 135º \\
 \label{cuadro:parametros_alambrico}
 \end{center}
 \end{table}
-
+\newpage
 \section{Bocetos}
-Una parte importante del diseño son los bocetos previos al modelado 3D. En estos bocetos se busca tener una idea clara de la forma 
-y posición de cada pieza, así como de su lugar en el espacio.  
+Una parte clave del diseño son los bocetos previos al modelado 3D. En ellos, se busca tener una idea clara de la forma 
+y posición de todos los elementos que contituyen el robot.  
 Para el desarrollo de este brazo, se han realizado numerosos bocetos, de los cuales se conservan aquellos dibujados digitalmente en 
 un iPad.
 \section{Elección de componentes hardware}
