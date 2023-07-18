@@ -14,31 +14,28 @@ las herramientas \textit{software} y \textit{hardware} utilizadas para lograrlos
 
 \section{Software}
 \label{sec:software}
-Llamamos \textit{software} al conjunto de programas, instrucciones y datos que dotan de lógica al sistema.
+Llamamos \textit{software} al conjunto de programas, instrucciones y datos que dotan de lógica a un sistema.
 \subsection{Python}
 \label{subsec:pyhton}
-Python es un lenguaje de programación, es decir, una serie de reglas gramaticales bien definidas que le proporciona a una persona, en este 
-caso el programador, la capacidad de programar una serie de instrucciones o secuencias de órdenes con el fin de crear un comportamiento 
-lógico determinado. 
-
-Se trata de un lenguaje de alto nivel interpretado. Cuando se dice que un lenguaje es de alto nivel, se hace referencia a su nivel de 
+\noindent Python es un lenguaje de programación interpretado de alto nivel. Cuando se dice que un lenguaje es de alto nivel, se hace referencia a su nivel de 
 abstracción y facilidad de uso en comparación con los lenguajes de bajo nivel, es decir, aquellos que te permiten mayor control sobre los 
 componentes físicos del sistema. Decimos que es un lenguaje interpretado debido a que no es necesario convertir el texto escrito por el humano en 
-instrucciones entendibles por un procesador previamente a su ejecución. Esto agiliza el proceso de desarrollo ya que la conversión de código humano a 
-código máquina (compilación) suele demorar un tiempo. Por el contrario, la ejecución de un programa en lenguaje compilado es más rápida.  
+instrucciones entendibles por un procesador previamente a su ejecución.  
 
-Una de las características más destacadas de Python es su amplia librería (conjunto de código destinado a un objetivo concreto) estándar, que proporciona 
-variedad de módulos y funciones para realizar multitud de tareas. Como cualquier otro lenguaje de programación, cuenta con una gran cantidad de librerías de terceros que 
+Una de las características más destacadas de Python es su amplia librería\footnote{conjunto de código destinado a un objetivo concreto} estándar, que proporciona 
+una gran variedad de módulos y funciones para realizar multitud de tareas. Además, como cualquier otro lenguaje de programación, cuenta con una gran cantidad de librerías de terceros que 
 amplían sus capacidades, como SciPy en la ciencia de datos, Django en el desarrollo web, Numpy para operar con matrices, TensorFlow el aprendizaje automático, entre otros.
 
 \subsection{Grbl}
 \label{subsec:grbl}
-Grbl\footnote{\url{https://github.com/gnea/grbl}} es un firmware de código abierto usado para controlar máquinas llamadas \acs{CNC}. Este firmware se ejecuta en 
-un microcontrolador, que se encuentra dentro de la controladora de la máquina \acs{CNC}, en nuestro caso, la placa base del robot. \\
-Básicamente, convierte las instrucciones de código G, que posteriormente hablaremos de él, en señales eléctricas que se envían a los motores de la máquina. Además, 
-comprueba los diferentes sensores de la máquina, como pueden ser los finales de carrera, para establecer los límites físicos de cada movimiento. \\
-Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque solo soporta movimientos lineales,
-en este trabajo se abordará la configuración necesaria para para poder usar las articulaciones rotativas del nuestro robot.
+\noindent Grbl\footnote{\url{https://github.com/gnea/grbl}} es un \textit{firmware}\footnote{software específico para el harware elegido} de código abierto utilizado para controlar máquinas \acs{CNC}. 
+Está pensado para poderse ejecutar en microcontroladores de bajos recursos, como pueden ser los Arduinos y los ESP32.
+
+Básicamente, convierte una serie de instrucciones de código G (posteriormente se hablará de él) en señales eléctricas que se envían a 
+los motores de la máquina. Además de eso, comprueba los sensores de la máquina, para poder conocer y establecer los límites físicos de cada movimiento. 
+
+Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque principalmente está pensado para realizar 
+movimientos lineales, en este trabajo se abordará la configuración necesaria para poder usarse en articulaciones rotativas.
 \begin{figure} [h!]
   \begin{center}
     \includegraphics[width=4cm]{figs/grbl.png}
@@ -48,12 +45,14 @@ en este trabajo se abordará la configuración necesaria para para poder usar la
 \end{figure}\ 
 \subsection{Código G}
 \label{sec:gcode}
-\textit{G-code}, también conocido como RS-274, es el nombre del lenguaje de programación más usado en máquinas de \ac{CNC}. 
-Proporciona control numérico basado en métricas para equipos controlados por \ac{CAM}, como pueden ser, fresadoras y tornos. 
-La programación de este lenguaje precisa de una sintaxis específica en la que se emplean letras y números para representar 
-diferentes comandos y parámetros. Por ejemplo, la letra "G" seguida de un número indica un comando de movimiento, mientras 
-que la letra "M" seguida de un número se utiliza para comandos misceláneos, como el encendido o apagado del láser/motor de fresado.
-Así es como se programan los movimientos necesarios para que la herramienta realice una trayectoria cuadrada en el plano XY:
+\noindent \textit{G-code}, también conocido como RS-274, es el nombre del lenguaje de programación más usado en máquinas de \ac{CNC}. 
+
+Su programación, precisa de una sintaxis específica en la que se emplean letras y números para representar 
+diferentes comandos y parámetros. Por ejemplo, la letra G seguida de un número indica un comando de movimiento, mientras 
+que la letra M seguida de un número se utiliza para comandos misceláneos, como el encendido o apagado del láser.
+En el Código \ref{cod:ejemplo_gcode} se muestra un ejemplo muy sencillo, para trazar un cuadrado de 20mm de lado.
+
+\begin{code}[h]
 \begin{verbatim}
   G90       ; Establecer modo de posicionamiento absoluto
   G21       ; Establecer unidad de medida en milímetros
@@ -68,18 +67,28 @@ Así es como se programan los movimientos necesarios para que la herramienta rea
   
   M2        ; Fin del programa
 \end{verbatim}
-
+\caption{Programa para realizar una trayectoria cuadrada}
+\label{cod:ejemplo_gcode}
+\end{code}
+\newpage
 \subsection{FreeCAD}
 \label{subsec:freecad}
-FreeCAD\footnote{\url{https://www.freecad.org/index.php?lang=es_ES}} es una aplicación de diseño asistido por ordenador de código abierto y gratuita, utilizada para el modelado de piezas en 3D .
-Está dirigida al mundo de la ingeniería mecánica y el diseño de productos, pero también es usada en arquitectura y otros campos.
-\\FreeCAD utiliza modelado paramétrico. Se trata de un enfoque de diseño que utiliza parámetros y relaciones entre ellos para 
-crear modelos 3D modificables, lo que permite realizar un cambio en la geometría modificando el valor de un cierto parámetro.
-También ofrece una variedad de bancos de trabajo (\textit{work benches}) especializados, como \textit{Part Design}, \textit{Sketcher} y \textit{Draft} para adaptarse a diferentes 
-necesidades de diseño. Además, permite incluir nuevas herramientas y funcionalidades creadas por la comunidad, mediante su administrador 
-de complementos.
-\\FreeCAD cuenta con una comunidad activa de usuarios que contribuyen al desarrollo y la mejora continua del software. Gracias a esto, 
-es sencillo aprender a utilizarlo a partir de las numerosas guías de uso y tutoriales.
+\noindent FreeCAD\footnote{\url{https://www.freecad.org/index.php?lang=es_ES}} es un programa de diseño asistido por ordenador de código abierto y gratuito, 
+utilizado para modelar piezas industriales.
+Está dirigido al mundo de la ingeniería mecánica y el diseño de productos.
+
+Utiliza el enfoque del modelado paramétrico, que se basa 
+en el uso de parámetros y relaciones entre ellos para construir modelos 3D que pueden ser 
+modificados fácilmente. 
+
+Una de las ventajas de FreeCAD es la disponibilidad de diversos bancos de trabajo especializados, 
+conocidos como \textit{workbenches}. Cada uno de ellos, proporciona herramientas y funciones 
+específicas para tareas de diseño particulares.
+
+Además, es altamente personalizable, ya que incorpora un administrador de complementos que permite a la comunidad 
+agregar nuevas herramientas y funcionalidades al software. Gracias a ella, el software mejora continuamente y 
+resulta sencillo de aprender debido a la cantidad de documentación y tutoriales que existen.
+
 \begin{figure} [h!]
   \begin{center}
     \includegraphics[width=4cm]{figs/freecad.png}
@@ -87,28 +96,29 @@ es sencillo aprender a utilizarlo a partir de las numerosas guías de uso y tuto
   \caption{Logo de FreeCAD}
   \label{fig:freecadlogo}
 \end{figure}\ 
-
+\newpage
 \subsection{ROS 2}
 \label{subsec:ros2}
-ROS, por sus siglas en inglés, significa \textit{Robot Operating System}. Se trata de una plataforma de código abierto utilizada 
+\noindent ROS, por sus siglas en inglés, significa \textit{Robot Operating System}. Se trata de una plataforma de código abierto utilizada 
 para desarrollar y controlar sistemas robóticos.
-El objetivo principal de ROS es facilitar el desarrollo de sistemas robóticos al proporcionar una infraestructura que permite que
-los desarrolladores pueden centrarse en la lógica y el comportamiento específico de los robots, sin tener que preocuparse por la 
-infraestructura de comunicación y control. 
-Además, proporciona una colección de bibliotecas, herramientas y convenios que permiten a los programadores crear software para robots. 
-También proporciona herramientas para la visualización de datos, simulación de robots, depuración y pruebas. Además, 
-cuenta con una comunidad activa de usuarios y desarrolladores que contribuyen con paquetes adicionales y comparten su 
-conocimiento.
 
-Está diseñado para ser modular, lo que permite la creación de sistemas complejos mediante la reutilización de otros componentes existentes.
+Su objetivo principal es facilitar el desarrollo de sistemas robóticos al proporcionar una infraestructura que permite a
+los desarrolladores centrarse en la lógica y el comportamiento específico de los robots, sin tener que preocuparse por la 
+infraestructura de comunicación y control. 
+
+Sumado a ello, proporciona una colección de bibliotecas, herramientas y convenios que permiten a los desarrolladores 
+reutilizar y modularizar el software para robots. Además, incorpora programas para la visualización de datos, depuración y 
+simulación de robots creados por una comunidad activa de usuarios y desarrolladores.
 
 Una de las características distintivas de ROS es su arquitectura basada en nodos. Los nodos son procesos independientes 
 que se comunican entre sí mediante mensajes. Cada nodo puede realizar tareas específicas, en función de la lógica atribuída por el programador.
 
-En este trabajo se utiliza ROS 2, la versión sucesora de ROS. Esta versión incorpora gran variedad de mejoras respecto a su anterior versión. En esta versión 
-los nodos no dependen de un nodo \textit{Master} para comunicarse ya que las comunicaciones están distribuidas mediante el uso de \ac{DDS}. Esto 
-incrementa la robusted del sistema y reduce significativamente los tiempos de latencia. \\
-La distribución de utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata de la última versión de ROS estable disponible para Ubuntu 22.04 LTS.
+Concretamente, en este trabajo se utiliza ROS 2, la versión sucesora de ROS. Esta versión incorpora una gran variedad de mejoras respecto 
+a su predecesor. Por ejemplo, los nodos no dependen de un componente \textit{Master} para comunicarse ya que las comunicaciones 
+están distribuidas mediante el uso de \ac{DDS}. Esto incrementa la robustez del sistema y reduce significativamente los tiempos de latencia. 
+
+La distribución de ROS utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata de la última versión de ROS estable disponible para 
+el sistema operativo Ubuntu 22.04 LTS.
 \begin{figure} [h!]
   \begin{center}
     \includegraphics[width=4cm]{figs/ros2logo.jpeg}
@@ -119,40 +129,47 @@ La distribución de utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata
 
 \subsection{MoveIt!}
 \label{subsec:moveit}
-MoveIt es una plataforma de desarrollo (\textit{framework}) para manipulación robótica de código abierto que permite desarrollar 
-aplicaciones de manipulación complejas utilizando ROS. Además, proporciona una amplia gama de herramientas y bibliotecas que 
-facilitan el control y planificación de movimientos de robots. Con MoveIt, puedes crear fácilmente aplicaciones que permitan
-a los robots realizar tareas de manipulación avanzadas, como agarrar objetos, ensamblar piezas y mover el brazo en entornos complejos. 
+MoveIt es una plataforma de desarrollo (\textit{framework}) de código abierto que permite implementar 
+aplicaciones de manipulación complejas utilizando ROS. 
+
+Además, proporciona una amplia gama de herramientas y bibliotecas que 
+facilitan el control y la planificación de movimientos. Con este software, se puede desarrollar fácilmente aplicaciones que permitan
+a los robots realizar tareas de manipulación avanzadas, como agarrar objetos, ensamblar piezas y maniobrar el brazo en entornos complejos. 
+
 Es altamente flexible gracias a su diseño modular y se puede utilizar con una gran variedad de robots. De hecho, incorpora la herramienta 
-\textit{MoveIt Setup Assistant}; se trata de una asistente de configuración con interfaz gráfica que te permite generar los ficheros 
-necesarios para utilizar tu propio robot en este ecosistema. 
+\textit{MoveIt Setup Assistant}, que se trata de un asistente de configuración con interfaz gráfica, que te permite generar los ficheros 
+necesarios para poder incorporar tu propio robot en este ecosistema. 
 \begin{figure} [h!]
   \begin{center}
-    \includegraphics[width=12cm]{figs/moveit_intro.png}
+    \includegraphics[width=14cm]{figs/moveit_intro.png}
   \end{center}
-  \caption{Aspecto del plugin de MoveIt para Rviz2 (Franka Emika Robot)}
+  \caption{Plugin de MoveIt para el visualizador de ROS, Rviz2 (Franka Emika Robot)}
   \label{fig:ros2logo}
 \end{figure}\ 
 
+\newpage
 \section{Hardware}
 \label{sec:hardware}
-Cuando hablamos de \textit{hardware}, nos referimos a todos los componentes físicos de utilizados en el dispositivo electrónico, en este caso, un robot. Estos 
+Cuando hablamos de \textit{hardware}, nos referimos a todos los componentes físicos de utilizados en el dispositivo electrónico, en este caso, el robot. Estos 
 componentes son tangibles, es decir, se pueden tocar y ver.
 
 \subsection{MKS DLC32}
 \label{subsec:mksdlc32}
-Se trata de una placa destinada al mundo de las máquinas de grabado láser. Ha sido creada por \textit{MakerBase} y es considerada 
-\textit{Open Hardware} por lo que toda la información de la placa puede encontrarse en su repositorio de Github\footnote{\url{https://github.com/makerbase-mks/MKS-DLC32}}.
-Es fácilmente adquirible por \textit{Aliexpress} por un precio que ronda los 16\euro. Está basada en el microcontrolador de 32 bits: ESP32. 
-Se trata de un dispositivo muy asentado en la comunidad \textit{maker} debido a su bajo coste e integración en el 
-ecosistema Arduino. De hecho, gracias a su conectividad wifi y bluetooth ha ganado terreno a los microcontroladores Atmega que incorporan los propios Arduinos.\\
-Esta placa es ideal para este proyecto debido a que cuenta con la posibilidad de controlar 
-hasta 3 motores y es completamente compatible con \nameref{subsec:grbl}. Además dispone de una salida de potencia regulable controlable mediante \nameref{subsec:grbl} que nos 
-permite alimentar dispositivos. Estos podrían ser: electroimán (tipo de imán que es activado mediante electricidad), motor \ac{CC} entre otros. Además se puede aprovechar las salidas \ac{PWM} para conectar un grabador láser o un servo. 
-El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser alimentado mediante baterías y con cargadores de ordenador. 
+\noindent Se trata de una placa base\footnote{componente esencial que proporciona conexiones y circuitos para que los demás componentes se comuniquen entre sí} destinada al mundo de las máquinas de grabado láser. 
+
+Ha sido creada por \textit{MakerBase} y es \textit{open hardware}, por lo que toda la información de la placa 
+puede encontrarse en su repositorio de Github\footnote{\url{https://github.com/makerbase-mks/MKS-DLC32}}. Aun así, es fácil de comprar 
+en páginas web como \textit{Aliexpress} por un precio que ronda los 16\euro. 
+
+Está basada en el 
+microcontrolador ESP32. Éste, es un dispositivo muy asentado en la comunidad \textit{maker} debido a su bajo coste e integración en el 
+ecosistema Arduino que, sumado a su a su conectividad wifi, es una opción cada vez más popular entre los fabricantes de este tipo de placas.
+
+Como cabe esperar, es compatible con \nameref{subsec:grbl} e incorpora una serie de características que la hacen ideal para este proyecto. Es capaz de 
+controlar hasta 3 motores junto con una señal de \acs{PWM} para añadirle un servomotor, electroimán o láser.
 \begin{figure} [h!]
     \begin{center}
-      \includegraphics[width=10cm]{figs/MKS.png}
+      \includegraphics[width=9cm]{figs/MKS.png}
     \end{center}
     \caption{Placa base MakerBase DLC32}
     \label{fig:robSoldering}
@@ -160,20 +177,21 @@ El rango de funcionamiento es de 12 a 24 voltios por lo que es adecuado para ser
 
 \subsection{Motores Nema 17}
 \label{subsec:motores}
-Un motor paso a paso es un tipo de motor que se mueve en pequeños pasos o incrementos discretos en lugar de girar continuamente. Estos pasos 
-son controlados por señales eléctricas que hacen girar al motor una cantidad específica de grados cada vez que se envía una señal. Debido a que se tiene 
-control sobre su avance son una excelente opción si se quiere tener un motor que sea capaz de posicionarse en un ángulo concreto con exactitud. A pesar
-de su gran precisión, los motores paso a paso convencionales no tienen el conocimiento absoluto de su posición, por lo que todos los movimientos son 
-relativos. Esto hace que se requiera de un \textit{homing} (proceso en el cual la máquina CNC lleva las partes móviles a una 
-posición conocida) en el arranque de la máquina para conocer su estado antes de operar.
-Para este trabajo, se han usado 3 motores Nema 17 de 60 milímetros de largo debido a las necesidades calculadas más adelante. Son motores bipolares de 
-2.1 amperios y una resistencia de 1,6 ohmios con un torque máximo de 0.65 newton-metro.
+\noindent Un motor paso a paso es un tipo de motor que se mueve en pequeños incrementos discretos en lugar de girar continuamente. Esta  
+posibilidad de tener un control sobre la rotación del motor hace que sea la opción idónea para mover las articulaciones del robot.
+
+Concretamente, se han usado 3 motores Nema 17 de 60 milímetros de largo como los mostrados en la Figura \ref{fig:nema17_60}. Se tratan de
+motores bipolares de 2.1 amperios y una resistencia de 1,6 ohmios con un torque máximo de 0.65 newton-metro. Estos, han sido comprados 
+en \textit{Amazon} por un precio de 55\euro. 
+
+En la Tabla \ref{cuadro:nema17_60} 
+se muestran las especificaciones técnicas de los motores elegidos
 \begin{figure} [h!]
     \begin{center}
-      \includegraphics[width=8cm]{figs/nema17.jpg}
+      \includegraphics[width=9cm]{figs/nema17.jpg}
     \end{center}
     \caption{Motores Nema 17 de 2.1A}
-    \label{fig:robSoldering}
+    \label{fig:nema17_60}
   \end{figure}\ 
 
 \begin{table}[H]
@@ -195,22 +213,21 @@ Longitud del eje & 24mm \\
 \hline
 \end{tabular}
 \caption{Especificaciones técnicas de los motores utilizados}
-\label{cuadro:ejemplo}
+\label{cuadro:nema17_60}
 \end{center}
 \end{table}
 
+\newpage
 \subsection{Controlador TMC2209}
 \label{subsec:controladorPAP}
-Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el controlador en una serie de pulsos de
-potencia que excitarán las bobinas del motor en un cierto orden para lograr el movimiento. 
-Existen motores bipolares, unipolares e híbridos. La diferencia entre ellos radica en la disposición de las bobinas de su interior. Los más usados 
-en impresoras 3D y CNC son los bipolares. Son reconocibles debido a que tienen 4 cables.
-En este tipo de placas base se pueden instalar distintos modelos de controladores. Cada uno de ellos tiene unas prestaciones diferentes y por tanto 
-un precio distinto. Unos ofrecen mayor capacidad de corriente (para controlar motores más grandes), pulsos más suaves que reducen el 
-ruido sonoro y las vibraciones, medición en tiempo real de la corriente consumida para conocer el final de una articulación, entre otras tecnologías.  
+\noindent Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el procesador, en una serie de pulsos de
+potencia que excitarán ambas bobinas del motor en un cierto orden para hacerlo girar. 
+En concreto, se han utilizado 3 controladores TMC2209, compatibles con la placa mencionada anteriormente. Este modelo específico, es capaz 
+de entregar mayor corriente que su competencia e incluye una serie de tecnologías que reducen el ruido en los motores y las vibraciones. Además, 
+cuenta con una serie de protecciones para evitar dañarse en caso de un mal uso. Aún con todo esto, su precio por unidad es de apenas 3\euro.
 \begin{figure} [h!]
     \begin{center}
-      \includegraphics[width=6cm]{figs/TMC2209.jpg}
+      \includegraphics[width=8cm]{figs/TMC2209.jpg}
     \end{center}
     \caption{Controlador TMC2209}
     \label{fig:robSoldering}
@@ -239,14 +256,15 @@ Interfaz de comunicación & Pines CFG y UART \\
 \newpage
 \subsection{Fuente de alimentación genérica}
 \label{subsec:fuente_alimentacion}
-Para alimentar el brazo se va a utilizar una fuente de alimentación genérica de 24 voltios y 6 amperios. Este tipo de fuentes pueden ser 
-fácilmente adquiribles por internet por un precio aproximado de 15\euro. A pesar de esto, puede ser usada cualquier tipo de fuente capaz de 
-entregar más de 20 vatios en el rango de voltaje 12-24v. Más adelante se aborda el uso de cargadores de ordenadores portátiles para alimentar el 
-brazo.
+\noindent Para alimentar el brazo se va a hacer uso de una fuente de alimentación genérica de 24 voltios y 5 amperios (Figura \ref{fig:pw24}). Este tipo de fuentes chinas son 
+fáciles de encontrar en páginas como \textit{Aliexpress} y su precio rondan los 15\euro. A pesar de haber usado esta, no es 
+necesario utilizar una fuente tan potente. De hecho, puede ser usada cualquier tipo de fuente capaz de 
+entregar más de 20 vatios de potencia en el rango de voltaje 12-24v. Por lo que es completamente viable utilizar cargadores de ordenadores 
+portátiles como el de la Figura \ref{fig:pw19} para alimentar el robot.
 
 \begin{figure} [h!]
-  \centering    
-  \subfigure[Fuente de alimentación 24v 5A]{\label{fig:pw24}\includegraphics[width=0.55\linewidth ]{figs/pw24v.jpg}}
+  \centering   
+  \subfigure[Fuente de alimentación 24v 5A]{\label{fig:pw24}\includegraphics[width=0.45\linewidth ]{figs/pw24v.jpg}}
   \hspace{3cm}
   \subfigure[Cargador de portátil genérico]{\label{fig:pw19}\includegraphics[width=0.55\linewidth]{figs/pw19v.jpg}}
   \caption{Métodos usados para alimentar el robot}
