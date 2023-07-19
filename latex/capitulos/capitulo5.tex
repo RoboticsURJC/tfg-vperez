@@ -128,34 +128,97 @@ A & 135º \\
 \end{table}
 \newpage
 \section{Bocetos}
-Una parte clave del diseño son los bocetos previos al modelado 3D. En ellos, se busca tener una idea clara de la forma 
-y posición de todos los elementos que contituyen el robot.  
+\noindent Realizar bocetos es una fase clave del diseño que se lleva a cabo antes de comenzar a modelar en 3D. Con ellos, se busca tener una idea 
+clara de la forma 
+y posición de los elementos que constituyen el robot.  
 Para el desarrollo de este brazo, se han realizado numerosos bocetos, de los cuales se conservan aquellos dibujados digitalmente en 
-un iPad.
-\section{Elección de componentes hardware}
-En esta sección se analiza las necesidades que deben satisfacer los componentes hardware (motores, placas, fuentes de alimentación etc.)
-y se busca la mejor opción rendimiento-precio existente en el mercado. 
+un iPad. En la Figura \ref{fig:bocetos} se muestran algunos de ellos.
 
+\begin{figure} [h!]
+  \centering    
+  \subfigure[]{\includegraphics[width=0.5\linewidth ]{figs/boceto5.png}}
+  \hspace{1cm}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{figs/boceto2.png}}
+  \subfigure[]{\includegraphics[width=0.4\linewidth ]{figs/boceto8.jpeg}}
+  \hspace{1cm}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{figs/boceto4.png}}
+  \subfigure[]{\includegraphics[width=0.4\linewidth ]{figs/boceto6.jpeg}}
+  \hspace{1cm}
+  \subfigure[]{\includegraphics[width=0.4\linewidth]{figs/boceto7.jpeg}}
+  \caption[Bocetos realizados]{}
+  \label{fig:bocetos}
+\end{figure}
+\newpage
+De hecho, antes pasar directamente al diseño \acs{CAD}, se realizó una versión en miniatura como prueba de concepto. 
+Primeramente se hizo un boceto detallado en base al modelo alámbrico de la sección anterior. Posteriormente se llevó al 
+ordenador para finalmente, imprimirlo en 3D. El proceso llevado a cabo, se puede ver en la \mbox{Figura \ref{fig:prueba_concepto}}.
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Boceto final]{\includegraphics[width=0.35\linewidth ]{figs/boceto1.png}}
+  \hspace{2.5cm}
+  \subfigure[Diseño en FreeCAD]{\includegraphics[width=0.45\linewidth]{figs/manipulador_prototipo.png}}
+  \subfigure[Post-impresión]{\includegraphics[width=0.45\linewidth ]{figs/prototipo_foto2.jpeg}}
+  \hspace{1cm}
+  \subfigure[Tamaño del prototipo]{\includegraphics[width=0.45\linewidth]{figs/prototipo_foto1.jpg}}
+  \caption[Prueba de concepto]{Evolución de la prueba de concepto}
+  \label{fig:prueba_concepto}
+\end{figure}
+
+El pequeño prototipo, enteramente impreso en 3D, resultó funcional y bastante resistente, por lo que se dio por bueno el 
+concepto. Gracias a haber hecho esto, se pudo tener una mejor idea de la posición de cada pieza, sirviendo de gran ayuda en 
+la \mbox{Sección \ref{sec:di_cad}}.
+\newpage
+\section{Elección de componentes electromecánicos}
+\noindent En esta sección se eligen todos aquellos componentes que no pueden ser impresos en 3D y son necesarios para 
+la construcción del robot. Estos componentes deben de ser asequibles y fáciles de encontrar en páginas de Internet como 
+\textit{Aliexpress} o \textit{Amazon}. Con el propósito de encontrar el conjunto ideal, se 
+evaluarán diversas opciones para seleccionar aquella que ofrezca las mejores prestaciones y se ajuste al presupuesto establecido.
 \subsection{Motores}
-En robótica, los actuadores son los componentes responsables de convertir las señales eléctricas 
-en movimiento físico.
-
-Según la geometría establecida en \ref{sec:eligiendo_geometría}, el robot necesita 3 motores. Los utilizados en este proyecto deben
-cumplir las siguientes características:
-\begin{enumerate}
-  \item Deben ser capaces de entregar el suficiente torque para levantar el brazo más una cierta la carga en su extremo.
+\noindent El robot requiere de 3 motores que deben contar con las siguientes características:
+\begin{itemize}
+  \item Capacidad de entregar suficiente torque como para levantar el brazo más la carga.
   \item Se debe poder conocer su posición en cada instante.
-  \item Deben poder mantener su torque sin estar en movimiento.
-\end{enumerate}
+  \item Deben poder ejercer un torque/retención estando detenidos.
+\end{itemize}
 
-Debido a esta última necesidad, no es buena idea usar motores convencionales de corriente contínua con escobillas, ya que no son 
-capaces de aportar torque sin girar. Por otro lado, los motores paso a paso si son capaces de ello y, aunque no estén codificados,
-se puede conocer la posición relativa ya que avanza en pequeños incrementos discretos (pasos). Además, este tipo de motor es capaz de 
-entregar un torque considerable para su tamaño. Por contra, son bastante pesados. 
+Debido a esto último, no es viable usar motores convencionales con escobillas, ya que no son 
+capaces de generar torque sin girar. En cambio, los motores paso a paso si son capaces de ello. Además 
+suelen disponer de una gran fuerza y, aunque no estén codificados, se puede conocer su posición angular relativa debido a que avanzan en 
+pequeños incrementos discretos (pasos). Como aspecto negativo, son bastante pesados. Aún así su precio no es muy elevado por lo que es 
+una opción ideal para hacer un brazo robot. 
 
-Tras investigar las opciones existentes en el mercado, se ha llegado a la conclusión que los motores Nema 17 son la opción ideal 
-para la realización de este trabajo debido a que son comunes y fáciles de encontrar, además de tener un precio aceptable. Aún así, 
-existen motores Nema de diferentes tamaños, para realizar robots más o menos grandes.
+Para estimar la fuerza necesaria, se ha realizado un análisis matemático. En la Figura \ref{fig:torque} se muestra el 
+escenario de mayor esfuerzo (brazo completamente extendido) y Ecuación \ref{ec:torque} tal que da como resultado 
+el torque mínimo necesario para mantener esa posición.
+
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=10cm]{figs/torque.jpeg}
+  \end{center}
+  \caption{Dinámica del manipulador completamente extendido}
+  \label{fig:torque}
+\end{figure}\ 
+
+
+\begin{myequation}[h!]
+  \begin{equation}
+    \begin{aligned}
+      T1 &= m1*(L1/2) + m2*(L1 + L2/2) + payload*(L1 + L2)\\
+      T2 &= m2 *(L2/2) + payload*(L1 + L2)
+  \nonumber
+    \end{aligned}
+  \end{equation}
+  \caption[Cálculo del torque necesario en la articulación más demandante]{Cálculo del torque necesario en la articulación más demandante}
+  \label{ec:torque}
+\end{myequation} 
+
+Teniendo en cuenta que cada eslabón mide 17cm y se desea levantar una carga máxima de 300g, el valor de 
+torque necesario en la primera articulación es y tal en la segunda.
+
+Finalmente se ha optado por utilizar la categoría Nema 17, debido a que son comunes y fáciles de encontrar, además de tener un precio aceptable. Aunque este 
+tipo de motor no es capaz de aportar por sí solo el torque necesario, más adelante se más adelante se realiza una reductora para multiplicar la fuerza 
+final de dicha articulación.
+
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/MotorsNema.png}
@@ -164,11 +227,16 @@ existen motores Nema de diferentes tamaños, para realizar robots más o menos g
   \label{fig:nema}
 \end{figure}\ 
 
+Para evitar tener que hacer uso de un motor de mayor tamaño y coste, más adelante se realiza una reductora que multiplique por 5 el torque final de la 
+articulación.
+
+
 Dentro de la categoría Nema 17, todos tienen el mismo factor de forma a excepción del largo del motor. Esta característica determina 
 el torque del motor. A mayor longitud, mayor torque es capaz de ejercer. 
 
 Fotito de lo necesario
 
+\newpage
 \subsection{Reductora}
 Para poder reducir la velocidad de giro de un motor y, a su vez convertirla en fuerza, es necesario implementar una reductora. 
 Existen diferentes formas de hacerlo, como pueden ser los engranajes (normales, planetarios, helicoidales...) y las correas (lisas y 
@@ -286,6 +354,7 @@ Además, es necesario comprar la versión de 24v para poder alimentarlo con tens
 adquirir la versión de 12 para poder aprovechar toda su fuerza. El consumo de este electroimán es de 3W.
 \newpage
 \section{Diseño CAD}
+\label{sec:di_cad}
 \noindent En esta sección se habla de las particularidades del diseño y diversos aspectos a tener en cuenta a la hora de diseñar 
 cualquier pieza mecánica que posteriormente será impresa en 3D. 
 \\
