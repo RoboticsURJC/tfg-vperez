@@ -211,64 +211,74 @@ el torque mínimo necesario para mantener esa posición.
   \caption[Cálculo del torque necesario en la articulación más demandante]{Cálculo del torque necesario en la articulación más demandante}
   \label{ec:torque}
 \end{myequation} 
-
 Teniendo en cuenta que cada eslabón mide 17cm y se desea levantar una carga máxima de 300g, el valor de 
 torque necesario en la primera articulación es y tal en la segunda.
 
-Finalmente se ha optado por utilizar la categoría Nema 17, debido a que son comunes y fáciles de encontrar, además de tener un precio aceptable. Aunque este 
-tipo de motor no es capaz de aportar por sí solo el torque necesario, más adelante se más adelante se realiza una reductora para multiplicar la fuerza 
-final de dicha articulación.
+Los motores paso a paso se dividen en diferentes categorías según su potencia y rendimiento. En este caso, se empleará 
+un motor perteneciente a la categoría Nema, específicamente el Nema 17. Esta elección se basa en su amplia disponibilidad, facilidad 
+para adquirirlos y su precio razonable.
+
+Dentro de la categoría Nema 17, todos los motores comparten el mismo factor de forma, diferenciándose únicamente en su longitud, lo que 
+afecta directamente al torque que pueden proporcionar. A mayor longitud, mayor capacidad de ejercer torque. Debido a esto, se ha optado 
+por utilizar los más largos posibles dentro del presupuesto. Concretamente, 3 Nema 17 de 60mm (0.6 N.m) con un coste total de 55\euro. 
+
+Aunque el motor Nema 17 no es suficiente para suministrar por sí solo el torque necesario, se tiene previsto utilizar una reductora más 
+adelante para multiplicar la fuerza final de la articulación. Esta estrategia evita la necesidad de utilizar un motor más grande y 
+costoso. La reductora aumentará cinco veces el torque disponible para la articulación, permitiendo así un rendimiento adecuado 
+sin comprometer la elección del motor Nema 17.
 
 \begin{figure} [ht!]
   \begin{center}
-    \includegraphics[width=15cm]{figs/MotorsNema.png}
+    \includegraphics[width=11cm]{figs/MotorsNema.png}
   \end{center}
-  \caption{Diferentes categorías de motor paso a paso Nema \footnote{\url{https://filament2print.com/es/blog/139_motores-nema.html}}}
+  \caption{Dimensiones de los motores Nema17 \footnote{\url{https://reprap.org/wiki/NEMA_17_Stepper_motor}}}
   \label{fig:nema}
 \end{figure}\ 
 
-Para evitar tener que hacer uso de un motor de mayor tamaño y coste, más adelante se realiza una reductora que multiplique por 5 el torque final de la 
-articulación.
-
-
-Dentro de la categoría Nema 17, todos tienen el mismo factor de forma a excepción del largo del motor. Esta característica determina 
-el torque del motor. A mayor longitud, mayor torque es capaz de ejercer. 
-
-Fotito de lo necesario
-
-\newpage
 \subsection{Reductora}
-Para poder reducir la velocidad de giro de un motor y, a su vez convertirla en fuerza, es necesario implementar una reductora. 
-Existen diferentes formas de hacerlo, como pueden ser los engranajes (normales, planetarios, helicoidales...) y las correas (lisas y 
-dentadas).
+\noindent Para reducir la velocidad de giro de un motor y convertirla en fuerza, se requiere implementar una 
+reductora. Existen varias opciones para lograrlo, como el uso de engranajes (normales, planetarios, helicoidales, etc.) 
+o correas (lisas y dentadas).
 
-Se ha optado por el uso de correas dentadas sobre el uso de engranajes, debido a que estos últimos siempre añaden una cierta holgura 
-al movimiento final, haciendo el robot inexacto y añadiendo incertidumbre en los movimientos. Las correas dentadas en cambio, utilizan 
-tensores para asegurar que siempre está en contacto con ambas poleas.
+En este caso, se ha optado por utilizar correas dentadas en lugar de engranajes debido a que los engranajes 
+tienden a introducir holguras en el movimiento final, ocasionando imprecisión e incertidumbre en los movimientos 
+del robot. Por el contrario, las correas dentadas utilizan tensores para mantener siempre el contacto con 
+ambas poleas, lo que resulta en un movimiento más preciso y confiable.
 
-Foto de correa dentadas
-Se pretende usar correas de tipo GT2. Este tipo de correa es ampliamente utilizado en impresoras 3D, por lo que es realmente económico y 
-fácil de encontrar. Dentro de esta categoría existen diferentes anchos de correa en función de la tensión soportada. En este caso, 
-se ha elegido el ancho de 6mm puesto que es el más económico con diferencia y es más que suficiente para esta aplicación.
-Foto de mi correa.
+Se ha elegido el tipo de correa GT2 (Figura \ref{fig:correa}), ampliamente utilizado en impresoras 3D, por su bajo coste y fácil 
+disponibilidad en el mercado. Dentro de esta categoría, se ha seleccionado un ancho de 6 mm, el más 
+económico y adecuado para la aplicación requerida. El largo de cada correa se concretará en la \mbox{Sección \ref{sec:di_cad}}.
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=8cm]{figs/correa.png}
+  \end{center}
+  \caption{Ejemplo de correa GT2}
+  \label{fig:correa}
+\end{figure}\ 
 
-Además, las poleas necesarias para este tipo de correas son fáciles de diseñar e imprimir en 3D, lo que permite hacer poleas con 
-un número de dientes concreto y por un precio casi nulo.
+Además, las poleas necesarias para este tipo de correas se pueden diseñar e imprimir en 3D de manera 
+sencilla y económica. Esto permite personalizar el número de dientes de las poleas según las 
+necesidades del robot, con un costo prácticamente nulo.
 
-En este caso, para dos de los grados de libertad, se ha elegido utilizar una polea comercial de 20 dientes de metal unida al 
-eje del motor en conjunto con otra de 100 dientes impresa en 3D, logrando así una reducción de 1:5. En el grado de libertad restante, 
-se pretende utilizar el mismo concepto pero con una polea de 120 dientes (Reducción 1:6)\footnote{Se habla de reducción 1:b cuando tal}.
+Para dos de los tres grados de libertad del robot, se ha elegido utilizar una combinación de poleas: una polea comercial de 
+metal con 20 dientes unida al eje del motor y otra polea impresa en 3D con 100 dientes, logrando una reducción de 1:5\footnote{
+  La reducción 1:5 indica que, por cada vuelta del motor, el sistema de transmisión proporciona aproximadamente 1/5 de vuelta en el eje de salida.
+}. En el 
+tercer grado de libertad, se pretende emplear una polea con 120 dientes \mbox{(reducción 1:6)} siguiendo el mismo principio.
 
 \subsection{Controladores}
-Debido a que se prentende utilizar motores paso a paso bipolares, es necesario utilizar un tipo de electrónica específica para 
-este tipo de motor. Este componente hardware es llamado controlador, y su objetivo es convertir una señal eléctrica del controlador 
-en una serie de pulsos de mayor potencia que excitarán las bobinas del motor. 
-Para motores paso a paso de baja corriente (hasta 2A), existe un formato de forma común en el mundo \textit{maker}. Es por esto que la 
-mayor parte de los controladores paso a paso que encontramos en el mercado son intercambiables entre sí. La diferencia entre ellos, reside 
-en la tecnología de su interior y las capacidades técnicas que ofrecen. 
+\noindent En el mundo del \textit{maker}, existe un factor de forma común para controladores de motores paso a paso de baja corriente (hasta 2A). Debido a esto, 
+la mayoría de los controladores disponibles en el mercado son intercambiables entre sí, aunque varían en la tecnología interna y en sus 
+capacidades técnicas.
+
+En el mercado actual, se pueden encontrar diversos controladores diseñados específicamente para motores paso a paso bipolares. Estos 
+controladores se diferencian en términos de tecnología y características técnicas que ofrecen. Algunos de los controladores más comunes 
+y populares son basados en chips como el A4988, DRV8825 o TMC2208, entre otros. Concretamente, se han seleccionado cuatro de ellos, cuyas 
+especificaciones pueden verse en el Cuadro \ref{cuad:controladores}.
 \begin{table}[htbp]
   \centering
   \caption{Comparación de especificaciones de los controladores existentes}
+  \label{cuad:controladores}
   \begin{tabular}{|c|c|c|c|c|c|}
       \hline
       \multirow{2}{*}{Modelo} & Voltaje de & Corriente & \multirow{2}{*}{Microstepping} & Nivel de & \multirow{2}{*}{Precio} \\
@@ -280,58 +290,81 @@ en la tecnología de su interior y las capacidades técnicas que ofrecen.
       \hline
       TMC2225 & 4.7-36V & 2A & Hasta 1/32 & Bajo ruido  & 2.8\euro \\
       \hline
-      TMC2208 & 4-35V & 2A &  Hasta 1/256 & Totalmente silencioso & 2.8\euro \\
-      \hline
       TMC2209 & 5.5-28V & 2.5A & Hasta 1/256 & Totalmente silencioso & 3.4\euro \\
       \hline
   \end{tabular}
 \end{table}
+\begin{figure} [h!]
+  \centering    
+  \subfigure[A4988]{\includegraphics[width=0.2\linewidth ]{figs/a4988.jpg}}
+  \hspace{0.5cm}
+  \subfigure[DRV8825]{\includegraphics[width=0.2\linewidth]{figs/drv8825.jpg}}
+  \hspace{0.5cm}
+  \subfigure[TMC2225]{\includegraphics[width=0.2\linewidth]{figs/tmc2225.jpg}}
+  \hspace{0.5cm}
+  \subfigure[TMC2209]{\includegraphics[width=0.2\linewidth]{figs/TMC2209.jpg}}
+  \caption[Controladores existentes en el mercado]{Aspecto de los controladores}
+  \label{fig:controladores}
+\end{figure}
 
 Debido a que se pretende utilizar motores Nema 17 de más de 2A, la decisión debe estar entre el DRV8825 y el TMC2209. Finalmente, se 
 ha elegido este último debido a que es realmente silencioso e incorpora una tecnología superior que garantiza una señal más definida que 
 evita la pérdida de pasos del motor. Además, a la hora de adquirirlo, suele venir acompañado de un disipador de calor más grande que, unido 
 a su mayor eficiencia energética, se traduce en una menor cantidad de calor dentro de nuestro robot. 
 
-\subsection{Placa base}
-La placa base es una targeta de circuito impreso que proporciona conexiones físicas y eléctricas entre las diferentes componentes y 
+\subsection{Placa base CNC}
+\noindent La placa base es una targeta de circuito impreso que proporciona conexiones físicas y eléctricas entre los diferentes componentes y 
 unifica estos en un mismo componente. 
-En el caso de aquellas usadas para montar controladores paso a paso, suelen integrar un \ac{MCU} o actuar como un \textit{shield} 
-(placa adicional que se acopla a otras para aumentar su funcionalidad y características).
-Foto cnc arduino shield y otras
 
-Existen numerosas opciones en el mercado con la posibilidad de montar una distinta cantidad de controladores. En el caso de este 
-trabajo necesitamos sólamente 3. Este tipo de placas suelen ser utilizadas para crear máquinas CNC y en este caso se ha optado por 
-elegir una placa económica que integra todo lo necesario para este proyecto a exccepción de los controladores. 
-Se ha elegido esta y no otra puesto que tiene un \acs{MCU} ESP32 muy superior al AtMega328p del Arduino Uno. Además cuenta con la 
-capacidad de poderse controlar vía wifi y la mayor ventaja es que incorpora un mosfet conectado a una salida pwm a la que podemos conectar 
-un motor de hasta x vatios, un electroimán etc. Además incluye una serie de pines y salidas muy cónmodas de utilizar para montar 
-módulos de grabado láser y etc. Todo ello por un precio de 16€.
+En el caso de aquellas utilizadas en el mundo de las CNCs, tienen la posibilidad de montar controladores paso a paso y, o bien 
+integran un microcontrolador en la propia placa, o bien tienen la posibilidad de acloparse a uno concreto
+(\textit{shields}\footnote{(placa adicional que se acopla a otras para aumentar su funcionalidad y características)}).  
 
-\subsection{Fuente de alimentación}
-Se trata de un elemento clave del robot. Es importante conocer \textit{a priori} las 
-características necesarias de la fuente.
 
-Por ello, se ha realizado una estimación del consumo del robot final. La mayor parte del consumo viene dado por los propios motores que 
-se encontrarán permanentemente excitados con el fin de mantener el robot en una determinada posición sin desplomarse. Según las especificaciones 
-de los motores escogidos, cada uno consume en torno a 7W. Es decir, el consumo de los motores es de 21W. A esto hay que añadir el consumo del 
-microcontrolador y de los controladores (unos 4W). Además, si se quiere añadir un electroimán al extremo o algún servo, se necesitará de 
-un extra de potencia. 
-En base  a la estimación, se establece que lo ideal y recomendable para alimentar este equipo es una fuente de alimentación de 12 a 24V capaz 
-de entregar al menos 30W. Si se desea usar una fuente de baja calidad, lo ideal es elegir una un 30\% más potente para evitar forzarla y aumentar 
-su vida útil.
-Debido al amplio rango de voltaje y de su bajo consumo, es perfectamente alimentable con un cargador típico de portátil de 19V sin temor 
-a dañarlo. Pese a esto, se ha decidido utilizar una fuente de alimentacion genérica de 24V 150W para poder realizar \textit{a posteriori} 
-todas las mediciones de consumos descartando a la fuente como factor limitante. El precio de esta fuente es de 15\euro.
+
+En el mercado existen cantidad de ellas, entre las que destacan principalmente dos: Arduino CNC Shield V3 y MKS DLC32 (Figura \ref{fig:placas_candidatas})
+\begin{figure} [h!]
+  \centering    
+  \subfigure[Arduino Uno CNC Shield]{\includegraphics[width=0.4\linewidth ]{figs/uno_shield.jpg}}
+  \hspace{0.5cm}
+  \subfigure[MKS DLC32]{\includegraphics[width=0.4\linewidth]{figs/mksdlc32.jpg}}
+  \caption[Placas base candidatas]{Placas base candidatas}
+  \label{fig:placas_candidatas}
+\end{figure}
+ 
+Finalmente se ha optado por la segunda ya que la diferencia entre ambas es de a penas 6 euros y en cambio, es muy superior en características. Esta placa 
+incorpora un microcontrolador ESP32 mucho más avanzado y rápido que el AtMega328p usado en el Arduino Uno. Además incorpora un transistor MOSFET de 
+gran potencia que permite controlar una salida de hasta 24v mediante PWM\footnote{
+PWM (Pulse Width Modulation) es una técnica de control que varía el ancho de un pulso eléctrico para regular la potencia entregada a un dispositivo o 
+componente, como motores o luces, permitiendo controlar su velocidad o intensidad de manera eficiente.}. Por lo general, es una placa mejor acabada, 
+con un hardware más moderno y está pensada para que su montaje eléctrico no de lugar a error.
+
 \newpage
+\subsection{Fuente de alimentación}
+\noindent Es el elemento encargado de suministrar la energía a todo el sistema eléctrico del robot. La elección de este componente viene dada 
+por las características y necesidades de los componentes elegidos anteriormente. 
+
+Para conocer esto, se debe realizar una estimación del consumo en base a las especificaciones que ofrecen los fabricantes. En base a esto, la mayor 
+parte del consumo viene dado por los propios motores que se encontrarán permanentemente excitados para no desplomar el robot. Concretamente,
+cada uno consume en torno a 7W, haciendo un total de 21W. A esto hay que añadirle el consumo del microcontrolador y la potencia 
+perdida en forma de calor en los controladores (unos 4W). Sumado a ello, se deben tener en cuenta los 3W consumidos por el electroimán. Finalmente, 
+el consumo estimado ronda los 35W.
+
+En base a la estimación, se debe encontrar una fuente de alimentación que sea capaz de dar, al menos, esa potencia de manera continuada. En cuanto al 
+voltaje, cualquiera en el rango de 12 a 24v es válido. Se recomienda utilizar una del mayor voltaje posible ya que, en teoría, es más eficiente 
+debido a que la corriente que debe entregar es menor, además de lidiar mejor con las caídas de tensión en movimientos rápidos.
+
+Dicho esto, es posible también alimentar el robot mediante un cargador típico de 19v de un portátil. Aún así, la fuente adquirida para 
+este proyecto es de 24V 150W para poder realizar todas las mediciones de consumos de la Sección \ref{sec:consumo}, descartando a la fuente 
+como factor limitante. Aún así, el precio de esta fuente es de solo 15\euro.
+
 \subsection{Rodamientos}
-Para mejorar la eficiencia de las articulaciones y garantizar que todas roten con suavidad, se pretende hacer uso de rodamientos 
+\noindent Para mejorar la eficiencia de las articulaciones y garantizar que todas roten con suavidad, se pretende hacer uso de rodamientos 
 en cada una de ellas. 
-Existen diferentes tipos de rodamientos en el mercado pero se ha elegido un tipo de rodamiento específico para este propósito. 
-Se ha optado por el uso de rodamientos brida como el de la Figura \ref{fig:rodamientos_fushi}. Este tipo de rodamientos son usados en las poleas pasivas de las impresoras 3D, por lo 
-que son muy baratos (10 de buena marca por 6-10€) y sencillos de encontrar. La razón principal de su uso es su peculiar forma. Este tipo 
-de rodamiento tiene un borde en el extremo que hace de borde. Esto lo hace ideal para insertar en las piezas 3D a desarrollar y garantizar 
-que nunca se puedan sacar mientras el tornillo este fijado. Además evita que el rodamiento se mueva y se gire cuando la articulación 
-recibe un esfuerzo lateral. (Véase la Figura \ref{fig:ejemplo_rodamiento})
+Existen diferentes tipos de rodamientos en el mercado pero se ha optado por un tipo de rodamiento concreto para este proyecto. 
+Se pretenden utilzar rodamientos brida como el de la Figura \ref{fig:rodamientos_fushi}. La razón principal de su uso es su peculiar forma. Este tipo 
+de rodamiento tiene un borde en el extremo que hace de borde que lo hace ideal para insertar en piezas 3D y garantizar 
+que nunca se puedan salir de su sitio mientras exista un tornillo que lo fije (Véase la Figura \ref{fig:ejemplo_rodamiento}).
 
 \begin{figure} [ht!]
   \centering  
@@ -340,18 +373,43 @@ recibe un esfuerzo lateral. (Véase la Figura \ref{fig:ejemplo_rodamiento})
   \subfigure[Ejemplo de uso]{\label{fig:ejemplo_rodamiento}\includegraphics[width=0.5\linewidth ]{figs/RodamientosBrida.png}}
   \caption{Rodamientos de tipo brida}
 \end{figure}\ 
+\newpage
+Estos rodamientos tan particulares son ampliamente usados en las poleas pasivas de las impresoras 3D, por lo 
+que son comunes y muy baratos, pudiendo comprar 10 de buena marca por 5\euro.
 
 \subsection{Finales de carrera}
-Son útiles para conocer el final del recorrido de una articulación y poder establecer la posición absoluta al inicio de la 
-máquina. 
-Existen cantidad de ellos en el mercado y con distintas tecnologías. Se ha decidido utilizar unos basados en \textit{microswitches} debido a 
-que son baratos y cumplen su función. Además son compatibles con la placa previamente elegida. 
+\noindent Este tipo de dispositivos, son usados para conocer el final del recorrido de una articulación y poder establecer así, posiciones 
+absolutas.
+Existen cantidad de ellos en el mercado con distintos principios de funcionamiento, siendo estos basados en 
+\textit{microswitches}\footnote{Interruptor eléctrico de acción rápida y sensible, 
+que se activa al aplicar una ligera presión sobre su botón o palanca.} los más baratos. Dentro 
+de esta categoría existen diferentes modelos pero se ha optado por el de la Figura \ref{fig:finalcarrera} por ser el más barato y común. Además son 
+totalmente compatibles con la placa base elegida anteriormente.
+
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=8cm]{figs/finaldecarrera.jpg}
+  \end{center}
+  \caption{Final de carrera económico}
+  \label{fig:finalcarrera}
+\end{figure}\ 
+
 \subsection{Electroimán}
-Para realizar las pruebas, se pretende crear una herramienta para el robot que consiste en un electroimán para poder mover objetos metálicos 
-de sitio. En el mercado existen muchos tipos de electroimán con distintos consumos y fuerzas. Uno ideal para esta aplicación es el \textit{D20H15}.
-Su nombre indica que es un electroimán de diámetro 20mm y altura 15mm. Según las especificaciones del producto, es capaz de levantar hasta 3Kg. 
-Además, es necesario comprar la versión de 24v para poder alimentarlo con tensiones entre 18 y 24v. En caso de alimentar el robot con 12v, se debería 
-adquirir la versión de 12 para poder aprovechar toda su fuerza. El consumo de este electroimán es de 3W.
+\noindent Para llevar a cabo las pruebas, se busca desarrollar una herramienta para el robot, consistente en un electroimán que permita 
+el desplazamiento de objetos metálicos. En el mercado, existen diversos tipos de electroimanes con diferentes tamaños y fuerzas. Uno 
+especialmente adecuado para esta aplicación es el \textit{D20H15} de la Figura \ref{fig:d20}, cuyo nombre da a entender que tiene un diámetro de 20 mm y una altura de 15 mm. 
+Según las especificaciones, es capaz de levantar objetos ferromagnéticos de hasta 3 kg por lo que supera la carga útil que se espera del prazo. Finalmente, 
+se ha adquirido la versión de 24 V y 3W por 3\euro.
+
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=8cm]{figs/d20h15.jpg}
+  \end{center}
+  \caption{Electroimán D20H15 3KG}
+  \label{fig:d20}
+\end{figure}\ 
+
+
 \newpage
 \section{Diseño CAD}
 \label{sec:di_cad}
