@@ -556,10 +556,11 @@ Con la intención de lograr la mejor organización posible, se ha decidido inclu
 detallando los componentes necesarios para el montaje del robot. En la Tabla \ref{cuadro:componentes} se listan aquellos 
 componentes que deben ser comprados y su precio. Se recomienda adquirirlos a través de páginas como \textit{Aliexpress} ya que 
 resulta significativamente más barato que comprarlos a través de \textit{Amazon}. Por otro lado, es necesaria la tornillería 
-de la Tabla \ref{cuadro:tornilleria}, comprada en ferreterías locales y nacionales como \textit{Randrade} (Online). El resto 
+de las Tablas \ref{cuadro:tornillos}, \ref{cuadro:tuercas}, \ref{cuadro:arandelas} y \ref{cuadro:varillas}, comprada en ferreterías locales y nacionales como \textit{Randrade} (Online). El resto 
 de piezas detalladas en la Tabla \ref{cuadro:piezas}, son enteramente imprimibles en 3D. Se recomienda configurar el laminador 
 con las densidades de relleno propuestas en dicha tabla. Cada pieza está diferenciada con un número y se pueden requerir varias 
-unidades de una misma pieza (indicado en la propia tabla).
+unidades de una misma pieza (indicado en la propia tabla). Se recomienda utilizar una altura de capa de 0.12mm y tres líneas 
+de grosor de pared.
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
@@ -587,47 +588,169 @@ Plástico para imprimir & PLA/PETG 1Kg & 1 & 22\euro \\
 \end{table}
 
 \begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Componente} & \textbf{Cantidad} & \textbf{Precio total} \\
-\hline
-Tornillo M3 Allen & 3 & 56\euro \\
-
-\hline
-\end{tabular}
-\caption{Tornillería necesaria}
-\label{cuadro:tornilleria}
-\end{center}
-\end{table}
-
+  \begin{center}
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Métrica} & \textbf{Tamaño} & \textbf{Cantidad} \\
+  \hline
+  M3 & 12mm & 8\\
+  M3 & 16mm & 11\\
+  M3 & 20mm & 10\\
+  M3 & 25mm & 13\\
+  M4 & 30mm & 3\\
+  M5 & 25mm & 1\\
+  M5 & 30mm & 3\\
+  M5 & 40mm & 1\\
+  M5 & 50mm & 5\\
+  M5 & 55mm & 1\\
+  M5 & 60mm & 2\\
+  
+  \hline
+  \end{tabular}
+  \caption{Tornillos necesarios}
+  \label{cuadro:tornillos}
+  \end{center}
+  \end{table}
 
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|l|c|}
 \hline
-\textbf{Identificador} & \textbf{Cantidad} & \textbf{Relleno óptimo} \\
+\textbf{Métrica} & \textbf{Cantidad} \\
 \hline
-\#1 & 1 & 15\% \\
+M3 normal & 6\\
+M3 autoblocante & 29\\
+M4 autoblocante & 8\\
+M5 normal & 5\\
+M5 autoblocante & 10\\
+
 \hline
 \end{tabular}
-\caption{Piezas necesarias}
-\label{cuadro:piezas}
+\caption{Tuercas necesarias}
+\label{cuadro:tuercas}
 \end{center}
 \end{table}
 
-El precio total de los componentes necesarios es de 156.3\euro sumado a los tantos de tornillería, hacen un coste total de tanto.\\
+\begin{table}[H]
+  \begin{center}
+  \begin{tabular}{|c|c|}
+  \hline
+  \textbf{Métrica} & \textbf{Cantidad} \\
+  \hline
+  M3 & 29\\
+  M5 & 16\\
+  \hline
+  \end{tabular}
+  \caption{Arandelas necesarias}
+  \label{cuadro:arandelas}
+  \end{center}
+  \end{table}
+  
+  \begin{table}[H]
+    \begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Métrica} & \textbf{Cantidad} \\
+    \hline
+    M3 & 1 metro\\
+    M4 & 1 metro\\
+    M5 & 1 metro\\
+  
+    \hline
+    \end{tabular}
+    \caption{Varillas roscadas necesarias}
+    \label{cuadro:varillas}
+    \end{center}
+    \end{table}
 
-La impresión de todas las piezas (utilizando una altura de capa de 0.12mm) puede llevar cerca de 60 horas. En cambio, 
+
+\begin{table}[H]
+  \begin{center}
+  \begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Identificador} & \textbf{Cantidad} & \textbf{Relleno óptimo} \\
+  \hline
+  \#1 Base inferior & 1 & 15\% \\
+  \hline
+  \#2 Espaciador de la base & 4 & 100\% \\
+  \hline
+  \#3 Base superior & 1 & 15\% \\
+  \hline
+  \#4 Polea 120T & 1 & 20\% \\
+  \hline
+  \#5 Base de los motores & 1 & 15\% \\
+  \hline
+  \#6 Límite de la base & 1 & 100\% \\
+  \hline
+  \#7 Lateral derecho & 1 & 15\% \\
+  \hline
+  \#8 Lateral izquierdo & 1 & 15\% \\
+  \hline
+  \#9 Espaciador de rodamiento & 3 & 100\% \\
+  \hline
+  \#10 Polea 100T & 2 & 20\% \\
+  \hline
+  \#11 Eslabón 1 & 1 & 15\% \\
+  \hline
+  \#12 Espaciador de motores & 1 & 100\% \\
+  \hline
+  \#13 Tope de correa & 1 & 15\% \\
+  \hline
+  \#14 Palanca articulación 2 & 1 & 20\% \\
+  \hline
+  \#15 Paralelo eslabón 1 & 1 & 15\% \\
+  \hline
+  \#16 Paralelo del extremo & 1 & 15\% \\
+  \hline
+  \#17 Codo & 1 & 15\% \\
+  \hline
+  \#18 Ajuste de límite & 1 & 15\% \\
+  \hline
+  \#19 Eslabón 2 & 1 & 15\% \\
+  \hline
+  \#20 Paralelo eslabón 2 & 1 & 15\% \\
+  \hline
+  \#21 Extremo del robot & 1 & 15\% \\
+  \hline
+  \#22 Fijador de motores & 2 & 100\% \\
+  \hline
+  \#23 Herramienta electroimán & 1 & 15\% \\
+  \hline
+  \end{tabular}
+  \caption{Piezas necesarias}
+  \label{cuadro:piezas}
+  \end{center}
+  \end{table}
+  
+
+El precio total de los componentes necesarios es de 156.3\euro{} sumado a unos 15 en tornillería, hacen un coste total aproximado de 171\euro.\\
+
+La impresión de todas las piezas puede llevar cerca de 60 horas. En cambio, 
 el montaje requiere de apenas 2, o incluso, menos dependiendo de la habilidad del usuario. Para saber la posición de cada pieza 
 y dónde montarla, se recomienda consultar el montaje 
 completo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/280861172bce3b1c0cfbb155a434364ea68eeb30/src/design/FreeCad/\%230\_ASSEMBLY.FCStd}} 
-realizado mediante A2Plus en FreeCAD. En él, se puede ver 
+realizado mediante A2Plus en FreeCAD (Figura \ref{fig:montaje_freeacd_a2plus}). En él, se puede ver 
 el nombre de cada pieza, tornillo necesario y posición.
-\\
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/montaje.png}
+  \end{center}
+  \caption{Ensamble CAD completo del robot final}
+  \label{fig:montaje_freeacd_a2plus}
+  \end{figure}\   
 
 En cuanto al montaje de la electrónica es realmente sencillo debido a que existen numerosos tutoriales 
 y manuales en internet que utilizan esta placa. Por si no fuera poco, el propio circuito impreso de la 
 placa tiene serigrafiado un nombre en cada conector. El unico aspecto a tener en cuenta es la regulación 
 de corriente de los 3 controladores TMC2209. Esta se realiza mediante un pequeño potenciómetro y requiere 
-de un multímetro para leer los valores. En este \href{https://all3dp.com/2/vref-calculator-tmc2209-tmc2208-a4988/}{enlace} se muestra un tutorial de como hacerlo.
+de un multímetro para leer los valores. En este \href{https://all3dp.com/2/vref-calculator-tmc2209-tmc2208-a4988/}{enlace} se muestra un tutorial de como hacerlo.  
+\newpage
+En la Figura \ref{fig:montaje_real} se muestra el resultado real del robot. Como es obvio es idéntico al realizado en el diseño CAD y resulta robusto 
+y estable. La organización de los cables ha resultado sencilla debido a las ranuras añadidas en la fase de diseño.
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/montaje_real.jpg}
+  \end{center}
+  \caption{Montaje real del robot}
+  \label{fig:montaje_real}
+  \end{figure}\ 
