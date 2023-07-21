@@ -359,6 +359,7 @@ este proyecto es de 24V 150W para poder realizar todas las mediciones de consumo
 como factor limitante. Aún así, el precio de esta fuente es de solo 15\euro.
 
 \subsection{Rodamientos}
+\label{sec:bridas}
 \noindent Para mejorar la eficiencia de las articulaciones y garantizar que todas roten con suavidad, se pretende hacer uso de rodamientos 
 en cada una de ellas. 
 Existen diferentes tipos de rodamientos en el mercado pero se ha optado por un tipo de rodamiento concreto para este proyecto. 
@@ -455,27 +456,71 @@ para poder atornillar el robot al suelo.
 \end{figure}
 \newpage
 \subsection{Base de los motores}
-\noindent Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal.
+\noindent Este conjunto es el encargado de contener los 3 motores y rotar sobre la base principal. Consiste principalmente en 4 piezas: las dos laterales, la inferior y un espaciador de lado a lado que refuerza el conjunto. Está ideado así 
+para solo requerir de piezas planas que serán impresas en dirección horizontal. De esta forma, se logra la mayor resistencia de pieza al incrementar  
+la adhesión entre caspas. Además se consigue la máxima exactitud en orificios y formas circulares. Todo el conjunto se une a través de 
+varillas roscadas y tuercas (Figura \ref{fig:base_motores}).
+
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=12cm]{figs/base_motores.png}
   \end{center}
   \caption{Base de los motores}
+  \label{fig:base_motores}
 \end{figure}\ 
-\\
-Consiste principalmente en 4 piezas; las dos laterales, la inferior y un espaciador de lado a lado que refuerza el conjunto. Esta ideado así 
-para realizar piezas que serán imprimidas en dirección horizontal que es como mayor resistencia tienen las piezas en impresora 3d por la 
-dirección de las capas. Además se consigue la máxima exactitud en los orificios y formas circulares. Todo el conjunto se une a través de 
-varillas roscadas y tuercas.
 
-Cabe recalcar el sistema de tensado de las correas. Consiste en una serie de orificios longitulidanes y una pieza que agarra el motor por 
-el otro lado a modo de sandwich.
-foto de lateral que se vea eso
+Además de esto, cabe destacar el sistema de tensado de las correas, formado por una serie de orificios longitudinales que permiten deslizar el motor 
+hasta lograr la tensión óptima, para despúes fijarse en su sitio. Esto último se realiza mediante una pieza que aumenta la fricción y reparte la presión 
+de los 3 tornillos empleados.
 
-Además esta pieza incorpora 2 de los 3 finales de carrera del robot. Además tiene una serie de ranueras para poder poner bridas a posteriori y 
-organizar bien los cables.
+Por otra parte, esta pieza incorpora una serie de orificios específicamente creados para acoplar de los 3 finales de carrera del robot. Sumado a ello, 
+se ha decidido añadir una serie de ranuras para poder realizar a \textit{posteriori} un manejo de cables más ordenado.
+
 \newpage
 \subsection{Paralelogramos}
+\noindent Son aquellos elementos descritos en el modelo alámbrico, los cuales han sido modelados en 3D y son los encargados de llevar el 
+movimiento de la base de los motores al extremo del robot. 
+
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=13cm]{figs/links_assembly.png}
+  \end{center}
+  \caption{Conjunto de los paralelogramos}
+  \label{fig:links}
+\end{figure}\ 
+
+Como se puede apreciar, algunos de ellos incluyen (al igual que la base de los motores), las ranuras necesarias para poder guiar los cables que van hasta el extremo del 
+robot. Además de esto, incorpora el final de carrera en un eslabón, de tal forma que se active al llegar al final de su recorrido. Para poder 
+ajustar este punto final, se ha creado el pequeño bloque deslizante de su derecha.
+
+Todas y cada una de las articulaciones incorpora un par de rodamientos brida (presentados en la Sección \ref{sec:bridas}). Estos, deberán ser insertados a 
+presión en las piezas reales, por lo que los orificios son ligeramente inferiores al diámetro del rodamiento.
+
+Por otro lado, para la realización de las poleas dentadas GT2, se ha empleado la herramienta paramétrica 
+gt2-gear-generator\footnote{\url{https://avtehnik.github.io/gt2-gear-genaretor/}} para generar el contorno de la polea en formato DXF 
+(Figura \ref{fig:polea_dxf}). Este formato 
+ha sido importado en FreeCAD y extruido gracias a los espacios de trabajo \textit{Draft} y \textit{Part Design}.
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/dxf_polea.png}
+  \end{center}
+  \caption{Contorno de la polea de 100 dientes}
+  \label{fig:polea_dxf}
+\end{figure}\ 
+
+\newpage
+Posteriormente, se les ha incluido los agujeros y vaciados hexagonales necesarios para insertar las tuercas de métrica 3, que las unirán a su respectivo eslabón. Mostrados 
+en la Figura \ref{fig:polea_show}.
+\begin{figure} [ht!]
+  \begin{center}
+    \includegraphics[width=14cm]{figs/polea_show 2.png}
+  \end{center}
+  \caption{Ambos lados de la palanca de la articulación 3}
+  \label{fig:polea_show}
+\end{figure}\ 
+
+
+Finalmente, con el objetivo de personalizar el aspecto del robot, se ha incluido su nombre en el lateral del eslabón más visible.
 \newpage
 \subsection{Elemento terminal}
 \noindent Esta pieza (Figura \ref{fig:extremo_pieza}) está la situada en el extremo del robot. Es la encargada de realizar la unión entre el robot y la herramienta. Por esto, 
@@ -514,30 +559,6 @@ forma del extremo del robot. Para unir el conjunto se ha utilizado el propio ori
   
   \caption{Herramienta electroimán}
 \end{figure}
-
-\newpage
-\subsubsection{Diseño de las poleas dentadas}
-Primero, se ha utilizado la herramienta \textit{online} 
-gt2-gear-generator\footnote{\url{https://avtehnik.github.io/gt2-gear-genaretor/}} para generar de manera paramétrica el contorno de la polea 
-en formato DXF.\\
-\begin{figure} [ht!]
-  \begin{center}
-    \includegraphics[width=14cm]{figs/dxf_polea.png}
-  \end{center}
-  \caption{Contorno de la polea de 100 dientes}
-\end{figure}\ 
-Posteriormente, abrimos el fichero DXF mediante el \textit{workbench} Draft de FreeCad y seleccionamos todos los contornos. A continuación, 
-pulsamos en el icono de "Borrador a Croquis" de la barra superior de herramientas y se nos generará un boceto de FreeCad que podremos extruir 
-con el \textit{workbench} Part Design. 
-\begin{figure} [ht!]
-  \begin{center}
-    \includegraphics[width=1cm]{figs/polea_freecad.png}
-  \end{center}
-  \caption{Contorno de la polea de extruido}
-\end{figure}\ 
-
-\subsubsection{Mecanismo de tensado de la correa}
-
 
 \newpage
 \section{Impresión y montaje}

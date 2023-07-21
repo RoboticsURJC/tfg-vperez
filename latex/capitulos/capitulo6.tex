@@ -368,18 +368,21 @@ descritas anteriormente para generar una matriz de posibles colisiones que se pu
 \item Acto seguido se configura el apartado \textbf{\textit{\guillemotleft Planning Groups\guillemotright}}, donde se establecen los eslabones y articulaciones que serán consideradas 
 a la hora de realizar la planificación. Para ello, pulsamos sobre \textbf{\textit{\guillemotleft Add Group\guillemotright}} y acto seguido 
 le damos un nombre. Posteriormente, pulsamos sobre \textbf{\textit{\guillemotleft Add Kin. Chain\guillemotright}} y seleccionamos como 
-eslabón base, el eslabón que irá unido al suelo, y como eslabón \textit{tip}, el extremo del robot. Entonces, guardamos los cambios. Ahora, 
-se añaden todos los \textit{links} y \textit{joints} al grupo de planificación creado, dando en \textbf{\textit{\guillemotleft Edit Selected\guillemotright}} 
+eslabón base, el eslabón que irá unido al suelo, y como eslabón \textit{tip}, el extremo del robot (sin llegar a la herramienta). Entonces, guardamos los cambios. Ahora, 
+se añaden todos los \textit{links} y \textit{joints} de la cadena anterior, al grupo de planificación creado, dando en \textbf{\textit{\guillemotleft Edit Selected\guillemotright}}.
+Repetimos este procedimiento con el grupo de planificación de la herramienta, seleccionando como eslabón base el eslabón final de la anterior cadena, y como 
+final de esta, el último eslabón de la herramienta. 
 
 \item En el apartado \textbf{\textit{\guillemotleft Robot Poses\guillemotright}} se pueden configurar una serie de posiciones predeterminadas 
 para poder usarse posteriormente cuando se necesiten. Por ejemplo, es recomendable crear al menos dos; una que haga de posición \textit{Home} 
-(Posición cómoda para empezar a trabajar) y otra como posición de reposo (Posición que evita que el robot se desplome al cortar la electricidad).
+(Posición cómoda para empezar a trabajar) y otra como posición de reposo (Posición que evita que el robot se desplome al cortar la electricidad). Además 
+podemos añadir dos más para el grupo de planificación de la herramienta: \textit{ToolON} y \textit{ToolOFF}.
 
 \item Usamos el apartado \textbf{\textit{\guillemotleft End Effectors \guillemotright}} para configurar el extremo de nuestro robot como tal. Para ello, 
 seleccionamos el eslabón del extremo y el grupo de planificación creado anteriormente. 
 
 \item En \textbf{\textit{\guillemotleft Passive Joints\guillemotright}}, añadimos todos aquellas articulaciones que no sean grados de libertad, 
-es decir, todas aquellas que no sean \textit{joint1, joint2 o joint3}.
+es decir, todas aquellas que no sean \textit{joint1, joint2, joint3, jointPWM (señal PWM de la herramienta)}.
 
 \item En los apartados \textbf{\textit{\guillemotleft ROS 2 Controllers\guillemotright}} y 
 \textbf{\textit{\guillemotleft MoveIt Controllers\guillemotright}}, añadimos automaticamente los controladores pulsando sobre el único botón que hay.
@@ -397,12 +400,11 @@ Para comprobar que el paquete ha sido configurado bien, ejecutamos un \textit{la
 \begin{verbatim}
     ros2 launch g_arm_moveit demo.launch.py
 \end{verbatim}
-Tras ejecutarlo, se debería abrir una ventana de RViz con un aspecto similar a lo mostrado en la Figura \ref{fig:moveit_demo}. A pesar que 
-visualmente todo este correcto, hay que comprobar que es capaz de resolver y ejecutar una trayectoria sin problema. Podemos utilizar 
-el propio complemento de MoveIt para establecer una posiciones aleatoria y tratar de llegar a ella (Figura \ref{fig:moveit_trayectory_demo}).
+Tras ejecutarlo, se debería abrir una ventana de RViz con un aspecto similar a lo mostrado en la Figura \ref{fig:moveit_demo}. Podemos utilizar 
+el propio \textit{plugin} de MoveIt para establecer una posición aleatoria y tratar de llegar a ella (Figura \ref{fig:moveit_trayectory_demo}).
 \begin{figure} [ht!]
     \begin{center}
-      \includegraphics[width=14cm]{figs/moveit_demo.png}
+      \includegraphics[width=13cm]{figs/moveit_demo.png}
     \end{center}
     \caption{Rviz al lanzar el \textit{demo.launch.py}}
     \label{fig:moveit_demo}
@@ -410,7 +412,7 @@ el propio complemento de MoveIt para establecer una posiciones aleatoria y trata
 
 \begin{figure} [ht!]
     \begin{center}
-      \includegraphics[width=10cm]{figs/moveit_demo_trajectory.png}
+      \includegraphics[width=13cm]{figs/moveit_demo_trajectory.png}
     \end{center}
     \caption{Planificando una trayectoria simple}
     \label{fig:moveit_trayectory_demo}
@@ -447,8 +449,8 @@ articulaciones, interpolando entre uno o más puntos de referencia. Conjuntament
 utilizar otro nodo llamado \textit{joint\_state\_broadcaster}, que lee las interfaces de estado del controlador y las publica en los topics
 \textit{/dynamic\_joint\_states} y \textit{/joint\_states}. Siendo finalmente este último topic el que deberá ser escuchado por el 
 nodo del robot real para extraer la posición 
-de cada articulación. El tipo de mensaje empleado en este topic es \mbox{\textit{sensor\_msgs/msg/JointState}}, el
-cuál cuenta con los siguientes campos:
+de cada articulación. En el Bloque de código \ref{cod:campos} se muestran los campos del mensaje enviado a través 
+de él.
 \lstset{language=C++,
         basicstyle=\ttfamily,
         keywordstyle=\color{blue},
@@ -458,6 +460,7 @@ cuál cuenta con los siguientes campos:
         breaklines=true,
         breakatwhitespace=true}
 
+\begin{code}[h]
 \begin{lstlisting}
 Header header
 
@@ -466,7 +469,9 @@ float64[] position
 float64[] velocity
 float64[] effort
 \end{lstlisting}
-
+\caption{Campos del tipo de mensaje \mbox{\textit{sensor\_msgs/msg/JointState}}}
+\label{cod:campos}
+\end{code}
 
 El driver creado, hace uso de una clase intermedia entre el nodo ROS y la clase \textit{grbl} con el fin de abstraer al nodo de la conversión 
 de unidades. Además, esta nueva clase incorpora lo necesario para encontrar los límites físicos de cada articulación sumado a una serie de 
@@ -477,7 +482,7 @@ de conectarse al robot y busca el 0,0 de cada joint. Posteriormente crea una sub
 guardar el último mensaje que llega a través de  este topic. En paralelo a esto, existe una función llamada con una cierta frecuencia (utilizando un 
 \textit{timer} de ROS) que envía las posiciones del mensaje, previamente guardado, al robot real. Se ha decidido separar ambos comportamientos 
 para tener un cierto control sobre la frecuencia de envíos de datos por el puerto serie y evitar saturar el firmware del robot. 
-
+\newpage
 En la Figura \ref{fig:dia_driver1} se muestra el diagrama de actividades que ilustra el funcionamiento básico del driver creado.\\
 \\
 
