@@ -10,6 +10,20 @@
 Winston Churchill\\
 \end{flushright}
 
+\noindent En la actualidad, los robots desempeñan un papel fundamental en el ámbito educativo, tanto en institutos como en universidades. Su 
+incorporación ha demostrado ser muy beneficiosa para el desarrollo de habilidades \acs{STEM} y la enseñanza del pensamiento computacional 
+entre los estudiantes. No obstante, es esencial que estos robots no tengan un coste elevado, permitiendo así que las escuelas puedan hacerse 
+con una cantidad significativa de ellos. De esta forma, cada alumno tendría la oportunidad de disfrutar de un aprendizaje enriquecedor e individualizado.
+
+El presente trabajo se centra en el desarrollo de un robot industrial de tamaño reducido y bajo coste, diseñado con el propósito de 
+facilitar su uso y control. Este robot ha sido completamente impreso en 3D y se encuentra integrado con herramientas ampliamente 
+utilizadas en el ámbito de la robótica. Esta combinación permite que cualquier estudiante tenga acceso a él y, al replicar el proyecto, 
+aprenda de manera práctica sobre el apasionante mundo de la impresión 3D.
+
+En este capítulo introductorio, se abordará el contexto de la robótica, explorando sus diversas disciplinas y aplicaciones. Esto nos ayudará a 
+comprender mejor el ámbito en el cual se enmarca este trabajo, proporcionando una base sólida para comprender los conceptos y desarrollos que 
+se presentarán a lo largo del documento.
+
 
 \section{Robótica}
 \label{sec:rob}
@@ -61,23 +75,21 @@ asistencia en la intervención médica, entrega de alimentos y productos, cuidad
 \subsubsection{Robots de campo}
 Se considera robot de campo a un robot diseñado para su uso en exteriores; lo que significa que trabajará bajo unas duras condiciones. 
 Se trata de un sector heterogéneo en el cual se engloban los 
-robots espaciales, agrícolas, búsqueda y rescate, inspección de instalaciones, minería, submarinos y conducción autónoma.
+robots espaciales, agrícolas, búsqueda y rescate, inspección de instalaciones, minería, submarinos y conducción autónoma. En la Figura \ref{fig:campo} 
+se muestran algunos ejemplos.
 \begin{figure} [ht!]
   \centering    
-  \subfigure[NASA Opportunity]{\label{fig:opportunity}\includegraphics[width=0.25\linewidth ]{figs/rover.jpg}}
+  \subfigure[NASA Opportunity]{\label{fig:opportunity}\includegraphics[width=0.3\linewidth ]{figs/rover.jpg}}
   \hspace{3cm}
-  \subfigure[Tractor autónomo]{\label{fig:roomba_agua}\includegraphics[width=0.25\linewidth]{figs/tractor.jpg}}
+  \subfigure[Tractor autónomo]{\label{fig:roomba_agua}\includegraphics[width=0.3\linewidth]{figs/tractor.jpg}}
   \hspace{3cm}
-  \subfigure[Drone de rescate]{\label{fig:drone}\includegraphics[width=0.25\linewidth]{figs/drone.jpg}}
+  \subfigure[ROV Victor 6000]{\label{fig:rov}\includegraphics[width=0.3\linewidth]{figs/rov.jpg}}
   \hspace{3cm}
-  \subfigure[ROV Victor 6000]{\label{fig:rov}\includegraphics[width=0.25\linewidth]{figs/rov.jpg}}
-  \hspace{3cm}
-  \subfigure[Boston Dynamics Spot]{\label{fig:spot}\includegraphics[width=0.25\linewidth]{figs/spot.png}}
-  \hspace{3cm}
-  \subfigure[Waymo]{\label{fig:autopilot}\includegraphics[width=0.25\linewidth]{figs/waymo.jpg}}
+  \subfigure[Boston Dynamics Spot]{\label{fig:spot}\includegraphics[width=0.3\linewidth]{figs/spot.png}}
   \caption{Robots de campo}
+  \label{fig:campo}
 \end{figure}
-
+\newpage
 \subsubsection{Robots de limpieza}
 Son aquellos robots creados para eliminar la suciedad en hogares y empresas. En función de sus características, pueden ser usados para aspirar y fregar el suelo, o incluso,
 para limpiar los cristales exteriores de los edificios. Se trata de una tecnología asentada y robusta que a día de hoy cuenta con más de 20 años en el mercado. Pese a esto, 
@@ -96,7 +108,8 @@ en entornos más imprevisibles (cables, animales, objetos tirados, etc).
 
 \subsubsection{Robots de entretenimiento}
 Los robots de entretenimiento son máquinas diseñadas para proporcionar diversión y compañía a las personas. Estos robots están equipados con capacidades y 
-características específicas que los hacen adecuados para interactuar con las personas. Tienen una apariencia amigable y agradable. Están pensados para 
+características específicas que los hacen adecuados para interactuar con las personas. Tienen una apariencia amigable y agradable, como los mostrados 
+en la Figura \ref{fig:entretenimiento}. Están pensados para 
 evitar el efecto del Valle Inquietante. Esta teoría sugiere que a medida que los robots se vuelven más humanos en apariencia y comportamiento, la respuesta 
 emocional de las personas hacia ellos es más negativa, antes de volver a ser positiva a medida que se vuelven prácticamente 
 indistinguibles de los seres humanos reales.
@@ -106,6 +119,7 @@ indistinguibles de los seres humanos reales.
   \hspace{1cm}
   \subfigure[Foca Paro]{\label{fig:paro}\includegraphics[width=0.4\linewidth]{figs/paro.jpeg}}
   \caption{Robots de entretenimiento}
+  \label{fig:entretenimiento}
 \end{figure}
 
 \subsubsection{Robots en salud}
@@ -114,45 +128,33 @@ variadas como pueden ser la cirujía \ref{fig:davinci}, la rehabilitación \ref{
 
 \begin{figure} [ht!]
   \centering    
-  \subfigure[Da Vinci]{\label{fig:davinci}\includegraphics[width=0.35\linewidth ]{figs/davinci.jpg}}
-  \hspace{1cm}
-  \subfigure[Atlas Marsi Bionics]{\label{fig:rehabilitacion}\includegraphics[width=0.35\linewidth]{figs/rehabilitacion.jpg}}
-  \hspace{1cm}
-  \subfigure[Riba 2]{\label{fig:trasferencia}\includegraphics[width=0.35\linewidth]{figs/trasferencia.jpg}}
+  \subfigure[Da Vinci]{\label{fig:davinci}\includegraphics[width=0.25\linewidth ]{figs/davinci.jpg}}
+  \hspace{0.5cm}
+  \subfigure[Atlas Marsi Bionics]{\label{fig:rehabilitacion}\includegraphics[width=0.25\linewidth]{figs/rehabilitacion.jpg}}
+  \hspace{0.5cm}
+  \subfigure[Riba 2]{\label{fig:trasferencia}\includegraphics[width=0.25\linewidth]{figs/trasferencia.jpg}}
   \caption{Robots en el campo de la salud}
 \end{figure}
 
-
+\newpage
 \subsubsection{Robots en logística}
 Los robots de logística están enfocados a tareas de transporte y organización de mercancías en almacenes y centros de distribución. 
-Son capaces de moverse de manera autónoma, cargar y descargar objetos ágilmente y bajo demanda optimizando los procesos logísticos. 
-\\Los robots de logística destinados a usarse en almacenes pueden ser clasificados en 2 categorías:
-\begin{itemize}
-\item \ac{AGV}: Son robots filoguiados, es decir, solo se pueden desplazar a lo largo de un carril preestablecido. Este carril puede ser 
-una línea pintada en el suelo o un riel metálico. Son baratos pero son poco flexibles.
-\item \ac{AMR}: Son la evolución de los \acs{AGV}. Están dotados con una gran variedad de sensores para poder auto-localizarse y 
-detectar obstáculos. Son capaces de navegar autonomamente transportando cargas pesadas, como \textit{palets} o estanterías, en colaboración 
-con el resto de la flota. Además son adaptables y fáciles de desplegar pero su coste es más elevado.
-\end{itemize}
-
-\begin{figure} [ht!]
-    \centering    
-    \subfigure[AGV Linde C-MATIC \footnote{\url{https://www.linde-mh.es/es/Productos/Carretillas-automatizadas/C-MATIC/}}]{\label{fig:agv}\includegraphics[width=0.4\linewidth ]{figs/agv.jpg}}
-    \hspace{1cm}
-    \subfigure[AMR Amazon Robotics]{\label{fig:amr}\includegraphics[width=0.4\linewidth]{figs/amr.jpg}}
-    \caption{Robots de logística usados en almacenes}
-\end{figure}
+Son capaces de moverse de manera autónoma, cargar y descargar objetos ágilmente y bajo demanda optimizando los procesos logísticos. Un ejemplo 
+claro de ellos son los robots utilizados en Amazon (Figura \ref{fig:amr}).
 
 Más allá de su uso de almacenes, cabe destacar los llamados robots de "última milla". Son aquellos usados en el reparto de comida y 
 paquetes en las ciudades. Aunque actualmente se encuentra en fase de desarrollo, ya han sido probados algunos 
-prototipos como el usado por Glovo en Londres para repartir comida.
+prototipos como el usado por Glovo en Londres para repartir comida (Figura \ref{fig:glovo})
+
 \begin{figure} [ht!]
-    \begin{center}
-      \includegraphics[width=8cm]{figs/reparto.jpg}
-    \end{center}
-    \caption{Robot de reparto de Glovo}
-    \label{fig:glovo}
-\end{figure}\ 
+    \centering    
+    \subfigure[AMR Amazon Robotics]{\label{fig:amr}\includegraphics[width=0.4\linewidth]{figs/amr.jpg}}
+    \hspace{1cm}
+    \subfigure[Robot de reparto de Glovo]{\label{fig:glovo}\includegraphics[width=0.4\linewidth]{figs/reparto.jpg}}
+
+    \caption{Robots de logística}
+\end{figure}
+
 
 \newpage
 \subsection{Robótica industrial}
