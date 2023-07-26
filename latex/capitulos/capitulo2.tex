@@ -6,7 +6,7 @@ recopilar información que pueda ser de utilidad para desarrollar el presente pr
 han seleccionado una serie de trabajos relevantes y significativos en la materia, que se procederán a analizar a continuación.
 \begin{itemize}
     \item En \cite{KRIMPENIS2020103} se presenta una solución industrial barata para crear un robot capaz de hacer operaciones de mecanizado (fabricación 
-    de piezas mediante operaciones de corte). Es llamado Hydra y esta dotado de 6 \ac{DOF}. Tiene un alcace máximo de casi un metro y un 
+    de piezas mediante operaciones de corte). Es llamado Hydra y esta dotado de 6 \ac{DOF}. Tiene un alcance máximo de casi un metro y un 
     peso que ronda los 13 Kg. Pese a todas estas funciones, está fabricado mediante impresión 3D. 
     Además, tiempo después, se publicó la segunda parte de este artículo: \cite{PAPAPASCHOS2020109}. En el cual se aborda el diseño software y de control 
     que se ha desarrollado para controlar dicho brazo. \\
@@ -18,24 +18,24 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         \label{fig:hydra}
     \end{figure}\ 
     \newpage
-    En base a lo descrito en estos artículos se han extraido los siguientes puntos fuertes del proyecto:
+    En base a lo descrito en estos artículos se han extraído los siguientes puntos fuertes del proyecto:
     \begin{itemize}
-        \item Tiene una repitividad de ±0.04 mm.
+        \item Tiene una repetitividad de ±0.04 mm.
         \item Tiene un espacio de trabajo muy amplio.
         \item Tener más de 3 grados de libertad le permiten alcanzar gran cantidad de puntos con distintas orientaciones.
-        \item Según el árticulo, tiene una capacidad de carga máxima de 12 kilogramos. A pesar de esto, se comenta que en la práctica el peso en el 
-        extremo del robot debe ser menor a 5 Kg, por lo que su carga útil rondará los 3 Kg para un funcionamiento acceptable. Esto lo sitúa a la par 
+        \item Según el artículo, tiene una capacidad de carga máxima de 12 kilogramos. A pesar de esto, se comenta que en la práctica el peso en el 
+        extremo del robot debe ser menor a 5 Kg, por lo que su carga útil rondará los 3 Kg para un funcionamiento aceptable. Esto lo sitúa a la par 
         del robot comercial ABB IRB 120\footnote{\url{https://new.abb.com/products/es/3HAC031431-001/irb-120}}  
     \end{itemize}\
     
-    En cambio, tambíen se deben mencionar los siguientes puntos débiles:
+    En cambio, también se deben mencionar los siguientes puntos débiles:
     \begin{itemize}
         \item Carece de integración en \ac{ROS}, plataforma de desarrollo de la que se habla en \ref{subsec:ros2}
         \item Su coste en materiales supera los 1000 \euro \xspace por lo que no es lo suficientemente asequible para su uso académico.
         \item Según este artículo, se necesitan 200 horas para poder imprimir y montar el brazo, lo que implica que es costoso en tiempo 
         crear varias unidades y requiere de cierta habilidad para construirlo correctamente.
-        \item En este artículo no se proporcionan los ficheros necesarios para poder replicacarlo. Además, se menciona que las piezas han sido 
-        diseñadas mediante el software privativo SolidWorks\textsuperscript{\tiny\textregistered} por lo que lo hace más dificil y costoso de editar.
+        \item En este artículo no se proporcionan los ficheros necesarios para poder replicarlo. Además, se menciona que las piezas han sido 
+        diseñadas mediante el software privativo SolidWorks\textsuperscript{\tiny\textregistered} por lo que lo hace más difícil y costoso de editar.
     \end{itemize}\
     \newpage
     \item Existen soluciones más sencillas y reproducibles, como por ejemplo, la presentada en \cite{adediran2023uiarm}. Se trata de un brazo robótico 
@@ -49,13 +49,13 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         \label{fig:uiarm}
     \end{figure}\ 
     
-    A partir de la información proporcionada en este artículo, se han extraido los siguientes puntos fuertes:
+    A partir de la información proporcionada en este artículo, se han extraído los siguientes puntos fuertes:
     \begin{itemize}
         \item El diseño de las piezas se ha realizado mediante el uso de la herramienta de diseño \nameref{subsec:freecad}, esto supone una ventaja respecto 
         a \cite{KRIMPENIS2020103}, que utilizaba una herramienta privativa.
         \item Utiliza motores de pequeño tamaño con una reductora integrada, lo que aumenta su torque y abarata en gran medida los costes 
         del robot. Debido a esto, el consumo de energía es menor pudiendo hacer uso de una electrónica compacta y menos costosa.
-        \item Al estar compuesto por menos piezas y tener pocos grados de libertad, se requiere menos tiempo para imprimir y contruir este robot.
+        \item Al estar compuesto por menos piezas y tener pocos grados de libertad, se requiere menos tiempo para imprimir y construir este robot.
     \end{itemize}\
     Cabe destacar los siguientes puntos negativos:
     \begin{itemize}
@@ -68,7 +68,7 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         continuidad del proyecto.
     \end{itemize}\
 
-    \item Existe un brazo robot impreso en 3D de 6 grados de libertad que ha ganado gran popilaridad gracias a la plataforma 
+    \item Existe un brazo robot impreso en 3D de 6 grados de libertad que ha ganado gran popularidad gracias a la plataforma 
     KickStarter \footnote{\url{https://www.kickstarter.com/projects/niryo/niryo-one-an-open-source-6-axis-robotic-arm-just-f/description}} en la cual fue 
     capaz de recaudar 80.000\euro \xspace de los 20.000 necesarios. 
     Este proyecto busca dar una alternativa de bajo coste al robot convencional usado por \textit{makers}, estudiantes y pequeñas compañías.\\
@@ -127,11 +127,11 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
     Los aspectos significativos de este robot son:
     \begin{itemize}
         \item Se trata de un proyecto totalmente accesible y replicable, ya que usa pocos materiales y estos son fáciles de adquirir.
-        \item El centro de masa del robot se concentra en la base, reduciendo la inercia del brazo y permitiendo así movimientos más rapidos.
+        \item El centro de masa del robot se concentra en la base, reduciendo la inercia del brazo y permitiendo así movimientos más rápidos.
         \item No requiere de apenas tiempo de impresión y el montaje es sencillo gracias a las numerosas guías de 
         montaje\footnote{\url{https://docs.rs-online.com/2bb1/0900766b81593e58.pdf}} que circulan por internet.
         \item Al usar servomotores, se puede establecer el ángulo de cada articulación fácilmente sin necesitar de ningún tipo de sensor externo.
-        \item Debido a su forma y materiales utilizados, tiene un peso muy reducido pudiendose acoplar a robots móviles sin afectar a 
+        \item Debido a su forma y materiales utilizados, tiene un peso muy reducido pudiéndose acoplar a robots móviles sin afectar a 
         su rendimiento.
     \end{itemize}
     En cuanto a sus limitaciones, se deben mencionar:

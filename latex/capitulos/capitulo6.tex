@@ -12,7 +12,7 @@ un ordenador cualquiera, el hardware creado en el anterior capítulo.
 \subsection{Grbl como \textit{firmware} del robot}
 \noindent Para realizar el control de los actuadores se ha tomado la decisión de utilizar el 
 firmware de control numérico Grbl\ref{subsec:grbl}, por encima 
-de realizar uno propio, debido a que es una solución robusta con años de desarrollo y con unas ciertas garantías dificiles de superar.
+de realizar uno propio, debido a que es una solución robusta con años de desarrollo y con unas ciertas garantías difíciles de superar.
 \\
 Actualmente, este firmware permite controlar hasta 3 motores paso a paso simultáneamente. Además, tiene la posibilidad de utilizar 
 un canal PWM (usualmente usado en las CNC para modificar la velocidad de la herramienta). Sobre estos motores, podemos realizar 
@@ -60,7 +60,7 @@ G90 X1 Y2 Z3 F34 & Mueve los motores a velocidad 34 hasta una coordenada absolut
 S500 & Establece la velocidad del motor auxiliar a 500. Rango: 0-1000  \\
 M3 & Enciende el motor auxiliar  \\
 M5 & Apaga el motor auxiliar  \\
-? & Pecibir el estado actual de la maquina  \\
+? & Recibir el estado actual de la maquina  \\
 ! & Para el movimiento actual \\
 \textasciitilde & Continua con el movimiento parado anteriormente \\
 \hline
@@ -125,7 +125,7 @@ se mantengan energizados constantemente aunque no se estén moviendo. Es de vita
 \item \textbf{\$100}, \textbf{\$101} y \textbf{\$102}: Indican el número de pasos por unidad de movimiento para los ejes X, Y, Z respectivamente. 
 \\Por defecto está pensado para utilizar pasos por milímetro. Como se pretende utilizar articulaciones de rotación, debemos expresar esta relación 
 en función de alguna medida angular. La unidad a utilizar podría ser: grados, radianes o vueltas, entre otras. En este trabajo se 
-utilizan los grados debido a que en radianes y vueltas la unidad correspondía a un gran número de pasos y era dificil controlar la aceleración para incrementos de 
+utilizan los grados debido a que en radianes y vueltas la unidad correspondía a un gran número de pasos y era difícil controlar la aceleración para incrementos de 
 0.1 vueltas. 
 
 \begin{myequation}[h!]
@@ -137,14 +137,14 @@ utilizan los grados debido a que en radianes y vueltas la unidad correspondía a
 \caption[Cálculo de pasos por grado en Grbl]{Cálculo de pasos por grado en Grbl}
 \end{myequation} 
 
-\item \textbf{\$110}, \textbf{\$111} y \textbf{\$112}: Indican la velocida máxima a la que puede moverse cada eje X, Y, Z en unidades por segundo. 
+\item \textbf{\$110}, \textbf{\$111} y \textbf{\$112}: Indican la velocidad máxima a la que puede moverse cada eje X, Y, Z en unidades por segundo. 
 En este caso, grados por segundo. Estos valores se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
 caso de que el usuario quiera mover demasiado rápido un eje pudiendo dañar el brazo.
 
 \item \textbf{\$120}, \textbf{\$121} y \textbf{\$122}: Indican la aceleración máxima a la que puede moverse cada eje X, Y, Z en unidades por segundo cuadrado. 
-En este caso, grados por segundo cuadrado. Estos valores tambien se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
+En este caso, grados por segundo cuadrado. Estos valores también se deben encontrar por medio de la experimentación. Se trata de una medida de seguridad en 
 caso de que el usuario quiera mover demasiado rápido un eje pudiendo dañar el brazo. Se debe encontrar una aceleración idónea para todos 
-los movimientos, una limitación de grbl es que no se puede comandar un movimiento diciendole una determinada aceleración.
+los movimientos, una limitación de grbl es que no se puede comandar un movimiento diciéndole una determinada aceleración.
 \end{itemize}
 
 Para profundizar más en la finalidad de cada parámetro, código y configuración se 
@@ -316,7 +316,7 @@ URDF final puede ser encontrado junto al resto del proyecto en el repositorio de
 \subsubsection{Creación de un launcher para visualizar el robot}
 \noindent Para visualizar el fichero que hemos creado anteriormente, podemos realizar una herramienta de ROS 
 llamada RViz. Esta herramienta no solo permite visualizar, sino también analizar datos de sensores, modelos de robot y 
-planificaciones de movimiento de forma interactiva. Además se le pueden añadir complementos para agregale funcionalidades extra. 
+planificaciones de movimiento de forma interactiva. Además se le pueden añadir complementos para agregarle funcionalidades extra. 
 \\
 
 Para que se pueda cargar la descripción del robot en este visualizador, debe haber algo que la esté publicando en el topic 
@@ -347,7 +347,7 @@ serie de controles deslizantes para cada articulación (Figura \ref{fig:rviz}).
 
 \newpage
 \subsection{Integración con MoveIt 2}
-\noindent En esta sección se enumeran y describen los pasos necesarios para, apartir de un paquete de descripción de un robot, generar 
+\noindent En esta sección se enumeran y describen los pasos necesarios para, a partir de un paquete de descripción de un robot, generar 
 un paquete de MoveIt.
 \\
 Antes de comenzar, debemos tener instalado MoveIt 2 para ROS Humble. Para ello, se ha seguido el proceso de 
@@ -361,7 +361,7 @@ Para crear el paquete de MoveIt de este robot, se han llevado a cabo los siguien
     ros2 launch moveit_setup_assistant setup_assistant.launch.py
 \end{verbatim}
 \item Pulsamos sobre \textbf{\textit{\guillemotleft Create New MoveIt Configuration Package\guillemotright}} y cargamos el URDF/Xacro del paquete de descripción 
-del robot. Si el fichero es válido, aparecerán una serie de apartados a configuar en el lateral izquierdo del asistente. 
+del robot. Si el fichero es válido, aparecerán una serie de apartados a configurar en el lateral izquierdo del asistente. 
 \item Comenzamos configurando la apartado \textbf{\textit{\guillemotleft Self-Collisions\guillemotright}}. Aquí se hace uso de la colisiones 
 descritas anteriormente para generar una matriz de posibles colisiones que se pueden dar. Para ello, pulsamos sobre
 \textbf{\textit{\guillemotleft Generate Collision Matrix\guillemotright}}.
@@ -385,7 +385,7 @@ seleccionamos el eslabón del extremo y el grupo de planificación creado anteri
 es decir, todas aquellas que no sean \textit{joint1, joint2, joint3, jointPWM (señal PWM de la herramienta)}.
 
 \item En los apartados \textbf{\textit{\guillemotleft ROS 2 Controllers\guillemotright}} y 
-\textbf{\textit{\guillemotleft MoveIt Controllers\guillemotright}}, añadimos automaticamente los controladores pulsando sobre el único botón que hay.
+\textbf{\textit{\guillemotleft MoveIt Controllers\guillemotright}}, añadimos automáticamente los controladores pulsando sobre el único botón que hay.
 
 \item Finalmente rellenamos nuestra información personal en \textbf{\textit{\guillemotleft Author information\guillemotright}} y generamos el 
 paquete en el \textit{src} del \textit{workspace}. Acto seguido, compilamos.
@@ -512,7 +512,7 @@ características.
 cuando se le aplica una cierta carga.
 Para ello, se han considerado los siguientes 3 escenarios:
 \begin{itemize}
-    \item Escenario 1: El robot está completamente retraido y se le aplican una serie de cargas de 10 a 150 gramos.
+    \item Escenario 1: El robot está completamente retraído y se le aplican una serie de cargas de 10 a 150 gramos.
     \item Escenario 2: El robot está en una posición de operación normal y se le aplican una serie de cargas de 10 a 150 gramos.
     \item Escenario 3: El robot está completamente extendido horizontalmente y se le aplican una serie de cargas de 10 a 150 gramos.
 \end{itemize}
@@ -614,13 +614,13 @@ Tiempo de respuesta (movimiento del brazo) & \SI{35}{\milli\second} \\
 \end{table}
 
 \subsection{Exactitud y repetitividad} 
-Se procede a realiza pruebas para evaluar la precisión del brazo robot en la ejecución de movimientos y la repetibilidad 
+Se procede a realiza pruebas para evaluar la precisión del brazo robot en la ejecución de movimientos y la repetitividad 
 de estos movimientos. Se mide la desviación del brazo robot en comparación con las coordenadas objetivo y verificar si 
 es capaz de alcanzar de manera consistente los mismos puntos en un cierto número de intentos.
 
 \subsection{Consumo eléctrico} 
 \label{sec:consumo}
-\noindent Este tipo de pruebas evaluan cuanta energía está consumiendo el robot bajo unas conciciones concretas. Es útil para 
+\noindent Este tipo de pruebas evalúan cuanta energía está consumiendo el robot bajo unas condiciones concretas. Es útil para 
 conocer el coste de tener en funcionamiento este robot y si es viable utilizarlo sobre plataformas móviles a baterías. 
 \\
 Para realizar este test, se han considerado 4 escenarios:

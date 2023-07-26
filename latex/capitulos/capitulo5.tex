@@ -11,7 +11,7 @@ los requisitos propuestos en el Capítulo 3.
 
 Primeramente, se debe escoger el número de grados de libertad\footnote{número de movimientos independientes que puede realizar} del manipulador. 
 En relación al espacio tridimensional (Figura \ref{fig:espacio_tridimensional}), este cuenta con 6, estando 3 de ellos ligados al 
-posicionamiento (X, Y, Z) y los otros 3 a las orientaciones (RX, RY, RZ). Es por esto que 3 es el mímimo número de grados de libertad necesarios 
+posicionamiento (X, Y, Z) y los otros 3 a las orientaciones (RX, RY, RZ). Es por esto que 3 es el mínimo número de grados de libertad necesarios 
 para poder posicionar el extremo del robot un punto cualquiera del espacio.
 
 \begin{figure} [ht!]
@@ -91,7 +91,7 @@ encontrar los adecuados, no queda otra que utilizar la experimentación. Aún as
 \item Una manera de comenzar, es estableciendo el largo de los eslabones primarios L1 y L2. En base al tamaño de escritorio que se le pretende 
 dar al robot, 17 centímetros por eslabón es un buen punto de partida.
 \item El siguiente paso es elegir P1, P2 y P3. Estos son los lados cortos de los paralelogramos. Es importante jugar con estos valores 
-de tal manera que se consiga obtener los más largos posibles y estos no intersecten entre sí. Esto es debido a que las piezas reales ocupan un cierto espacio y si el paralelogramo es 
+de tal manera que se consiga obtener los más largos posibles y estos no intersequen entre sí. Esto es debido a que las piezas reales ocupan un cierto espacio y si el paralelogramo es 
 muy pequeño no realizarán todo el recorrido ya que chocarán entre sí. 
 \item El ángulo A restringe el paralelogramo que mantiene el extremo del robot paralelo al suelo. Este ángulo hay que variarlo ligeramente. Un buen 
 punto de partida es 120º. Este valor es crítico ya que afecta significativamente a la accesibilidad del brazo a lugares próximos a su base. 
@@ -313,7 +313,7 @@ evita la pérdida de pasos del motor. Además, a la hora de adquirirlo, suele ve
 a su mayor eficiencia energética, se traduce en una menor cantidad de calor dentro de nuestro robot. 
 
 \subsection{Placa base CNC}
-\noindent La placa base es una targeta de circuito impreso que proporciona conexiones físicas y eléctricas entre los diferentes componentes y 
+\noindent La placa base es una tarjeta de circuito impreso que proporciona conexiones físicas y eléctricas entre los diferentes componentes y 
 unifica estos en un mismo componente. 
 
 En el caso de aquellas utilizadas en el mundo de las CNCs, tienen la posibilidad de montar controladores paso a paso y, o bien 
@@ -399,7 +399,7 @@ totalmente compatibles con la placa base elegida anteriormente.
 \noindent Para llevar a cabo las pruebas, se busca desarrollar una herramienta para el robot, consistente en un electroimán que permita 
 el desplazamiento de objetos metálicos. En el mercado, existen diversos tipos de electroimanes con diferentes tamaños y fuerzas. Uno 
 especialmente adecuado para esta aplicación es el \textit{D20H15} de la Figura \ref{fig:d20}, cuyo nombre da a entender que tiene un diámetro de 20 mm y una altura de 15 mm. 
-Según las especificaciones, es capaz de levantar objetos ferromagnéticos de hasta 3 kg por lo que supera la carga útil que se espera del prazo. Finalmente, 
+Según las especificaciones, es capaz de levantar objetos ferromagnéticos de hasta 3 kg por lo que supera la carga útil que se espera del brazo. Finalmente, 
 se ha adquirido la versión de 24 V y 3W por 3\euro.
 
 \begin{figure} [ht!]
@@ -436,7 +436,7 @@ la placa base. Este tipo de piezas son muy robustas y fáciles de imprimir.
 \end{figure}\ 
 
 \subsubsection{Pieza circular superior}
-\noindent La pieza circular superior (Figura \ref{fig:base_principal_superior}), incluye una serie de agujeros y huecos hexgonales para insertar las tuercas M3 que permiten
+\noindent La pieza circular superior (Figura \ref{fig:base_principal_superior}), incluye una serie de agujeros y huecos hexagonales para insertar las tuercas M3 que permiten
 acoplar la polea de 120 dientes (Figura \ref{fig:base_principal_polea}). Además, incluye un rebaje de 40mm en un lateral para poder insertar y atornillar un ventilador 4010.
 \subsubsection{Espaciadores}
 \noindent Los espaciadores (Figura \ref{fig:base_principal_espaciadores}) constan de 4 cilindros perforados con un agujero de 5mm por el que entrarán los tornillos de métrica 5.
@@ -470,7 +470,7 @@ varillas roscadas y tuercas (Figura \ref{fig:base_motores}).
 \end{figure}\ 
 
 Además de esto, cabe destacar el sistema de tensado de las correas, formado por una serie de orificios longitudinales que permiten deslizar el motor 
-hasta lograr la tensión óptima, para despúes fijarse en su sitio. Esto último se realiza mediante una pieza que aumenta la fricción y reparte la presión 
+hasta lograr la tensión óptima, para después fijarse en su sitio. Esto último se realiza mediante una pieza que aumenta la fricción y reparte la presión 
 de los 3 tornillos empleados.
 
 Por otra parte, esta pieza incorpora una serie de orificios específicamente creados para acoplar de los 3 finales de carrera del robot. Sumado a ello, 
@@ -762,7 +762,7 @@ el nombre de cada pieza, tornillo necesario y posición.
 
 En cuanto al montaje de la electrónica es realmente sencillo debido a que existen numerosos tutoriales 
 y manuales en internet que utilizan esta placa. Por si no fuera poco, el propio circuito impreso de la 
-placa tiene serigrafiado un nombre en cada conector. El unico aspecto a tener en cuenta es la regulación 
+placa tiene serigrafiado un nombre en cada conector. El único aspecto a tener en cuenta es la regulación 
 de corriente de los 3 controladores TMC2209. Esta se realiza mediante un pequeño potenciómetro y requiere 
 de un multímetro para leer los valores. En este \href{https://all3dp.com/2/vref-calculator-tmc2209-tmc2208-a4988/}{enlace} se muestra un tutorial de como hacerlo.  
 \newpage
