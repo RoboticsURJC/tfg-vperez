@@ -9,7 +9,7 @@
 
 Winston Churchill\\
 \end{flushright}
-
+\vspace{2cm}
 \noindent En la actualidad, los robots desempeñan un papel fundamental en el ámbito educativo, tanto en institutos como en universidades. Su 
 incorporación ha demostrado ser muy beneficiosa para el desarrollo de habilidades \acs{STEM} y la enseñanza del pensamiento computacional 
 entre los estudiantes. No obstante, es esencial que estos robots no tengan un coste elevado, permitiendo así que las escuelas puedan hacerse 
@@ -20,11 +20,11 @@ facilitar su uso y control. Este robot ha sido completamente impreso en 3D y se 
 utilizadas en el ámbito de la robótica. Esta combinación permite que cualquier estudiante tenga acceso a él y, al replicar el proyecto, 
 aprenda de manera práctica sobre el apasionante mundo de la impresión 3D.
 
-En este capítulo introductorio, se abordará el contexto de la robótica, explorando sus diversas disciplinas y aplicaciones. Esto nos ayudará a 
+En este capítulo introductorio se abordará el contexto de la robótica, explorando sus diversas disciplinas y aplicaciones. Esto nos ayudará a 
 comprender mejor el ámbito en el cual se enmarca este trabajo, proporcionando una base sólida para comprender los conceptos y desarrollos que 
 se presentarán a lo largo del documento.
 
-
+\newpage
 \section{Robótica}
 \label{sec:rob}
 \noindent La robótica es la ciencia dedicada al diseño, construcción y programación de robots. Se entiende por 
@@ -58,19 +58,22 @@ de un robot cuyo único propósito era navegar autónomamente en una sala con ob
 En la década de 1970, el uso de robots industriales se había disparado en todo el mundo. Estos robots, conocidos como robots manipuladores, fueron utilizados para 
 realizar todo tipo de tareas repetitivas y peligrosas en fábricas.
 \\
-En las últimas décadas, la robótica ha seguido avanzando a pasos agigantados. Los avances en la capacidad de cómputo, el aprendizaje automático y la visión 
+\indent En las últimas décadas, la robótica ha seguido avanzando a pasos agigantados. Los avances en la capacidad de cómputo, el aprendizaje automático y la visión 
 artificial han permitido el desarrollo de robots cada vez más inteligentes.
 \\
-En la actualidad, la robótica está presente en numerosos sectores, abarcando una gran variedad de aplicaciones. Esta versatilidad ha llevado al surgimiento 
-de diversos grupos y categorías que nos permiten clasificar las diferentes tipos de robots. 
+
+\indent En la actualidad, la robótica está presente en numerosos sectores, abarcando una gran variedad de aplicaciones. Esta versatilidad ha llevado al surgimiento 
+de diversos grupos y categorías que nos permiten clasificar las diferentes tipos de robots. Un claro ejemplo de ello es la robótica 
+de servicio, que integra robots en aplicaciones cotidianas.
 \newpage
 
-\subsection{Robótica de servicio}
-Un robot de servicio es un tipo de robot diseñado para realizar tareas en beneficio de los seres humanos. Estos robots están 
+\section{Robótica de servicio}
+\noindent Un robot de servicio es un tipo de robot diseñado para realizar tareas en beneficio de los seres humanos. Estos robots están 
 destinados a interactuar directamente con las personas, por lo que están equipados con gran variedad de sensores, actuadores y sistemas de 
 inteligencia artificial, que les permiten percibir y comprender el entorno que los rodea. 
 En función de su ámbito de uso, pueden llegar a realizar una amplia gama de tareas, como limpieza y mantenimiento del hogar, 
-asistencia en la intervención médica, entrega de alimentos y productos, cuidado de personas mayores, entre otros.
+asistencia en la intervención médica, entrega de alimentos y productos, cuidado de personas mayores, entre otros. A continuación, 
+veremos algunos ejemplos de estos robots.
 
 \subsubsection{Robots de campo}
 Se considera robot de campo a un robot diseñado para su uso en exteriores; lo que significa que trabajará bajo unas duras condiciones. 
@@ -94,7 +97,7 @@ se muestran algunos ejemplos.
 Son aquellos robots creados para eliminar la suciedad en hogares y empresas. En función de sus características, pueden ser usados para aspirar y fregar el suelo, o incluso,
 para limpiar los cristales exteriores de los edificios. Se trata de una tecnología asentada y robusta que a día de hoy cuenta con más de 20 años en el mercado. Pese a esto, 
 se pueden encontrar diferentes categorías de robot en función de las necesidades. En la actualidad, integran cada vez más sensores para realizar una limpieza más eficaz y 
-en entornos más imprevisibles (cables, animales, objetos tirados, etc).
+en entornos más imprevisibles (cables, animales, objetos tirados, etc). En la Figura \ref{fig:limpieza} se muestran algunos de los más usados.
 
 \begin{figure} [ht!]
   \centering    
@@ -104,13 +107,14 @@ en entornos más imprevisibles (cables, animales, objetos tirados, etc).
   \hspace{1cm}
   \subfigure[Hobot 388]{\label{fig:hobot}\includegraphics[width=0.25\linewidth]{figs/hobot.jpg}}
   \caption{Robots de limpieza}
+  \label{fig:limpieza}
 \end{figure}
 
 \subsubsection{Robots de entretenimiento}
-Los robots de entretenimiento son máquinas diseñadas para proporcionar diversión y compañía a las personas. Estos robots están equipados con capacidades y 
+Los robots de entretenimiento son máquinas diseñadas para proporcionar diversión y compañía a las personas. Están equipados con capacidades y 
 características específicas que los hacen adecuados para interactuar con las personas. Tienen una apariencia amigable y agradable, como los mostrados 
 en la Figura \ref{fig:entretenimiento}. Están pensados para 
-evitar el efecto del Valle Inquietante. Esta teoría sugiere que a medida que los robots se vuelven más humanos en apariencia y comportamiento, la respuesta 
+evitar el efecto del \textit{Valle Inquietante}. Esta teoría sugiere que a medida que los robots se vuelven más humanos en apariencia y comportamiento, la respuesta 
 emocional de las personas hacia ellos es más negativa, antes de volver a ser positiva a medida que se vuelven prácticamente 
 indistinguibles de los seres humanos reales.
 \begin{figure} [ht!]
@@ -124,7 +128,7 @@ indistinguibles de los seres humanos reales.
 
 \subsubsection{Robots en salud}
 Los robots en el campo de la salud están diseñados para proporcionar ayuda en entornos médicos y de atención sanitaria. Desempeñan tareas 
-variadas como pueden ser la cirugía \ref{fig:davinci}, la rehabilitación \ref{fig:rehabilitacion} y la trasferencia de pacientes \ref{fig:trasferencia}, entre otros.
+variadas como pueden ser la cirugía (Figura \ref{fig:davinci}), la rehabilitación (Figura \ref{fig:rehabilitacion}) y la trasferencia de pacientes (Figura \ref{fig:trasferencia}), entre otros.
 
 \begin{figure} [ht!]
   \centering    
@@ -136,7 +140,6 @@ variadas como pueden ser la cirugía \ref{fig:davinci}, la rehabilitación \ref{
   \caption{Robots en el campo de la salud}
 \end{figure}
 
-\newpage
 \subsubsection{Robots en logística}
 Los robots de logística están enfocados a tareas de transporte y organización de mercancías en almacenes y centros de distribución. 
 Son capaces de moverse de manera autónoma, cargar y descargar objetos ágilmente y bajo demanda optimizando los procesos logísticos. Un ejemplo 
@@ -157,9 +160,9 @@ prototipos como el usado por Glovo en Londres para repartir comida (Figura \ref{
 
 
 \newpage
-\subsection{Robótica industrial}
+\section{Robótica industrial}
 \label{sec:rob_industrial}
-Se entiende por robot industrial a una máquina automatizada diseñada específicamente para llevar a cabo tareas en entornos industriales. 
+\noindent Se entiende por robot industrial a una máquina automatizada diseñada específicamente para llevar a cabo tareas en entornos industriales. 
 Disponen de numerosas articulaciones y una gran capacidad de maniobrabilidad. Su objetivo principal es reemplazar a un 
 operario humano en tareas aburridas, sucias, peligrosas y exigentes (\textit{4D: Dull, Dirty, Dangerous and Demanding}).
 En función de el número de articulaciones y la geometría del manipulador, se pueden clasificar en diferentes categorías.

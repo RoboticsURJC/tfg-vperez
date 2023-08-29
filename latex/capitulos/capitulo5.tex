@@ -1,13 +1,21 @@
 \chapter{Desarrollo hardware del manipulador}
 \label{cap:capitulo5}
+\begin{flushright}
+  \begin{minipage}[]{10cm}
+  \emph{La simplicidad es la máxima sofisticación}\\
+  \end{minipage}\\
+  Leonardo da Vinci\\
+  \end{flushright}
 
 \vspace{1cm}
 
-\noindent En este capítulo se aborda el desarrollo necesario para, a partir de un concepto, acabar construyendo un brazo robot real. 
-\section{Eligiendo la geometría del manipulador}
+\noindent En este capítulo, se describe el proceso de desarrollo completo llevado a cabo desde la concepción inicial de la 
+idea hasta la materialización de un brazo robótico completamente funcional. A lo largo de estas páginas, se desglosará cada 
+paso realizado y las dificultades encontradas, así como sus soluciones. 
+\section{Geometría del manipulador}
 \label{sec:eligiendo_geometría}
 \noindent En esta sección se detalla el proceso llevado a cabo para definir el concepto y forma del robot, en base a 
-los requisitos propuestos en el Capítulo 3. 
+los requisitos propuestos en el Capítulo \ref{cap:capitulo3}. 
 
 Primeramente, se debe escoger el número de grados de libertad\footnote{número de movimientos independientes que puede realizar} del manipulador. 
 En relación al espacio tridimensional (Figura \ref{fig:espacio_tridimensional}), este cuenta con 6, estando 3 de ellos ligados al 
@@ -16,14 +24,14 @@ para poder posicionar el extremo del robot un punto cualquiera del espacio.
 
 \begin{figure} [ht!]
   \begin{center}
-    \includegraphics[width=5cm]{figs/coordinates.png}
+    \includegraphics[width=4.8cm]{figs/coordinates.png}
   \end{center}
   \caption{Espacio tridimensional}
   \label{fig:espacio_tridimensional}
 \end{figure}\ 
 
 Teniendo esto en cuenta, se ha optado por usar ese número, y no uno mayor, debido a que esto encarecería los costes totales del robot, no pudiendo cumplir así 
-los requisitos 1 y 5 (límite de precio y complejidad). 
+los requisitos 1 y 5 que limitan en cuanto a precio y complejidad. 
 
 Seguidamente, se debe elegir el tipo de articulación a utilizar. Aunque en robótica existen varias, en la práctica destacan dos:
 \begin{itemize}

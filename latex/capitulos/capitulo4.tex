@@ -9,12 +9,12 @@ Steve Jobs\\
 \end{flushright}
 
 \vspace{1cm}
-Tras haber establecido los objetivos que se pretenden alcanzar en este trabajo de fin de grado, se procede a describir
+\noindent Tras haber establecido los objetivos que se pretenden alcanzar en este trabajo de fin de grado, se procede a describir
 las herramientas \textit{software} y \textit{hardware} utilizadas para lograrlos. 
 
 \section{Software}
 \label{sec:software}
-Llamamos \textit{software} al conjunto de programas, instrucciones y datos que dotan de lógica a un sistema.
+\noindent En esta sección se describen el conjunto de programas y librerías externas que han sido necesarias en el desarrollo de este trabajo.
 \subsection{Python}
 \label{subsec:pyhton}
 \noindent Python es un lenguaje de programación interpretado de alto nivel. Cuando se dice que un lenguaje es de alto nivel, se hace referencia a su nivel de 
@@ -30,12 +30,6 @@ amplían sus capacidades, como SciPy en la ciencia de datos, Django en el desarr
 \label{subsec:grbl}
 \noindent Grbl\footnote{\url{https://github.com/gnea/grbl}} es un \textit{firmware}\footnote{software específico para el harware elegido} de código abierto utilizado para controlar máquinas \acs{CNC}. 
 Está pensado para poderse ejecutar en microcontroladores de bajos recursos, como pueden ser los Arduinos y los ESP32.
-
-Básicamente, convierte una serie de instrucciones de código G (posteriormente se hablará de él) en señales eléctricas que se envían a 
-los motores de la máquina. Además de eso, comprueba los sensores de la máquina, para poder conocer y establecer los límites físicos de cada movimiento. 
-
-Grbl es flexible por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque principalmente está pensado para realizar 
-movimientos lineales, en este trabajo se abordará la configuración necesaria para poder usarse en articulaciones rotativas.
 \begin{figure} [h!]
   \begin{center}
     \includegraphics[width=4cm]{figs/grbl.png}
@@ -43,9 +37,17 @@ movimientos lineales, en este trabajo se abordará la configuración necesaria p
   \caption{Logo de Grbl}
   \label{fig:grbllogo}
 \end{figure}\ 
-\subsection{Código G}
+
+
+Básicamente, convierte una serie de instrucciones de código G (posteriormente se hablará de él) en señales eléctricas que se envían a 
+los motores de la máquina. Además de eso, comprueba los sensores de la máquina, para poder conocer y establecer los límites físicos de cada movimiento. 
+
+Grbl es flexible, por lo que podemos cambiar la configuración para adaptarla a un caso de uso concreto. De hecho, aunque principalmente está pensado para realizar 
+movimientos lineales, en este trabajo se abordará la configuración necesaria para poder usarse en articulaciones rotativas.
+
+\subsection{G-code}
 \label{sec:gcode}
-\noindent \textit{G-code}, también conocido como RS-274, es el nombre del lenguaje de programación más usado en máquinas de \ac{CNC}. 
+\noindent También conocido como RS-274, es el nombre del lenguaje de programación más usado en máquinas de \ac{CNC}. 
 
 Su programación, precisa de una sintaxis específica en la que se emplean letras y números para representar 
 diferentes comandos y parámetros. Por ejemplo, la letra G seguida de un número indica un comando de movimiento, mientras 
@@ -75,19 +77,9 @@ En el Código \ref{cod:ejemplo_gcode} se muestra un ejemplo muy sencillo, para t
 \label{subsec:freecad}
 \noindent FreeCAD\footnote{\url{https://www.freecad.org/index.php?lang=es_ES}} es un programa de diseño asistido por ordenador de código abierto y gratuito, 
 utilizado para modelar piezas industriales.
-Está dirigido al mundo de la ingeniería mecánica y el diseño de productos.
-
-Utiliza el enfoque del modelado paramétrico, que se basa 
+Está dirigido al mundo de la ingeniería mecánica y el diseño de productos. Utiliza el enfoque del modelado paramétrico, que se basa 
 en el uso de parámetros y relaciones entre ellos para construir modelos 3D que pueden ser 
 modificados fácilmente. 
-
-Una de las ventajas de FreeCAD es la disponibilidad de diversos bancos de trabajo especializados, 
-conocidos como \textit{workbenches}. Cada uno de ellos, proporciona herramientas y funciones 
-específicas para tareas de diseño particulares.
-
-Además, es altamente personalizable, ya que incorpora un administrador de complementos que permite a la comunidad 
-agregar nuevas herramientas y funcionalidades al software. Gracias a ella, el software mejora continuamente y 
-resulta sencillo de aprender debido a la cantidad de documentación y tutoriales que existen.
 
 \begin{figure} [h!]
   \begin{center}
@@ -96,29 +88,22 @@ resulta sencillo de aprender debido a la cantidad de documentación y tutoriales
   \caption{Logo de FreeCAD}
   \label{fig:freecadlogo}
 \end{figure}\ 
+
+
+Una de las ventajas de FreeCAD es la disponibilidad de diversos bancos de trabajo especializados, 
+conocidos como \textit{workbenches}. Cada uno de ellos, proporciona herramientas y funciones 
+específicas para tareas de diseño particulares. Además, es altamente personalizable, ya que incorpora un administrador de complementos que permite a la comunidad 
+agregar nuevas herramientas y funcionalidades al software. Gracias a ella, el software mejora continuamente y 
+resulta sencillo de aprender debido a la cantidad de documentación y tutoriales que existen.
 \newpage
 \subsection{ROS 2}
 \label{subsec:ros2}
 \noindent ROS, por sus siglas en inglés, significa \textit{Robot Operating System}. Se trata de una plataforma de código abierto utilizada 
-para desarrollar y controlar sistemas robóticos.
-
-Su objetivo principal es facilitar el desarrollo de sistemas robóticos al proporcionar una infraestructura que permite a
+para desarrollar y controlar sistemas robóticos. Su objetivo principal es facilitar el desarrollo de sistemas robóticos al proporcionar una infraestructura que permite a
 los desarrolladores centrarse en la lógica y el comportamiento específico de los robots, sin tener que preocuparse por la 
-infraestructura de comunicación y control. 
-
-Sumado a ello, proporciona una colección de bibliotecas, herramientas y convenios que permiten a los desarrolladores 
-reutilizar y modularizar el software para robots. Además, incorpora programas para la visualización de datos, depuración y 
+infraestructura de comunicación y control. Además, proporciona una colección de bibliotecas, herramientas y convenios que permiten a los desarrolladores 
+reutilizar y modularizar el software para robots. También incorpora programas para la visualización de datos, depuración y 
 simulación de robots creados por una comunidad activa de usuarios y desarrolladores.
-
-Una de las características distintivas de ROS es su arquitectura basada en nodos. Los nodos son procesos independientes 
-que se comunican entre sí mediante mensajes. Cada nodo puede realizar tareas específicas, en función de la lógica atribuida por el programador.
-
-Concretamente, en este trabajo se utiliza ROS 2, la versión sucesora de ROS. Esta versión incorpora una gran variedad de mejoras respecto 
-a su predecesor. Por ejemplo, los nodos no dependen de un componente \textit{Master} para comunicarse ya que las comunicaciones 
-están distribuidas mediante el uso de \ac{DDS}. Esto incrementa la robustez del sistema y reduce significativamente los tiempos de latencia. 
-
-La distribución de ROS utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata de la última versión de ROS estable disponible para 
-el sistema operativo Ubuntu 22.04 LTS.
 \begin{figure} [h!]
   \begin{center}
     \includegraphics[width=4cm]{figs/ros2logo.jpeg}
@@ -127,9 +112,19 @@ el sistema operativo Ubuntu 22.04 LTS.
   \label{fig:ros2logo}
 \end{figure}\ 
 
+
+
+Una de las características distintivas de ROS es su arquitectura basada en nodos. Los nodos son procesos independientes 
+que se comunican entre sí mediante mensajes. Cada nodo puede realizar tareas específicas, en función de la lógica atribuida por el programador.
+
+Concretamente, en este trabajo se utiliza ROS 2, la versión sucesora de ROS. Esta versión incorpora una gran variedad de mejoras respecto 
+a su predecesor. Por ejemplo, los nodos no dependen de un componente \textit{Master} para comunicarse ya que las comunicaciones 
+están distribuidas mediante el uso de \ac{DDS}. Esto incrementa la robustez del sistema y reduce significativamente los tiempos de latencia. La distribución de ROS utilizada en este trabajo es \textit{ROS 2 Humble}. Se trata de la última versión de ROS estable disponible para 
+el sistema operativo Ubuntu 22.04 LTS.
+
 \subsection{MoveIt!}
 \label{subsec:moveit}
-MoveIt es una plataforma de desarrollo (\textit{framework}) de código abierto que permite implementar 
+\noindent MoveIt es una plataforma de desarrollo (\textit{framework}) de código abierto que permite implementar 
 aplicaciones de manipulación complejas utilizando ROS. 
 
 Además, proporciona una amplia gama de herramientas y bibliotecas que 
@@ -150,14 +145,12 @@ necesarios para poder incorporar tu propio robot en este ecosistema.
 \newpage
 \section{Hardware}
 \label{sec:hardware}
-Cuando hablamos de \textit{hardware}, nos referimos a todos los componentes físicos de utilizados en el dispositivo electrónico, en este caso, el robot. Estos 
-componentes son tangibles, es decir, se pueden tocar y ver.
+\noindent A continuación se describen todos los componentes físicos utilizados en trabajo. El plantamiento en la adquisición 
+de estos, ha sido: funcionalidad, precio y disponibilidad.
 
 \subsection{MKS DLC32}
 \label{subsec:mksdlc32}
-\noindent Se trata de una placa base\footnote{componente esencial que proporciona conexiones y circuitos para que los demás componentes se comuniquen entre sí} destinada al mundo de las máquinas de grabado láser. 
-
-Ha sido creada por \textit{MakerBase} y es \textit{open hardware}, por lo que toda la información de la placa 
+\noindent Se trata de una placa base\footnote{componente esencial que proporciona conexiones y circuitos para que los demás componentes se comuniquen entre sí} destinada al mundo de las máquinas de grabado láser y creada por \textit{MakerBase} con carácter \textit{open hardware}, por lo que toda la información de la placa 
 puede encontrarse en su repositorio de Github\footnote{\url{https://github.com/makerbase-mks/MKS-DLC32}}. Aun así, es fácil de comprar 
 en páginas web como \textit{Aliexpress} por un precio que ronda los 16\euro. 
 
