@@ -1,0 +1,291 @@
+% Completa los datos convenientemente en las zonas marcadas con TODO
+
+\documentclass{beamer}
+%PARA VISUALIZAR PRESENTACIONN CON NOTAS USAR VISUALIZADOR "pdfpc":
+%Para ver las notas, el cronometro y siguente diapo:
+% pdfpc --notes=right slides.pdf
+% "tecla p": para pausar el cronometro
+\mode<presentation> {
+  \usetheme{CambridgeUS}
+  \usecolortheme{crane} % color naranja
+}
+\setbeamercolor{titlelike}{parent=structure,bg=yellow!85!orange} % Cambia el color de la caja del título de la página inicial
+
+\setbeamertemplate{navigation symbols}{} % ocultar iconos de navegación
+\setbeamerfont{subsection in toc}{size=\small} % reducir tamaño en TOC
+\setbeamerfont{date}{size=\tiny}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{eurosym}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{pgfpages}
+\usepackage{listings}
+\usepackage{multimedia}
+\usepackage[export]{adjustbox}
+\usepackage{outlines} % Para poner bullets tabulados (\1 \2 \3 ...) y no items
+
+\usepackage{array,tabularx} % para tabular leyenda de ecuaciones
+\newenvironment{conditions*} % entorno de "leyenda de ecuación"
+  {\par\vspace{\abovedisplayskip}\noindent
+   \tabularx{\columnwidth}{>{$}l<{$} @{\ : } >{\raggedright\arraybackslash}X}}
+  {\endtabularx\par\vspace{\belowdisplayskip}}
+  
+% USO DE NOTAS
+\setbeameroption{hide notes} % Para mostrar u ocultar (hide/show)
+%\setbeameroption{show only notes} % Mostrar solo las notas
+%\setbeameroption{show notes on second screen=right} % Mostrar notas en otra pantalla
+\setbeamertemplate{note page}{ % asi solo muestro el texto de las notas
+  \insertnote%
+}
+
+%========= TODO: datos internos del documento
+\hypersetup{
+	pdftitle={Defensa de trabajo de fin de grado de Vidal Pérez Bohoyo},
+	pdfauthor={Vidal Pérez Bohoyo},
+	pdfsubject={Brazo robótico de bajo coste para la docencia universitaria},
+	pdfkeywords={teaching, robotics, arm, ROS, actuators, DOF, 3D, printer},
+	pdfproducer={pdfLaTeX},
+  colorlinks=true,
+  linkcolor=blue
+}
+%=========
+
+%========= TODO: diapositiva de portada
+\title[Brazo robótico de bajo coste]{Brazo robótico de bajo coste para la docencia universitaria} % El título reducido aparece en la parte inferior de todas las diapositivas
+                                         % El título completo aparece solo en la diapositiva de portada
+\author[Vidal Pérez Bohoyo]{Vidal Pérez Bohoyo}
+\institute[URJC]
+{
+\textit{\href{mailto:vperezb.2019@alumnos.urjc.es}{\color{blue}{\underline{vperezb.2019@alumnos.urjc.es}}}}\\
+\vspace{0.5cm}
+\includegraphics[width=3cm]{figs/logo-urjc}\\
+\vspace{1cm}
+Trabajo fin de grado
+}
+\date{xx de xxxxxxx de 20xx}
+%=========
+
+%========= COMIENZO DEL DOCUMENTO
+\begin{document}
+
+%========= Portada inicial con notas
+\begin{frame}[plain] % plain: quita header y footer
+\large{\titlepage}
+\note[item]{En esta presentación voy a hablar sobre...}
+\note[item]{En primer lugar...}
+\end{frame}
+
+%========= Licencia
+\begin{frame}
+\input{licencia.tex}
+\end{frame}
+
+%========= Índice o tabla de contenidos (TOC)
+\begin{frame}
+\frametitle{Contenidos}
+%\begin{multicols}{2} % si tengo muchas secciones, lo parte en dos columnas
+  \tableofcontents[hideallsubsections] % no muestra subsecciones
+%\end{multicols}
+\note[item]{La presentaci\'on esta dividida en cuatro partes.}
+\end{frame}
+
+%========= Diapositiva "vacía" de comienzo de sección:
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Introducción}
+\note[item]{Comencemos con la introducción.}
+\end{frame}
+
+\section{Introducción}
+\subsection{Contexto general}
+
+
+\begin{frame}
+\frametitle{Robótica industrial}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Robótica educativa}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Robótica de bajo coste}
+
+\end{frame}
+
+%========= Diapositiva con ítems resaltados con colores:
+\begin{frame}
+\frametitle{Situación de la Robótica}
+\begin{itemize}
+\item La \textcolor{red}{tecnología} está cada vez más presente en la vida cotidiana.
+\item Los robots de servicio aparecen en el \textcolor{blue}{mercado}.
+\item La \textcolor{red}{domótica} presenta cada vez más aplicaciones domésticas.
+\end{itemize}
+\end{frame}
+
+\subsection{Contexto específico}
+%========= Diapositiva con bloques:
+\begin{frame}
+\frametitle{Precedentes de la robótica}
+\begin{block}{Primera revolución industrial de 1800}
+Productos fabricados por \textcolor{blue}{máquinas}. La \textcolor{red}{máquina de vapor} fue clave.
+\end{block}
+\end{frame}
+
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Objetivos}
+\note[item]{Pasemos ahora a comentar los objetivos que nos hemos con este trabajo.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Descripción del problema}
+\begin{block}{Primera revolución industrial de 1800}
+Productos fabricados por \textcolor{blue}{máquinas}. La \textcolor{red}{máquina de vapor} fue clave.
+\end{block}
+\end{frame}
+  
+\begin{frame}
+\frametitle{Requisitos}
+\begin{enumerate}
+\item Coste inferior a 200\euro.
+\item En su mayoría impreso en 3D.
+\item Bajo consumo eléctrico, inferior a 25 vatios.
+\item Tamaño reducido.
+\item Sencillo de montar.
+\item Tener integración con ROS 2 y MoveIt 2.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Metodología}
+
+\end{frame}
+
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Plataforma de desarrollo}
+\note[item]{Una vez descritos los objetivos, veamos qué hemos hecho para alcanzarlos.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Software}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ccc}
+      \includegraphics[width=0.3\textwidth, valign=m]{figs/phyton.jpg} & \includegraphics[width=0.2\textwidth, valign=m]{figs/pyserial.png} &
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/grbl.png} \\
+      \includegraphics[width=0.3\textwidth, valign=m]{figs/freecad.png} & \includegraphics[width=0.2\textwidth, valign=m]{figs/ros2logo.jpeg} & 
+      \includegraphics[width=0.3\textwidth, valign=m]{figs/moveit2.png}
+  \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hardware}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ccc}
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/mksdlc32.jpg} & \includegraphics[width=0.2\textwidth, valign=m]{figs/nema17.jpg} &
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/TMC2209.jpg} \\
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/pw24v.jpg} & \includegraphics[width=0.2\textwidth, valign=m]{figs/finaldecarrera.jpg} & 
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/d20h15.jpg} \\ 
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/correa.png} & \includegraphics[width=0.2\textwidth, valign=m]{figs/F695-2RS.jpeg} & 
+      \includegraphics[width=0.12\textwidth, valign=m]{figs/20t.jpg}
+  \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\end{frame}
+
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Desarrollo hardware}
+\note[item]{Una vez descritos los objetivos, veamos qué hemos hecho para alcanzarlos.}
+\end{frame}
+
+
+
+%========= Diapositiva con matemáticas y leyenda (conditions*):
+\begin{frame}
+\frametitle{Resistencia de un material}
+\begin{outline}
+\1 Si material piezoresistivo se deforma, cambia su resistencia eléctrica.
+\begin{equation}
+R=\rho\frac{l}{A}
+\end{equation}
+donde:
+\begin{conditions*}
+R & resistencia del material $[\Omega]$\\
+\rho & resistividad $[\Omega-m]$\\
+l & longitud $[m]$\\
+A & área de sección transversal $[m^2]$
+\end{conditions*}
+\1 El cambio de resistencia se obtiene a partir de:
+\begin{equation}
+\frac{\Delta R}{R}=\frac{\Delta\rho}{\rho}=\frac{\Delta A}{A}=\frac{\Delta l}{l}
+\end{equation}
+\1 Otra forma de medir el efecto piezoresistivo: el factor de deformación.
+\begin{equation}
+GF(\textit{Gauge Factor})=\frac{\frac{\Delta R}{R}}{\varepsilon}=\frac{\frac{\Delta R}{R}}{\frac{\Delta l}{l}}
+\end{equation}
+\end{outline}
+\end{frame}
+
+%========= Diapositiva con códigos:
+\subsection{Algoritmo principal}
+\begin{frame}[fragile]
+\frametitle{Algoritmo de visión}
+\begin{lstlisting}
+cvCvtColor (&image, IplTmp1, CV_RGB2GRAY);//to Gray
+cvNormalize(IplTmp1, IplTmp1, 0, 255, CV_MINMAX);
+cvSmooth(IplTmp1,IplTmp2,CV_BLUR,3,3);//Avrg filter
+cvLaplace(IplTmp2, IplLaplace, 3);//Laplace
+cvConvertScale(IplLaplace,IplTmp1);
+cvThreshold(IplTmp1,IplTmp2,Thress,255,CV_THRESH_BIN);
+\end{lstlisting}
+\end{frame}
+
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Conclusiones}
+\note[item]{Para acabar esta presentación, vamos a repasar lo hecho, unas breves conclusiones y las líneas futuras.}
+\end{frame}
+
+\section{Conclusiones}
+\begin{frame}
+\begin{block}{Objetivos cumplidos}
+\begin{itemize}
+\item Herramienta multiplataforma: soporta Linux, Windows, MacOS.
+\item Intuitiva para el usuario final: no se necesita instalar nada.
+\item Solo se necesita un navegador web.
+\end{itemize}
+\end{block}
+
+\begin{block}{Líneas futuras}
+\begin{itemize}
+\item Permitir el uso de otras herramientas.
+\item Ampliar los botones disponibles en el interfaz.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[plain]
+\large{\titlepage}
+\note[item]{Y hasta aquí mi exposición.}
+\note[item]{Quedo a disposición del tribunal...}
+\end{frame}
+
+\end{document}
