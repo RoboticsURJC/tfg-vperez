@@ -55,11 +55,10 @@ En cuanto a la geometría del manipulador, se debe contar con la limitación exi
 que, aunque podemos alcanzar cualquier punto del espacio, no podemos controlar la orientación del extremo del robot en dicho punto. En base a esto, 
 se ha investigado en Internet qué tipos de robot existen con ese número de grados de libertad y como lo solventan. Principalmente destacan dos 
 soluciones: los robots SCARA y los robots basados en paralelogramos (presentados en la Sección \ref{sec:scara}). Ambos, tienen en común la 
-característica de mantener su extremo siempre paralelo al suelo, por lo que se tiene conocimiento sobre 2 de las 3 orientaciones en ese punto. En 
-la última orientación (Rotación en Z) se le suele incluir un cuarto grado de libertad, que en nuestro caso no tenemos. Aún así puede utilizarse con 
-herramientas tipo electroimán o ventosas para tareas sencillas de movimiento de objetos.
+característica de mantener su extremo siempre paralelo al suelo, por lo que se tiene conocimiento sobre 2 de las 3 orientaciones en ese punto. 
 
-Concretamente, se pretende implementar un robot basado en paralelogramos que utilice el mismo principio de funcionamiento que los utilizados en 
+En la última orientación (Rotación en Z) se le suele incluir un cuarto grado de libertad, que en nuestro caso no tenemos. Aún así puede utilizarse con 
+herramientas tipo electroimán o ventosas para tareas sencillas de movimiento de objetos. Concretamente, se pretende implementar un robot basado en paralelogramos que utilice el mismo principio de funcionamiento que los utilizados en 
 tareas de paletizado\footnote{Colocar objetos en un \textit{palet} de forma ordenada y eficiente}.
 
 \section{Modelo alámbrico del manipulador}
@@ -78,10 +77,10 @@ En la Figura \ref{fig:mod_pinza_figure} se muestra un ejemplo creado específica
 
 A la hora de crear el modelo alámbrico de este robot, se ha tomado como referencia el del robot 
 casero MeArm (Figura \ref{fig:mearm}), en concreto el modelo alámbrico usado por Juan González en la asignatura de 
-Mecatrónica\footnote{\url{https://github.com/myTeachingURJC/Mecatronica/wiki/S3:-Estructuras-mec\%C3\%A1nicas-(II)}} de esta Universidad.\\
+Mecatrónica\footnote{\url{https://github.com/myTeachingURJC/Mecatronica/wiki/S3:-Estructuras-mec\%C3\%A1nicas-(II)}} de esta universidad.\\
 \begin{figure} [ht!]
   \begin{center}
-    \includegraphics[width=15cm]{figs/mearm_params.png}
+    \includegraphics[width=10cm]{figs/mearm_params.png}
   \end{center}
   \caption{Principio fundamental del brazo MeArm}
   \label{fig:mearm_params}
@@ -92,11 +91,11 @@ Este robot está definido por una serie de parámetros a los que se les ha puest
 en la Figura \ref{fig:mearm_params}). En función de los valores de estos parámetros, el comportamiento del brazo será diferente. Para 
 encontrar los adecuados, no queda otra que utilizar la experimentación. Aún así, si se sigue un cierto orden, el proceso resulta realmente sencillo. 
 
-\newpage
-\noindent Es por esto que se ha seguido el siguiente procedimiento: 
 
+\noindent Es por esto que se ha seguido el siguiente procedimiento: 
+\newpage
 \begin{enumerate}
-\item Una manera de comenzar, es estableciendo el largo de los eslabones primarios L1 y L2. En base al tamaño de escritorio que se le pretende 
+\item Se ha comenzado estableciendo el largo de los eslabones primarios L1 y L2. En base al tamaño de escritorio que se le pretende 
 dar al robot, 17 centímetros por eslabón es un buen punto de partida.
 \item El siguiente paso es elegir P1, P2 y P3. Estos son los lados cortos de los paralelogramos. Es importante jugar con estos valores 
 de tal manera que se consiga obtener los más largos posibles y estos no intersequen entre sí. Esto es debido a que las piezas reales ocupan un cierto espacio y si el paralelogramo es 
@@ -106,7 +105,8 @@ punto de partida es 120º. Este valor es crítico ya que afecta significativamen
 \end{enumerate}
 \newpage
 En la Figura \ref{fig:g_arm_alambrico} se muestra el modelo alámbrico final de este manipulador, bautizado como G-Arm\footnote{Bautizado así 
-debido al lenguaje de programación que será utilizado posteriormente para comunicarse con él}:\\
+debido al lenguaje de programación que será utilizado posteriormente para comunicarse con él}, cuya tabla de parámetros se puede 
+ver en el Cuadro \ref{cuadro:parametros_alambrico}\\
 \begin{figure} [ht!]
   \begin{center}
     \includegraphics[width=15cm]{figs/alambrico_garm.png}
@@ -115,7 +115,6 @@ debido al lenguaje de programación que será utilizado posteriormente para comu
   \label{fig:g_arm_alambrico}
 \end{figure}\ 
 
-Dando como resultado la siguiente tabla de parámetros:
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -182,14 +181,14 @@ la construcción del robot. Estos componentes deben de ser asequibles y fáciles
 \textit{Aliexpress} o \textit{Amazon}. Con el propósito de encontrar el conjunto ideal, se 
 evaluarán diversas opciones para seleccionar aquella que ofrezca las mejores prestaciones y se ajuste al presupuesto establecido.
 \subsection{Motores}
-\noindent El robot requiere de 3 motores que deben contar con las siguientes características:
+\noindent El robot requiere de tres motores que deben contar con las siguientes características:
 \begin{itemize}
   \item Capacidad de entregar suficiente torque como para levantar el brazo más la carga.
   \item Se debe poder conocer su posición en cada instante.
   \item Deben poder ejercer un torque/retención estando detenidos.
 \end{itemize}
 
-Debido a esto último, no es viable usar motores convencionales con escobillas, ya que no son 
+Debido a este último requisito, no es viable usar motores convencionales con escobillas, ya que no son 
 capaces de generar torque sin girar. En cambio, los motores paso a paso si son capaces de ello. Además 
 suelen disponer de una gran fuerza y, aunque no estén codificados, se puede conocer su posición angular relativa debido a que avanzan en 
 pequeños incrementos discretos (pasos). Como aspecto negativo, son bastante pesados. Aún así su precio no es muy elevado por lo que es 
@@ -211,16 +210,16 @@ el torque mínimo necesario para mantener esa posición.
 \begin{myequation}[h!]
   \begin{equation}
     \begin{aligned}
-      T1 &= m1*(L1/2) + m2*(L1 + L2/2) + payload*(L1 + L2)\\
-      T2 &= m2 *(L2/2) + payload*(L1 + L2)
+      T1 &= (m1*(L1/2) + m2*(L1 + L2/2) + payload*(L1 + L2))*g\\
+      T2 &= (m2 *(L2/2) + payload*(L1 + L2))*g
   \nonumber
     \end{aligned}
   \end{equation}
   \caption[Cálculo del torque necesario en la articulación más demandante]{Cálculo del torque necesario en la articulación más demandante}
   \label{ec:torque}
 \end{myequation} 
-Teniendo en cuenta que cada eslabón mide 17cm y se desea levantar una carga máxima de 300g, el valor de 
-torque necesario en la primera articulación es y tal en la segunda.
+Teniendo en cuenta que cada eslabón mide 17cm y pesa 200g se necesitaría un torque mínimo de 1.66 N.m en la primera 
+articulación y 0.92 N.m en la segunda.
 
 Los motores paso a paso se dividen en diferentes categorías según su potencia y rendimiento. En este caso, se empleará 
 un motor perteneciente a la categoría Nema, específicamente el Nema 17. Esta elección se basa en su amplia disponibilidad, facilidad 
@@ -248,7 +247,7 @@ sin comprometer la elección del motor Nema 17.
 reductora. Existen varias opciones para lograrlo, como el uso de engranajes (normales, planetarios, helicoidales, etc.) 
 o correas (lisas y dentadas).
 
-En este caso, se ha optado por utilizar correas dentadas en lugar de engranajes debido a que los engranajes 
+En este caso, se ha optado por utilizar correas dentadas en lugar de engranajes, debido a que los engranajes 
 tienden a introducir holguras en el movimiento final, ocasionando imprecisión e incertidumbre en los movimientos 
 del robot. Por el contrario, las correas dentadas utilizan tensores para mantener siempre el contacto con 
 ambas poleas, lo que resulta en un movimiento más preciso y confiable.
@@ -268,7 +267,7 @@ Además, las poleas necesarias para este tipo de correas se pueden diseñar e im
 sencilla y económica. Esto permite personalizar el número de dientes de las poleas según las 
 necesidades del robot, con un costo prácticamente nulo.
 
-Para dos de los tres grados de libertad del robot, se ha elegido utilizar una combinación de poleas: una polea comercial de 
+Para dos de los tres grados de libertad del robot, se ha decidido utilizar una combinación de poleas: una polea comercial de 
 metal con 20 dientes unida al eje del motor y otra polea impresa en 3D con 100 dientes, logrando una reducción de 1:5\footnote{
   La reducción 1:5 indica que, por cada vuelta del motor, el sistema de transmisión proporciona aproximadamente 1/5 de vuelta en el eje de salida.
 }. En el 
@@ -417,7 +416,10 @@ se ha adquirido la versión de 24 V y 3W por 3\euro.
   \caption{Electroimán D20H15 3KG}
   \label{fig:d20}
 \end{figure}\ 
-
+\\
+\\
+La lista completa de los componentes y su modelo concreto, así como su precio, se encuentra al final de este capítulo 
+en la Sección \ref{sec:impresionymontaje}
 
 \newpage
 \section{Diseño CAD}
@@ -425,7 +427,7 @@ se ha adquirido la versión de 24 V y 3W por 3\euro.
 \noindent En esta sección se habla de las particularidades del diseño y diversos aspectos a tener en cuenta a la hora de diseñar 
 cualquier pieza mecánica que posteriormente será impresa en 3D. 
 \\
-Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
+\indent Para el diseño de este brazo robot, se ha utilizado dos herramientas de diseño. Inicialmente el proyecto se realizó mediante 
 la herramienta \textit{Fusion 360} y posteriormente se utilizó \textit{FreeCAD}\ref{subsec:freecad} para cumplir con el objetivo de ser totalmente 
 \textit{Open Source} y estar parametrizado, para que cualquier persona pueda investigarlo, modificarlo y utilizarlo de forma gratuita.
 
@@ -434,7 +436,7 @@ la herramienta \textit{Fusion 360} y posteriormente se utilizó \textit{FreeCAD}
 y toda la electrónica a excepción de la fuente de alimentación. Esto es así debido a que puede ser alimentado de múltiples formas (baterías, 
 cargadores de ordenador, fuentes de PC, salidas de alimentación de robots móviles, etc). Además, esta electrónica debe poder estar refrigerada 
 por un pequeño ventilador incorporado en la propia base. \\
-Se optó por realizar dos piezas circulares y una serie de espaciadores anchos que unían el conjunto, dejando espacio en el interior para 
+\indent Se optó por realizar dos piezas circulares y una serie de espaciadores anchos que unían el conjunto, dejando espacio en el interior para 
 la placa base. Este tipo de piezas son muy robustas y fáciles de imprimir. 
 \begin{figure} [ht!]
   \begin{center}
@@ -541,7 +543,7 @@ se ha ideado con una forma particular que permite acoplar herramientas de una fo
   \label{fig:extremo_pieza}
 \end{figure}\ 
 \\
-Consiste en una acanaladura a 45 grados (Figura \ref{fig:vistas_extremo}) con un agujero que la atraviesa, por el que pasará el tornillo unirá ambas piezas. 
+\indent Consiste en una acanaladura a 45 grados (Figura \ref{fig:vistas_extremo}) con un agujero que la atraviesa, por el que pasará el tornillo unirá ambas piezas. 
 Este acople, diseñado específicamente para este proyecto, es sencillo de usar e impide que la herramienta rote o 
 tenga algún tipo de holgura. De hecho, las paredes están en ángulo para obligar a la herramienta a centrarse en la acanaladura y hacer 
 la unión muy robusta y precisa.
@@ -570,6 +572,7 @@ forma del extremo del robot. Para unir el conjunto se ha utilizado el propio ori
 
 \newpage
 \section{Impresión y montaje}
+\label{sec:impresionymontaje}
 \noindent En esta sección se exponen todos los detalles a tener en cuenta a la hora de querer replicar este proyecto. Para la impresión 
 de G-Arm se ha utilizado una impresora Ender-3 Pro\footnote{\url{https://www.creality.com/products/ender-3-pro-3d-printer}} y un rollo 
 de 1Kg de filamento PLA Rojo convencional.

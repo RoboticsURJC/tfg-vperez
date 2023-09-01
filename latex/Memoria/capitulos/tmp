@@ -218,3 +218,49 @@ lógico determinado
 
 Esto agiliza el proceso de desarrollo ya que la conversión de código humano a 
 código máquina (compilación) suele demorar un tiempo. Por el contrario, la ejecución de un programa en lenguaje compilado es más rápida. 
+
+
+
+
+
+
+
+
+
+\subsection{Estabilidad y flexión}
+\noindent En esta prueba se determina como afecta la carga a la estructura del brazo.
+
+En cuanto a la estabilidad, el robot es capaz de mantenerse en su posición más extendida de forma horizontal si volcar hasta los 400g 
+de carga. Esto considerando que la base no está anclada al suelo de ninguna manera. Aún así, a la hora de hacer movimientos en los que involucra 
+la rotación de la base, la propia inercia hace que, al frenar y acelerar, la base se deslice. Por lo que es recomendable atornillar la base al 
+suelo o ponerle unas patas de goma antideslizante.
+
+Para medir la flexión, se ha situado al robot en una posición de uso normal y se le ha ido añadiendo peso en su extremo. Con un reloj 
+comparador se ha medido el desplazamiento en Z.
+\begin{figure} [ht!]
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=12cm, 
+        %height=8cm,  
+        xlabel={Carga (gramos)},
+        ylabel={Flexión (mm)},
+        legend pos=north west, % Posición de la leyenda
+        title={Evolución de la flexión en función de la carga}
+      ]
+
+      % Datos de los tres escenarios
+      \addplot [color=blue, mark=square] coordinates {
+        (100, 3)
+        (200, 5)
+        (300, 7)
+        % ...
+      };
+            
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Gráfica de evolución de flexión en función de la carga aplicada}
+    \label{fig:grafica-flexion}
+  \end{figure}
+ 
+\newpage

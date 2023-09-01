@@ -60,7 +60,7 @@
 \author[Vidal Pérez Bohoyo]{Vidal Pérez Bohoyo}
 \institute[URJC]
 {
-\textit{\href{mailto:vperezb.2019@alumnos.urjc.es}{\color{blue}{\underline{vperezb.2019@alumnos.urjc.es}}}}\\
+\textit{\href{mailto:v.perezb.2019@alumnos.urjc.es}{\color{blue}{\underline{v.perezb.2019@alumnos.urjc.es}}}}\\
 \vspace{0.5cm}
 \includegraphics[width=3cm]{figs/logo-urjc}\\
 \vspace{1cm}
@@ -215,46 +215,57 @@ Productos fabricados por \textcolor{blue}{máquinas}. La \textcolor{red}{máquin
 \note[item]{Una vez descritos los objetivos, veamos qué hemos hecho para alcanzarlos.}
 \end{frame}
 
-
-
-%========= Diapositiva con matemáticas y leyenda (conditions*):
-\begin{frame}
-\frametitle{Resistencia de un material}
-\begin{outline}
-\1 Si material piezoresistivo se deforma, cambia su resistencia eléctrica.
-\begin{equation}
-R=\rho\frac{l}{A}
-\end{equation}
-donde:
-\begin{conditions*}
-R & resistencia del material $[\Omega]$\\
-\rho & resistividad $[\Omega-m]$\\
-l & longitud $[m]$\\
-A & área de sección transversal $[m^2]$
-\end{conditions*}
-\1 El cambio de resistencia se obtiene a partir de:
-\begin{equation}
-\frac{\Delta R}{R}=\frac{\Delta\rho}{\rho}=\frac{\Delta A}{A}=\frac{\Delta l}{l}
-\end{equation}
-\1 Otra forma de medir el efecto piezoresistivo: el factor de deformación.
-\begin{equation}
-GF(\textit{Gauge Factor})=\frac{\frac{\Delta R}{R}}{\varepsilon}=\frac{\frac{\Delta R}{R}}{\frac{\Delta l}{l}}
-\end{equation}
-\end{outline}
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Desarrollo software}
+\note[item]{Una vez descritos los objetivos, veamos qué hemos hecho para alcanzarlos.}
 \end{frame}
 
-%========= Diapositiva con códigos:
-\subsection{Algoritmo principal}
-\begin{frame}[fragile]
-\frametitle{Algoritmo de visión}
-\begin{lstlisting}
-cvCvtColor (&image, IplTmp1, CV_RGB2GRAY);//to Gray
-cvNormalize(IplTmp1, IplTmp1, 0, 255, CV_MINMAX);
-cvSmooth(IplTmp1,IplTmp2,CV_BLUR,3,3);//Avrg filter
-cvLaplace(IplTmp2, IplLaplace, 3);//Laplace
-cvConvertScale(IplLaplace,IplTmp1);
-cvThreshold(IplTmp1,IplTmp2,Thress,255,CV_THRESH_BIN);
-\end{lstlisting}
+\begin{frame}
+\frametitle{Grbl y comunicación con el ordenador}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figs/coms.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Integración con ROS 2}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{ccc}
+      \includegraphics[width=0.15\textwidth, valign=m]{figs/STL.jpg} & \includegraphics[width=0.3\textwidth, valign=m]{figs/collada.png} 
+       & \includegraphics[width=0.15\textwidth, valign=m]{figs/urdf.png} \\
+      
+  \end{tabular}
+\end{table} 
+\begin{figure}[h]
+  
+\centering
+\includegraphics[width=0.7\textwidth]{figs/rviz.png}
+\end{figure}  
+\end{frame}
+
+\begin{frame}
+\frametitle{Integración con MoveIt 2}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{cc}
+      \includegraphics[width=0.2\textwidth, valign=m]{figs/setup_assistant.jpg} & \includegraphics[width=0.65\textwidth, valign=m]{figs/moveit_demo_trajectory.png} 
+  \end{tabular}
+\end{table}  
+\end{frame}
+
+\begin{frame}
+\frametitle{Arquitectura software}
+    
+\end{frame}
+
+\section*{}
+\begin{frame}{}
+  \centering \Huge
+  \emph{Pruebas técnicas}
 \end{frame}
 
 \section*{}

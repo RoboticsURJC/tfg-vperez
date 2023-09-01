@@ -11,10 +11,10 @@ un ordenador cualquiera, el hardware creado en el anterior capítulo.
 
 \subsection{Grbl como \textit{firmware} del robot}
 \noindent Para realizar el control de los actuadores se ha tomado la decisión de utilizar el 
-firmware de control numérico Grbl\ref{subsec:grbl}, por encima 
+firmware de control numérico Grbl (Sección \ref{subsec:grbl}), por encima 
 de realizar uno propio, debido a que es una solución robusta con años de desarrollo y con unas ciertas garantías difíciles de superar.
 \\
-Actualmente, este firmware permite controlar hasta 3 motores paso a paso simultáneamente. Además, tiene la posibilidad de utilizar 
+Actualmente, este firmware permite controlar hasta tres motores paso a paso simultáneamente. Además, tiene la posibilidad de utilizar 
 un canal PWM (usualmente usado en las CNC para modificar la velocidad de la herramienta). Sobre estos motores, podemos realizar 
 un control en posición, es decir, recibe una serie de coordenadas y automáticamente alcanza esos puntos. Este tipo de controlador 
 es perfectamente válido para esta aplicación y simplifica bastante su uso. Aunque esta placa en concreto viene con Grbl 1.1 instalado 
@@ -72,10 +72,12 @@ M5 & Apaga el motor auxiliar  \\
 
 Con el objetivo de abstraer al futuro software del robot de esta comunicación, se ha implementado 
 una clase en Python\ref{subsec:pyhton} llamada \textit{Grbl}. En este software, utiliza la librería 
-PySerial\footnote{\url{https://pypi.org/project/pyserial/}} para establecer una comunicación serie.
-
-\noindent La clase \textit{Grbl} creada puede ser utilizada a través de los siguientes métodos:
-
+PySerial\footnote{\url{https://pypi.org/project/pyserial/}} para establecer una comunicación 
+serie. La clase \textit{Grbl} creada puede ser utilizada a través de los métodos mostrados en el Código \ref{code:grblapi}. Y su 
+código fuente puede ser encontrado en el repositorio del 
+proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/96fc1e44bef6a31c272fb0673b5a33a7571c5ee7/src/software/g_arm/g_arm/g_arm_lib/grblAPI.py}}.
+\\
+\begin{code}[h]
 \begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1]
 start(puerto) # Devuelve true/false en función de si ha sido posible conectarse
 stop() # Finaliza la comunicación
@@ -86,16 +88,16 @@ setCoordinates(x, y, z) # Establece las coordenadas x, y, z
 getXYZ() # Devuelve la posición actual
 asyncXYZMove(posición, velocidad, relative) # Mueve los motores a una posición con la velodicad dada. Permite realizar movimientos relativos y absolutos.
 \end{lstlisting}
+\caption{API de la clase \textit{Grbl}}
+\label{code:grblapi}
+\end{code}
 
-Su código fuente puede ser encontrado en el repositorio del 
-proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/96fc1e44bef6a31c272fb0673b5a33a7571c5ee7/src/software/g_arm/g_arm/g_arm_lib/grblAPI.py}}.
-\\
 
 A pesar de que ya podemos comandar movimientos en los distintos ejes de la máquina, se requiere realizar una serie 
 de configuraciones para definir las características concretas de cada articulación.
 \newpage
 \subsection{Configuración de Grbl para su uso en robótica}
-\noindent GRBL tiene ciertas limitaciones a la hora de usarse en robótica. Es normal, debido a que está pensado para controlar máquinas 
+\noindent Grbl tiene ciertas limitaciones a la hora de usarse en robótica. Es normal, debido a que está pensado para controlar máquinas 
 \acs{CNC} de 3 ejes prismáticos. Pese a esto, se pueden unas ciertas configuraciones para adaptarlo a esta aplicación. 
 
 \subsubsection{Parámetros de Grbl}
@@ -489,7 +491,7 @@ En la Figura \ref{fig:dia_driver1} se muestra el diagrama de actividades que ilu
 
 \begin{figure} [ht!]
     \begin{center}
-      \includegraphics[width=12cm]{figs/driver_diagram1.jpg}
+      \includegraphics[width=11cm]{figs/driver_diagram1.jpg}
     \end{center}
     \caption{Diagrama de actividades del driver}
     \label{fig:dia_driver1}
@@ -504,144 +506,114 @@ que se están lanzando y añadir nuevos si es necesario.
 \newpage
 \section{Pruebas}
 \noindent En esta sección se ponen a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. Para ello, 
-se han llevado a cabo una serie de tests, bajo distintas circunstancias, y se han apuntado los resultados.
-características.
-
-\subsection{Estabilidad y flexión}
-\noindent En esta prueba se determina afectan diferentes fuerzas a la estructura del propio brazo, evaluando por ejemplo, cuanto se dobla 
-cuando se le aplica una cierta carga.
-Para ello, se han considerado los siguientes 3 escenarios:
-\begin{itemize}
-    \item Escenario 1: El robot está completamente retraído y se le aplican una serie de cargas de 10 a 150 gramos.
-    \item Escenario 2: El robot está en una posición de operación normal y se le aplican una serie de cargas de 10 a 150 gramos.
-    \item Escenario 3: El robot está completamente extendido horizontalmente y se le aplican una serie de cargas de 10 a 150 gramos.
-\end{itemize}
-
-\begin{figure} [ht!]
-    \centering
-    \begin{tikzpicture}
-      \begin{axis}[
-        width=12cm, 
-        %height=8cm,  
-        xlabel={Carga (gramos)},
-        ylabel={Flexión (mm)},
-        legend pos=north west, % Posición de la leyenda
-        title={Evolución de la flexión en función de la carga}
-      ]
-
-      % Datos de los tres escenarios
-      \addplot [color=blue, mark=square] coordinates {
-        (100, 3)
-        (200, 5)
-        (300, 7)
-        % ...
-      };
-      
-      \addplot [color=red, mark=triangle] coordinates {
-        (100, 2)
-        (200, 4)
-        (300, 6)
-        % ...
-      };
-      
-      \addplot [color=green, mark=diamond] coordinates {
-        (100, 1)
-        (200, 3)
-        (300, 5)
-        % ...
-      };
-      
-      % Leyendas para las series de datos
-      \legend{Escenario 1, Escenario 2, Escenario 3}
-      
-      \end{axis}
-    \end{tikzpicture}
-    \caption{Gráfica de evolución de flexión en función de la carga aplicada}
-    \label{fig:grafica-flexion}
-  \end{figure}
-En cuanto a la estabilidad, el robot es capaz de mantenerse en su posición más extendida de forma horizontal si volcar hasta los 400g 
-de peso. Esto considerando que la base no está anclada al suelo de ninguna manera. Aún así, a la hora de hacer movimientos en los que involucra 
-la rotación de la base, la propia inercia hace que, al frenar y acelerar, la base se deslice. Por lo que es recomendable atornillar la base al 
-suelo o ponerle unas patas de goma antideslizante. 
-
+se han llevado a cabo una serie de pruebas, bajo distintas circunstancias, y se han apuntado los resultados.
 \subsection{Capacidad de carga}
-\noindent En este apartado se pone a prueba la capacidad del robot a la hora de levantar y mover cargas con diferentes masas. Concretamente, 
-se realiza esta prueba para encontrar las limitaciones a la hora de manipular objetos pesados. \\
-En esta prueba se han considerado los siguientes escenarios:
+\noindent En este apartado se pone a prueba la capacidad del robot a la hora de levantar y mover cargas con diferentes masas. 
+Para ello, se han considerado los siguientes escenarios:
 \begin{itemize}
-    \item Escenario 1: El robot comienza a nivel de suelo, con el extremo del robot lejos de la base y empieza a levantar lentamente las distintas cargas. La 
-    prueba finaliza cuando los motores empiezan a perder pasos y no son capaces de elevar la carga.
-    \item Escenario 2: Repetir el escenario 1 pero situando la carga cerca de la base del robot.
+    \item Escenario 1: El robot comienza con el brazo completamente extendido y empieza a levantar lentamente distintas cargas. La 
+    prueba finaliza cuando los motores no son capaces de soportarlo.
+    \item Escenario 2: Repetir el escenario 1 pero situando la carga cerca de la base.
     \item Escenario 3: El robot hace uso de su herramienta electroimán (teóricamente de 3Kg de fuerza) para levantar distintas cargas unidas a un 
     objeto ferromagnético. La prueba finaliza cuando el electroimán no es capaz de sujetar la carga o bien, el robot no es capaz de levantarla.
 \end{itemize}
+
+\begin{figure} [ht!]
+    \centering  
+    \subfigure[Escenario 1]{\includegraphics[width=0.3\linewidth ]{figs/loadTest1.png}}
+    \hspace{2cm}
+    \subfigure[Escenario 2]{\includegraphics[width=0.3\linewidth ]{figs/loadTest2.png}}
+    \hspace{2cm}
+    \subfigure[Escenario 3]{\includegraphics[width=0.3\linewidth ]{figs/loadTest3.png}}
+    \caption{Fotos extraídas del vídeo de las pruebas de carga\footnote{\url{https://youtu.be/McD7kLMKMo0}}}
+    \label{fig:loadTests}
+\end{figure}\ 
+
+Los resultados obtenidos se muestran en el Cuadro \ref{cuadro:evaluacion_carga}. De esta prueba podemos extraer que 
+el brazo es capaz de levantar una carga significativa a pesar de su reducido tamaño. También, se ha comprobado que el 
+electroimán que se anunciaba como capaz de sostener 3 KG, sólamente es capaz de levantar una décima parte de ello. A pesar de esto, es capaz de levantar y manipular tornillos y objetos metálicos pequeños, incluso en 
+movimientos rápidos. Más allá de los valores de carga máximos, el comportamiento del robot durante la prueba 
+hace pensar que es capaz de manejar cargas de hasta 150g con total normalidad. A modo de ejemplo, en la siguiente prueba se monta un mando 
+de televisión de 100g y se realizan movimientos rápidos con él.
+
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
 \textbf{Escenario} & \textbf{Carga máxima} \\
 \hline
-Escenario 1& \SI{10}{\kilo\gram} \\
-Escenario 2 & \SI{10}{\gram} \\
-Escenario 3 & \SI{10}{\gram} \\
+Escenario 1& \SI{365}{\gram} \\
+Escenario 2 & \SI{480}{\gram} \\
+Escenario 3 & \SI{305}{\gram} \\
 \hline
 \end{tabular}
 \caption{Resultados de los diferentes resultados en la prueba de carga}
 \label{cuadro:evaluacion_carga}
 \end{center}
 \end{table}
+
+\subsection{Velocidad máxima}
+\noindent En esta prueba se evalúa que tan rápido se puede mover cada articulación con una carga de 100g. Para realizar esta prueba  
+se han configurado unas aceleraciones más altas de lo normal y se le ordena moverse a una velocidad inalcanzable. En esta prueba, 
+el robot permanece unido a la mesa mediante unos sargentos para evitar que la inercia haga deslizar la base. Se ha utilizado 
+la línea de tiempo del vídeo para saber en que segundo y décima de segundo se comienza a mover el robot y en qué momento 
+exacto llega a su destino. Se ha establecido un rango conocido de grados para poder hallar una velocidad media en ese tramo. 
+En el pie de página se puede encontrar un enlace al vídeo de la prueba realizada, donde se ve la velocidad que es capaz de 
+alcanzar este brazo. En la Figura \ref{fig:speedTests} se pueden ver algunas imágenes extraídas del propio vídeo.
+\begin{figure} [ht!]
+\centering  
+\subfigure[Inicio del recorrido]{\includegraphics[width=0.45\linewidth ]{figs/speedTest1.png}}
+\hspace{1cm}
+\subfigure[Final del recorrido]{\includegraphics[width=0.45\linewidth ]{figs/speedTest2.png}}
+\caption{Fotos extraídas del vídeo de las pruebas de velocidad\footnote{\url{https://youtu.be/37KK_hJk_tI}}}
+\label{fig:speedTests}
+\end{figure}\ 
 \newpage
-\subsection{Velocidad y tiempo de respuesta}
-\noindent En esta prueba se evalúa que tan rápido se puede mover sin afectar a su funcionamiento normal 
-llevando diferentes cargas. Además, se determina que tan rápido se responde a una orden desde la capa 
-de nivel de ROS, hasta el propio movimiento.
-
-\begin{table}[H]
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-\textbf{Parámetro} & \textbf{Valor} \\
-\hline
-Velocidad máxima & \SI{10}{\meter\per\second}\\
-Aceleración máxima & \SI{10}{\meter\per\second}\\
-Tiempo de respuesta (señal de la herramienta) & \SI{35}{\milli\second} \\
-Tiempo de respuesta (movimiento del brazo) & \SI{35}{\milli\second} \\
-\hline
-\end{tabular}
-\caption{Evaluación de la velocidad y tiempo de respuesta}
-\label{cuadro:evaluacion_velocidad}
-\end{center}
-\end{table}
-
-\subsection{Exactitud y repetitividad} 
-Se procede a realiza pruebas para evaluar la precisión del brazo robot en la ejecución de movimientos y la repetitividad 
-de estos movimientos. Se mide la desviación del brazo robot en comparación con las coordenadas objetivo y verificar si 
-es capaz de alcanzar de manera consistente los mismos puntos en un cierto número de intentos.
+Como resultado, se ha llegado a la conclusión que la velocidad máxima de giro de la articulación de la base es de 225 grados 
+por segundo. Aún así la velocidad media ha sido de 90º/s debido a que primero tiene que acelerar hasta alcanzar la velocidad 
+máxima y despúes frenar. Este eje ha hecho un recorrido de 180 grados en a penas 2 segundos. En ese tramo es capaz de alcanzar 
+la velocidad máxima durante al menos 90 grados. Esta es una velocidad increíble teniendo en cuenta que la velocidad 
+máxima de la base de un robot ABB IRB120 es de 250º/s. En cuanto a las otras dos articulaciones, al tener recorridos menores 
+se consigue una máxima de 120º/s. 
 
 \subsection{Consumo eléctrico} 
 \label{sec:consumo}
 \noindent Este tipo de pruebas evalúan cuanta energía está consumiendo el robot bajo unas condiciones concretas. Es útil para 
 conocer el coste de tener en funcionamiento este robot y si es viable utilizarlo sobre plataformas móviles a baterías. 
 \\
-Para realizar este test, se han considerado 4 escenarios:
+Para realizar este test, se han considerado 3 escenarios:
 \begin{itemize}
-\item Escenario 1: El robot se mueve sin ningún tipo de carga realizando un movimiento rápido entre dos puntos alejados.
-\item Escenario 2: El robot se mueve sin ningún tipo de carga realizando un movimiento lento entre dos puntos alejados.
-\item Escenario 3: El robot se mueve con una carga de 50g gramos (mando a distancia de la televisión) a velocidad moderada entre dos puntos alejados.
-\item Escenario 4: El robot se mueve con una carga de 100 gramos (teléfono móvil) a velocidad moderada entre dos puntos alejados.
+\item Escenario 1: El robot realiza movimientos lentos.
+\item Escenario 2: El robot realiza movimientos rápidos
+\item Escenario 3: El robot se encuentra bloqueado en una posición fija.
+
+\begin{figure} [ht!]
+    \centering  
+    \subfigure[Multímetro en serie]{\includegraphics[width=0.4\linewidth ]{figs/powerTest1.png}}
+    \hspace{1cm}
+    \subfigure[Escenario de la prueba]{\includegraphics[width=0.45\linewidth ]{figs/powerTest2.png}}
+    \caption{Fotos extraídas del vídeo de las pruebas de consumo\footnote{\url{https://youtu.be/2MfBabEWZNo}}}
+    \label{fig:powerTests}
+\end{figure}\ 
 
 \end{itemize}
-Los resultados de las pruebas se muestran en el Cuadro \label{cuadro:consumos}.
+\indent Los resultados obtenidos estan recogidos en el Cuadro \ref{cuadro:consumos}. Como se puede observar, realmente no existe una gran 
+diferencia entre un movimiento rápido y uno lento, en cambio, la diferencia sí es notable cuando lo comparamos con permanecer en 
+una posición fija. Hay que recordar que aunque esté en parado, las bobinas de los motores permanecen excitadas para 
+mantener su posición. 
+
+Gracias a esta prueba, queda comprobado que sí puede ser usado sobre plataformas móviles y ser 
+alimentado mediante baterías. De hecho, es ideal para ser montado sobre un robot Turtlebot 2 utilizando la salida de 19V o 12V que incorpora 
+en su base.
 \begin{table}[H]
 \begin{center}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{|c|c|}
 \hline
-\textbf{Escenario} & \textbf{Consumo medio} & \textbf{Pico de consumo}\\
+\textbf{Escenario} & \textbf{Consumo medio}\\
 \hline
-Escenario 1 & \SI{10}{\meter\per\second} & w\\
-Escenario 2 & \SI{10}{\meter\per\second} & 2\\
-Escenario 3 & \SI{35}{\milli\second} & s \\
-Escenario 4 & \SI{35}{\milli\second} & df\\
+Escenario 1 & 14.4W\\\
+Escenario 2 & 17W\\
+Escenario 3 & 6.8W\\
 \hline
 \end{tabular}
 \caption{Consumos eléctricos en distintos escenarios}
