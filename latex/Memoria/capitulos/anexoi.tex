@@ -1,0 +1,54 @@
+\chapter*{Anexo I}
+\label{cap:anexoi}
+
+\noindent En este anexo se indica paso a paso todo lo necesario para poder reproducir este robot a partir del contenido 
+existente en el repositorio\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez.git}} de este proyecto.
+
+\section*{Obtención de los ficheros STL}
+\noindent Para imprimir las distintas piezas, primeramente se requiere obtener los ficheros STL. Para ello, 
+debemos utilizar los ficheros fuente (piezas de FreeCAD) para generarlos. Estos ficheros pueden 
+encontrarse en la carpeta /src/design/FreeCad del proyecto o en este enlace\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/tree/9f9e47e46f0b0357938d444bf9baf661f90c402d/src/design/FreeCad}}.
+\begin{enumerate}
+\item Abrimos la pieza correspondiente con FreeCAD pulsando encima de ella.
+\item Cambiamos al banco de trabajo \textit{Mesh Design}.
+\item Pulsamos sobre la pieza para seleccionarla y posteriormente en el botón \textit{Crear malla de forma} del panel superior.
+\item Introducimos un valor de superficie de desviación de 0.01mm y damos a OK.
+\item Pulsamos el botón derecho del ratón sobre el objeto de malla creado y exportamos la malla con el botón \textit{Exportar malla}. 
+    
+\end{enumerate}
+
+Una vez obtenidos todos los ficheros STL, se pueden importar en el laminador, en este caso se ha empleado 
+Ultimaker Cura 5.2.1 para generar los ficheros que lee la impresora. La densidad requerida para cada pieza 
+y la cantidad de ellas, se pueden ver en el Cuadro \ref{cuadro:piezas} del Capítulo 5.
+
+\newpage
+\section*{Montaje}
+\noindent Actualmente, no se dispone de una guía detallada de montaje. Aún así el montaje resulta bastante sencillo 
+e intuitivo. La manera recomendada de proceder es fijándose en el fichero de 
+montaje\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/280861172bce3b1c0cfbb155a434364ea68eeb30/src/design/FreeCad/\%230\_ASSEMBLY.FCStd}}. En él 
+aparece cada pieza, su posición y nombre. En la Sección \ref{sec:impresionymontaje} se puede ver la lista de las piezas que 
+son necesarias para poder comprarlas o fabricarlas.
+
+\section*{Software}
+\noindent Todo el software necesario para hacer funcionar este robot se encuentra en la carpeta /src/software del repositorio. Dentro de 
+esta carpeta existen una serie de paquetes para utilizar el robot, los cuales son:
+\begin{itemize}
+\item Paquete \textit{g\_arm}: Es un paquete de ROS 2 que contiene el software necesario para comunicarse con el robot desde el 
+ecosistema ROS. Dentro de él se encuentra la carpeta \textit{g\_arm\_lib} con las clases en python necesarias para abstraer al 
+ejecutable de ROS de las comunicaciones.
+\item Paquete \textit{g\_arm\_description}: Es un paquete de descripción creado para representar el robot real en el mundo virtual. No contiene código, únicamente una serie de lanzadores para poder visualizarlo.
+\item Paquete \textit{g\_arm\_moveit2}: Es un paquete de MoveIt 2 que utiliza el anterior paquete para poder controlar el robot 
+real desde este framework.
+\end{itemize}
+
+Aunque se puede controlar las articulaciones del robot a bajo nivel a base de enviar órdenes de código G a través del puerto serie, se pierde la 
+posibilidad de conocer la posición absoluta 
+de cada articulación. Debido a esto, es recomendable utilizar al menos la capa de abstracción \textit{Robot} que se puede encontrar en 
+la carpeta \textit{g\_arm\_lib} del paquete \textit{g\_arm}. Para ver como se utiliza, se puede ver el código del ejecutable 
+\textit{driver.py}. 
+
+Aún así, lo ideal es utilizar ROS 2 Humble y MoveIt 2 para controlar el robot. Para ello, es necesario tener instalado 
+ambos (en internet existen guías paso a paso) y hacer uso de los tres paquetes incluidos en la carpeta /src/software del repositorio. 
+Para utilizar estos paquetes es necesario añadirlos a una carpeta \textit{workspace} 
+
+Para el firmware del robot tal

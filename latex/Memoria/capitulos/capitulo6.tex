@@ -529,9 +529,9 @@ Para ello, se han considerado los siguientes escenarios:
     \label{fig:loadTests}
 \end{figure}\ 
 
-Los resultados obtenidos se muestran en el Cuadro \ref{cuadro:evaluacion_carga}. De esta prueba podemos extraer que 
+Los resultados obtenidos de cada escenario (Figura \ref{fig:loadTests}) se muestran en el Cuadro \ref{cuadro:evaluacion_carga}. De esta prueba podemos extraer que 
 el brazo es capaz de levantar una carga significativa a pesar de su reducido tamaño. También, se ha comprobado que el 
-electroimán que se anunciaba como capaz de sostener 3 KG, sólamente es capaz de levantar una décima parte de ello. A pesar de esto, es capaz de levantar y manipular tornillos y objetos metálicos pequeños, incluso en 
+electroimán que se anunciaba como capaz de sostener 3 Kg, sólamente es capaz de levantar una décima parte de ello. A pesar de esto, es capaz de levantar y manipular tornillos y objetos metálicos pequeños, incluso en 
 movimientos rápidos. Más allá de los valores de carga máximos, el comportamiento del robot durante la prueba 
 hace pensar que es capaz de manejar cargas de hasta 150g con total normalidad. A modo de ejemplo, en la siguiente prueba se monta un mando 
 de televisión de 100g y se realizan movimientos rápidos con él.
@@ -573,7 +573,7 @@ Como resultado, se ha llegado a la conclusión que la velocidad máxima de giro 
 por segundo. Aún así la velocidad media ha sido de 90º/s debido a que primero tiene que acelerar hasta alcanzar la velocidad 
 máxima y despúes frenar. Este eje ha hecho un recorrido de 180 grados en a penas 2 segundos. En ese tramo es capaz de alcanzar 
 la velocidad máxima durante al menos 90 grados. Esta es una velocidad increíble teniendo en cuenta que la velocidad 
-máxima de la base de un robot ABB IRB120 es de 250º/s. En cuanto a las otras dos articulaciones, al tener recorridos menores 
+máxima de la base de un robot ABB IRB120 (20.000\euro) es de 250º/s. En cuanto a las otras dos articulaciones, al tener recorridos menores 
 se consigue una máxima de 120º/s. 
 
 \subsection{Consumo eléctrico} 
@@ -597,13 +597,14 @@ Para realizar este test, se han considerado 3 escenarios:
 \end{figure}\ 
 
 \end{itemize}
-\indent Los resultados obtenidos estan recogidos en el Cuadro \ref{cuadro:consumos}. Como se puede observar, realmente no existe una gran 
+\indent En la Figura \ref{fig:powerTests} se puede ver cómo se ha realizado esta prueba. Los resultados obtenidos estan recogidos en el Cuadro \ref{cuadro:consumos}. Como se puede observar, realmente no existe una gran 
 diferencia entre un movimiento rápido y uno lento, en cambio, la diferencia sí es notable cuando lo comparamos con permanecer en 
 una posición fija. Hay que recordar que aunque esté en parado, las bobinas de los motores permanecen excitadas para 
 mantener su posición. 
 
 Gracias a esta prueba, queda comprobado que sí puede ser usado sobre plataformas móviles y ser 
-alimentado mediante baterías. De hecho, es ideal para ser montado sobre un robot Turtlebot 2 utilizando la salida de 19V o 12V que incorpora 
+alimentado mediante baterías. De hecho, es ideal para ser montado sobre un robot Turtlebot 2 (robot móvil empleado en 
+las asignaturas de \textit{Arquitecturas software para robots} y \textit{Planificación y sistemas cognitivos}) utilizando la salida de 19V o 12V que incorpora 
 en su base.
 \begin{table}[H]
 \begin{center}
