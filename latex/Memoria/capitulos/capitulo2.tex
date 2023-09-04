@@ -1,15 +1,12 @@
 \chapter{Estado del arte}
 \label{cap:capitulo2}
-En este capítulo se expone el estado del arte de los robots industriales en educación. Esta fase fundamental de la 
-investigación se ha completado gracias a la búsqueda en diversas fuentes de renombre, con el fin de 
-recopilar información que pueda ser de utilidad para desarrollar el presente proyecto de fin de grado. Como resultado, se 
-han seleccionado una serie de trabajos relevantes y significativos en la materia, que se procederán a analizar a continuación.
-\begin{itemize}
-    \item En \cite{KRIMPENIS2020103} se presenta una solución industrial barata para crear un robot capaz de hacer operaciones de mecanizado (fabricación 
-    de piezas mediante operaciones de corte). Es llamado Hydra y esta dotado de 6 \ac{DOF}. Tiene un alcance máximo de casi un metro y un 
-    peso que ronda los 13 Kg. Pese a todas estas funciones, está fabricado mediante impresión 3D. 
-    Además, tiempo después, se publicó la segunda parte de este artículo: \cite{PAPAPASCHOS2020109}. En el cual se aborda el diseño software y de control 
-    que se ha desarrollado para controlar dicho brazo. \\
+\noindent En este capítulo se describen algunos de los trabajos más relevantes publicados sobre robots industriales en educación.
+
+En \cite{KRIMPENIS2020103} se presenta una solución industrial barata para crear un robot capaz de hacer operaciones de mecanizado (fabricación 
+de piezas mediante operaciones de corte). Este robot se llama HydraX y esta dotado de 6 grados de libertad. Tiene un alcance máximo de casi un metro, un 
+peso que ronda los 13 Kg y está fabricado mediante impresión 3D. 
+Además, tiempo después, se publicó la segunda parte de este artículo \cite{PAPAPASCHOS2020109}, en el cual se aborda el diseño software y de control 
+que se ha desarrollado para controlar dicho brazo. \\
     \begin{figure} [h!]
         \begin{center}
           \includegraphics[width=6cm]{figs/Hydra.png}
@@ -18,7 +15,7 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         \label{fig:hydra}
     \end{figure}\ 
     \newpage
-    En base a lo descrito en estos artículos se han extraído los siguientes puntos fuertes del proyecto:
+    Los puntos fuertes del proyecto son los siguientes:
     \begin{itemize}
         \item Tiene una repetitividad de ±0.04 mm.
         \item Tiene un espacio de trabajo muy amplio.
@@ -28,18 +25,20 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         del robot comercial ABB IRB 120\footnote{\url{https://new.abb.com/products/es/3HAC031431-001/irb-120}}  
     \end{itemize}\
     
-    En cambio, también se deben mencionar los siguientes puntos débiles:
+    Y estos son los puntos débiles que cabe mencionar:
     \begin{itemize}
-        \item Carece de integración en \ac{ROS}, plataforma de desarrollo de la que se habla en \ref{subsec:ros2}
-        \item Su coste en materiales supera los 1000 \euro \xspace por lo que no es lo suficientemente asequible para su uso académico.
+        \item Carece de integración en \ac{ROS}, plataforma de desarrollo de la que se habla en la Sección \ref{subsec:ros2}.
+        \item Su coste en materiales supera los 1000 \euro \xspace , por lo que no es lo suficientemente asequible para su uso académico.
         \item Según este artículo, se necesitan 200 horas para poder imprimir y montar el brazo, lo que implica que es costoso en tiempo 
-        crear varias unidades y requiere de cierta habilidad para construirlo correctamente.
-        \item En este artículo no se proporcionan los ficheros necesarios para poder replicarlo. Además, se menciona que las piezas han sido 
-        diseñadas mediante el software privativo SolidWorks\textsuperscript{\tiny\textregistered} por lo que lo hace más difícil y costoso de editar.
+        crear varias unidades, además de que requiere de cierta habilidad para construirlo correctamente.
+        \item En este artículo no se proporcionan los ficheros necesarios para poder crearlo. Además, se menciona que las piezas han sido 
+        diseñadas mediante el software privativo SolidWorks\textsuperscript{\tiny\textregistered}, por lo que lo hace más difícil y costoso de editar.
     \end{itemize}\
     \newpage
-    \item Existen soluciones más sencillas y reproducibles, como por ejemplo, la presentada en \cite{adediran2023uiarm}. Se trata de un brazo robótico 
-    cuyo propósito es separar botellas de plástico en un proceso de reciclaje. Más allá de la aplicación que se le pretende dar, se hace uso de  
+    Existen soluciones más sencillas y reproducibles, como por ejemplo, la presentada en \cite{adediran2023uiarm}. En este trabajo se describe 
+    un brazo robótico 
+    cuyo propósito es separar botellas de plástico en un proceso de reciclaje. Más allá de la aplicación que se le pretende dar, 
+    lo mas importante es que se hace uso de  
     un manipulador de tamaño reducido, impreso en 3D y con 4 \ac{DOF}.
     \begin{figure} [ht!]
         \begin{center}
@@ -57,7 +56,7 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         del robot. Debido a esto, el consumo de energía es menor pudiendo hacer uso de una electrónica compacta y menos costosa.
         \item Al estar compuesto por menos piezas y tener pocos grados de libertad, se requiere menos tiempo para imprimir y construir este robot.
     \end{itemize}\
-    Cabe destacar los siguientes puntos negativos:
+    Y estos son puntos negativos que cabría destacar:
     \begin{itemize}
         \item El espacio de trabajo (puntos del espacio alcanzables por el extremo del brazo) del robot es demasiado reducido. Esto es debido 
         a la disposición de los grados de libertad. Utiliza dos de ellos para cambiar la orientación del extremo del robot, dejando solo dos para el 
@@ -68,13 +67,19 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
         continuidad del proyecto.
     \end{itemize}\
 
-    \item Existe un brazo robot impreso en 3D de 6 grados de libertad que ha ganado gran popularidad gracias a la plataforma 
-    KickStarter \footnote{\url{https://www.kickstarter.com/projects/niryo/niryo-one-an-open-source-6-axis-robotic-arm-just-f/description}} en la cual fue 
-    capaz de recaudar 80.000\euro \xspace de los 20.000 necesarios. 
-    Este proyecto busca dar una alternativa de bajo coste al robot convencional usado por \textit{makers}, estudiantes y pequeñas compañías.\\
-    Para lograr esto, apuesta por el uso de componentes comunes y la filosofía \textit{Open Source}. \\
-    Aunque este modelo no es el más nuevo de la marca Niryo, si es el que más comunidad tiene y más extendido está.
-    Este robot y los modelos posteriores, pueden ser adquiridos mediante la página oficial \footnote{\url{https://niryo.com/products-cobots/niryo-one/}}.
+    Otro desarrollo \textit{low-cost} que ha adquirido gran popularidad
+    gracias a la plataforma KickStarter \footnote{\url{https://www.kickstarter.com/projects/niryo/niryo-one-an-open-source-6-axis-robotic-arm-just-f/description}} 
+    es el robot Niryo One, que es un brazo robot impreso en 3D con 6 grados de libertad, en la cual fue 
+    capaz de recaudar 80.000\euro \xspace de los 20.000 \euro \xspace necesarios. 
+
+
+    Este proyecto busca dar una alternativa de bajo coste al robot convencional usado por \textit{makers}, estudiantes y 
+    pequeñas compañías. Para lograrlo, apuesta por el uso de componentes comunes y la filosofía \textit{Open Source}, la cual se basa en la 
+    idea de compartir, colaborar y democratizar el acceso al conocimiento y al software. Por ello, su código fuente y planos están disponibles 
+    de forma gratuita para que cualquier persona interesada pueda acceder a ellos.
+
+    Aunque este modelo no es el más nuevo de la marca Niryo, sí es el que más comunidad tiene y más extendido está.
+    Este robot y los modelos posteriores, pueden ser adquiridos a través de su página oficial \footnote{\url{https://niryo.com/products-cobots/niryo-one/}}.
     \\
     \begin{figure} [ht!]
         \begin{center}
@@ -95,6 +100,7 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
     \item Es capaz de detectar colisiones gracias a sus motores codificados mediante sensores magnéticos.
     \end{itemize}
     En cambio, tiene los siguientes inconvenientes:
+    \begin{itemize}
     \item Hace uso de una placa Raspberry Pi en vez de una placa Arduino/Esp32, lo que incrementa el coste del equipo. 
     \item Hablando del precio, el coste de este equipo comprado en su versión en aluminio ronda los 3500\euro. El coste de fabricación 
     de este robot mediante el uso de impresión 3D ronda los 1000\euro \xspace según este artículo \footnote{\url{https://www.zdnet.com/article/this-mini-industrial-robot-is-less-than-1k/}}
@@ -103,12 +109,11 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
     \item Pese a tener integración con ROS1, el proyecto no ha sido adaptado de forma oficial para ROS2, por lo que es necesario 
     usar un sistema operativo antiguo (Ubuntu 16.04) del año 2016. O bien utilizar Ros Bridge \footnote{\url{https://github.com/ros2/ros1\_bridge}} 
     para comunicar el ROS 1 de la placa con un  ordenador moderno con ROS 2.
-   
+    \end{itemize}
     \newpage
-    \item En el ámbito de los robots caseros, se puede destacar un referente reconocido, MeArm. Se trata de un 
-    brazo mecánico de diseño simple y completamente \textit{OpenSource}, lo que significa que su código fuente y planos están disponibles 
-    de forma gratuita para que cualquier persona interesada pueda acceder a ellos. De hecho, tal es su repercusión, que miles de personas 
-    se han impreso el suyo o creado su propia versión mejorada. Prueba de ello es, la cantidad de modificaciones que se han ido subiendo a  
+    En el ámbito de los robots caseros, se puede destacar un referente reconocido, MeArm. Se trata de un 
+    brazo mecánico de diseño simple y completamente \textit{OpenSource}. De hecho, tal es su repercusión, que miles de personas 
+    se han impreso el suyo o creado su propia versión mejorada. Prueba de ello es la cantidad de modificaciones que se han ido subiendo a  
     páginas como Thingiverse\footnote{\url{https://www.thingiverse.com/search?q=mearm&page=1&type=things&sort=relevant}}. Además, existen 
     robots con diferentes nombres basados en el mismo concepto, como puede ser EEZYBotArm, una versión más robusta y atractiva que el original. \\
     Consta de 3 grados de libertad y de una pinza simple. Todos los motores del robots son servomotores de 9 gramos y se basa en el uso de 
@@ -143,5 +148,6 @@ han seleccionado una serie de trabajos relevantes y significativos en la materia
     0.16 Newton-metro. El uso de servos más grandes aumenta significativamente el precio del dispositivo. 
     \item Los servomotores padecen de vibraciones al conectarle una carga. Esto hace que el conjunto tiemble en exceso durante los movimientos.
     \end{itemize}
-\end{itemize}\
-\vspace{1cm}
+
+\noindent Una vez se han presentado los proyectos más relevantes en este campo, se procederán a definir una serie 
+de requisitos y objetivos concretos para dar solución al problema que se plantea en este trabajo.
