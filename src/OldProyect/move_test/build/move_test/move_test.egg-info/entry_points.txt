@@ -1,3 +1,0 @@
-[console_scripts]
-prius_move_test = move_test.moveTest1:main
-

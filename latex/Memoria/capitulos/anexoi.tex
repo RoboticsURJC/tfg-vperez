@@ -11,9 +11,9 @@ encontrarse en la carpeta /src/design/FreeCad del proyecto o en este enlace\foot
 \begin{enumerate}
 \item Abrimos la pieza correspondiente con FreeCAD pulsando encima de ella.
 \item Cambiamos al banco de trabajo \textit{Mesh Design}.
-\item Pulsamos sobre la pieza para seleccionarla y posteriormente en el botón \textit{Crear malla de forma} del panel superior.
+\item Hacemos click sobre la pieza para seleccionarla y posteriormente pulsamos el botón \textit{Crear malla de forma} del panel superior.
 \item Introducimos un valor de superficie de desviación de 0.01mm y damos a OK.
-\item Pulsamos el botón derecho del ratón sobre el objeto de malla creado y exportamos la malla con el botón \textit{Exportar malla}. 
+\item Click derecho del ratón sobre el objeto de malla creado y exportamos la malla con el botón \textit{Exportar malla}. 
     
 \end{enumerate}
 
@@ -41,14 +41,32 @@ ejecutable de ROS de las comunicaciones.
 real desde este framework.
 \end{itemize}
 
-Aunque se puede controlar las articulaciones del robot a bajo nivel a base de enviar órdenes de código G a través del puerto serie, se pierde la 
+Aunque es posible controlar las articulaciones del robot a bajo nivel a base de enviar órdenes de código G a través del puerto serie, se pierde la 
 posibilidad de conocer la posición absoluta 
 de cada articulación. Debido a esto, es recomendable utilizar al menos la capa de abstracción \textit{Robot} que se puede encontrar en 
-la carpeta \textit{g\_arm\_lib} del paquete \textit{g\_arm}. Para ver como se utiliza, se puede ver el código del ejecutable 
+la carpeta \textit{g\_arm\_lib} del paquete \textit{g\_arm}. Para conocer su funcionamiento, se puede analizar el código del ejecutable 
 \textit{driver.py}. 
 
 Aún así, lo ideal es utilizar ROS 2 Humble y MoveIt 2 para controlar el robot. Para ello, es necesario tener instalado 
 ambos (en internet existen guías paso a paso) y hacer uso de los tres paquetes incluidos en la carpeta /src/software del repositorio. 
-Para utilizar estos paquetes es necesario añadirlos a una carpeta \textit{workspace} 
 
-Para el firmware del robot tal
+\newpage
+Para utilizar estos paquetes es necesario añadirlos al \textit{workspace} y compilar. En caso de que no se tenga uno, 
+se deben seguir los siguientes pasos: 
+\begin{enumerate}
+\item Se crea una carpeta llamada \textit{workspace} en el directorio \textit{home}, por ejemplo. Dentro de ella 
+se debe de crear la carpeta \textit{src}. 
+\item Dentro de esta última, se copian los 3 paquetes mencionados anteriormente.
+\item Desde el nivel de la carpeta \textit{workspace} ejecutamos el comando \textit{colcon build --symlink-install}.
+\item Para que ROS lo encuentre debemos añadir la siguiente línea al fichero oculto \textit{.bashrc} del directorio \textit{home}:
+source ~/workspace/install/setup.bash
+
+\end{enumerate}
+Cerramos todas las terminales abiertas y comprobamos que ha funcionado ejecutando \textit{ros2 launch g\_arm\_moveit demo.launch.py} . Para que el 
+robot real se mueva, es necesario ejecutar el driver con \textit{ros2 run g\_arm driver.py} .
+
+
+En cuanto al firmware del robot, utiliza una versión normal y corriente de Grbl V1.1. Existen numerosas guías en internet de 
+cómo instalarlo. En el caso de utilizar esta placa, no es necesario ya que viene preinstalado. Lo único a cambiar son los 
+parámetros internos a los mostrados en el Cuadro \ref{cuadro:parametros_grbl}. En esa misma sección se explica como se cambian.
+
