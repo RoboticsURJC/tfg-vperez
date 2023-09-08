@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
         	'driver = g_arm.driver:main',
+            'example_trajectory_movement = g_arm.examples.example_trajectory_movement:main'
         ],
     },
 )

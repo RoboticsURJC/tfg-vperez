@@ -1,73 +1,41 @@
+#!/usr/bin/env python3
+
+from math import cos, sin
+
 import rclpy
-from geometry_msgs.msg import Pose, PoseStamped
-from pymoveit2 import MoveIt2
-from pymoveit2.robots import panda
 from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.node import Node
-from rclpy.qos import QoSProfile
 
+from pymoveit2 import MoveIt2Servo
 
-class MoveItFollowTarget(Node):
-    def __init__(self):
-        super().__init__("ex_follow_target_py")
+def main():
+    rclpy.init()
 
-        # Create callback group that allows execution of callbacks in parallel without restrictions
-        self._callback_group = ReentrantCallbackGroup()
+    # Create node for this example
+    node = Node("ex_servo")
 
-        # Create MoveIt 2 interface
-        self._moveit2 = MoveIt2(
-            node=self,
-            joint_names=panda.joint_names(),
-            base_link_name=panda.base_link_name(),
-            end_effector_name=panda.end_effector_name(),
-            group_name=panda.MOVE_GROUP_ARM,
-            execute_via_moveit=True,
-            callback_group=self._callback_group,
-        )
-        # Use upper joint velocity and acceleration limits
-        self._moveit2.max_velocity = 1.0
-        self._moveit2.max_acceleration = 1.0
-        '''
-        # Create a subscriber for target pose
-        self.__previous_target_pose = Pose()
-        self.create_subscription(
-            msg_type=PoseStamped,
-            topic="/target_pose",
-            callback=self.target_pose_callback,
-            qos_profile=QoSProfile(depth=1),
-            callback_group=self._callback_group,
-        )
-        '''
-        self.get_logger().info("Initialization successful.")
+    # Create callback group that allows execution of callbacks in parallel without restrictions
+    callback_group = ReentrantCallbackGroup()
 
-    def target_pose_callback(self, msg: PoseStamped):
-        """
-        Plan and execute trajectory each time the target pose is changed
-        """
+    # Create MoveIt 2 Servo interface
+    moveit2_servo = MoveIt2Servo(
+        node=node,
+        frame_id="base_link",
+        callback_group=callback_group,
+    )
 
-        # Return if target pose is unchanged
-        if msg.pose == self.__previous_target_pose:
-            return
+    def servo_circular_motion():
+        """Move in a circular motion using Servo"""
 
-        self.get_logger().info("Target pose has changed. Planning and executing...")
+        now_sec = node.get_clock().now().nanoseconds * 1e-9
+        moveit2_servo(linear=(sin(now_sec), cos(now_sec), 0.0), angular=(0.0, 0.0, 0.0))
 
-        # Plan and execute motion
-        self._moveit2.move_to_pose(
-            position=msg.pose.position,
-            quat_xyzw=msg.pose.orientation,
-        )
+    # Create timer for moving in a circular motion
+    node.create_timer(0.2, servo_circular_motion)
 
-        # Update for next callback
-        self.__previous_target_pose = msg.pose
-
-
-def main(args=None):
-    rclpy.init(args=args)
-
-    target_follower = MoveItFollowTarget()
-
+    # Spin the node in background thread(s)
     executor = rclpy.executors.MultiThreadedExecutor(2)
-    executor.add_node(target_follower)
+    executor.add_node(node)
     executor.spin()
 
     rclpy.shutdown()
