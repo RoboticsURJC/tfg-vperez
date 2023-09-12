@@ -25,8 +25,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'driver = g_arm.driver:main',
-            'example_trajectory_movement = g_arm.examples.example_trajectory_movement:main'
+        	'driver = g_arm.driver:main'
         ],
     },
 )
