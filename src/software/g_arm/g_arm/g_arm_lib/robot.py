@@ -1,5 +1,6 @@
 import math, time
 from g_arm.g_arm_lib import grblAPI
+from g_arm.g_arm_lib import kinematics
 
 
 RELATION_X_DEG = 1 # Relation between x in grbl and degrees
@@ -7,8 +8,8 @@ RELATION_Y_DEG = 1 # Relation between x in grbl and degrees
 RELATION_Z_DEG = 1 # Relation between x in grbl and degrees
 
 X_ZERO_REAL_ANGLE = 135 # Real angle when robot is zero X
-Y_ZERO_REAL_ANGLE = 15 # Real angle when robot is zero X
-Z_ZERO_REAL_ANGLE = -36 # Real angle when robot is zero X
+Y_ZERO_REAL_ANGLE = 15 # Real angle when robot is zero Y
+Z_ZERO_REAL_ANGLE = -36 # Real angle when robot is zero Z
 
 class Robot:
     
@@ -63,6 +64,13 @@ class Robot:
     def toolPWM(self, value):
         self.__grbl.setSpindleSpeed(int(value*1000))
     
+    def isReachablePoint(self, x, y, z):
+        
+        # Aproximation (There is a lot of more reachable points)
+        
+        dist_origin_end_xy = math.sqrt(pow(x, 2)+pow(y, 2))
+        return dist_origin_end_xy >= 0.2 and dist_origin_end_xy <= 0.32 and z < 29 and z > 0
+    
     def autohome(self):
         self.__status = "HOMING"
         print("[INFO] [Robot] Starting calibration")
@@ -96,6 +104,22 @@ class Robot:
 
         self.__calibrated = True
         self.__status = "IDDLE"
+    
+    def getXYZ(self):
+        j1, j2, j3 = self.getAngles()
+        return kinematics.DK(math.radians(j1), math.radians(j2), math.radians(j3))
+    
+    def setXYZ(self, x, y, z):
+        
+        if self.isReachablePoint(x, y, z):
+            j1, j2, j3 = kinematics.IK(x, y, z)
+            self.setAngles(math.degrees(j1), math.degrees(j2), math.degrees(j3))
+            return True
+        else:
+            return False
+        
+    def execute_trajectory(points_list):
+        pass
         
     # Private
     __grbl = None 

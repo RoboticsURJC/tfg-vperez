@@ -1,16 +1,13 @@
 from setuptools import setup
 
-package_name = 'g_arm'
+package_name = 'g_arm_python_examples'
 
 setup(
     name=package_name,
     version='0.0.0',
     packages=[package_name],
     py_modules=[
-        'g_arm.g_arm_lib.robot',
-        'g_arm.g_arm_lib.grblAPI',
-        'g_arm.g_arm_lib.kinematics'
-        
+        'g_arm_python_examples.g_arm_python_examples_lib.g_arm_pymoveit2'        
     ],
     data_files=[
         ('share/ament_index/resource_index/packages',
@@ -26,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'driver = g_arm.driver:main'
+        'goal = g_arm_python_examples.goal:main'
         ],
     },
 )
