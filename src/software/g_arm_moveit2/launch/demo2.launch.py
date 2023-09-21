@@ -7,7 +7,7 @@ from launch_ros.actions import Node
 from launch.actions import ExecuteProcess
 from ament_index_python.packages import get_package_share_directory
 from moveit_configs_utils import MoveItConfigsBuilder
-
+from launch_param_builder import ParameterBuilder
 
 def generate_launch_description():
 
@@ -36,6 +36,7 @@ def generate_launch_description():
                 )
             },
         )
+        .robot_description_kinematics(file_path="config/kinematics.yaml")
         .robot_description_semantic(file_path="config/g_arm.srdf")
         .trajectory_execution(file_path="config/moveit_controllers.yaml")
         .planning_pipelines(
@@ -138,13 +139,13 @@ def generate_launch_description():
         ],
     )
 
-    panda_arm_controller_spawner = Node(
+    g_arm_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=["arm_controller", "-c", "/controller_manager"],
     )
 
-    panda_hand_controller_spawner = Node(
+    g_arm_tool_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=["tool_controller", "-c", "/controller_manager"],
@@ -163,7 +164,20 @@ def generate_launch_description():
         output="screen",
         condition=IfCondition(db_config),
     )
-
+    '''
+    ####### FOR USING MOVEIT SERVO SERVER ########
+    
+    # Get parameters for the Servo node
+    servo_params = (
+        ParameterBuilder("moveit_servo")
+        .yaml(
+            parameter_namespace="moveit_servo",
+            file_path="config/panda_simulated_config.yaml",
+        )
+        .to_dict()
+    )
+    
+    '''
     return LaunchDescription(
         [
             tutorial_arg,
@@ -176,8 +190,8 @@ def generate_launch_description():
             move_group_node,
             ros2_control_node,
             joint_state_broadcaster_spawner,
-            panda_arm_controller_spawner,
-            panda_hand_controller_spawner,
+            g_arm_controller_spawner,
+            g_arm_tool_controller_spawner,
             mongodb_server_node,
         ]
     )

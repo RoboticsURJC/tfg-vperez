@@ -153,7 +153,7 @@
       velocity="200.0" />
   </joint>
 
-  <joint name="joint3" type="revolute">
+  <joint name="joint_link1_link2_intermediate" type="revolute">
     <origin
       xyz="0.035 -0.0341 0.055"
       rpy="1.5708 0.0 0.0" />
@@ -168,9 +168,12 @@
       upper="0.1"
       effort="200.0"
       velocity="200.0" />
+    <mimic
+      joint="joint3"
+      multiplier="1.0"/> 
   </joint>
 
-  <joint name="joint_link1_link2_intermediate" type="revolute">
+  <joint name="joint3" type="revolute">
     <origin
       xyz="0.0 0.17 0.0362"
       rpy="0.0 0.0 1.5708" />
@@ -185,9 +188,7 @@
       upper="1.5707"
       effort="200.0"
       velocity="200.0" />
-    <mimic
-      joint="joint3"
-      multiplier="1.0"/> 
+    
   </joint>
 
   <joint name="joint_link1_link2" type="revolute">

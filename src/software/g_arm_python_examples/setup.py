@@ -23,7 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        'goal = g_arm_python_examples.goal:main'
+        'goal = g_arm_python_examples.goal:main',
+        'circular_motion = g_arm_python_examples.circular_motion:main'   
         ],
     },
 )
