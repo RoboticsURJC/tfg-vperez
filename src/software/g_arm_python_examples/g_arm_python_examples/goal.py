@@ -17,7 +17,7 @@ def main():
     node = Node("ex_pose_goal")
 
     # Declare parameters for position and orientation
-    node.declare_parameter("position", [0.3, 0.0, 0.1])
+    node.declare_parameter("position", [0.31, 0.0, 0.1])
     node.declare_parameter("quat_xyzw", [1.0, 0.0, 0.0, 0.0])
     node.declare_parameter("cartesian", True)
 
@@ -33,7 +33,7 @@ def main():
         group_name=g_arm.MOVE_GROUP_ARM,
         callback_group=callback_group,
         follow_joint_trajectory_action_name="/arm_controller/follow_joint_trajectory",
-        execute_via_moveit=True
+        execute_via_moveit=False
     )
 
     # Spin the node in background thread(s)
