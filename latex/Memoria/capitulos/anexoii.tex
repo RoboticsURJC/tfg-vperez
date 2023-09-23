@@ -2,36 +2,4 @@
 \label{cap:anexoii}
 
 \noindent En este anexo se aborda el cómo se pretende incluir este robot en la asignatura de Robótica Industrial. Para ello 
-se ha preguntado a Julio Lora, actual profesor de esta asignatura, cómo podría integrarse este trabajo en el siguiente curso académico. La respuesta 
-fue que una de las maneras es aprender a generar trayectorias de soldadura mediante código, a través del framework de Move It. 
-
-
-Para esta tarea se ha optado por emplear el lenguaje de programación Python, por su poca complejidad y similitud a MatLab. Ya que se ha optado por 
-este lenguaje, se ha utilizado la librería PyMoveIt2\footnote{\url{https://github.com/AndrejOrsula/pymoveit2}} que proporciona una serie de métodos y herramientas que 
-facilitan la interación con el robot. Para instalarla sólamente hace falta seguir los pasos que se indican en el enlace. Esta librería permite controlar 
-el robot de diferentes formas:
-\begin{enumerate}
-\item \textit{Joint goal}: permite controlar el robot en el espacio de articulaciones, es decir llevar cada articulación del robot a posición angular concreta.
-\item \textit{Pose goal}: permite controlar el robot en el espacio cartesiano, es decir llevar al extremo del robot a una posición XYZ con una 
-cierta orientación.
-\item \textit{Gripper action}: permite controlar la herramienta del robot a través de una serie de cómodas funciones.
-\item \textit{Servo}: permite mandar comandos en tiempo real (sin la previa planificación que requieren los anteriores) para controlar las velocidad lineares y 
-angulares del extremo del robot.
-
-\end{enumerate}
-
-Para realizar las trayectorias es necesario utilizar el submódulo \textit{Pose goal}. Debido a la geometría de este robot, sólamente se va a controlar la posición 
-del extremo en el espacio. La forma de trazar una trayectoria es como una secuencia de puntos próximos entre sí. Primeramente, se ha realizado un 
-programa de ejemplo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/goal.py}} 
-cuyo único propósito es mover el robot a una posición concreta para probar su funcionamiento. Este ejemplo se encuentra en el paquete
- \texttit{g_arm_python_examples} del repositorio de este trabajo y puede ejecutarse. Es importante recalcar que si el punto no se encuentra dentro del 
-espacio de trabajo el plan falla y no se ejecuta el movimiento (un error en rojo aparecerá en la terminal).
-
-
-Para demostrar su uso en trayectorias, se han realizado 3 figuras geométricas parametrizadas por código para dibujar en un papel en el plano XY. Para acoplar 
-un rotulador al robot real se ha diseñado una herramienta que encaja en el acople para herramientas de su extremo.
-
-
-Podemos hacer este ejemplo lanzando:
-ros2 launch g\_arm\_moveit2 demo.launch
-ros2 run g\_arm\_python\_examples drawFigures
+se ha preguntado a los profesores actuales de esta asignatura cómo podría integrarse este trabajo su la planificación.

@@ -23,6 +23,3 @@ def DK(j1, j2, j3):
     x += end_tx
     z += end_tz
     return (x, y, z)
-
-
-print(DK(math.radians(0), math.radians(80), math.radians(-80)))
