@@ -11,7 +11,7 @@ def verticesTriangle(position, sideSize):
     vertex2 = (position[0] - sideSize / 2, position[1] + height)
     vertex3 = (position[0] + sideSize / 2, position[1] + height)
 
-    return [vertex1, vertex2, vertex3, vertex1]
+    return (vertex1, vertex2, vertex3, vertex1)
 
 def verticesSquare(position, sideSize):
     half_side = sideSize / 2
@@ -21,7 +21,7 @@ def verticesSquare(position, sideSize):
     vertex3 = (position[0] + half_side, position[1] - half_side)
     vertex4 = (position[0] - half_side, position[1] - half_side)
 
-    return [vertex1, vertex2, vertex3, vertex4, vertex1]
+    return (vertex1, vertex2, vertex3, vertex4, vertex1)
 
 def verticesCircle(position, radius, maxVertices=36):
 
@@ -37,7 +37,7 @@ def verticesCircle(position, radius, maxVertices=36):
 def verticesHeart(position, size):
     vertices = []
 
-    for t in range(0, 360, 5):
+    for t in range(0, 360):
         radians = math.radians(t)
         x = size * (16 * math.sin(radians)**3)
         y = size * (13 * math.cos(radians) - 5 * math.cos(2*radians) - 2 * math.cos(3*radians) - math.cos(4*radians))
@@ -75,3 +75,4 @@ def main():
 
     window.exitonclick()
 
+main()
