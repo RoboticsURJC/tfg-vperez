@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-import math, time
-
-import turtle
+import math
 
 def verticesTriangle(position, sideSize):
     
@@ -44,34 +42,3 @@ def verticesHeart(position, size):
         vertices.append((position[0] + x, position[1] - y))  # Substract "y" to invert it vertically
     
     return vertices
-
-def main():
-    window = turtle.Screen()
-    window.bgcolor("white")
-  
-    turtle_1 = turtle.Turtle()
-    turtle_1.shape("blank")
-    turtle_1.color("red")
-    turtle_1.speed(10000)
-    
-    turtle_1.pendown()
-    for v in verticesHeart((1,1), 2):
-        turtle_1.goto(v[0], v[1])
- 
-    turtle_1.penup()
-    for v in verticesTriangle((30,30), 200):
-        turtle_1.goto(v[0], v[1])
-        turtle_1.pendown()
-
-    turtle_1.penup()
-    for v in verticesSquare((50, 50), 200):
-        turtle_1.goto(v[0], v[1])
-        turtle_1.pendown()
-
-    turtle_1.penup()
-    for v in verticesCircle((100, 50), 50):
-        turtle_1.goto(v[0], v[1])
-        turtle_1.pendown()
-
-    window.exitonclick()
-

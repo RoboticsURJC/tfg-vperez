@@ -40,23 +40,10 @@ class Trajectory2D:
         executor_thread = Thread(target=executor.spin, daemon=True, args=())
         executor_thread.start()
 
-    def __cartesianSpaceTojointsSpace(self, points):
-        
-        jointsStates = []
-        for p in points:
-            x = p[0]
-            y = p[1]
-            jointStateObj = self._moveit2.compute_ik((x, y, 0.0), (1.0, 0.0, 0.0, 0.0))
-            
-            j1j2j3 = (jointStateObj.position[0], jointStateObj.position[1], jointStateObj.position[2])
-            jointsStates.append(j1j2j3)
-
-        return jointsStates
-    
-    def follow(self, points2D):
+    def follow(self, points2D, height):
         
         for p in points2D:
-            position = (p[0], p[1], 0.15)
+            position = (p[0], p[1], height)
             print("Actual: " + str(position))
             self._moveit2.move_to_pose(position=position, quat_xyzw=(1.0, 0.0, 0.0, 0.0), cartesian=True, 
                          frame_id=g_arm.base_link_name(), target_link=g_arm.end_effector_name(), tolerance_orientation=3.14)
@@ -67,9 +54,13 @@ class Trajectory2D:
 
 def main():
     traj = Trajectory2D()
+    
+    ### OTHER EXAMPLES
     #verticesSquare((0.25, 0.0), 0.12)
-    points = verticesHeart((0.25, 0.0), 0.005)
-    traj.follow(points)
+    
+    points2D = verticesHeart((0.28, 0.0), 0.005)
+    height = 0.15
+    traj.follow(points2D, height)
 
 if __name__ == "__main__":
     main()
