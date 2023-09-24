@@ -43,7 +43,7 @@ En la Figura \ref{fig:goal} se aprecia el movimiento desde el punto inicial al p
 \newpage
 
 
-Para demostrar su uso en trayectorias, se ha programado un fichero en Python con varias funciones las cuales devuelven una lista de vértices de diferentes 
+Por otro lado, para demostrar su uso en trayectorias, se ha programado un fichero en Python con varias funciones las cuales devuelven una lista de vértices de diferentes 
 figuras: corazón, cuadrado, triángulo y círculo. Estos vértices han sido utilizado como puntos de paso en el fichero de 
 ejemplo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/trajectory.py}} para 
 dibujar las diferentes figuras de prueba en el plano XY a una cierta altura en Z. Para ver su funcionamiento, ejecutamos:
@@ -54,7 +54,22 @@ dibujar las diferentes figuras de prueba en el plano XY a una cierta altura en Z
     ros2 run g_arm_python_examples trajectory
 \end{verbatim}
 
-Para visualizar el recorrido de un determinado eslabón se debe activar la opción Show Trail de RobotModel. En este caso interesa activar la 
+En la Figura \ref{fig:trayectorias} se puede ver las distintas trayectorias de ejemplo ejecutadas .
+
+\begin{figure} [ht!]
+    \centering  
+    \subfigure[Cuadrado]{\includegraphics[width=0.4\linewidth ]{figs/square.png}}
+    \hspace{2cm}
+    \subfigure[Círculo]{\includegraphics[width=0.4\linewidth ]{figs/circle.png}}
+    \hspace{2cm}
+    \subfigure[Triángulo]{\includegraphics[width=0.4\linewidth ]{figs/triangle.png}}
+    \hspace{2cm}
+    \subfigure[Corazón]{\includegraphics[width=0.4\linewidth ]{figs/heart.png}}
+    \caption{Trayectorias realizadas}
+    \label{fig:trayectorias}
+\end{figure}\ 
+\newpage
+Para visualizar el recorrido de un determinado eslabón se debe de activar la opción Show Trail de RobotModel. En este caso interesa activar la 
 del extremo del robot, como se puede ver en la Figura \ref{fig:activarTrail}.
 \begin{figure} [ht!]
     \begin{center}
@@ -64,28 +79,29 @@ del extremo del robot, como se puede ver en la Figura \ref{fig:activarTrail}.
 \label{fig:activarTrail}
 \end{figure}
 
-En la Figura \ref{fig:trayectorias} se puede ver las distintas trayectorias de ejemplo ejecutadas .
 
+
+Finalmente, con el objetivo de probar esto en el robot real, se ha diseñado una herramienta nueva (Figura \ref{fig:pen_tool}). Se trata de un porta lápices que utiliza la 
+flexión del PLA para acoplar el lápiz al extremo del robot de una forma robusta y sin holguras pero a su vez flexible.
 \begin{figure} [ht!]
     \centering  
-    \subfigure[Cuadrado]{\includegraphics[width=0.3\linewidth ]{figs/square.png}}
-    \hspace{2cm}
-    \subfigure[Círculo]{\includegraphics[width=0.3\linewidth ]{figs/circle.png}}
-    \hspace{2cm}
-    \subfigure[Triángulo]{\includegraphics[width=0.3\linewidth ]{figs/triangle.png}}
-    \hspace{2cm}
-    \subfigure[Corazón]{\includegraphics[width=0.3\linewidth ]{figs/heart.png}}
-    \caption{Trayectorias realizadas}
-    \label{fig:trayectorias}
+    \subfigure[Vista lateral]{\includegraphics[width=0.45\linewidth ]{figs/pen_tool.jpg}}
+    \hspace{1cm}
+    \subfigure[Vista completa]{\includegraphics[width=0.45\linewidth ]{figs/robot_with_pen.jpg}}
+    \caption{Herramienta porta lápices}
+    \label{fig:pen_tool}
 \end{figure}\ 
-
-Finalmente, con el objetivo de probar esto en el robot real, se ha diseñado una herramienta nueva (Figura tal). Se trata de un porta lápices que utiliza la 
-flexión del PLA para acoplar el lápiz al extremo del robot de una forma robusta y sin holguras pero a su vez flexible.
-
-
+\newpage
 Se ha escogido un plano con una altura en Z igual a 10cm, ya que en este plano es capaz de alcanzar una gran cantidad de puntos. En él se ha dispuesto 
 una base plana y un folio en el que se ha dibujado la figura más compleja del ejemplo, el corazón. El resultado de todo el dibujo puede verse en el siguiente 
-vídeo. Adicionalmente, en la Figura tal se muestra algunas imágenes extraídas del propio vídeo.
-
+vídeo. Adicionalmente, en la Figura \ref{fig:real_draw} se muestra algunas imágenes extraídas del propio vídeo\footnote{\url{https://youtube.com/shorts/3rwK_FV3eSs}}.
+\begin{figure} [ht!]
+    \centering  
+    \subfigure[Durante la trayectoria]{\includegraphics[width=0.45\linewidth ]{figs/drawing.png}}
+    \hspace{1cm}
+    \subfigure[Resultado final]{\includegraphics[width=0.45\linewidth ]{figs/drawing_result.png}}
+    \caption{Prueba en el robot real}
+    \label{fig:real_draw}
+\end{figure}\ 
 
 Como se puede ver el resultado es exacto y vistoso, por lo que puede ser utilizado para realizar todo tipo de trayectorias asegurando exactidud y precisión.
