@@ -5,17 +5,21 @@
 existente en el repositorio\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez.git}} de este proyecto.
 
 \section*{Obtención de los ficheros STL}
-\noindent Para imprimir las distintas piezas, primeramente se requiere obtener los ficheros STL. Para ello, 
+\noindent Para poder imprimir las distintas piezas, primeramente se requiere obtener los ficheros STL. Es por esto que  
 debemos utilizar los ficheros fuente (piezas de FreeCAD) para generarlos. Estos ficheros pueden 
-encontrarse en la carpeta /src/design/FreeCad del proyecto. Para generarlos es necesario realizar los siguientes pasos:
+encontrarse en la carpeta \textbf{/src/design/FreeCad} del proyecto. Para generarlos se deben realizar los siguientes pasos:
 \begin{enumerate}
 \item Abrimos la pieza correspondiente con FreeCAD pulsando encima de ella.
 \item Cambiamos al banco de trabajo \textit{Mesh Design}.
 \item Hacemos click sobre la pieza para seleccionarla y posteriormente pulsamos el botón \textit{Crear malla de forma} del panel superior.
 \item Introducimos un valor de superficie de desviación de 0.01mm y damos a OK.
 \item Click derecho del ratón sobre el objeto de malla creado y exportamos la malla con el botón \textit{Exportar malla}. 
-    
 \end{enumerate}
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=Nota]
+    No se recomienda generar directamente el STL con la opción de exportar del menú superior debido a que no se puede controlar la cantidad de polígonos 
+    de la malla y esta suele ser bastante baja.
+\end{tcolorbox}
 
 Una vez obtenidos todos los ficheros STL, se pueden importar en el laminador, en este caso se ha empleado 
 Ultimaker Cura 5.2.1 para generar los ficheros que lee la impresora. La densidad requerida para cada pieza 
@@ -30,25 +34,26 @@ aparece cada pieza, su posición y nombre. En la Sección \ref{sec:impresionymon
 son necesarias para poder comprarlas o fabricarlas.
 
 \section*{Software}
-\noindent Todo el software necesario para hacer funcionar este robot se encuentra en la carpeta /src/software del repositorio. Dentro de 
-esta carpeta existen una serie de paquetes para utilizar el robot, los cuales son:
+\noindent Todo el software necesario para hacer funcionar este robot se encuentra en la carpeta \textbf{/src/software} del repositorio. Dentro de 
+ella existen una serie de paquetes para utilizar el robot, los cuales son:
 \begin{itemize}
-\item Paquete \textit{g\_arm}: Es un paquete de ROS 2 que contiene el software necesario para comunicarse con el robot desde el 
-ecosistema ROS. Dentro de él se encuentra la carpeta \textit{g\_arm\_lib} con las clases en python necesarias para abstraer al 
+\item Paquete \textbf{\textit{g\_arm}}: Es un paquete de ROS 2 que contiene el software necesario para comunicarse con el robot desde el 
+ecosistema ROS. Dentro de él se encuentra la carpeta \textbf{\textit{g\_arm\_lib}} con las clases en python necesarias para abstraer al 
 ejecutable de ROS de las comunicaciones.
-\item Paquete \textit{g\_arm\_description}: Es un paquete de descripción creado para representar el robot real en el mundo virtual. No contiene código, únicamente una serie de lanzadores para poder visualizarlo.
-\item Paquete \textit{g\_arm\_moveit2}: Es un paquete de MoveIt 2 que utiliza el anterior paquete para poder controlar el robot 
+\item Paquete \textbf{\textit{g\_arm\_description}}: Es un paquete de descripción creado para representar el robot real en el mundo virtual. No contiene código, únicamente una serie de lanzadores para poder visualizarlo.
+\item Paquete \textbf{\textit{g\_arm\_moveit2}}: Es un paquete de MoveIt 2 que utiliza el anterior paquete para poder controlar el robot 
 real desde este framework.
+\item Paquete \textbf{\textit{g\_arm\_python\_examples}}: Es un paqute que contiene ejemplos de código para mover el robot mediante la API de PyMoveit2.
 \end{itemize}
 
 Aunque es posible controlar las articulaciones del robot a bajo nivel a base de enviar órdenes de código G a través del puerto serie, se pierde la 
 posibilidad de conocer la posición absoluta 
 de cada articulación. Debido a esto, es recomendable utilizar al menos la capa de abstracción \textit{Robot} que se puede encontrar en 
-la carpeta \textit{g\_arm\_lib} del paquete \textit{g\_arm}. Para conocer su funcionamiento, se puede analizar el código del ejecutable 
-\textit{driver.py}. 
+la carpeta \textbf{\textit{g\_arm\_lib}} del paquete \textbf{\textit{g\_arm}}. Para conocer su funcionamiento, se puede analizar el código del ejecutable 
+\textit{driver.py} de esa misma carpeta. 
 
 Aún así, lo ideal es utilizar ROS 2 Humble y MoveIt 2 para controlar el robot. Para ello, es necesario tener instalado 
-ambos (en internet existen guías paso a paso) y hacer uso de los tres paquetes incluidos en la carpeta /src/software del repositorio. 
+ambos (en internet existen guías paso a paso) y hacer uso de los cuatro paquetes mencionados.
 
 \newpage
 Para utilizar estos paquetes es necesario añadirlos al \textit{workspace} y compilar. En caso de que no se tenga uno, 
@@ -56,7 +61,7 @@ se deben seguir los siguientes pasos:
 \begin{enumerate}
 \item Se crea una carpeta llamada \textit{workspace} en el directorio \textit{home}, por ejemplo. Dentro de ella 
 se debe de crear la carpeta \textit{src}. 
-\item Dentro de esta última, se copian los 3 paquetes mencionados anteriormente.
+\item Dentro de esta última, se copian los paquetes mencionados anteriormente.
 \item Desde el nivel de la carpeta \textit{workspace} ejecutamos el comando \textit{colcon build --symlink-install}.
 \item Para que ROS lo encuentre debemos añadir la siguiente línea al fichero oculto \textit{.bashrc} del directorio \textit{home}:
 source ~/workspace/install/setup.bash
