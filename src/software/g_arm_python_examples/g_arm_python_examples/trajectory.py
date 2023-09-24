@@ -17,7 +17,7 @@ class Trajectory2D:
         rclpy.init()
 
         # Create node for this example
-        self._node = Node("ex_trajectory")
+        self._node = Node("ex_trajectory")     
 
         # Create callback group that allows execution of callbacks in parallel without restrictions
         callback_group = ReentrantCallbackGroup()
@@ -56,10 +56,14 @@ def main():
     traj = Trajectory2D()
     
     ### OTHER EXAMPLES
+    #verticesHeart((0.28, 0.0), 0.005)
     #verticesSquare((0.25, 0.0), 0.12)
+    #verticesTriangle((0.25, 0.0), 0.12)
+    #verticesCircle((0.25, 0.0), 0.06)
     
     points2D = verticesHeart((0.28, 0.0), 0.005)
     height = 0.15
+    
     traj.follow(points2D, height)
 
 if __name__ == "__main__":
