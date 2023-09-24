@@ -48,7 +48,7 @@ class Driver(Node):
             j1 = math.degrees(self.__goal_joints_state["joint1"])
             j2 = math.degrees(self.__goal_joints_state["joint2"])
             j3 = math.degrees(self.__goal_joints_state["joint3"])
-            pwm = self.__goal_joints_state["jointPWM"] * 1000
+            pwm = self.__goal_joints_state["jointPWM"]
             
             if pwm < 0.5:
                 self.robot.toolPWM(0.0) # FULL OFF

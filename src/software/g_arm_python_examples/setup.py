@@ -24,7 +24,8 @@ setup(
     entry_points={
         'console_scripts': [
         'goal = g_arm_python_examples.goal:main',
-        'trajectory = g_arm_python_examples.trajectory:main'
+        'trajectory = g_arm_python_examples.trajectory:main',
+        'electromagnet = g_arm_python_examples.electromagnet:main'
         ],
     },
 )
