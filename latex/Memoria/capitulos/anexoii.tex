@@ -31,21 +31,53 @@ cuyo único propósito es mover el robot desde su posición actual a una posici�
     # Para moverlo hacia el punto definido en el programa de ejemplo
     ros2 run g_arm_python_examples goal 
 \end{verbatim}
+En la Figura \ref{fig:goal} se aprecia el movimiento desde el punto inicial al punto objetivo del ejemplo.
+\begin{figure} [ht!]
+    \begin{center}
+        \includegraphics[width=14cm]{figs/examples_goal.png}
+    \end{center}
+    \caption{Recorrido del robot de la posición Home hasta el punto (0.3, 0.0, 0.1)}
+\label{fig:goal}
+\end{figure}
 
-Para demostrar su uso en trayectorias, se ha realizado un fichero en Python con varias funciones las cuales devuelven una lista de vértices de diferentes 
+\newpage
+
+
+Para demostrar su uso en trayectorias, se ha programado un fichero en Python con varias funciones las cuales devuelven una lista de vértices de diferentes 
 figuras: corazón, cuadrado, triángulo y círculo. Estos vértices han sido utilizado como puntos de paso en el fichero de 
 ejemplo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/trajectory.py}} para 
 dibujar las diferentes figuras de prueba en el plano XY a una cierta altura en Z. Para ver su funcionamiento, ejecutamos:
 \begin{verbatim}
     # Ejecutamos esto para lanzar Rviz y los nodos necesarios de MoveIt2
     ros2 launch g_arm_moveit2 show_end_effector_travel.launch 
-    # Para trazar un corazón. Otras opciones son: Triangle, Circle, Square
-    ros2 run g_arm_python_examples trajectory --ros-args -p figure:="Heart"
+    # Para trazar un corazón (figura por defecto)
+    ros2 run g_arm_python_examples trajectory
 \end{verbatim}
 
-En la Figura tal se puede ver las distintas trayectorias de ejemplo ejecutadas.
+Para visualizar el recorrido de un determinado eslabón se debe activar la opción Show Trail de RobotModel. En este caso interesa activar la 
+del extremo del robot, como se puede ver en la Figura \ref{fig:activarTrail}.
+\begin{figure} [ht!]
+    \begin{center}
+        \includegraphics[width=12cm]{figs/rviz_show_trail.png}
+    \end{center}
+    \caption{Activación de la opción Show Trail de un link en Rviz}
+\label{fig:activarTrail}
+\end{figure}
 
+En la Figura \ref{fig:trayectorias} se puede ver las distintas trayectorias de ejemplo ejecutadas .
 
+\begin{figure} [ht!]
+    \centering  
+    \subfigure[Cuadrado]{\includegraphics[width=0.3\linewidth ]{figs/square.png}}
+    \hspace{2cm}
+    \subfigure[Círculo]{\includegraphics[width=0.3\linewidth ]{figs/circle.png}}
+    \hspace{2cm}
+    \subfigure[Triángulo]{\includegraphics[width=0.3\linewidth ]{figs/triangle.png}}
+    \hspace{2cm}
+    \subfigure[Corazón]{\includegraphics[width=0.3\linewidth ]{figs/heart.png}}
+    \caption{Trayectorias realizadas}
+    \label{fig:trayectorias}
+\end{figure}\ 
 
 Finalmente, con el objetivo de probar esto en el robot real, se ha diseñado una herramienta nueva (Figura tal). Se trata de un porta lápices que utiliza la 
 flexión del PLA para acoplar el lápiz al extremo del robot de una forma robusta y sin holguras pero a su vez flexible.
