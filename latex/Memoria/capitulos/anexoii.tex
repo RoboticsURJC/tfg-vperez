@@ -1,20 +1,22 @@
 \chapter*{Anexo II}
 \label{cap:anexoii}
 
-\noindent En este anexo se aborda el cómo se pretende incluir este robot en la asignatura de Robótica Industrial. Primeramente 
-se ha consultado con Julio Lora, actual profesor de esta asignatura, cómo podría integrarse este trabajo en el siguiente curso académico, decidiéndose 
-finalmente que se podía emplear para enseñar a generar trayectorias de soldadura a través del framework de MoveIt. 
+\noindent En este anexo se aborda el cómo se pretende incluir este robot en la asignatura de Robótica Industrial. Primeramente, 
+se ha consultado con Julio Lora, actual profesor de esta asignatura, cómo se podría integrar este trabajo en el siguiente curso académico. Se llegó 
+a la conclusión de que una buena manera de utilizar este robot en sus clases, sería para complementar al robot UR3 utilizado actualmente 
+para enseñar a los alumnos a generar trayectorias de soldadura. Teniendo además el punto fuerte de aprender a mover un robot a través de un framework 
+de código abierto como es MoveIt2.  
   
-   
-Se ha optado por emplear el lenguaje de programación Python debido a su poca complejidad y similitud con MatLab. Debido al uso de 
-este lenguaje, se debe utilizar la librería PyMoveIt2, que proporciona una serie de métodos y herramientas que 
-facilitan la interación con el framework. Para instalarla, hace falta seguir los pasos que se indican en el enlace. Esta librería permite controlar 
-el robot de diferentes formas:
+
+
+Se ha optado por emplear el lenguaje de programación Python debido a su sencillez y similitud con MatLab. Como se ha decidido usar este lenguaje, 
+la librería que se debe utilizar es PyMoveIt2, la cuál proporciona una serie de métodos y herramientas que 
+facilitan la interación con este framework. Dentro de esta librería se puede controlar el robot de las siguientes formas:
 \begin{enumerate}
 \item \textbf{\textit{Joint goal}}: Permite controlar el robot en el espacio de articulaciones, es decir llevar cada articulación del robot a posición angular concreta.
 \item \textbf{\textit{Pose goal}}: Permite controlar el robot en el espacio cartesiano, es decir llevar al extremo del robot a una posición XYZ con una 
 cierta orientación.
-\item \textbf{\textit{Gripper action}}: Permite controlar la herramienta del robot a través de una serie de cómodas funciones.
+\item \textbf{\textit{Gripper action}}: Permite interactuar con la herramienta del robot a través de una serie de cómodas funciones.
 \item \textbf{\textit{Servo}}: Permite mandar comandos en tiempo real (sin la previa planificación que requieren los anteriores) para controlar las velocidad lineares y 
 angulares del extremo del robot.
 
@@ -43,10 +45,10 @@ En la Figura \ref{fig:goal} se aprecia el movimiento desde el punto inicial al p
 \newpage
 
 
-Por otro lado, para demostrar su uso en trayectorias, se ha programado un fichero en Python con varias funciones las cuales devuelven una lista de vértices de diferentes 
-figuras: corazón, cuadrado, triángulo y círculo. Estos vértices han sido utilizado como puntos de paso en el fichero de 
+Por otro lado, para demostrar su uso en trayectorias, se ha programado un fichero en Python con varias funciones, las cuales devuelven una lista de vértices de diferentes 
+figuras: corazón, cuadrado, triángulo y círculo. Estos vértices se utilizan como puntos de paso en el fichero de 
 ejemplo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/trajectory.py}} para 
-dibujar las diferentes figuras de prueba en el plano XY a una cierta altura en Z. Para ver su funcionamiento, ejecutamos:
+dibujar las diferentes figuras de prueba en el plano XY, a una cierta altura en Z. Para ver su funcionamiento, ejecutamos:
 \begin{verbatim}
     # Ejecutamos esto para lanzar Rviz y los nodos necesarios de MoveIt2
     ros2 launch g_arm_moveit2 show_end_effector_travel.launch 
@@ -69,8 +71,8 @@ En la Figura \ref{fig:trayectorias} se puede ver las distintas trayectorias de e
     \label{fig:trayectorias}
 \end{figure}\ 
 \newpage
-Para visualizar el recorrido de un determinado eslabón se debe de activar la opción Show Trail de RobotModel. En este caso interesa activar la 
-del extremo del robot, como se puede ver en la Figura \ref{fig:activarTrail}.
+Para visualizar el recorrido de un determinado eslabón se debe de activar la opción \textit{Show Trail} de \textit{RobotModel}. En este caso, interesa activar la 
+del extremo del robot, como se muestra en la Figura \ref{fig:activarTrail}.
 \begin{figure} [ht!]
     \begin{center}
         \includegraphics[width=12cm]{figs/rviz_show_trail.png}
@@ -82,7 +84,7 @@ del extremo del robot, como se puede ver en la Figura \ref{fig:activarTrail}.
 
 
 Finalmente, con el objetivo de probar esto en el robot real, se ha diseñado una herramienta nueva (Figura \ref{fig:pen_tool}). Se trata de un porta lápices que utiliza la 
-flexión del PLA para acoplar el lápiz al extremo del robot de una forma robusta y sin holguras pero a su vez flexible.
+flexión del \acs{PLA} para acoplar un lápiz al extremo del robot de una forma robusta y sin holguras, siendo a su vez flexible.
 \begin{figure} [ht!]
     \centering  
     \subfigure[Vista lateral]{\includegraphics[width=0.45\linewidth ]{figs/pen_tool.jpg}}
@@ -92,9 +94,9 @@ flexión del PLA para acoplar el lápiz al extremo del robot de una forma robust
     \label{fig:pen_tool}
 \end{figure}\ 
 \newpage
-Se ha escogido un plano con una altura en Z igual a 10cm, ya que en este plano es capaz de alcanzar una gran cantidad de puntos. En él se ha dispuesto 
-una base plana y un folio en el que se ha dibujado la figura más compleja del ejemplo, el corazón. El resultado de todo el dibujo puede verse en el siguiente 
-vídeo. Adicionalmente, en la Figura \ref{fig:real_draw} se muestra algunas imágenes extraídas del propio vídeo\footnote{\url{https://youtube.com/shorts/3rwK_FV3eSs}}.
+Se ha escogido un plano con una altura en Z igual a 10cm, ya que en este plano es capaz de alcanzar una gran cantidad de puntos. En él, se ha dispuesto 
+una base plana y un folio en el que se ha dibujado la figura más compleja del ejemplo, el corazón. El resultado de todo el proceso de dibujado puede verse en el siguiente 
+vídeo\footnote{\url{https://youtube.com/shorts/3rwK_FV3eSs}}. Adicionalmente, en la Figura \ref{fig:real_draw} se muestra algunas imágenes extraídas de él.
 \begin{figure} [ht!]
     \centering  
     \subfigure[Durante la trayectoria]{\includegraphics[width=0.45\linewidth ]{figs/drawing.png}}
@@ -104,4 +106,4 @@ vídeo. Adicionalmente, en la Figura \ref{fig:real_draw} se muestra algunas imá
     \label{fig:real_draw}
 \end{figure}\ 
 
-Como se puede ver el resultado es exacto y vistoso, por lo que puede ser utilizado para realizar todo tipo de trayectorias asegurando exactidud y precisión.
+Como se puede ver, el trazado es excelente, por lo que puede ser utilizado para realizar todo tipo de trayectorias asegurando unos buenos resultados.

@@ -63,18 +63,21 @@ se deben seguir los siguientes pasos:
 \item Se crea una carpeta llamada \textit{workspace} en el directorio \textit{home}, por ejemplo. Dentro de ella 
 se debe de crear la carpeta \textit{src}. 
 \item En \textit{src}, se copian los paquetes mencionados anteriormente. Además de estos cuatro, es necesario incluir el paquete 
-PyMoveit2\footnote{\url{https://github.com/AndrejOrsula/pymoveit2}} (necesario para controlar el robot dentro de MoveIt2).
+PyMoveit2\footnote{\url{https://github.com/AndrejOrsula/pymoveit2}}.
 \item Desde el nivel de la carpeta \textit{workspace} ejecutamos el comando \mbox{\textit{colcon build --merge-install --symlink-install}}.
 \item Para que ROS lo encuentre debemos añadir la siguiente línea al final del fichero oculto \textit{.bashrc} del directorio \textit{home}:
 \textbf{source \textasciitilde/workspace/install/setup.bash}
 
 \end{enumerate}
 
-La estructura del \textit{workspace} debería quedar igual que la mostrada en la Figura terminales
-
-Cerramos todas las terminales abiertas y comprobamos que ha funcionado ejecutando \textit{ros2 launch g\_arm\_moveit demo.launch.py} . Para que el 
-robot real se mueva, es necesario ejecutar el driver con \textit{ros2 run g\_arm driver.py} .
-
+La estructura del \textit{workspace} debería quedar igual a la mostrada en la Figura \ref{fig:ws_tree}.
+\begin{figure} [ht!]
+    \begin{center}
+        \includegraphics[width=11cm]{figs/ws_tree.png}
+    \end{center}
+    \caption{Resultado de ejecutar \textit{tree -d -L 1} en la carpeta \textit{workspace}}.
+\label{fig:ws_tree}
+\end{figure}
 
 En cuanto al firmware interno del robot, utiliza la versión de Grbl v1.1. Existen numerosas guías en internet de 
 cómo instalarlo. En el caso de utilizar la misma placa de este proyecto, no es necesario instalar nada ya que viene preinstalado de fábrica. Lo único 
