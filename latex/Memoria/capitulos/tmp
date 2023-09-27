@@ -1,4 +1,28 @@
 
+
+
+
+
+Para comprender el 
+funcionamiento de clase, se ha realizado un programa de ejemplo\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/goal.py}} 
+cuyo único propósito es mover el robot desde su posición actual a una posición concreta. Para ver su funcionamiento, ejecutamos: 
+\begin{verbatim}
+    # Ejecutamos esto para lanzar Rviz y los nodos necesarios de MoveIt2
+    ros2 launch g_arm_moveit2 demo.launch 
+    # Para moverlo hacia el punto definido en el programa de ejemplo
+    ros2 run g_arm_python_examples goal 
+\end{verbatim}
+En la Figura \ref{fig:goal} se aprecia el movimiento desde el punto inicial al punto objetivo del ejemplo.
+\begin{figure} [ht!]
+    \begin{center}
+        \includegraphics[width=14cm]{figs/examples_goal.png}
+    \end{center}
+    \caption{Recorrido del robot de la posición Home hasta el punto (0.3, 0.0, 0.1)}
+\label{fig:goal}
+\end{figure}
+
+
+
 La tendencia de la industra hacia la automatización total ha ido en aumento en los últimos años, 
 haciendo que la demanda de robots industriales se dispare en todo el mundo. Un ejemplo de ello, son 
 las megafactorías en el sector automovilístico. Se tratan de inmensas fábricas con un componente humano
