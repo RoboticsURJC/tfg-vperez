@@ -173,8 +173,17 @@ tool.wait_until_executed()
 \caption{Uso básico de PyMoveIt2 para moverse a un punto}
 \label{code:pymoveit2_ex2}
 \end{code}
+\newpage
+Posteriormente, se han establecido una serie de puntos: P0, PA1, PA2, PB1, PB2 (Figura \ref{fig:example_electromagnet_2}). Y se ha utilizado 
+los conocimientos del anterior ejercicio para moverse entre ellos.
+\begin{figure} [ht!]
+    \begin{center}
+        \includegraphics[width=12cm]{figs/ex2.png}
+    \end{center}
+    \caption{Puntos del ejercicio}
+\label{fig:example_electromagnet_2}
+\end{figure}
 
-Posteriormente, se han establecido una serie de puntos: P0, PA1, PA2, PB1, PB2 (Figura tal).
 
 El código completo de la solución se encuentra, junto al resto de ejemplos, en el repositorio de github del 
 proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/electromagnet.py}}. Para 
@@ -183,4 +192,4 @@ probarlo, debemos ejecutar lo siguiente (cada comando en una terminal distinta):
     ros2 launch g_arm_moveit2 show_end_effector_travel.launch 
     ros2 run g_arm_python_examples electromagnet
 \end{verbatim}
-Adicionalmente, se ha grabado un vídeo de su ejecución en el robot real.
+En este enlace\footnote{\url{https://youtu.be/iRcEg6AgwcU}} se puede ver el vídeo que se ha grabado de la ejecución en el robot real.
