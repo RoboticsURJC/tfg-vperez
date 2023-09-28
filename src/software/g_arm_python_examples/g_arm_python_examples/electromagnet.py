@@ -53,10 +53,12 @@ class ElectromagnetExample:
         executor_thread = Thread(target=executor.spin, daemon=True, args=())
         executor_thread.start()
     
+    # Position is related to g_arm.base_link_name(), this is world 0.0
     def moveTo(self, position):
             self._moveit2.move_to_pose(position=position, quat_xyzw=[1.0, 0.0, 0.0, 0.0], cartesian=True, 
                          frame_id=g_arm.base_link_name(), target_link=g_arm.end_effector_name(), tolerance_orientation=100.0)
             self._moveit2.wait_until_executed()
+    
     def magnetOn(self):
         self._tool.open()
         self._tool.wait_until_executed()
@@ -65,6 +67,7 @@ class ElectromagnetExample:
         self._tool.close()
         self._tool.wait_until_executed()
     
+    # This function contains the program logic
     def behaviour(self):
         
         self.magnetOff()

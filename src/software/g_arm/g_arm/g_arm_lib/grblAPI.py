@@ -25,7 +25,7 @@ class Grbl:
         self.__serialBus.write(bytes(order.encode()))
         self.__serialBus.write('\r'.encode())
     
-
+    # Receives information from GRBL status report
     def __updateInformation(self):
         # Ask for status report 
         reportObtained = False
@@ -56,11 +56,11 @@ class Grbl:
             # Parse switch status
             if len(variables) == 4 and 'Pn' in variables[3]:
                 self.__machineSwitchStatus = variables[3][3:]
-        
+
+    # Task to update GRBL knowledge   
     def __feedbackThreadFunc(self):
         
-        # Update information when grbl connection is working
-        
+        # Update information when grbl connection is working   
         while self.__threadAlive:
             
             if self.__threadRunning:
@@ -68,8 +68,7 @@ class Grbl:
                 self.__updateInformation()                    
                 time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
-    # Public
-
+    # Starts the coms with GRBL
     def start(self, port='/dev/ttyUSB0'):
         
         try:
@@ -83,6 +82,7 @@ class Grbl:
         time.sleep(1) # Wait all start
         return True
     
+    # Closes all coms
     def stop(self):
 
         if self.__threadRunning:
@@ -90,7 +90,8 @@ class Grbl:
             self.__threadAlive = False # Kill thread
             self.__feedbackThread.join() # Wait thread to end
             self.__serialBus.close() # Close bus
-        
+    
+    # Loads GRBL config from a file
     def loadConfig(self, filename):
         
         # Stop status thread to have a clean bus

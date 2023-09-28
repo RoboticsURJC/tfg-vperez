@@ -28,7 +28,8 @@ class Driver(Node):
         
         timer_period = 0.1  # seconds
         self.timer = self.create_timer(timer_period, self.joints_state_apply)
-           
+
+    # Callback of /joint_states. This stores the joints positions in memory      
     def joints_state_callback(self, msg):
         self.__received_joint_states = True
         
@@ -40,7 +41,8 @@ class Driver(Node):
             joint_position = msg.position[i]
             
             self.__goal_joints_state[joint_name] = joint_position
-            
+
+    # Apply the stored joints values        
     def joints_state_apply(self):
         
         if self.__received_joint_states:
@@ -49,12 +51,8 @@ class Driver(Node):
             j2 = math.degrees(self.__goal_joints_state["joint2"])
             j3 = math.degrees(self.__goal_joints_state["joint3"])
             pwm = self.__goal_joints_state["jointPWM"]
-            
-            if pwm < 0.5:
-                self.robot.toolPWM(0.0) # FULL OFF
-            else: 
-                self.robot.toolPWM(1.0) # FULL ON
-                
+        
+            self.robot.toolPWM(pwm) 
             self.robot.setAngles(j1, j2, j3)
             
 def main(args=None):

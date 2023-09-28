@@ -41,9 +41,9 @@ class Trajectory2D:
         executor_thread.start()
 
     def follow(self, points2D, height):
-        
+        # Iterate for every point
         for p in points2D:
-            position = (p[0], p[1], height)
+            position = (p[0], p[1], height) # Z is height (Plane XY)
             print("Actual: " + str(position))
             self._moveit2.move_to_pose(position=position, quat_xyzw=(1.0, 0.0, 0.0, 0.0), cartesian=True, 
                          frame_id=g_arm.base_link_name(), target_link=g_arm.end_effector_name(), tolerance_orientation=3.14)

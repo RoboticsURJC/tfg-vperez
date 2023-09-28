@@ -16,7 +16,7 @@ def main():
     # Create node for this example
     node = Node("ex_pose_goal")
 
-    # Declare parameters for position and orientation
+    # Declare parameters for position and orientation for change them via terminal
     node.declare_parameter("position", [0.31, 0.0, 0.1])
     node.declare_parameter("quat_xyzw", [1.0, 0.0, 0.0, 0.0])
     node.declare_parameter("cartesian", True)
