@@ -5,9 +5,7 @@
 se ha consultado con Julio Lora, actual profesor de esta asignatura, cómo se podría integrar este trabajo en el siguiente curso académico. Se llegó 
 a la conclusión de que una buena manera de utilizar este robot en sus clases, sería para complementar al robot UR3, utilizado actualmente 
 para enseñar a los alumnos a generar trayectorias de soldadura. Teniendo además el punto fuerte de aprender a programar un brazo robot a través de un framework 
-de código abierto como es MoveIt2.  
-
-En base a lo anterior, se ha planteado un posible ejercicio práctico para mandar a los estudiantes.
+de código abierto como es MoveIt2. En base a lo anterior, se ha planteado un posible ejercicio práctico.
 
 \section*{Ejercicio: Ejecutando trayectorias de soldadura en MoveIt 2}
 \noindent Crear un programa en Python para que el robot G-Arm ejecute una trayectoria con framework de MoveIt2. La trayectoria debe consistir 
@@ -18,7 +16,7 @@ con el robot real.
 \noindent Al realizar este ejercicio los alumnos aprenderán las siguientes competencias:
 \begin{enumerate}
     \item Conocer la existencia del framework de MoveIt.
-    \item Aprender a generar puntos de paso Generación de puntos de paso de figuras.
+    \item Aprender a generar los puntos de paso de distintas figuras.
     \item Controlar y programar un brazo robot mediante la API de Python de MoveIt2.
     \item Representar el recorrido de un eslabón con Rviz.    
 \end{enumerate}
@@ -46,7 +44,7 @@ Como en este caso se pretenden realizar trayectorias, es necesario utilizar las 
 con los vértices de cuatro figuras: cuadrado, círculo, tríangulo y un corazón. Para comprobar que los puntos son correctos, se puede utilizar la librería 
 Turtle para dibujarlos. Por otro lado, es necesario implementar un bucle que itere sobre la lista de puntos y mueva el robot hasta el siguiente. Para hacer 
 esto, es necesario crear una instancia de la clase \textit{MoveIt2} y utilizar los métodos \textit{move\_to\_pose()} y \textit{wait\_until\_executed()} 
-como se muestra en el fragmento de Código \ref{code:pymoveit2_ex1}.
+como se muestra en el fragmento de código \ref{code:pymoveit2_ex1}.
 \begin{code}[ht!]
 \begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1, commentstyle=\color{gray}]
     
@@ -79,11 +77,9 @@ moveit2.wait_until_executed()
 \end{code}
 
 \newpage
-El código completo se encuentra en el repositorio de github del 
-proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/trajectory.py}}.
-
-
-Para ejecutar el ejercicio resuelto, debemos lanzar lo siguiente (cada comando en una terminal distinta):
+El código completo de la solución se encuentra, junto al resto de ejemplos, en el repositorio de github del 
+proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/trajectory.py}}. Para 
+probarlo, debemos ejecutar lo siguiente (cada comando en una terminal distinta):
 \begin{verbatim}
     ros2 launch g_arm_moveit2 show_end_effector_travel.launch 
     ros2 run g_arm_python_examples trajectory
@@ -144,28 +140,47 @@ Como se puede ver, el trazado es excelente, por lo que puede ser utilizado para 
 
 \newpage
 \section*{Ejercicio extra: Uso de una herramienta actuada}
-Crear un programa en Python para realizar una tarea de manipulación con el robot G-Arm. La tarea consiste en coger una moneda de una determinada posición y 
+\noindent Crear un programa en Python para llevar a cabo una tarea de manipulación con el robot G-Arm. La tarea consiste en coger una moneda de una determinada posición y 
 depositarla en otra distinta, haciendo uso de la herramienta \textit{Electroimán}.
 
 \subsection*{Conocimientos previos}
-La herramienta acoplada al robot es ser controlada mediante un joint ficticio con un rango de movimiento de 0.0 a 1.0 radianes. Este 
-valor es convertido por el driver de ROS en un valor en salida PWM del extremo del robot. En la configuración del paquete de MoveIt se 
-estableció que este joint no pertenece a la cadena cinemática del brazo y no es usado a la hora de planificar. Se controla separadamente 
-ya que está en un grupo separado llamado Tool.
-
-Para controlar un actuador en el extremo del robot, la librería PyMoveit2 incorpora una clase llamada PymoveitGripper y principalmente dos 
-funciones, open() y close().
-
-
-
-
-Fotos abierto y cerrado como quedan las tf
-
+\noindent La herramienta acoplada al robot debe ser controlada mediante un joint ficticio con un rango de movimiento de 0.0 a 1.0 radianes. Este 
+valor es convertido por el driver de ROS en un valor entendible por la salida PWM del extremo del robot. En la configuración del paquete de MoveIt se 
+estableció que este joint no pertenece a la cadena cinemática del brazo y no es usado a la hora de planificar. Este, se controla separadamente 
+en un grupo separado llamado Tool. Para controlar el actuador del extremo del robot, la librería PyMoveit2 incorpora una clase llamada \textit{MoveIt2Gripper} y principalmente dos 
+funciones: \textit{open()} y \textit{close()}.
 
 \subsection*{Desarrollo}
-Se ha utilizado lo aprendido en la práctica anterior para establecer una serie de puntos: P0, PA1, PA2, PB1, PB2.
-Fotito
+\noindent En este ejercicio se ha utilizado la clase \textit{MoveIt2Gripper} mencionada anteriormente, tal y como 
+se muestra en el fragmento de código \ref{code:pymoveit2_ex2}.
+\begin{code}[ht!]
+\begin{lstlisting}[language=Python,  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1, commentstyle=\color{gray}]
+# Create MoveIt 2 gripper interface
+tool = MoveIt2Gripper(
+node=self._node,
+gripper_joint_names=g_arm.tool_joint_name(),
+open_gripper_joint_positions=g_arm.electromagnet_on(),
+closed_gripper_joint_positions=g_arm.electromagnet_off(),
+gripper_group_name=g_arm.MOVE_GROUP_GRIPPER,
+follow_joint_trajectory_action_name="/tool_controller/follow_joint_trajectory",
+callback_group=callback_group)
 
+tool.open() # Open gripper (electromagnet on)
+tool.wait_until_executed()
+tool.close() # Close gripper (electromagnet off)
+tool.wait_until_executed()
+\end{lstlisting}
+\caption{Uso básico de PyMoveIt2 para moverse a un punto}
+\label{code:pymoveit2_ex2}
+\end{code}
 
-La solución completa a este ejercicio se encuentra en este fichero de la carpeta de ejemplos. Adicionalmente, se ha grabado un vídeo de 
-la ejecución en el robot real.
+Posteriormente, se han establecido una serie de puntos: P0, PA1, PA2, PB1, PB2 (Figura tal).
+
+El código completo de la solución se encuentra, junto al resto de ejemplos, en el repositorio de github del 
+proyecto\footnote{\url{https://github.com/RoboticsURJC/tfg-vperez/blob/main/src/software/g\_arm\_python_examples/g\_arm_python\_examples/electromagnet.py}}. Para 
+probarlo, debemos ejecutar lo siguiente (cada comando en una terminal distinta):
+\begin{verbatim}
+    ros2 launch g_arm_moveit2 show_end_effector_travel.launch 
+    ros2 run g_arm_python_examples electromagnet
+\end{verbatim}
+Adicionalmente, se ha grabado un vídeo de su ejecución en el robot real.

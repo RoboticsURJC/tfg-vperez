@@ -43,7 +43,7 @@ class ElectromagnetExample:
         closed_gripper_joint_positions=g_arm.electromagnet_off(),
         gripper_group_name=g_arm.MOVE_GROUP_GRIPPER,
         follow_joint_trajectory_action_name="/tool_controller/follow_joint_trajectory",
-        callback_group=callback_group,
+        callback_group=callback_group
         )
 
 
