@@ -28,7 +28,7 @@ se presentan en la siguiente subsección.
 \noindent En esta sección se exponen las distintas opciones de comunicación con el robot, así como el formato de mensaje que se debe emplear.
 \\ 
 \indent Debido a las características hardware de la placa utilizada, se puede establecer comunicación con Grbl a través de 2 interfaces diferentes. 
-La primera, es a través del propio puerto USB integrado, utilizando el protocolo serie UART. Este modo de comunicación tiene la ventaja de 
+La primera, es a través del propio puerto USB integrado, utilizando el protocolo serie \acs{UART}. Este modo de comunicación tiene la ventaja de 
 ser rápido pero te fuerza a estar conectado al robot a través de un cable. Por otro lado, debido a las características técnicas del 
 microcontrolador, se puede establecer una comunicación inalámbrica a través de Wifi utilizando el protocolo Telnet. Finalmente, se ha optado 
 por utilizar la interfaz USB debido a que es más rápida y permite al usuario estar conectado a internet, en vez de a la propia red 
@@ -107,13 +107,13 @@ el mensaje \textbf{\$\$} a través del puerto serie. Para modificar un cierto va
 con el formato: \textbf{\$identificador del parámetro=nuevoValor}.
 
 Para modificar la configuración de una forma cómoda, se recomienda utilizar herramientas como 
-\textit{UniversalGcodeSender} (Figura \ref{fig:ugs}).
+\textit{UniversalGcodeSender}\footnote{\url{https://winder.github.io/ugs_website/download/}} (Figura \ref{fig:ugs}).
 
 \begin{figure} [ht!]
 \begin{center}
     \includegraphics[width=15cm]{figs/ugs.png}
 \end{center}
-\caption{Interfaz de UniversalGcodeSender\footnote{\url{https://winder.github.io/ugs_website/download/}}}
+\caption{Interfaz de UniversalGcodeSender}
 \label{fig:ugs}
 \end{figure}
 
@@ -272,7 +272,7 @@ sobre la masa y la inercia de los eslabones, así como como texturas y modelos 3
     \begin{center}
         \includegraphics[width=10cm]{figs/urdf.png}
     \end{center}
-    \caption{Elementos del formato URDF\footnote{\url{http://library.isr.ist.utl.pt/docs/roswiki/urdf\%282f\%29XML\%282f\%29Joint.html}}}
+    \caption{Elementos del formato URDF}
 \label{fig:urdf}
 \end{figure}
 Este formato se basa en el lenguaje \ac{XML}, lo que permite describir el robot de una forma 
@@ -506,7 +506,10 @@ que se están lanzando y añadir nuevos si es necesario.
 \newpage
 \section{Pruebas}
 \noindent En esta sección se ponen a prueba los aspectos técnicos que determinan el desempeño y la fiabilidad del brazo robot. Para ello, 
-se han llevado a cabo una serie de pruebas, bajo distintas circunstancias, y se han apuntado los resultados.
+se han llevado a cabo una serie de pruebas, bajo distintas circunstancias, y se han apuntado los resultados. Además, se ha grabado un vídeo 
+para cada una de ellas: capacidad de carga\footnote{\url{https://youtu.be/McD7kLMKMo0}}, velocidad máxima\footnote{\url{https://youtu.be/37KK_hJk_tI}} y 
+consumo eléctrico\footnote{\url{https://youtu.be/2MfBabEWZNo}}.
+
 \subsection{Capacidad de carga}
 \noindent En este apartado se pone a prueba la capacidad del robot a la hora de levantar y mover cargas con diferentes masas. 
 Para ello, se han considerado los siguientes escenarios:
@@ -525,7 +528,7 @@ Para ello, se han considerado los siguientes escenarios:
     \subfigure[Escenario 2]{\includegraphics[width=0.3\linewidth ]{figs/loadTest2.png}}
     \hspace{2cm}
     \subfigure[Escenario 3]{\includegraphics[width=0.3\linewidth ]{figs/loadTest3.png}}
-    \caption{Fotos extraídas del vídeo de las pruebas de carga\footnote{\url{https://youtu.be/McD7kLMKMo0}}}
+    \caption{Fotos extraídas del vídeo de las pruebas de carga}
     \label{fig:loadTests}
 \end{figure}\ 
 
@@ -535,6 +538,8 @@ electroimán que se anunciaba como capaz de sostener 3 Kg, sólamente es capaz d
 movimientos rápidos. Más allá de los valores de carga máximos, el comportamiento del robot durante la prueba 
 hace pensar que es capaz de manejar cargas de hasta 150g con total normalidad. A modo de ejemplo, en la siguiente prueba se monta un mando 
 de televisión de 100g y se realizan movimientos rápidos con él.
+
+
 
 \begin{table}[H]
 \begin{center}
@@ -565,10 +570,10 @@ alcanzar este brazo. En la Figura \ref{fig:speedTests} se pueden ver algunas im�
 \subfigure[Inicio del recorrido]{\includegraphics[width=0.45\linewidth ]{figs/speedTest1.png}}
 \hspace{1cm}
 \subfigure[Final del recorrido]{\includegraphics[width=0.45\linewidth ]{figs/speedTest2.png}}
-\caption{Fotos extraídas del vídeo de las pruebas de velocidad\footnote{\url{https://youtu.be/37KK_hJk_tI}}}
+\caption{Fotos extraídas del vídeo de las pruebas de velocidad}
 \label{fig:speedTests}
 \end{figure}\ 
-\newpage
+
 Como resultado, se ha llegado a la conclusión que la velocidad máxima de giro de la articulación de la base es de 225 grados 
 por segundo. Aún así la velocidad media ha sido de 90º/s debido a que primero tiene que acelerar hasta alcanzar la velocidad 
 máxima y despúes frenar. Este eje ha hecho un recorrido de 180 grados en a penas 2 segundos. En ese tramo es capaz de alcanzar 
@@ -592,11 +597,12 @@ Para realizar este test, se han considerado 3 escenarios:
     \subfigure[Multímetro en serie]{\includegraphics[width=0.4\linewidth ]{figs/powerTest1.png}}
     \hspace{1cm}
     \subfigure[Escenario de la prueba]{\includegraphics[width=0.45\linewidth ]{figs/powerTest2.png}}
-    \caption{Fotos extraídas del vídeo de las pruebas de consumo\footnote{\url{https://youtu.be/2MfBabEWZNo}}}
+    \caption{Fotos extraídas del vídeo de las pruebas de consumo}
     \label{fig:powerTests}
 \end{figure}\ 
 
 \end{itemize}
+
 \indent En la Figura \ref{fig:powerTests} se puede ver cómo se ha realizado esta prueba. Los resultados obtenidos estan recogidos en el Cuadro \ref{cuadro:consumos}. Como se puede observar, realmente no existe una gran 
 diferencia entre un movimiento rápido y uno lento, en cambio, la diferencia sí es notable cuando lo comparamos con permanecer en 
 una posición fija. Hay que recordar que aunque esté en parado, las bobinas de los motores permanecen excitadas para 
