@@ -146,8 +146,17 @@ necesarios para poder incorporar tu propio robot en este ecosistema.
 \section{Hardware}
 \label{sec:hardware}
 \noindent A continuación se describen todos los componentes físicos utilizados en trabajo. El plantamiento en la adquisición 
-de estos, ha sido: funcionalidad, precio y disponibilidad.
+de estos, ha sido: funcionalidad, precio y disponibilidad. Para tener una visión general de los componentes hardware, se presenta 
+la Figura \ref{fig:hw}.
+\begin{figure} [h!]
+  \begin{center}
+    \includegraphics[width=11cm]{figs/hw.png}
+  \end{center}
+  \caption{Esquema de la arquitectura hardware}
+  \label{fig:hw}
+\end{figure}\ 
 
+A continuación se procede a describir en detalle aquellos que tienen un mayor peso en esta arquitectura hardware.
 \subsection{MKS DLC32}
 \label{subsec:mksdlc32}
 \noindent Se trata de una placa base\footnote{componente esencial que proporciona conexiones y circuitos para que los demás componentes se comuniquen entre sí} destinada al mundo de las máquinas de grabado láser y creada por \textit{MakerBase} con carácter \textit{open hardware}, por lo que toda la información de la placa 
@@ -165,7 +174,6 @@ controlar hasta 3 motores junto con una señal de \ac{PWM} para añadirle un ser
       \includegraphics[width=9cm]{figs/MKS.png}
     \end{center}
     \caption{Placa base MakerBase DLC32}
-    \label{fig:robSoldering}
   \end{figure}\ 
 
 \subsection{Motores Nema 17}
@@ -177,16 +185,15 @@ Concretamente, se han usado 3 motores Nema 17 de 60 milímetros de largo como lo
 motores bipolares de 2.1 amperios y una resistencia de 1,6 ohmios con un torque máximo de 0.65 newton-metro. Estos, han sido comprados 
 en \textit{Amazon} por un precio de 55\euro. 
 
-En la Tabla \ref{cuadro:nema17_60} 
-se muestran las especificaciones técnicas de los motores elegidos
 \begin{figure} [h!]
     \begin{center}
-      \includegraphics[width=9cm]{figs/nema17.jpg}
+      \includegraphics[width=7cm]{figs/nema17.jpg}
     \end{center}
     \caption{Motores Nema 17 de 2.1A}
     \label{fig:nema17_60}
   \end{figure}\ 
 
+En la Tabla \ref{cuadro:nema17_60} se muestran las especificaciones técnicas de los motores elegidos.
 \begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -210,7 +217,6 @@ Longitud del eje & 24mm \\
 \end{center}
 \end{table}
 
-\newpage
 \subsection{Controlador TMC2209}
 \label{subsec:controladorPAP}
 \noindent Un controlador paso a paso es el módulo hardware capaz de trasformar las señales lógicas que le envía el procesador, en una serie de pulsos de
@@ -246,7 +252,6 @@ Interfaz de comunicación & Pines CFG y UART \\
 \end{center}
 \end{table}
     
-\newpage
 \subsection{Fuente de alimentación genérica}
 \label{subsec:fuente_alimentacion}
 \noindent Para alimentar el brazo se va a hacer uso de una fuente de alimentación genérica de 24 voltios y 5 amperios (Figura \ref{fig:pw24}). Este tipo de fuentes chinas son 
@@ -255,11 +260,11 @@ necesario utilizar una fuente tan potente. De hecho, puede ser usada cualquier t
 entregar más de 20 vatios de potencia en el rango de voltaje 12-24v. Por lo que es completamente viable utilizar cargadores de ordenadores 
 portátiles como el de la Figura \ref{fig:pw19} para alimentar el robot.
 
-\begin{figure} [h!]
+\begin{figure} [ht!]
   \centering   
-  \subfigure[Fuente de alimentación 24v 5A]{\label{fig:pw24}\includegraphics[width=0.45\linewidth ]{figs/pw24v.jpg}}
-  \hspace{3cm}
-  \subfigure[Cargador de portátil genérico]{\label{fig:pw19}\includegraphics[width=0.55\linewidth]{figs/pw19v.jpg}}
+  \subfigure[Fuente de alimentación 24v 5A]{\label{fig:pw24}\includegraphics[width=0.4\linewidth ]{figs/pw24v.jpg}}
+  \hspace{1cm}
+  \subfigure[Cargador de portátil genérico]{\label{fig:pw19}\includegraphics[width=0.4\linewidth]{figs/pw19v.jpg}}
   \caption{Métodos usados para alimentar el robot}
 \end{figure}
 
