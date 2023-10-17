@@ -27,6 +27,8 @@
 \usepackage{multimedia}
 \usepackage[export]{adjustbox}
 \usepackage{outlines} % Para poner bullets tabulados (\1 \2 \3 ...) y no items
+\usepackage{siunitx}
+\usepackage{multicol}
 
 \usepackage{array,tabularx} % para tabular leyenda de ecuaciones
 \newenvironment{conditions*} % entorno de "leyenda de ecuación"
@@ -275,24 +277,37 @@ Trabajo fin de grado
 
 \begin{frame}
   \frametitle{Concepción de la idea: Bocetos}
-
+  \begin{table}[htbp]
+    \centering
+    \begin{tabular}{ccc}
+        \includegraphics[width=0.3\textwidth, valign=m]{figs/boceto4.png} & \includegraphics[width=0.3\textwidth, valign=m]{figs/boceto2.png} 
+         & \includegraphics[width=0.3\textwidth, valign=m]{figs/boceto7.jpeg} \\
+         \includegraphics[width=0.3\textwidth, valign=m]{figs/boceto5.png} & \includegraphics[width=0.3\textwidth, valign=m]{figs/boceto1.png} 
+         & \includegraphics[width=0.3\textwidth, valign=m]{figs/boceto8.jpeg}
+        
+    \end{tabular}
+  \end{table}
 \end{frame}
 
 \begin{frame}
   \frametitle{Diseño alámbrico}
-
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figs/alambrico_params.png}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Diseño CAD (FreeCAD)}
   \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{figs/freecadFiles.png}
+    \includegraphics[width=1\textwidth]{figs/freecadUI.png}
   \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Diseño CAD (FreeCAD)}
+  Cada pieza que constituye el robot está diseñada en un fichero distinto y ensambladas en los ficheros ASSEMBLY.
   \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{figs/freecadFiles.png}
@@ -351,9 +366,9 @@ Trabajo fin de grado
 \frametitle{Integración con ROS 2}
 \begin{table}[htbp]
   \centering
-  \begin{tabular}{ccc}
-      \includegraphics[width=0.15\textwidth, valign=m]{figs/STL.jpg} & \includegraphics[width=0.3\textwidth, valign=m]{figs/collada.png} 
-       & \includegraphics[width=0.15\textwidth, valign=m]{figs/urdf.png} \\
+  \begin{tabular}{ccccc}
+      \includegraphics[width=0.15\textwidth, valign=m]{figs/STL.jpg} & \includegraphics[width=0.05\textwidth, valign=m]{figs/plus.png} & \includegraphics[width=0.3\textwidth, valign=m]{figs/collada.png} 
+       & \includegraphics[width=0.05\textwidth, valign=m]{figs/plus.png} & \includegraphics[width=0.15\textwidth, valign=m]{figs/urdf.png} \\
       
   \end{tabular}
 \end{table} 
@@ -375,14 +390,71 @@ Trabajo fin de grado
 \end{frame}
 
 \begin{frame}
-\frametitle{Arquitectura software}
-    
+\frametitle{Herramientas integradas a día de hoy}
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{cc}
+      \includegraphics[width=0.43\textwidth, valign=m]{figs/electromagnet_tool.jpeg} & \includegraphics[width=0.43\textwidth, valign=m]{figs/pen_tool.jpg}  \\
+      Electroimán & Porta lápices/bolígrafos
+  \end{tabular}
+\end{table}  
 \end{frame}
 
 \section*{}
 \begin{frame}{}
   \centering \Huge
   \emph{Pruebas técnicas}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Prueba de capacidad de carga}
+  \begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=0.43\textwidth, valign=m]{figs/electromagnet_tool.jpeg} & \includegraphics[width=0.43\textwidth, valign=m]{figs/pen_tool.jpg}  \\
+        Electroimán & Porta lápices/bolígrafos
+    \end{tabular}
+  \end{table}  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Velocidad máxima}
+  \begin{columns}
+    \begin{column}{0.5\textwidth} % Columna izquierda para la imagen
+      \includegraphics[width=\textwidth]{figs/pen_tool.jpg}
+    \end{column}
+    \begin{column}{0.5\textwidth} % Columna derecha para la tabla
+      
+      \begin{table}[H]
+        \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Escenario} & \textbf{Carga máxima} \\
+        \hline
+        Escenario 1& \SI{365}{\gram} \\
+        Escenario 2 & \SI{480}{\gram} \\
+        Escenario 3 & \SI{305}{\gram} \\
+        \hline
+        \end{tabular}
+        \caption{Resultados de los diferentes resultados en la prueba de carga}
+        \label{cuadro:evaluacion_carga}
+        \end{center}
+        \end{table}
+    
+      \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Consumo eléctrico}
+  \begin{table}[htbp]
+    \centering
+    \begin{tabular}{cc}
+        \includegraphics[width=0.43\textwidth, valign=m]{figs/electromagnet_tool.jpeg} & \includegraphics[width=0.43\textwidth, valign=m]{figs/pen_tool.jpg}  \\
+        Electroimán & Porta lápices/bolígrafos
+    \end{tabular}
+  \end{table}  
 \end{frame}
 
 \section*{}
