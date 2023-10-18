@@ -407,24 +407,18 @@ Trabajo fin de grado
 \end{frame}
 
 \begin{frame}
-  \frametitle{Prueba de capacidad de carga}
-  \begin{table}[htbp]
-    \centering
-    \begin{tabular}{cc}
-        \includegraphics[width=0.43\textwidth, valign=m]{figs/electromagnet_tool.jpeg} & \includegraphics[width=0.43\textwidth, valign=m]{figs/pen_tool.jpg}  \\
-        Electroimán & Porta lápices/bolígrafos
-    \end{tabular}
-  \end{table}  
-\end{frame}
-
-\begin{frame}
-  \frametitle{Velocidad máxima}
+  \frametitle{Capacidad de carga}
   \begin{columns}
-    \begin{column}{0.5\textwidth} % Columna izquierda para la imagen
-      \includegraphics[width=\textwidth]{figs/pen_tool.jpg}
+    \begin{column}{0.35\textwidth} % Columna izquierda para la imagen
+      \includegraphics[width=\textwidth]{figs/test_carga.png}
     \end{column}
     \begin{column}{0.5\textwidth} % Columna derecha para la tabla
-      
+      Se han planteado tres escenarios distintos:
+      \begin{itemize}
+        \item Escenario 1: Completamente extendido.
+        \item Escenario 2: Parcialmente retraído.
+        \item Escenario 3: Usando la herramienta Electroimán.
+      \end{itemize}
       \begin{table}[H]
         \begin{center}
         \begin{tabular}{|c|c|}
@@ -436,8 +430,6 @@ Trabajo fin de grado
         Escenario 3 & \SI{305}{\gram} \\
         \hline
         \end{tabular}
-        \caption{Resultados de los diferentes resultados en la prueba de carga}
-        \label{cuadro:evaluacion_carga}
         \end{center}
         \end{table}
     
@@ -445,16 +437,55 @@ Trabajo fin de grado
   \end{columns}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Velocidad máxima}
+  \begin{columns}
+    \begin{column}{0.35\textwidth} % Columna izquierda para la imagen
+      \includegraphics[width=\textwidth]{figs/test_velocidad.png}
+    \end{column}
+    \begin{column}{0.5\textwidth} % Columna derecha para la tabla
+      
+      \begin{itemize}
+        \item Velocidad máxima de la base: 225º/s
+        \item Velocidad máxima de los otros dos grados de libertad: 120º/s
+      \end{itemize}
+
+      Por debajo, pero no mucho, de un ABB IRB120 de 20.000\euro, que ronda los 
+      250º/s.
+      \end{column}
+  \end{columns}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Consumo eléctrico}
-  \begin{table}[htbp]
-    \centering
-    \begin{tabular}{cc}
-        \includegraphics[width=0.43\textwidth, valign=m]{figs/electromagnet_tool.jpeg} & \includegraphics[width=0.43\textwidth, valign=m]{figs/pen_tool.jpg}  \\
-        Electroimán & Porta lápices/bolígrafos
-    \end{tabular}
-  \end{table}  
+  \begin{columns}
+    \begin{column}{0.35\textwidth} % Columna izquierda para la imagen
+      \includegraphics[width=\textwidth]{figs/test_consumo.png}
+    \end{column}
+    \begin{column}{0.5\textwidth} % Columna derecha para la tabla
+      
+      Se han planteado tres escenarios distintos:
+      \begin{itemize}
+        \item Escenario 1: El robot realiza movimientos lentos.
+        \item Escenario 2: El robot realiza movimientos rápidos.
+        \item Escenario 3: El robot permanece quieto en una posición concreta.
+      \end{itemize}
+      \begin{table}[H]
+        \begin{center}
+        \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Escenario} & \textbf{Consumo medio}\\
+        \hline
+        Escenario 1 & 14.4W\\
+        Escenario 2 & 17W\\
+        Escenario 3 & 6.8W\\
+        \hline
+        \end{tabular}
+        \end{center}
+        \end{table}
+      \end{column}
+  \end{columns}
 \end{frame}
 
 \section*{}
