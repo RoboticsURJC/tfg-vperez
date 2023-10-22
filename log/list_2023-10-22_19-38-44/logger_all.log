@@ -1,0 +1,276 @@
+[0.507s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'list', '-p', '--base-paths', '/home/vidi/Desktop/tfg-vperez']
+[0.507s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='list', build_base='build', ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['/home/vidi/Desktop/tfg-vperez'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], topological_order=False, names_only=False, paths_only=True, topological_graph=False, topological_graph_dot=False, topological_graph_density=False, topological_graph_legend=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7f9e2ee5a980>, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x7f9e2ee194b0>, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x7f9e2ee194b0>>, mixin_verb=('list',))
+[0.574s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.574s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.574s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.574s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.575s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.575s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/vidi/Desktop/tfg-vperez'
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extensions ['ignore', 'ignore_ament_install']
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'ignore'
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'ignore_ament_install'
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extensions ['colcon_pkg']
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'colcon_pkg'
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extensions ['colcon_meta']
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'colcon_meta'
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extensions ['ros']
+[0.575s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'ros'
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extensions ['cmake', 'python']
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'cmake'
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'python'
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extensions ['python_setup_py']
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez) by extension 'python_setup_py'
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extensions ['ignore', 'ignore_ament_install']
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'ignore'
+[0.611s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'ignore_ament_install'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extensions ['colcon_pkg']
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'colcon_pkg'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extensions ['colcon_meta']
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'colcon_meta'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extensions ['ros']
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'ros'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extensions ['cmake', 'python']
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'cmake'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'python'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extensions ['python_setup_py']
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/doc) by extension 'python_setup_py'
+[0.612s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extensions ['ignore', 'ignore_ament_install']
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'ignore'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'ignore_ament_install'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extensions ['colcon_pkg']
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'colcon_pkg'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extensions ['colcon_meta']
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'colcon_meta'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extensions ['ros']
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'ros'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extensions ['cmake', 'python']
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'cmake'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'python'
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extensions ['python_setup_py']
+[0.613s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/img) by extension 'python_setup_py'
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extensions ['ignore', 'ignore_ament_install']
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'ignore'
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'ignore_ament_install'
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extensions ['colcon_pkg']
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'colcon_pkg'
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extensions ['colcon_meta']
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'colcon_meta'
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extensions ['ros']
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'ros'
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extensions ['cmake', 'python']
+[0.614s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'cmake'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'python'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extensions ['python_setup_py']
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex) by extension 'python_setup_py'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extensions ['ignore', 'ignore_ament_install']
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'ignore'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'ignore_ament_install'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extensions ['colcon_pkg']
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'colcon_pkg'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extensions ['colcon_meta']
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'colcon_meta'
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extensions ['ros']
+[0.615s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'ros'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extensions ['cmake', 'python']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'cmake'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'python'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extensions ['python_setup_py']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria) by extension 'python_setup_py'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extensions ['ignore', 'ignore_ament_install']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'ignore'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'ignore_ament_install'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extensions ['colcon_pkg']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'colcon_pkg'
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extensions ['colcon_meta']
+[0.616s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'colcon_meta'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extensions ['ros']
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'ros'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extensions ['cmake', 'python']
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'cmake'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'python'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extensions ['python_setup_py']
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/capitulos) by extension 'python_setup_py'
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extensions ['ignore', 'ignore_ament_install']
+[0.617s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'ignore'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'ignore_ament_install'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extensions ['colcon_pkg']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'colcon_pkg'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extensions ['colcon_meta']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'colcon_meta'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extensions ['ros']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'ros'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extensions ['cmake', 'python']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'cmake'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'python'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extensions ['python_setup_py']
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/figs) by extension 'python_setup_py'
+[0.618s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extensions ['ignore', 'ignore_ament_install']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'ignore'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'ignore_ament_install'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extensions ['colcon_pkg']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'colcon_pkg'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extensions ['colcon_meta']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'colcon_meta'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extensions ['ros']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'ros'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extensions ['cmake', 'python']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'cmake'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'python'
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extensions ['python_setup_py']
+[0.619s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Memoria/portada) by extension 'python_setup_py'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extensions ['ignore', 'ignore_ament_install']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'ignore'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'ignore_ament_install'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extensions ['colcon_pkg']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'colcon_pkg'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extensions ['colcon_meta']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'colcon_meta'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extensions ['ros']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'ros'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extensions ['cmake', 'python']
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'cmake'
+[0.620s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'python'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extensions ['python_setup_py']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion) by extension 'python_setup_py'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extensions ['ignore', 'ignore_ament_install']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'ignore'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'ignore_ament_install'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extensions ['colcon_pkg']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'colcon_pkg'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extensions ['colcon_meta']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'colcon_meta'
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extensions ['ros']
+[0.621s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'ros'
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extensions ['cmake', 'python']
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'cmake'
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'python'
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extensions ['python_setup_py']
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/latex/Presentacion/figs) by extension 'python_setup_py'
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/log) by extensions ['ignore', 'ignore_ament_install']
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/log) by extension 'ignore'
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/log) ignored
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extensions ['ignore', 'ignore_ament_install']
+[0.622s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'ignore'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'ignore_ament_install'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extensions ['colcon_pkg']
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'colcon_pkg'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extensions ['colcon_meta']
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'colcon_meta'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extensions ['ros']
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'ros'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extensions ['cmake', 'python']
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'cmake'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'python'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extensions ['python_setup_py']
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/readings) by extension 'python_setup_py'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extensions ['ignore', 'ignore_ament_install']
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'ignore'
+[0.623s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'ignore_ament_install'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extensions ['colcon_pkg']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'colcon_pkg'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extensions ['colcon_meta']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'colcon_meta'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extensions ['ros']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'ros'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extensions ['cmake', 'python']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'cmake'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'python'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extensions ['python_setup_py']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src) by extension 'python_setup_py'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extensions ['ignore', 'ignore_ament_install']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'ignore'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'ignore_ament_install'
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extensions ['colcon_pkg']
+[0.624s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'colcon_pkg'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extensions ['colcon_meta']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'colcon_meta'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extensions ['ros']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'ros'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extensions ['cmake', 'python']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'cmake'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'python'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extensions ['python_setup_py']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design) by extension 'python_setup_py'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extensions ['ignore', 'ignore_ament_install']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'ignore'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'ignore_ament_install'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extensions ['colcon_pkg']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'colcon_pkg'
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extensions ['colcon_meta']
+[0.625s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'colcon_meta'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extensions ['ros']
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'ros'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extensions ['cmake', 'python']
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'cmake'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'python'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extensions ['python_setup_py']
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/Complements) by extension 'python_setup_py'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extensions ['ignore', 'ignore_ament_install']
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'ignore'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'ignore_ament_install'
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extensions ['colcon_pkg']
+[0.626s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'colcon_pkg'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extensions ['colcon_meta']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'colcon_meta'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extensions ['ros']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'ros'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extensions ['cmake', 'python']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'cmake'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'python'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extensions ['python_setup_py']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/design/FreeCad) by extension 'python_setup_py'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extensions ['ignore', 'ignore_ament_install']
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'ignore'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'ignore_ament_install'
+[0.627s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extensions ['colcon_pkg']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'colcon_pkg'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extensions ['colcon_meta']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'colcon_meta'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extensions ['ros']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'ros'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extensions ['cmake', 'python']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'cmake'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'python'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extensions ['python_setup_py']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software) by extension 'python_setup_py'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extensions ['ignore', 'ignore_ament_install']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extension 'ignore'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extension 'ignore_ament_install'
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extensions ['colcon_pkg']
+[0.628s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extension 'colcon_pkg'
+[0.629s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extensions ['colcon_meta']
+[0.629s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extension 'colcon_meta'
+[0.629s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extensions ['ros']
+[0.629s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm) by extension 'ros'
+[0.632s] DEBUG:colcon.colcon_core.package_identification:Package '/home/vidi/Desktop/tfg-vperez/src/software/g_arm' with type 'ros.ament_python' and name 'g_arm'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extensions ['ignore', 'ignore_ament_install']
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extension 'ignore'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extension 'ignore_ament_install'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extensions ['colcon_pkg']
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extension 'colcon_pkg'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extensions ['colcon_meta']
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extension 'colcon_meta'
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extensions ['ros']
+[0.633s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description) by extension 'ros'
+[0.634s] DEBUG:colcon.colcon_core.package_identification:Package '/home/vidi/Desktop/tfg-vperez/src/software/g_arm_description' with type 'ros.ament_cmake' and name 'g_arm_description'
+[0.634s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extensions ['ignore', 'ignore_ament_install']
+[0.634s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extension 'ignore'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extension 'ignore_ament_install'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extensions ['colcon_pkg']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extension 'colcon_pkg'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extensions ['colcon_meta']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extension 'colcon_meta'
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extensions ['ros']
+[0.635s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2) by extension 'ros'
+[0.636s] DEBUG:colcon.colcon_core.package_identification:Package '/home/vidi/Desktop/tfg-vperez/src/software/g_arm_moveit2' with type 'ros.ament_cmake' and name 'g_arm_moveit2'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extensions ['ignore', 'ignore_ament_install']
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extension 'ignore'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extension 'ignore_ament_install'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extensions ['colcon_pkg']
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extension 'colcon_pkg'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extensions ['colcon_meta']
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extension 'colcon_meta'
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extensions ['ros']
+[0.637s] Level 1:colcon.colcon_core.package_identification:_identify(/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples) by extension 'ros'
+[0.638s] DEBUG:colcon.colcon_core.package_identification:Package '/home/vidi/Desktop/tfg-vperez/src/software/g_arm_python_examples' with type 'ros.ament_python' and name 'g_arm_python_examples'
+[0.638s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults

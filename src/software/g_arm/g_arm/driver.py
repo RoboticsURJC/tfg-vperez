@@ -20,10 +20,21 @@ class Driver(Node):
         
         self.get_logger().info("Connecting and calibrating the robot (May take a while)")
         
-        if not self.robot.start():
-            self.get_logger().error("Unable to start communications in /dev/ttyUSB0. Do you have permissions? (Try: sudo chmod 777 /dev/ttyUSB0)")
+        # Try to connect with the robots in both ways
+        connected = self.robot.startSerial()
+        
+        if not connected:
+            # Try via telnet
+            self.get_logger().warn("Unable to start communications in /dev/ttyUSB0. Do you have permissions? (Try: sudo chmod 777 /dev/ttyUSB0)")
+            self.get_logger().info("Trying via Telnet in 192.168.4.1:23")
+            connected = self.robot.startTelnet()
+            
+        if not connected:
+            self.get_logger().warn("Unable to start communications via Telnet. Do you are connected to arm wifi? (Check also arm IP and port)")
+            self.get_logger().error("Unable to connect with the robot. Aborting ...")
             exit(1)
             
+              
         self.get_logger().info(colored("Robot is ready to move!", "green"))
         
         timer_period = 0.1  # seconds

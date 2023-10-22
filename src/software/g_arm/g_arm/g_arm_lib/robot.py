@@ -14,9 +14,19 @@ class Robot:
     def __init__(self):      
         self.__grbl = grblAPI.Grbl()
     
-    def start(self, port='/dev/ttyUSB0'):
+    def startSerial(self, port='/dev/ttyUSB0'):
         
-        if not self.__grbl.start(port):
+        if not self.__grbl.startSerial(port):
+            return False
+
+        time.sleep(1)
+        self.autohome()
+        
+        return True
+   
+    def startTelnet(self, address='192.168.4.1', port=23):
+        
+        if not self.__grbl.startTelnet(address, port):
             return False
 
         time.sleep(1)

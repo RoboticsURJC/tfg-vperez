@@ -1,4 +1,5 @@
 import serial
+import telnetlib
 import time
 import threading as th
 
@@ -14,17 +15,30 @@ class Grbl:
     __machineStatus = "Undefined"
     __machineSwitchStatus = ""
     __serialBus = None
+    __telnetBus = None
     __feedbackThread = None
     __threadRunning = False
     __threadAlive = True
+    __usingSerial = True
 
     def __init__(self): 
         self.__feedbackThread = th.Thread(target=self.__feedbackThreadFunc) 
                 
     def __sendOrder(self, order):
-        self.__serialBus.write(bytes(order.encode()))
-        self.__serialBus.write('\r'.encode())
-    
+        
+        if self.__usingSerial:
+            self.__serialBus.write(bytes(order.encode()))
+            self.__serialBus.write('\r'.encode())
+        else:
+            self.__telnetBus.write(bytes( (order + '\n').encode()))
+              
+    def __readLine(self):
+        
+        if self.__usingSerial:
+            return self.__serialBus.readline()
+        else:
+            return self.__telnetBus.read_until('\n'.encode())
+        
     # Receives information from GRBL status report
     def __updateInformation(self):
         # Ask for status report 
@@ -35,7 +49,7 @@ class Grbl:
     
         while not reportObtained:
             
-            received = str(self.__serialBus.readline())
+            received = str(self.__readLine())
             
             if '<' in received and '>' in received:
                 reportObtained = True
@@ -68,18 +82,36 @@ class Grbl:
                 self.__updateInformation()                    
                 time.sleep(1.0 / STATUS_REPORT_FREQUENCY)
             
-    # Starts the coms with GRBL
-    def start(self, port='/dev/ttyUSB0'):
+    # Starts the coms with GRBL via serial port
+    def startSerial(self, port='/dev/ttyUSB0'):
         
         try:
             self.__serialBus = serial.Serial(port, 115200)
         except:
             return False
         
+        self.__usingSerial = True
+        
         self.__threadAlive = True # Keep alive
         self.__threadRunning = True # Run thread
         self.__feedbackThread.start()
         time.sleep(1) # Wait all start
+                
+        return True
+    
+    def startTelnet(self, address='192.168.4.1', port=23):
+        try:
+            self.__telnetBus = telnetlib.Telnet(address, port)
+        except:
+            return False
+
+        self.__usingSerial = False
+        
+        self.__threadAlive = True # Keep alive
+        self.__threadRunning = True # Run thread
+        self.__feedbackThread.start()
+        time.sleep(1) # Wait all start
+               
         return True
     
     # Closes all coms
@@ -89,7 +121,12 @@ class Grbl:
             
             self.__threadAlive = False # Kill thread
             self.__feedbackThread.join() # Wait thread to end
-            self.__serialBus.close() # Close bus
+            
+            # Close bus
+            if self.__usingSerial:
+                self.__serialBus.close() 
+            else:
+                self.__telnetBus.close()
     
     # Loads GRBL config from a file
     def loadConfig(self, filename):
@@ -217,8 +254,11 @@ class Grbl:
         self.__sendOrder('!')
         time.sleep(1)
         # Send control-x
-        self.__serialBus.write(bytes.fromhex('18'))
-        self.__serialBus.write('\r'.encode())
+        if self.__usingSerial:
+            self.__serialBus.write(bytes.fromhex('18'))
+            self.__serialBus.write('\r'.encode())
+        else:           
+            self.__telnetBus.write(bytes.fromhex('18') + '\r'.encode())
 
     def resume(self):
         self.__sendOrder('~')
