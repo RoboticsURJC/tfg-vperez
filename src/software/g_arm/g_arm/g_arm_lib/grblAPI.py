@@ -258,7 +258,7 @@ class Grbl:
             self.__serialBus.write(bytes.fromhex('18'))
             self.__serialBus.write('\r'.encode())
         else:           
-            self.__telnetBus.write(bytes.fromhex('18') + '\r'.encode())
+            self.__telnetBus.write(bytes.fromhex('18') + '\n'.encode())
 
     def resume(self):
         self.__sendOrder('~')
