@@ -29,7 +29,7 @@
 \usepackage{outlines} % Para poner bullets tabulados (\1 \2 \3 ...) y no items
 \usepackage{siunitx}
 \usepackage{multicol}
-
+\usepackage{xspace}
 \usepackage{array,tabularx} % para tabular leyenda de ecuaciones
 \newenvironment{conditions*} % entorno de "leyenda de ecuación"
   {\par\vspace{\abovedisplayskip}\noindent
@@ -390,7 +390,7 @@ Trabajo fin de grado
 \end{frame}
 
 \begin{frame}
-\frametitle{Herramientas integradas a día de hoy}
+\frametitle{Herramientas disponibles a día de hoy}
 \begin{table}[htbp]
   \centering
   \begin{tabular}{cc}
@@ -496,21 +496,30 @@ Trabajo fin de grado
 \end{frame}
 
 \section{Conclusiones}
+
 \begin{frame}
 \begin{block}{Objetivos cumplidos}
 \begin{itemize}
-\item Herramienta multiplataforma: soporta Linux, Windows, MacOS.
-\item Intuitiva para el usuario final: no se necesita instalar nada.
-\item Solo se necesita un navegador web.
+\item Coste de fabricación completo inferior a 200\euro\xspace(aprox. 171\euro)
+\item Más del 80\% del robot está impreso en 3D.
+\item Consumo inferior a 25 vatios.
+\item El robot es portable y tiene un tamaño ideal para usarse encima de una mesa cualquiera ya que no necesita anclarse al suelo.
+\item Supera la capacidad de carga carga propuesta de 300g.
+\item Resulta simple de montar y se puede imprimir en cualquier impresora 3D convencional.
+\item Se ha realizado una integración completa en ROS 2 y MoveIt2.
 \end{itemize}
 \end{block}
+\end{frame}
 
+\begin{frame}
 \begin{block}{Líneas futuras}
-\begin{itemize}
-\item Permitir el uso de otras herramientas.
-\item Ampliar los botones disponibles en el interfaz.
-\end{itemize}
-\end{block}
+  \begin{itemize}
+  \item Añadir un cuarto grado de libertad en el extremo del robot para poder rotar las piezas en el plano XY.
+  \item Crear más herramientas para aumentar así sus posibilidades.
+  \item Integrar este robot en la asignatura de Robótica Industrial, como se plantea en el Anexo II de la memoria.
+  \item Crear un firmware específico para ESP32 de la placa base del robot para permitir controlarlo a más bajo nivel.
+  \end{itemize}
+  \end{block}
 \end{frame}
 
 \begin{frame}[plain]
