@@ -30,7 +30,9 @@ class Grbl:
             self.__serialBus.write(bytes(order.encode()))
             self.__serialBus.write('\r'.encode())
         else:
+            self.__threadRunning = False
             self.__telnetBus.write(bytes( (order + '\n').encode()))
+            self.__threadRunning = True
               
     def __readLine(self):
         
